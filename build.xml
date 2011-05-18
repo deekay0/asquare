@@ -1,0 +1,310 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="SquareGwt" default="gwt_compile">
+	<property file="build.properties"/>
+
+	<!-- The top-level directory for the project and
+    where the ant file resides -->
+	<dirname property="basedir" file="${ant.file}"/>
+
+	<!-- The ./classes directory inside the top-level directory -->
+	<property name="gwtproj.output.dir" value="${basedir}/war/WEB-INF/classes"/>
+	<property name="test.reports" value="${basedir}/tests/test_reports"/>
+	<path id="project.classpath">
+		<pathelement location="src"/>
+		<pathelement location="${gwt.sdk}/gwt-user.jar"/>
+		<fileset dir="${gwt.sdk}" includes="gwt-dev*.jar"/>
+		<pathelement location="war/WEB-INF/classes"/>
+		<fileset dir="war/WEB-INF/lib">
+			<include name="**/*.jar"/>
+		</fileset>
+
+	</path>
+
+	<path id="test.classpath">
+		<fileset file="${basedir}/lib/junit.jar">
+		</fileset>
+		<pathelement location="${basedir}/tests/java"/>
+	</path>
+	<!-- This target calls MyForm-compile to create
+    all the content in the ./www directory -->
+	<target name="gwt_compile" depends="clean,compile" description="GWT compile to JavaScript">
+		<java logerror="yes" failonerror="true" fork="true" classname="com.google.gwt.dev.Compiler">
+			<classpath>
+				<pathelement location="src"/>
+				<path refid="project.classpath"/>
+			</classpath>
+			<!-- add jvmarg -Xss16M or similar if you see a StackOverflowError -->
+			<jvmarg value="-Xmx1024M"/>
+			<jvmarg value="-Xss16M"/>
+			<!-- Additional arguments like -style PRETTY or -logLevel DEBUG -->
+			<arg value="edu.cmu.square.SquareGwt"/>
+		</java>
+	</target>
+
+	<target name="hosted" depends="compile" description="Run hosted mode">
+		<java failonerror="true" fork="true" classname="com.google.gwt.dev.HostedMode">
+			<classpath>
+				<pathelement location="src"/>
+				<path refid="project.classpath"/>
+			</classpath>
+			<jvmarg value="-Xmx512M"/>
+			<arg value="-startupUrl"/>
+			<arg value="SquareGwt.html"/>
+			<!-- Additional arguments like -style PRETTY or -logLevel DEBUG -->
+			<arg value="edu.cmu.square.squareGwt"/>
+		</java>
+	</target>
+
+	<target name="compile" description=
+            "Compile the gwtproj production classes">
+		<mkdir dir="${gwtproj.output.dir}"/>
+		<javac srcdir="src" includes="**" encoding="utf-8"
+		        destdir="${gwtproj.output.dir}"
+		        nowarn="true"
+		        debug="true" debuglevel="lines,vars,source">
+			<classpath refid="project.classpath"/>
+		</javac>
+		<copy  todir="${basedir}/war/WEB-INF/classes">
+			<fileset dir="${basedir}/src/" includes="**/*.xml,**/*.properties">
+			</fileset>
+		</copy>
+	</target>
+
+	<target  name="deploy" depends="gwt_compile" description=
+	            "Deploy the application to local tomcat">
+		<mkdir dir="${basedir}/dist/war" />
+		<copy  todir="${basedir}/dist/war">
+			<fileset dir="${basedir}/war/" excludes="**/*mysql*.jar">
+			</fileset>
+		
+		</copy>
+
+		
+		<war webxml="${basedir}/dist/war/WEB-INF/web.xml"  
+			destfile="${basedir}/dist/Square.war" >
+			<fileset dir="${basedir}/dist/war"/>
+
+		</war>
+		<delete dir="${web.deploy.location}/Square"/>
+		<delete file="${web.deploy.location}/Square.war"/>
+		<copy overwrite="true" todir="${web.deploy.location}" file="${basedir}/dist/Square.war"/>
+		<copy overwrite="true" todir="${property.file.location}" >
+			<fileset dir="${basedir}/resources"/>
+			
+		</copy>
+		<delete dir="${basedir}/dist"/>
+	
+	</target>
+	<target  name="deploy_prod" depends="gwt_compile" description=
+		            "Deploy the application to local tomcat">
+			<mkdir dir="${basedir}/dist/war" />
+			<copy  todir="${basedir}/dist/war">
+				<fileset dir="${basedir}/war/">
+				</fileset>
+			
+			</copy>
+
+			<war webxml="${basedir}/dist/war/WEB-INF/web.xml"  
+				destfile="${basedir}/dist/Square.war" >
+				<fileset dir="${basedir}/dist/war"/>
+
+			</war>
+			<delete dir="${web.deploy.location}/Square"/>
+			<delete file="${web.deploy.location}/Square.war"/>
+			<copy overwrite="true" todir="${web.deploy.location}" file="${basedir}/dist/Square.war"/>
+		 
+			<delete dir="${basedir}/dist"/>
+		
+		</target>
+
+	<target  name="deploy_qa" depends="gwt_compile" description=
+		            "Deploy the application to local tomcat">
+			<mkdir dir="${basedir}/dist/war" />
+			<copy  todir="${basedir}/dist/war">
+				<fileset dir="${basedir}/war/" >
+				</fileset>
+			</copy>
+
+		
+			<war webxml="${basedir}/dist/war/WEB-INF/web.xml"  
+				destfile="${basedir}/dist/Square_QA.war" >
+				<fileset dir="${basedir}/dist/war"/>
+
+			</war>
+			<copy todir="${web.deploy.location}" file="${basedir}/dist/Square_QA.war"/>
+			
+			<delete dir="${basedir}/dist"/>
+		
+		</target>
+	
+
+	<target name="remote_deploy" depends="gwt_compile" description=
+		            "Deploy the application to remote tomcat">
+		<mkdir dir="${basedir}/dist/war" />
+		<copy  todir="${basedir}/dist/war">
+			<fileset dir="${basedir}/war/" excludes="**/*mysql*.jar">
+			</fileset>
+		</copy>
+
+		<war webxml="${basedir}/dist/war/WEB-INF/web.xml"  
+				destfile="${basedir}/dist/Square.war" >
+			<fileset dir="${basedir}/dist/war"/>
+
+		</war>
+		<taskdef file="${basedir}/lib/tomcatTasks.properties">
+			<classpath>
+				<pathelement path="lib/catalina-ant.jar"/>
+			</classpath>
+		</taskdef>
+
+
+		<undeploy failonerror="false" url="http://msesrv4d-vm.mse.cs.cmu.edu:8686/manager/"
+			 	 username="admin"
+			 			         password="admin"
+			 			         path="/Square"/>
+
+		<deploy url="http://msesrv4d-vm.mse.cs.cmu.edu:8686/manager/"
+			         username="admin"
+			         password="admin"
+			         path="/Square"
+			         war="file:${basedir}/dist/Square.war" />
+		<delete dir="${basedir}/dist"/>
+
+	</target>
+
+	<target name="remote_deploy_qa" depends="gwt_compile" description=
+			            "Deploy the application to remote tomcat">
+		<mkdir dir="${basedir}/dist/war" />
+		<copy  todir="${basedir}/dist/war">
+			<fileset dir="${basedir}/war/" excludes="**/*mysql*.jar">
+			</fileset>
+		</copy>
+
+		<war webxml="${basedir}/dist/war/WEB-INF/web.xml"  
+					destfile="${basedir}/dist/Square_QA.war" >
+			<fileset dir="${basedir}/dist/war"/>
+
+		</war>
+		<taskdef file="${basedir}/lib/tomcatTasks.properties">
+			<classpath>
+				<pathelement path="lib/catalina-ant.jar"/>
+			</classpath>
+		</taskdef>
+
+
+		<undeploy failonerror="false" url="http://msesrv4d-vm.mse.cs.cmu.edu:8686/manager/"
+				 	 username="admin"
+				 			         password="admin"
+				 			         path="/Square_QA"/>
+
+		<deploy url="http://msesrv4d-vm.mse.cs.cmu.edu:8686/manager/"
+				         username="admin"
+				         password="admin"
+				         path="/Square_QA"
+				         war="file:${basedir}/dist/Square_QA.war" />
+		<delete dir="${basedir}/dist"/>
+
+	</target>
+
+	<target name="javadoc">
+		<mkdir dir="${basedir}/docs/javadoc"/>
+		<javadoc
+		           destdir="docs/javadoc"
+		           author="true"
+		           version="true"
+		           use="true"
+		           >
+
+			<fileset dir="src">
+				<include name="**/*.java"/>
+			</fileset>
+
+			<classpath>
+				<pathelement location="src"/>
+				<path refid="project.classpath"/>
+			</classpath>
+			<doctitle>
+				<![CDATA[<h1>Square Tool Javadocs</h1>]]></doctitle>
+		<bottom>
+			<![CDATA[<i>Copyright &#169; 2009 Square Root. All Rights Reserved.</i>]]></bottom>
+	<tag name="todo" scope="all" description="To do:"/>
+	<link href="http://developer.java.sun.com/developer/products/xml/docs/api/"/>
+</javadoc>
+</target>
+<target name="clean" description="Cleans this project">
+<delete dir="war/WEB-INF/classes" failonerror="false" />
+<delete dir="war/squaregwt" failonerror="false" />
+</target>
+
+<target name="unit_test" depends="clean, compile" description="Runs all unit tests of the project">
+<javac srcdir="${basedir}/tests/java" includes="**" 
+	excludes="**/*GwtTest*.java" encoding="utf-8"
+				        destdir="${gwtproj.output.dir}"
+				        nowarn="true"
+				        debug="true" debuglevel="lines,vars,source"
+			source="1.6"
+			>
+	<classpath>
+		<fileset file="${basedir}/lib/junit.jar">
+		</fileset>
+		
+		<path refid="project.classpath"/>
+	</classpath>
+</javac>
+	<copy  todir="${basedir}/war/WEB-INF/classes">
+				<fileset dir="${basedir}/resources/" includes="**.*">
+				</fileset>
+			</copy>
+<junit printsummary="yes" haltonfailure="yes">
+	<classpath>
+		<fileset file="${basedir}/lib/junit.jar"/>
+		<path refid="project.classpath"/>
+
+	</classpath>
+
+
+	<batchtest fork="yes" todir="${test.reports}">
+		<fileset dir="${basedir}/tests/java">
+			<include name="**/*Test*.java"/>
+			<exclude name="**/*GwtTest*.java"/>
+		</fileset>
+		<formatter type="xml"/>
+	</batchtest>
+</junit>
+
+</target>
+
+
+<target name="gwt_test" depends="clean, compile" description="Runs all gwt tests of the project">
+<javac srcdir="${basedir}/tests/java" includes="**/*GwtTest*.java"  encoding="utf-8"
+					        destdir="${gwtproj.output.dir}"
+					        nowarn="true"
+					        debug="true" debuglevel="lines,vars,source"
+				source="1.6"
+				>
+	<classpath>
+		<fileset file="${basedir}/lib/junit.jar">
+		</fileset>
+		<path refid="project.classpath"/>
+	</classpath>
+</javac>
+	
+<junit printsummary="yes" haltonfailure="yes" maxmemory="1024m">
+	<classpath>
+		<fileset file="${basedir}/lib/junit.jar"/>
+		<path refid="test.classpath"/>
+		<path refid="project.classpath"/>
+		
+	</classpath>
+
+
+	<batchtest fork="yes" todir="${test.reports}">
+		<fileset dir="${basedir}/tests/java">
+			<include name="**/*GwtTest*.java"/>
+
+		</fileset>
+		<formatter type="xml"/>
+	</batchtest>
+</junit>
+</target>
+</project>

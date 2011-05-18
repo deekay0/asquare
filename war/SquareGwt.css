@@ -1,0 +1,607 @@
+﻿html {
+	font-family: arial, verdana, ms sans serif;
+	font-size: 12pt;
+}
+
+/*  ---------------------- 
+    Universal Sytles
+      These are styles that should be used
+      by everyone throughout the site to ensure
+      a common "look and feel"
+    ---------------------- */
+.square-hyperlink {
+	color: blue;
+	text-decoration: underline;
+	cursor: pointer;
+	cursor: hand;
+}
+
+.square-button {
+	width: 170px;
+	height: 30; 
+}
+
+.square-chunky-hyperlink {
+	color: blue;
+	text-decoration: underline;
+	cursor: pointer;
+	cursor: hand;
+	font-family: arial, verdana, ms sans serif;
+	font-size: 12pt;
+}
+
+.square-login {
+	border: 4px solid #C3D9FF;
+	padding: 10px;
+}
+
+.square-header-role {
+	font-weight: normal;
+}
+
+.square-error {
+	color: red;
+}
+
+.gwt-TextArea {
+	font-family: arial, verdana, ms sans serif;
+	font-size: 12pt;
+	font-weight: normal;
+}
+
+.square-title {
+	font-weight: bold;
+	font-size: 16pt;
+}
+
+.table-heading {
+	font-size: 14pt;
+}
+
+.page-title-heading {
+	font-weight: bold;
+	font-size: 14px;
+}
+
+.good {
+	color: green;
+	font-weight: bold;
+}
+
+.bad {
+	color: red;
+	font-weight: bold;
+}
+
+/*  ------------------------ */ /*  Header and footer styles */
+	/*  ------------------------ */
+.square-header {
+	background-color: #C3D9FF;
+	padding: 0px 3px 10px 3px;
+}
+
+.square-headerpane-title {
+	font-size: 14pt;
+	padding: 10px 5px 0px 5px;
+}
+
+.square-headerpane-tagline {
+	font-size: 10pt;
+	padding: 0px 5px 10px 5px;
+}
+
+.gwt-footer {
+	font-size: 10px;
+}
+
+.square-long-textBox {
+	width: 450px;
+}
+
+.square-header-LogoImage {
+	cursor: pointer;
+	cursor: hand;
+	padding: 10px
+}
+
+/*  ------------------------ */ /*  SQUARE Flex Table Styles */
+	/*  ------------------------ */
+.square-flex td {
+	border-bottom: 1px solid #F0F8FF;
+	padding: 10px 3px 10px 3px;
+	border-spacing: 0px;
+}
+
+.square-flex-border td {
+	border-bottom: 1px solid #F0F8FF;
+	padding: 3px 3px 3px 3px;
+}
+
+.square-flex-fullborder {
+	border: 1px solid #4096EE;
+	padding: 10px 3px 10px 3px;
+}
+
+.square-flex-no-padding td {
+	border-bottom: 1px solid #EEEEEE;
+}
+
+.inner-table td {
+	border-bottom: 0px;
+	padding: 0px;
+}
+
+.flex-link-bar td {
+	padding: 0 4px 0 4px;
+	border: 0px;
+}
+
+.square-TableHeader {
+	background-color: #3F4C6B;
+	font-weight: bold;
+	color: white;
+	height: 20px;
+}
+
+/*  ---------------------- */ /*  Teach Step Styles
+/*  ---------------------- */
+.teach-step {
+	margin: 5px;
+	padding: 5px 0 5px 0;
+}
+
+.teach-step p {
+	margin: 8px;
+	padding: 0px;
+}
+
+.teach-step ul {
+	margin: 8px;
+	padding: 0 0 0 35px;
+	list-style-type: square;
+}
+
+.teach-step-purpose-content {
+	border: 2px solid #C3D9FF;
+	background-color: #FFFFFF;
+	padding: 3px;
+}
+
+.teach-step-stakeholder-content {
+	border: 1px solid #C3D9FF;
+	background-color: #F5FFC7;
+	padding: 3px;
+}
+
+.teach-step-spacer {
+	width: 10px;
+}
+
+.teach-step-engineer-content {
+	border: 1px solid #C3D9FF;
+	background-color: #D9FFC7;
+	padding: 3px;
+}
+
+.teach-step-exit-content {
+	border: 2px solid #C3D9FF;
+	background-color: #FFFFFF;
+	padding: 3px;
+}
+
+.teach-step-tool-content {
+	border: 2px solid #C3D9FF;
+	background-color: #FFFFFF;
+	padding: 3px;
+}
+
+/*  ---------------------- */ /*  Inspect Requirements
+/*  ---------------------- */
+.square-flex-collapse {
+	border-bottom: 1px solid #EEEEEE;
+	padding: 10px 3px 10px 3px;
+	border-collapse: collapse;
+}
+
+/*  ---------------------- */ /*  Identify Assets and Goal Styles
+/*  ---------------------- */
+.identify-goals-inner-table {
+	border-bottom: 1px solid #EEEEEE;
+	margin: 0 0 10px 0;
+}
+
+.summary-Table {
+	border: 1px solid #2F78BD;
+	border-collapse: collapse;
+	margin: 0 0 10px 0;
+}
+
+.summary-Table td {
+	padding: 5px 0 5px 0;
+}
+
+.summary-Table-thick td {
+	padding: 10px 0 10px 0;
+}
+
+.border {
+	border: 1px #BBBBBB;
+}
+
+.summary-column-heading {
+	background-color: #3F4C6B;
+	color: #FFFFFF;
+	padding: 5px;
+	margin: 0 0 10px 0;
+}
+
+.summary-column-heading td {
+	padding: 5px 5px 5px 5px;
+}
+
+.odd-row {
+	background-color: #C3D9FF;
+	padding: 3px;
+}
+
+.summary-noncolumn-heading {
+	background-color: #2F78BD;
+	color: white;
+	height: 20px;
+}
+
+.identify-assets-and-goals-noneditable-fields {
+	border: 1px #BBBBBB;
+	background-color: #C3D9FF;
+	padding: 3px;
+}
+
+.asset-step-layout {
+	border-bottom: 1px solid #BBBBBB;
+	padding: 10px 3px 10px 3px;
+}
+
+.subgoal-step-layout {
+	padding: 10px 1px 10px 1px;
+}
+
+.square-Table-SelectedRow {
+	background-color: #F0F8FF;
+	color: black;
+}
+
+/*  ---------------------- */ /*  Perform Risk Assessment Step
+/*  ---------------------- */
+.step-Title-heading {
+	font-weight: bold;
+	font-size: 16px;
+}
+
+.section-heading {
+	font-weight: bold;
+}
+
+.Risk-Input-Labels {
+	font-weight: bold;
+	text-align: right;
+	width: 125px;
+}
+
+.Risk-Exposure-Labels {
+	font-weight: bold;
+	text-align: center;
+	width: 125px;
+	border: 1px solid #C3D9FF;
+}
+
+.textInput {
+	border: 1px solid #C9C7BA;
+	font-family: Tahoma, Verdana, Arial, Helvetica, sans-serif;
+	font-size: 13px;
+	padding-left: 2px;
+	padding-top: 2px;
+	height: 18px;
+}
+
+.textInput-watermark {
+	border: 1px solid #C9C7BA;
+	font-family: Tahoma, Verdana, Arial, Helvetica, sans-serif;
+	font-size: 13px;
+	padding-left: 2px;
+	padding-top: 2px;
+	font-style: italic;
+	color: DarkGray;
+	height: 18px;
+}
+
+.Risk-Input-listBox {
+	text-align: right;
+	width: 100px;
+}
+
+.square-Matrix {
+	border: 1px solid #C3D9FF;
+	padding: 5px;
+}
+
+.square-RequiredField {
+	border: 2px solid;
+	border-color: red;
+	width: 450px;
+}
+
+.square-RequiredFieldListBox {
+	background-color: red;
+	text-align: right;
+	width: 100px;
+}
+
+.square-RequiredMessage {
+	color: red;
+	font-size: 14px;
+}
+
+.square-PaneLayout {
+	margin: 15px;
+}
+
+.square-Categorize-hyperlink {
+	color: black;
+	text-decoration: underline;
+	cursor: hand;
+	border: 0px;
+}
+
+.square-Categorize-selected {
+	color: black;
+	font-weight: bold;
+	border: 0px;
+}
+
+.square-Categorize-inbox {
+	border: 2px solid #C3D9FF;
+	padding: 4px;
+	width: 200px;
+}
+
+.square-Categorize-pane {
+	padding: 2px;
+}
+
+.square-Categorize-TableHeader1 {
+	background-color: #2F78BD;
+	padding: 10px 3px 10px 3px;
+	color: White;
+	font-weight: bold;
+	height: 15px;
+}
+
+.square-Categorize-TableHeader {
+	background-color: #3F4C6B;
+	color: #FFFFFF;
+	padding: 5px;
+	margin: 0 0 10px 0;
+}
+
+.square-categorize-header-hyperlink {
+	color: White;
+}
+
+.square-Categorize-flex {
+	border-bottom: 1px solid #EEEEEE;
+}
+
+.square-Categorize-mainlayout {
+	padding-left: 5px;
+}
+
+.square-category-label {
+	margin-left: 20px;
+	font-size: 8pt;
+	color: #3F4C6B;
+	font-weight: bold;
+}
+
+.square-agree-on-definition-inner-table td {
+	border-bottom: 0px;
+	padding: 0px 0px 0px 0px;
+}
+
+.square-agree-on-definition-flex {
+	border-bottom: 1px solid #EEEEEE;
+}
+
+.square-agree-on-definition-inner-table {
+	border-bottom: 0px;
+}
+
+.textInput {
+	border: 1px solid #C9C7BA;
+	font-family: Tahoma, Verdana, Arial, Helvetica, sans-serif;
+	font-size: 13px;
+	padding-left: 2px;
+	padding-top: 2px;
+	height: 18px;
+}
+
+.textInput-watermark {
+	border: 1px solid #C9C7BA;
+	font-family: Tahoma, Verdana, Arial, Helvetica, sans-serif;
+	font-size: 13px;
+	padding-left: 2px;
+	padding-top: 2px;
+	font-style: italic;
+	color: DarkGray;
+	height: 18px;
+}
+
+.textInput {
+	border: 1px solid #C9C7BA;
+	font-family: Tahoma, Verdana, Arial, Helvetica, sans-serif;
+	font-size: 13px;
+	padding-left: 2px;
+	padding-top: 2px;
+	height: 20px;
+}
+
+.textInput-watermark {
+	border: 1px solid #C9C7BA;
+	font-family: Tahoma, Verdana, Arial, Helvetica, sans-serif;
+	font-size: 13px;
+	padding-left: 2px;
+	padding-top: 2px;
+	font-style: italic;
+	color: DarkGray;
+	height: 20px;
+}
+
+.square-remove-padding {
+	padding: 0;
+	spacing: 0;
+	height: 1px;
+	border-bottom: 1px solid red;
+}
+
+.square-status-message1 {
+	font-size: 8pt;
+	color: #808080;
+	font-weight: bold;
+	align: center;
+}
+
+.square-status-message2 {
+	font-size: 8pt;
+	font-weight: bold;
+	align: center;
+	background-color: #3F4C6B;
+	color: #FFFFFF;
+	padding-left: 3px;
+	padding-right: 3px;
+}
+
+.square-clear-label {
+	font-size: 10pt;
+	font-weight: bold;
+	align: center;
+	background-color: white;
+	color: #3F4C6B;
+	border: 1px;
+	border-color: red;
+	cursor: pointer;
+	cursor: hand;
+}
+
+.square-choose-step-title {
+	border: 1px solid #4096EE;
+	background-color: #F0F8FF;
+	color: Black;
+	font-weight: bold;
+	padding: 5px;
+	margin: 0 0 10px 0;
+}
+
+.square-choose-step {
+	padding: 5px;
+	margin: 0 0 10px 0;
+}
+
+.square-choose-step-member-light {
+	background-color: #F0F8FF;
+	padding: 8px;
+	margin: 0 10px 10px 0;
+}
+
+.square-choose-step-member-deep {
+	background-color: #C3D9FF;
+	padding: 8px;
+	margin: 0 10px 10px 0;
+}
+
+.square-choose-step-member-link {
+	padding: 0 4px 0 4px;
+	border: 0px;
+	cursor: hand;
+	text-decoration: underline;
+	color: blue;
+}
+
+.square-choose-step-fullname {
+	font-weight: bold;
+	font-size: 10pt;
+}
+
+.square-choose-step-membertable {
+	font-size: 10pt;
+	padding: 0 0 0 0;
+	background: white;
+	border: 2px solid #4096EE;
+}
+.square-select-project {
+
+	padding-top: 8px;
+	padding-bottom: 5px;
+	padding-left: 5px;
+	
+}
+
+.square-sssets-listing li {
+	align: left;
+	list-style-type: square;
+}
+
+.square-note {
+	color: #2F78BD;
+}
+
+/* prioritization step styles */
+.prioritization-step-spacer {
+	width: 200px;
+}
+
+.prioritization-arrows td {
+	padding: 1px 0 1px 0;
+}
+
+/* prioritization step styles */
+.lock-icon td {
+	padding: 3px 0 3px 0;
+	border-bottom: 0px;
+}
+
+/* prioritization step styles */
+.big-text {
+	font-size: 25px;
+}
+
+.click-me {
+	font-size: 25px;
+	background-color: #FEFFBF;
+	cursor: pointer;
+	cursor: hand;
+}
+
+/*Inspect requirements style*/
+.link-select {
+	color: red;
+	text-decoration: underline;
+	cursor: pointer;
+	cursor: hand;
+}
+
+.link-notselect {
+	color: blue;
+	text-decoration: underline;
+	cursor: pointer;
+	cursor: hand;
+}
+.square-edit-user-pane{
+	background-color: #F0F8FF;
+	color: Black;
+	font-weight: bold;
+	padding: 5px 25px 5px 25px;
+	margin: 15px 0px 15px 0px;
+}
+
+.square-fileupload td {
+	padding: 10px 3px 10px 3px;
+}

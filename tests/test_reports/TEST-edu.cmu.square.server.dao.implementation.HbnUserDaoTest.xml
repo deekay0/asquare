@@ -1,0 +1,233 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<testsuite errors="0" failures="0" hostname="ashahab-PC" name="edu.cmu.square.server.dao.implementation.HbnUserDaoTest" tests="10" time="14.43" timestamp="2009-08-28T12:43:37">
+  <properties>
+    <property name="java.runtime.name" value="Java(TM) SE Runtime Environment"></property>
+    <property name="sun.boot.library.path" value="C:\Program Files\Java\jdk1.6.0_07\jre\bin"></property>
+    <property name="java.vm.version" value="10.0-b23"></property>
+    <property name="ant.library.dir" value="C:\javaSoftware\eclipse_6\eclipse\plugins\org.apache.ant_1.7.0.v200803061910\lib"></property>
+    <property name="ant.version" value="Apache Ant version 1.7.0 compiled on December 13 2006"></property>
+    <property name="ant.java.version" value="1.6"></property>
+    <property name="java.vm.vendor" value="Sun Microsystems Inc."></property>
+    <property name="java.vendor.url" value="http://java.sun.com/"></property>
+    <property name="path.separator" value=";"></property>
+    <property name="java.vm.name" value="Java HotSpot(TM) Client VM"></property>
+    <property name="file.encoding.pkg" value="sun.io"></property>
+    <property name="user.country" value="US"></property>
+    <property name="sun.java.launcher" value="SUN_STANDARD"></property>
+    <property name="sun.os.patch.level" value="Service Pack 1"></property>
+    <property name="ant.file.SquareGwt" value="C:\Users\kaalpurush\workspace\SquareGwt\build.xml"></property>
+    <property name="java.vm.specification.name" value="Java Virtual Machine Specification"></property>
+    <property name="user.dir" value="C:\Users\kaalpurush\workspace\SquareGwt"></property>
+    <property name="java.runtime.version" value="1.6.0_07-b06"></property>
+    <property name="java.awt.graphicsenv" value="sun.awt.Win32GraphicsEnvironment"></property>
+    <property name="eclipse.pdebuild.scripts" value="/C:/javaSoftware/eclipse_6/eclipse/plugins/org.eclipse.pde.build_3.4.1.R34x_v20081217/scripts/"></property>
+    <property name="basedir" value="C:\Users\kaalpurush\workspace\SquareGwt"></property>
+    <property name="java.endorsed.dirs" value="C:\Program Files\Java\jdk1.6.0_07\jre\lib\endorsed"></property>
+    <property name="os.arch" value="x86"></property>
+    <property name="java.io.tmpdir" value="C:\Users\KAALPU~1\AppData\Local\Temp\"></property>
+    <property name="ant.core.lib" value="C:\javaSoftware\eclipse_6\eclipse\plugins\org.apache.ant_1.7.0.v200803061910\lib\ant.jar"></property>
+    <property name="line.separator" value="
+"></property>
+    <property name="java.vm.specification.vendor" value="Sun Microsystems Inc."></property>
+    <property name="user.variant" value=""></property>
+    <property name="os.name" value="Windows Vista"></property>
+    <property name="ant.home" value="C:\javaSoftware\eclipse_6\eclipse\plugins\org.apache.ant_1.7.0.v200803061910"></property>
+    <property name="eclipse.pdebuild.templates" value="/C:/javaSoftware/eclipse_6/eclipse/plugins/org.eclipse.pde.build_3.4.1.R34x_v20081217/templates/"></property>
+    <property name="ant.project.name" value="SquareGwt"></property>
+    <property name="sun.jnu.encoding" value="Cp1252"></property>
+    <property name="java.library.path" value="C:\Program Files\Java\jdk1.6.0_07\jre\bin;.;C:\Windows\Sun\Java\bin;C:\Windows\system32;C:\Windows;C:/Program Files/Java/jdk1.6.0_07/bin/../jre/bin/client;C:/Program Files/Java/jdk1.6.0_07/bin/../jre/bin;C:\Program Files\VisualSVN Server\bin;C:\javaSoftware\eclipse_6\eclipse\plugins\org.apache.ant_1.7.0.v200803061910\bin;.;C:\Program Files\Java\jdk1.6.0_07\bin;C:\Program Files\PC Connectivity Solution\;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Program Files\Common Files\Roxio Shared\DLLShared\;C:\Program Files\Common Files\Roxio Shared\10.0\DLLShared\;C:\Program Files\OpenSSH\bin;C:\Program Files\jZip;C:\Windows\system32\Wbem;C:\Program Files\Common Files\Adobe\AGL;C:\Program Files\QuickTime\QTSystem\;C:\Program Files\TortoiseSVN\bin;C:\Program Files\Common Files\DivX Shared\;;C:\Program Files\IBM\RationalSDLC\common;C:\Users\kaalpurush\AppData\Local\MiKTeX 2.7\miktex\bin"></property>
+    <property name="deployment.manager.location" value="http://localhost:8686/manager/"></property>
+    <property name="web.deploy.location" value="C:/javaSoftware/Tomcat 6.0/webapps"></property>
+    <property name="eclipse.pdebuild.home" value="/C:/javaSoftware/eclipse_6/eclipse/plugins/org.eclipse.pde.build_3.4.1.R34x_v20081217/./"></property>
+    <property name="java.specification.name" value="Java Platform API Specification"></property>
+    <property name="java.class.version" value="50.0"></property>
+    <property name="sun.management.compiler" value="HotSpot Client Compiler"></property>
+    <property name="os.version" value="6.0"></property>
+    <property name="ant.file" value="C:\Users\kaalpurush\workspace\SquareGwt\build.xml"></property>
+    <property name="user.home" value="C:\Users\kaalpurush"></property>
+    <property name="test.reports" value="C:\Users\kaalpurush\workspace\SquareGwt/tests/test_reports"></property>
+    <property name="user.timezone" value=""></property>
+    <property name="property.file.location" value="C:/javaSoftware/Tomcat 6.0/classes"></property>
+    <property name="java.awt.printerjob" value="sun.awt.windows.WPrinterJob"></property>
+    <property name="java.specification.version" value="1.6"></property>
+    <property name="file.encoding" value="Cp1252"></property>
+    <property name="user.name" value="kaalpurush"></property>
+    <property name="java.class.path" value="C:\Users\kaalpurush\workspace\SquareGwt\lib\junit.jar;C:\Users\kaalpurush\workspace\SquareGwt\src;C:\javaSoftware\eclipse_6\eclipse\plugins\com.google.gwt.eclipse.sdkbundle.win32_1.6.4.v200904062334\gwt-windows-1.6.4\gwt-user.jar;C:\javaSoftware\eclipse_6\eclipse\plugins\com.google.gwt.eclipse.sdkbundle.win32_1.6.4.v200904062334\gwt-windows-1.6.4\gwt-dev-windows.jar;C:\Users\kaalpurush\workspace\SquareGwt\war\WEB-INF\classes;C:\Users\kaalpurush\workspace\SquareGwt\war\WEB-INF\lib\activation.jar;C:\Users\kaalpurush\workspace\SquareGwt\war\WEB-INF\lib\antlr-2.7.6.jar;C:\Users\kaalpurush\workspace\SquareGwt\war\WEB-INF\lib\antlrworks-1.2.3.jar;C:\Users\kaalpurush\workspace\SquareGwt\war\WEB-INF\lib\aspectjrt.jar;C:\Users\kaalpurush\workspace\SquareGwt\war\WEB-INF\lib\aspectjweaver.jar;C:\Users\kaalpurush\workspace\SquareGwt\war\WEB-INF\lib\cglib-nodep-2.1_3.jar;C:\Users\kaalpurush\workspace\SquareGwt\war\WEB-INF\lib\commons-collections-3.1.jar;C:\Users\kaalpurush\workspace\SquareGwt\war\WEB-INF\lib\commons-fileupload.jar;C:\Users\kaalpurush\workspace\SquareGwt\war\WEB-INF\lib\commons-io.jar;C:\Users\kaalpurush\workspace\SquareGwt\war\WEB-INF\lib\commons-lang.jar;C:\Users\kaalpurush\workspace\SquareGwt\war\WEB-INF\lib\commons-logging-1.1.1.jar;C:\Users\kaalpurush\workspace\SquareGwt\war\WEB-INF\lib\commons-math-1.2.jar;C:\Users\kaalpurush\workspace\SquareGwt\war\WEB-INF\lib\dom4j-1.6.1.jar;C:\Users\kaalpurush\workspace\SquareGwt\war\WEB-INF\lib\ejb3-persistence.jar;C:\Users\kaalpurush\workspace\SquareGwt\war\WEB-INF\lib\gwt-incubator-march-02-2009.jar;C:\Users\kaalpurush\workspace\SquareGwt\war\WEB-INF\lib\gwt-servlet.jar;C:\Users\kaalpurush\workspace\SquareGwt\war\WEB-INF\lib\gwtrpc-spring-1.0.jar;C:\Users\kaalpurush\workspace\SquareGwt\war\WEB-INF\lib\gxt.jar;C:\Users\kaalpurush\workspace\SquareGwt\war\WEB-INF\lib\hibernate-annotations.jar;C:\Users\kaalpurush\workspace\SquareGwt\war\WEB-INF\lib\hibernate-commons-annotations.jar;C:\Users\kaalpurush\workspace\SquareGwt\war\WEB-INF\lib\hibernate3.jar;C:\Users\kaalpurush\workspace\SquareGwt\war\WEB-INF\lib\javassist-3.4.GA.jar;C:\Users\kaalpurush\workspace\SquareGwt\war\WEB-INF\lib\jaxen-1.1-beta-6.jar;C:\Users\kaalpurush\workspace\SquareGwt\war\WEB-INF\lib\jta-1.1.jar;C:\Users\kaalpurush\workspace\SquareGwt\war\WEB-INF\lib\junit.jar;C:\Users\kaalpurush\workspace\SquareGwt\war\WEB-INF\lib\log4j-1.2.15.jar;C:\Users\kaalpurush\workspace\SquareGwt\war\WEB-INF\lib\mail.jar;C:\Users\kaalpurush\workspace\SquareGwt\war\WEB-INF\lib\mysql-connector-java-5.1.7-bin.jar;C:\Users\kaalpurush\workspace\SquareGwt\war\WEB-INF\lib\serializer.jar;C:\Users\kaalpurush\workspace\SquareGwt\war\WEB-INF\lib\slf4j-api-1.5.6.jar;C:\Users\kaalpurush\workspace\SquareGwt\war\WEB-INF\lib\slf4j-simple-1.5.6.jar;C:\Users\kaalpurush\workspace\SquareGwt\war\WEB-INF\lib\spring-test.jar;C:\Users\kaalpurush\workspace\SquareGwt\war\WEB-INF\lib\spring.jar;C:\Users\kaalpurush\workspace\SquareGwt\war\WEB-INF\lib\velocity-1.5.jar;C:\Users\kaalpurush\workspace\SquareGwt\war\WEB-INF\lib\xalan.jar;C:\Users\kaalpurush\workspace\SquareGwt\war\WEB-INF\lib\xercesImpl.jar;C:\Users\kaalpurush\workspace\SquareGwt\war\WEB-INF\lib\xml-apis.jar;C:\Users\kaalpurush\workspace\SquareGwt;C:\Program Files\Java\jre6\lib\ext\QTJava.zip;C:\javaSoftware\eclipse_6\eclipse\plugins\org.apache.ant_1.7.0.v200803061910\lib\ant-launcher.jar;C:\javaSoftware\eclipse_6\eclipse\plugins\org.apache.ant_1.7.0.v200803061910\lib\ant.jar;C:\javaSoftware\eclipse_6\eclipse\plugins\org.apache.ant_1.7.0.v200803061910\lib\ant-junit.jar"></property>
+    <property name="java.vm.specification.version" value="1.0"></property>
+    <property name="java.home" value="C:\Program Files\Java\jdk1.6.0_07\jre"></property>
+    <property name="sun.arch.data.model" value="32"></property>
+    <property name="gwt.sdk" value="C:/javaSoftware/eclipse_6/eclipse/plugins/com.google.gwt.eclipse.sdkbundle.win32_1.6.4.v200904062334/gwt-windows-1.6.4"></property>
+    <property name="java.specification.vendor" value="Sun Microsystems Inc."></property>
+    <property name="user.language" value="en"></property>
+    <property name="awt.toolkit" value="sun.awt.windows.WToolkit"></property>
+    <property name="gwtproj.output.dir" value="C:\Users\kaalpurush\workspace\SquareGwt/war/WEB-INF/classes"></property>
+    <property name="java.vm.info" value="mixed mode, sharing"></property>
+    <property name="java.version" value="1.6.0_07"></property>
+    <property name="java.ext.dirs" value="C:\Program Files\Java\jdk1.6.0_07\jre\lib\ext;C:\Windows\Sun\Java\lib\ext"></property>
+    <property name="sun.boot.class.path" value="C:\Program Files\Java\jdk1.6.0_07\jre\lib\resources.jar;C:\Program Files\Java\jdk1.6.0_07\jre\lib\rt.jar;C:\Program Files\Java\jdk1.6.0_07\jre\lib\sunrsasign.jar;C:\Program Files\Java\jdk1.6.0_07\jre\lib\jsse.jar;C:\Program Files\Java\jdk1.6.0_07\jre\lib\jce.jar;C:\Program Files\Java\jdk1.6.0_07\jre\lib\charsets.jar;C:\Program Files\Java\jdk1.6.0_07\jre\classes"></property>
+    <property name="java.vendor" value="Sun Microsystems Inc."></property>
+    <property name="file.separator" value="\"></property>
+    <property name="java.vendor.url.bug" value="http://java.sun.com/cgi-bin/bugreport.cgi"></property>
+    <property name="sun.cpu.endian" value="little"></property>
+    <property name="sun.io.unicode.encoding" value="UnicodeLittle"></property>
+    <property name="sun.desktop" value="windows"></property>
+    <property name="sun.cpu.isalist" value="pentium_pro+mmx pentium_pro pentium+mmx pentium i486 i386 i86"></property>
+  </properties>
+  <testcase classname="edu.cmu.square.server.dao.implementation.HbnUserDaoTest" name="testAddUserToProject" time="0.952"></testcase>
+  <testcase classname="edu.cmu.square.server.dao.implementation.HbnUserDaoTest" name="testEditRole" time="0.218"></testcase>
+  <testcase classname="edu.cmu.square.server.dao.implementation.HbnUserDaoTest" name="testGetAllRoles" time="0.175"></testcase>
+  <testcase classname="edu.cmu.square.server.dao.implementation.HbnUserDaoTest" name="testGetUserListForProject" time="0.522"></testcase>
+  <testcase classname="edu.cmu.square.server.dao.implementation.HbnUserDaoTest" name="testGwtUserListFromProjectWithStaticData" time="0.352"></testcase>
+  <testcase classname="edu.cmu.square.server.dao.implementation.HbnUserDaoTest" name="testGetUsersForAutoComplete" time="0.352"></testcase>
+  <testcase classname="edu.cmu.square.server.dao.implementation.HbnUserDaoTest" name="testRemoveUserFromProject" time="0.32"></testcase>
+  <testcase classname="edu.cmu.square.server.dao.implementation.HbnUserDaoTest" name="testGetUsersbyUsername" time="0.459"></testcase>
+  <testcase classname="edu.cmu.square.server.dao.implementation.HbnUserDaoTest" name="testSetLockOnAccount" time="0.461"></testcase>
+  <testcase classname="edu.cmu.square.server.dao.implementation.HbnUserDaoTest" name="removeUserFromDatabase" time="0.51"></testcase>
+  <system-out><![CDATA[ INFO [main] (TestContextManager.java:167) - @TestExecutionListeners is not present for class [class edu.cmu.square.server.dao.implementation.HbnUserDaoTest]: using defaults.
+ INFO [main] (XmlBeanDefinitionReader.java:323) - Loading XML bean definitions from file [C:\Users\kaalpurush\workspace\SquareGwt\src\applicationContext-hibernate.xml]
+ INFO [main] (XmlBeanDefinitionReader.java:323) - Loading XML bean definitions from file [C:\Users\kaalpurush\workspace\SquareGwt\src\applicationContext-jdbc.xml]
+ INFO [main] (AbstractApplicationContext.java:411) - Refreshing org.springframework.context.support.GenericApplicationContext@76cbf7: display name [org.springframework.context.support.GenericApplicationContext@76cbf7]; startup date [Fri Aug 28 08:43:40 EDT 2009]; root of context hierarchy
+ INFO [main] (AbstractApplicationContext.java:426) - Bean factory for application context [org.springframework.context.support.GenericApplicationContext@76cbf7]: org.springframework.beans.factory.support.DefaultListableBeanFactory@4aa0ce
+ INFO [main] (PropertiesLoaderSupport.java:178) - Loading properties file from class path resource [square.properties]
+ INFO [main] (DefaultListableBeanFactory.java:414) - Pre-instantiating singletons in org.springframework.beans.factory.support.DefaultListableBeanFactory@4aa0ce: defining beans [org.springframework.context.annotation.internalPersistenceAnnotationProcessor,org.springframework.context.annotation.internalCommonAnnotationProcessor,org.springframework.context.annotation.internalAutowiredAnnotationProcessor,org.springframework.context.annotation.internalRequiredAnnotationProcessor,authorizationAspect,exceptionAspect,chooseProjectBusinessImpl,exportBusinessImpl,logInBusinessImpl,manageProjectBusinessImpl,manageSiteBusinessImpl,stepBusinessImpl,uploadRequirementsBusinessImpl,agreeOnDefinitionsBusinessImpl,categorizeRequirementsBusinessImpl,collectArtifactsBusinessImpl,elicitationTechniqueBusinessImpl,elicitRequirementsBusinessImpl,identifyGoalsAssetsBusinessImpl,inspectionTechniqueBusinessImpl,prioritizeRequirementBusinessImpl,riskAssessmentBusinessImpl,hbnArtifactDao,hbnAssetDao,hbnCategoryDao,hbnGoalDao,hbnInspectionTechniqueDao,hbnProjectDao,hbnProjectStepDao,hbnRequirementDao,hbnRiskDao,hbnRoleDao,hbnStepDao,hbnTechniqueDao,hbnTechniqueEvaluationCriteriaDao,hbnTechniqueEvaluationDao,hbnTermDao,hbnUserAhpDao,hbnUserDao,hbnUserProjectRoleDao,appPropertiesServiceImpl,chooseProjectServiceImpl,LogInService,manageProjectServiceImpl,manageSiteServiceImpl,stepServiceImpl,agreeOnDefinitionsServiceImpl,categorizeRequirementsServiceImpl,collectArtifactsServiceImpl,elicitationTechniqueServiceImpl,elicitRequirementServiceImpl,identifyGoalsAssetsServiceImpl,inspectionTechniqueServiceImpl,prioritizeRequirementsServiceImpl,riskAssessmentServiceImpl,xmlExportServlet,org.springframework.aop.config.internalAutoProxyCreator,org.springframework.transaction.annotation.AnnotationTransactionAttributeSource#0,org.springframework.transaction.interceptor.TransactionInterceptor#0,org.springframework.transaction.config.internalTransactionAdvisor,transactionManager,sessionFactory,mailSender,resetPasswordTemplateEmail,userCreatedMessage,velocityEngine,org.springframework.beans.factory.config.PropertyPlaceholderConfigurer#0,dataSource]; root of factory hierarchy
+ INFO [main] (DriverManagerDataSource.java:155) - Loaded JDBC driver: com.mysql.jdbc.Driver
+ INFO [main] (LocalSessionFactoryBean.java:730) - Building new Hibernate SessionFactory
+ INFO [main] (CommonsLoggingLogSystem.java:49) - LogSystem has been deprecated. Please use a LogChute implementation.
+ INFO [main] (HibernateTransactionManager.java:421) - Using DataSource [org.springframework.jdbc.datasource.DriverManagerDataSource@15c6c8d] of Hibernate SessionFactory for HibernateTransactionManager
+ INFO [main] (TransactionalTestExecutionListener.java:259) - Began transaction (1): transaction manager [org.springframework.orm.hibernate3.HibernateTransactionManager@1957a34]; rollback [true]
+Hibernate: select role0_.id as id11_, role0_.date_created as date2_11_, role0_.date_modified as date3_11_, role0_.description as descript4_11_, role0_.name as name11_ from role role0_ where role0_.name=?
+Hibernate: insert into user (date_created, date_modified, department, email, full_name, isAdmin, location, locked, organization, password, phone, username) values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+Hibernate: insert into project (date_created, date_modified, inspectionStatus, inspectionId, lead_requirements_engineer, lite, name, privacy, ptid, privacyTechniqueRationale, security, stid, securityTechniqueRationale) values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+Hibernate: insert into user_project_role (user_id, project_id, role_id) values (?, ?, ?)
+ INFO [main] (TransactionalTestExecutionListener.java:279) - Rolled back transaction after test execution for test context [[TestContext@95b8a testClass = HbnUserDaoTest, locations = array<String>['classpath:applicationContext*.xml'], testInstance = edu.cmu.square.server.dao.implementation.HbnUserDaoTest@58f769, testMethod = testAddUserToProject@HbnUserDaoTest, testException = [null]]]
+ INFO [main] (TransactionalTestExecutionListener.java:259) - Began transaction (2): transaction manager [org.springframework.orm.hibernate3.HibernateTransactionManager@1957a34]; rollback [true]
+ INFO [main] (TransactionalTestExecutionListener.java:279) - Rolled back transaction after test execution for test context [[TestContext@95b8a testClass = HbnUserDaoTest, locations = array<String>['classpath:applicationContext*.xml'], testInstance = edu.cmu.square.server.dao.implementation.HbnUserDaoTest@efeff8, testMethod = testEditRole@HbnUserDaoTest, testException = [null]]]
+ INFO [main] (TransactionalTestExecutionListener.java:259) - Began transaction (3): transaction manager [org.springframework.orm.hibernate3.HibernateTransactionManager@1957a34]; rollback [true]
+ INFO [main] (TransactionalTestExecutionListener.java:279) - Rolled back transaction after test execution for test context [[TestContext@95b8a testClass = HbnUserDaoTest, locations = array<String>['classpath:applicationContext*.xml'], testInstance = edu.cmu.square.server.dao.implementation.HbnUserDaoTest@c1429c, testMethod = testGetAllRoles@HbnUserDaoTest, testException = [null]]]
+ INFO [main] (TransactionalTestExecutionListener.java:259) - Began transaction (4): transaction manager [org.springframework.orm.hibernate3.HibernateTransactionManager@1957a34]; rollback [true]
+Hibernate: select role0_.id as id11_, role0_.date_created as date2_11_, role0_.date_modified as date3_11_, role0_.description as descript4_11_, role0_.name as name11_ from role role0_ where role0_.name=?
+Hibernate: insert into user (date_created, date_modified, department, email, full_name, isAdmin, location, locked, organization, password, phone, username) values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+Hibernate: insert into project (date_created, date_modified, inspectionStatus, inspectionId, lead_requirements_engineer, lite, name, privacy, ptid, privacyTechniqueRationale, security, stid, securityTechniqueRationale) values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+Hibernate: insert into user_project_role (user_id, project_id, role_id) values (?, ?, ?)
+Hibernate: select user1_.id as id16_, user1_.date_created as date2_16_, user1_.date_modified as date3_16_, user1_.department as department16_, user1_.email as email16_, user1_.full_name as full6_16_, user1_.isAdmin as isAdmin16_, user1_.location as location16_, user1_.locked as locked16_, user1_.organization as organiz10_16_, user1_.password as password16_, user1_.phone as phone16_, user1_.username as username16_ from user_project_role userprojec0_ inner join user user1_ on userprojec0_.user_id=user1_.id where userprojec0_.project_id=?
+ INFO [main] (TransactionalTestExecutionListener.java:279) - Rolled back transaction after test execution for test context [[TestContext@95b8a testClass = HbnUserDaoTest, locations = array<String>['classpath:applicationContext*.xml'], testInstance = edu.cmu.square.server.dao.implementation.HbnUserDaoTest@18e8fe0, testMethod = testGetUserListForProject@HbnUserDaoTest, testException = [null]]]
+ INFO [main] (TransactionalTestExecutionListener.java:259) - Began transaction (5): transaction manager [org.springframework.orm.hibernate3.HibernateTransactionManager@1957a34]; rollback [true]
+ INFO [main] (TransactionalTestExecutionListener.java:279) - Rolled back transaction after test execution for test context [[TestContext@95b8a testClass = HbnUserDaoTest, locations = array<String>['classpath:applicationContext*.xml'], testInstance = edu.cmu.square.server.dao.implementation.HbnUserDaoTest@508be, testMethod = testGwtUserListFromProjectWithStaticData@HbnUserDaoTest, testException = [null]]]
+ INFO [main] (TransactionalTestExecutionListener.java:259) - Began transaction (6): transaction manager [org.springframework.orm.hibernate3.HibernateTransactionManager@1957a34]; rollback [true]
+ INFO [main] (TransactionalTestExecutionListener.java:279) - Rolled back transaction after test execution for test context [[TestContext@95b8a testClass = HbnUserDaoTest, locations = array<String>['classpath:applicationContext*.xml'], testInstance = edu.cmu.square.server.dao.implementation.HbnUserDaoTest@a8a81c, testMethod = testGetUsersForAutoComplete@HbnUserDaoTest, testException = [null]]]
+ INFO [main] (TransactionalTestExecutionListener.java:259) - Began transaction (7): transaction manager [org.springframework.orm.hibernate3.HibernateTransactionManager@1957a34]; rollback [true]
+ INFO [main] (TransactionalTestExecutionListener.java:279) - Rolled back transaction after test execution for test context [[TestContext@95b8a testClass = HbnUserDaoTest, locations = array<String>['classpath:applicationContext*.xml'], testInstance = edu.cmu.square.server.dao.implementation.HbnUserDaoTest@1fcca7b, testMethod = testRemoveUserFromProject@HbnUserDaoTest, testException = [null]]]
+ INFO [main] (TransactionalTestExecutionListener.java:259) - Began transaction (8): transaction manager [org.springframework.orm.hibernate3.HibernateTransactionManager@1957a34]; rollback [true]
+Hibernate: select user0_.id as id16_, user0_.date_created as date2_16_, user0_.date_modified as date3_16_, user0_.department as department16_, user0_.email as email16_, user0_.full_name as full6_16_, user0_.isAdmin as isAdmin16_, user0_.location as location16_, user0_.locked as locked16_, user0_.organization as organiz10_16_, user0_.password as password16_, user0_.phone as phone16_, user0_.username as username16_ from user user0_ where user0_.username=?
+Hibernate: select roles0_.user_id as user3_1_, roles0_.role_id as role2_1_, role1_.id as id11_0_, role1_.date_created as date2_11_0_, role1_.date_modified as date3_11_0_, role1_.description as descript4_11_0_, role1_.name as name11_0_ from user_project_role roles0_ left outer join role role1_ on roles0_.role_id=role1_.id where roles0_.user_id=?
+ INFO [main] (TransactionalTestExecutionListener.java:279) - Rolled back transaction after test execution for test context [[TestContext@95b8a testClass = HbnUserDaoTest, locations = array<String>['classpath:applicationContext*.xml'], testInstance = edu.cmu.square.server.dao.implementation.HbnUserDaoTest@90ed81, testMethod = testGetUsersbyUsername@HbnUserDaoTest, testException = [null]]]
+ INFO [main] (TransactionalTestExecutionListener.java:259) - Began transaction (9): transaction manager [org.springframework.orm.hibernate3.HibernateTransactionManager@1957a34]; rollback [true]
+Hibernate: insert into user (date_created, date_modified, department, email, full_name, isAdmin, location, locked, organization, password, phone, username) values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+Hibernate: update user set locked = 1 where userName = ?
+Hibernate: select user0_.id as id16_, user0_.date_created as date2_16_, user0_.date_modified as date3_16_, user0_.department as department16_, user0_.email as email16_, user0_.full_name as full6_16_, user0_.isAdmin as isAdmin16_, user0_.location as location16_, user0_.locked as locked16_, user0_.organization as organiz10_16_, user0_.password as password16_, user0_.phone as phone16_, user0_.username as username16_ from user user0_ where user0_.username=?
+Hibernate: select user0_.id as id16_, user0_.date_created as date2_16_, user0_.date_modified as date3_16_, user0_.department as department16_, user0_.email as email16_, user0_.full_name as full6_16_, user0_.isAdmin as isAdmin16_, user0_.location as location16_, user0_.locked as locked16_, user0_.organization as organiz10_16_, user0_.password as password16_, user0_.phone as phone16_, user0_.username as username16_ from user user0_ where user0_.username=?
+ INFO [main] (TransactionalTestExecutionListener.java:279) - Rolled back transaction after test execution for test context [[TestContext@95b8a testClass = HbnUserDaoTest, locations = array<String>['classpath:applicationContext*.xml'], testInstance = edu.cmu.square.server.dao.implementation.HbnUserDaoTest@1e8e5a7, testMethod = testSetLockOnAccount@HbnUserDaoTest, testException = [null]]]
+ INFO [main] (TransactionalTestExecutionListener.java:259) - Began transaction (10): transaction manager [org.springframework.orm.hibernate3.HibernateTransactionManager@1957a34]; rollback [true]
+Hibernate: insert into user (date_created, date_modified, department, email, full_name, isAdmin, location, locked, organization, password, phone, username) values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+Hibernate: select user0_.id as id16_, user0_.date_created as date2_16_, user0_.date_modified as date3_16_, user0_.department as department16_, user0_.email as email16_, user0_.full_name as full6_16_, user0_.isAdmin as isAdmin16_, user0_.location as location16_, user0_.locked as locked16_, user0_.organization as organiz10_16_, user0_.password as password16_, user0_.phone as phone16_, user0_.username as username16_ from user user0_ where user0_.username=?
+Hibernate: delete from user where id=?
+Hibernate: select user0_.id as id16_, user0_.date_created as date2_16_, user0_.date_modified as date3_16_, user0_.department as department16_, user0_.email as email16_, user0_.full_name as full6_16_, user0_.isAdmin as isAdmin16_, user0_.location as location16_, user0_.locked as locked16_, user0_.organization as organiz10_16_, user0_.password as password16_, user0_.phone as phone16_, user0_.username as username16_ from user user0_ where user0_.username=?
+ INFO [main] (TransactionalTestExecutionListener.java:279) - Rolled back transaction after test execution for test context [[TestContext@95b8a testClass = HbnUserDaoTest, locations = array<String>['classpath:applicationContext*.xml'], testInstance = edu.cmu.square.server.dao.implementation.HbnUserDaoTest@7ed081, testMethod = removeUserFromDatabase@HbnUserDaoTest, testException = [null]]]
+]]></system-out>
+  <system-err><![CDATA[158 [main] INFO org.hibernate.cfg.annotations.Version - Hibernate Annotations 3.4.0.GA
+176 [main] INFO org.hibernate.cfg.Environment - Hibernate 3.3.1.GA
+182 [main] INFO org.hibernate.cfg.Environment - hibernate.properties not found
+188 [main] INFO org.hibernate.cfg.Environment - Bytecode provider name : javassist
+194 [main] INFO org.hibernate.cfg.Environment - using JDK 1.4 java.sql.Timestamp handling
+309 [main] INFO org.hibernate.annotations.common.Version - Hibernate Commons Annotations 3.1.0.GA
+493 [main] INFO org.hibernate.cfg.AnnotationBinder - Binding entity from annotated class: edu.cmu.square.server.dao.model.Artifact
+560 [main] INFO org.hibernate.cfg.annotations.EntityBinder - Bind entity edu.cmu.square.server.dao.model.Artifact on table artifact
+700 [main] INFO org.hibernate.cfg.AnnotationBinder - Binding entity from annotated class: edu.cmu.square.server.dao.model.Asset
+700 [main] INFO org.hibernate.cfg.annotations.EntityBinder - Bind entity edu.cmu.square.server.dao.model.Asset on table asset
+705 [main] INFO org.hibernate.cfg.AnnotationBinder - Binding entity from annotated class: edu.cmu.square.server.dao.model.Category
+706 [main] INFO org.hibernate.cfg.annotations.EntityBinder - Bind entity edu.cmu.square.server.dao.model.Category on table category
+710 [main] INFO org.hibernate.cfg.AnnotationBinder - Binding entity from annotated class: edu.cmu.square.server.dao.model.EvaluationCriteria
+710 [main] INFO org.hibernate.cfg.annotations.EntityBinder - Bind entity edu.cmu.square.server.dao.model.EvaluationCriteria on table evaluation_criteria
+714 [main] INFO org.hibernate.cfg.AnnotationBinder - Binding entity from annotated class: edu.cmu.square.server.dao.model.Goal
+714 [main] INFO org.hibernate.cfg.annotations.EntityBinder - Bind entity edu.cmu.square.server.dao.model.Goal on table goal
+722 [main] INFO org.hibernate.cfg.AnnotationBinder - Binding entity from annotated class: edu.cmu.square.server.dao.model.GoalType
+722 [main] INFO org.hibernate.cfg.annotations.EntityBinder - Bind entity edu.cmu.square.server.dao.model.GoalType on table goal_type
+730 [main] INFO org.hibernate.cfg.AnnotationBinder - Binding entity from annotated class: edu.cmu.square.server.dao.model.InspectionTechnique
+730 [main] INFO org.hibernate.cfg.annotations.EntityBinder - Bind entity edu.cmu.square.server.dao.model.InspectionTechnique on table inspection_technique
+735 [main] INFO org.hibernate.cfg.AnnotationBinder - Binding entity from annotated class: edu.cmu.square.server.dao.model.Project
+735 [main] INFO org.hibernate.cfg.annotations.EntityBinder - Bind entity edu.cmu.square.server.dao.model.Project on table project
+756 [main] INFO org.hibernate.cfg.AnnotationBinder - Binding entity from annotated class: edu.cmu.square.server.dao.model.ProjectStep
+756 [main] INFO org.hibernate.cfg.annotations.EntityBinder - Bind entity edu.cmu.square.server.dao.model.ProjectStep on table project_step
+767 [main] INFO org.hibernate.cfg.AnnotationBinder - Binding entity from annotated class: edu.cmu.square.server.dao.model.Requirement
+767 [main] INFO org.hibernate.cfg.annotations.EntityBinder - Bind entity edu.cmu.square.server.dao.model.Requirement on table requirement
+781 [main] INFO org.hibernate.cfg.AnnotationBinder - Binding entity from annotated class: edu.cmu.square.server.dao.model.Risk
+782 [main] INFO org.hibernate.cfg.annotations.EntityBinder - Bind entity edu.cmu.square.server.dao.model.Risk on table risk
+790 [main] INFO org.hibernate.cfg.AnnotationBinder - Binding entity from annotated class: edu.cmu.square.server.dao.model.Role
+791 [main] INFO org.hibernate.cfg.annotations.EntityBinder - Bind entity edu.cmu.square.server.dao.model.Role on table role
+795 [main] INFO org.hibernate.cfg.AnnotationBinder - Binding entity from annotated class: edu.cmu.square.server.dao.model.Step
+796 [main] INFO org.hibernate.cfg.annotations.EntityBinder - Bind entity edu.cmu.square.server.dao.model.Step on table step
+800 [main] INFO org.hibernate.cfg.AnnotationBinder - Binding entity from annotated class: edu.cmu.square.server.dao.model.Technique
+800 [main] INFO org.hibernate.cfg.annotations.EntityBinder - Bind entity edu.cmu.square.server.dao.model.Technique on table technique
+804 [main] INFO org.hibernate.cfg.AnnotationBinder - Binding entity from annotated class: edu.cmu.square.server.dao.model.TechniqueEvaluationCriteria
+804 [main] INFO org.hibernate.cfg.annotations.EntityBinder - Bind entity edu.cmu.square.server.dao.model.TechniqueEvaluationCriteria on table technique_evaluation_criteria
+808 [main] INFO org.hibernate.cfg.AnnotationBinder - Binding entity from annotated class: edu.cmu.square.server.dao.model.Term
+808 [main] INFO org.hibernate.cfg.annotations.EntityBinder - Bind entity edu.cmu.square.server.dao.model.Term on table term
+811 [main] INFO org.hibernate.cfg.AnnotationBinder - Binding entity from annotated class: edu.cmu.square.server.dao.model.User
+811 [main] INFO org.hibernate.cfg.annotations.EntityBinder - Bind entity edu.cmu.square.server.dao.model.User on table user
+821 [main] INFO org.hibernate.cfg.AnnotationBinder - Binding entity from annotated class: edu.cmu.square.server.dao.model.UserAhp
+821 [main] INFO org.hibernate.cfg.annotations.EntityBinder - Bind entity edu.cmu.square.server.dao.model.UserAhp on table user_ahp
+826 [main] INFO org.hibernate.cfg.AnnotationBinder - Binding entity from annotated class: edu.cmu.square.server.dao.model.UserProjectRole
+827 [main] INFO org.hibernate.cfg.annotations.EntityBinder - Bind entity edu.cmu.square.server.dao.model.UserProjectRole on table user_project_role
+945 [main] INFO org.hibernate.cfg.annotations.CollectionBinder - Mapping collection: edu.cmu.square.server.dao.model.GoalType.goals -> goal
+945 [main] INFO org.hibernate.cfg.annotations.CollectionBinder - Mapping collection: edu.cmu.square.server.dao.model.Project.artifacts -> artifact
+945 [main] INFO org.hibernate.cfg.annotations.CollectionBinder - Mapping collection: edu.cmu.square.server.dao.model.Project.assets -> asset
+945 [main] INFO org.hibernate.cfg.annotations.CollectionBinder - Mapping collection: edu.cmu.square.server.dao.model.Project.categories -> category
+945 [main] INFO org.hibernate.cfg.annotations.CollectionBinder - Mapping collection: edu.cmu.square.server.dao.model.Project.goals -> goal
+945 [main] INFO org.hibernate.cfg.annotations.CollectionBinder - Mapping collection: edu.cmu.square.server.dao.model.Project.inspectionTechniques -> inspection_technique
+946 [main] INFO org.hibernate.cfg.annotations.CollectionBinder - Mapping collection: edu.cmu.square.server.dao.model.Project.requirements -> requirement
+946 [main] INFO org.hibernate.cfg.annotations.CollectionBinder - Mapping collection: edu.cmu.square.server.dao.model.Project.risks -> risk
+946 [main] INFO org.hibernate.cfg.annotations.CollectionBinder - Mapping collection: edu.cmu.square.server.dao.model.Project.techniqueEvaluations -> evaluation_criteria
+946 [main] INFO org.hibernate.cfg.annotations.CollectionBinder - Mapping collection: edu.cmu.square.server.dao.model.Project.techniques -> technique
+946 [main] INFO org.hibernate.cfg.annotations.CollectionBinder - Mapping collection: edu.cmu.square.server.dao.model.Project.terms -> term
+946 [main] INFO org.hibernate.cfg.annotations.CollectionBinder - Mapping collection: edu.cmu.square.server.dao.model.Requirement.userAhpsForRidA -> user_ahp
+947 [main] INFO org.hibernate.cfg.annotations.CollectionBinder - Mapping collection: edu.cmu.square.server.dao.model.Requirement.userAhpsForRidB -> user_ahp
+947 [main] INFO org.hibernate.cfg.annotations.CollectionBinder - Mapping collection: edu.cmu.square.server.dao.model.Step.projectSteps -> project_step
+948 [main] INFO org.hibernate.cfg.annotations.CollectionBinder - Mapping collection: edu.cmu.square.server.dao.model.User.userAhps -> user_ahp
+959 [main] INFO org.hibernate.cfg.AnnotationConfiguration - Hibernate Validator not found: ignoring
+966 [main] INFO org.hibernate.cfg.search.HibernateSearchEventListenerRegister - Unable to find org.hibernate.search.event.FullTextIndexEventListener on the classpath. Hibernate Search is not enabled.
+1037 [main] INFO org.hibernate.connection.ConnectionProviderFactory - Initializing connection provider: org.springframework.orm.hibernate3.LocalDataSourceConnectionProvider
+1636 [main] INFO org.hibernate.cfg.SettingsFactory - RDBMS: MySQL, version: 5.0.67-community-nt
+1636 [main] INFO org.hibernate.cfg.SettingsFactory - JDBC driver: MySQL-AB JDBC Driver, version: mysql-connector-java-5.1.7 ( Revision: ${svn.Revision} )
+1666 [main] INFO org.hibernate.dialect.Dialect - Using dialect: org.hibernate.dialect.MySQL5InnoDBDialect
+1672 [main] INFO org.hibernate.transaction.TransactionFactoryFactory - Transaction strategy: org.springframework.orm.hibernate3.SpringTransactionFactory
+1673 [main] INFO org.hibernate.transaction.TransactionManagerLookupFactory - No TransactionManagerLookup configured (in JTA environment, use of read-write or transactional second-level cache is not recommended)
+1673 [main] INFO org.hibernate.cfg.SettingsFactory - Automatic flush during beforeCompletion(): disabled
+1673 [main] INFO org.hibernate.cfg.SettingsFactory - Automatic session close at end of transaction: disabled
+1673 [main] INFO org.hibernate.cfg.SettingsFactory - JDBC batch size: 15
+1673 [main] INFO org.hibernate.cfg.SettingsFactory - JDBC batch updates for versioned data: disabled
+1676 [main] INFO org.hibernate.cfg.SettingsFactory - Scrollable result sets: enabled
+1677 [main] INFO org.hibernate.cfg.SettingsFactory - JDBC3 getGeneratedKeys(): enabled
+1677 [main] INFO org.hibernate.cfg.SettingsFactory - Connection release mode: auto
+1678 [main] INFO org.hibernate.cfg.SettingsFactory - Maximum outer join fetch depth: 2
+1678 [main] INFO org.hibernate.cfg.SettingsFactory - Default batch fetch size: 1
+1678 [main] INFO org.hibernate.cfg.SettingsFactory - Generate SQL with comments: disabled
+1678 [main] INFO org.hibernate.cfg.SettingsFactory - Order SQL updates by primary key: disabled
+1678 [main] INFO org.hibernate.cfg.SettingsFactory - Order SQL inserts for batching: disabled
+1678 [main] INFO org.hibernate.cfg.SettingsFactory - Query translator: org.hibernate.hql.ast.ASTQueryTranslatorFactory
+1681 [main] INFO org.hibernate.hql.ast.ASTQueryTranslatorFactory - Using ASTQueryTranslatorFactory
+1681 [main] INFO org.hibernate.cfg.SettingsFactory - Query language substitutions: {}
+1681 [main] INFO org.hibernate.cfg.SettingsFactory - JPA-QL strict compliance: disabled
+1681 [main] INFO org.hibernate.cfg.SettingsFactory - Second-level cache: enabled
+1681 [main] INFO org.hibernate.cfg.SettingsFactory - Query cache: disabled
+1681 [main] INFO org.hibernate.cfg.SettingsFactory - Cache region factory : org.hibernate.cache.impl.NoCachingRegionFactory
+1681 [main] INFO org.hibernate.cfg.SettingsFactory - Optimize cache for minimal puts: disabled
+1681 [main] INFO org.hibernate.cfg.SettingsFactory - Structured second-level cache entries: disabled
+1690 [main] INFO org.hibernate.cfg.SettingsFactory - Echoing all SQL to stdout
+1691 [main] INFO org.hibernate.cfg.SettingsFactory - Statistics: disabled
+1691 [main] INFO org.hibernate.cfg.SettingsFactory - Deleted entity synthetic identifier rollback: disabled
+1691 [main] INFO org.hibernate.cfg.SettingsFactory - Default entity-mode: pojo
+1691 [main] INFO org.hibernate.cfg.SettingsFactory - Named query checking : enabled
+1768 [main] INFO org.hibernate.impl.SessionFactoryImpl - building session factory
+2478 [main] INFO org.hibernate.impl.SessionFactoryObjectFactory - Not binding factory to JNDI, no JNDI name configured
+]]></system-err>
+</testsuite>
