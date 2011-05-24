@@ -11,8 +11,8 @@
 	<property name="test.reports" value="${basedir}/tests/test_reports"/>
 	<path id="project.classpath">
 		<pathelement location="src"/>
-		<pathelement location="${gwt.sdk}/gwt-user.jar"/>
-		<fileset dir="${gwt.sdk}" includes="gwt-dev*.jar"/>
+		<pathelement location="${basedir}/war/WEB-INF/lib/gwt-user.jar"/>
+		<fileset dir="${basedir}/war/WEB-INF/lib/" includes="gwt-dev*.jar"/>
 		<pathelement location="war/WEB-INF/classes"/>
 		<fileset dir="war/WEB-INF/lib">
 			<include name="**/*.jar"/>
@@ -180,7 +180,7 @@
 			</fileset>
 		</copy>
 
-		<war webxml="${basedir}/dist/war/WEB-INF/web.xml"  
+		<war webxml="${basedir}/dist/war/WEB-INF/web.xml"
 					destfile="${basedir}/dist/Square_QA.war" >
 			<fileset dir="${basedir}/dist/war"/>
 
