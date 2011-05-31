@@ -40,7 +40,10 @@
 	<classpathentry kind="lib" path="war/WEB-INF/lib/commons-io.jar"/>
 	<classpathentry kind="lib" path="war/WEB-INF/lib/gxt-2.2.4-gwt2.jar"/>
 	<classpathentry kind="lib" path="war/WEB-INF/lib/gwt-incubator-20101117-r1766.jar"/>
+	<classpathentry kind="lib" path="/Applications/eclipse_new/plugins/com.google.gwt.eclipse.sdkbundle_2.3.0.r36v201104261928/gwt-2.3.0/validation-api-1.0.0.GA-sources.jar"/>
+	<classpathentry kind="lib" path="/Applications/eclipse_new/plugins/com.google.gwt.eclipse.sdkbundle_2.3.0.r36v201104261928/gwt-2.3.0/validation-api-1.0.0.GA.jar" sourcepath="/Applications/eclipse_new/plugins/com.google.gwt.eclipse.sdkbundle_2.3.0.r36v201104261928/gwt-2.3.0/validation-api-1.0.0.GA-sources.jar"/>
 	<classpathentry kind="lib" path="war/WEB-INF/lib/gwt-dev.jar"/>
 	<classpathentry kind="lib" path="war/WEB-INF/lib/gwt-user.jar"/>
+	<classpathentry kind="lib" path="war/WEB-INF/lib/gwt-servlet.jar"/>
 	<classpathentry kind="output" path="war/WEB-INF/classes"/>
 </classpath>
