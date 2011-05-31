@@ -65,6 +65,7 @@
 		<pathelement location="war/WEB-INF/lib/gwt-user.jar" />
 		<pathelement location="war/WEB-INF/lib/gwt-servlet.jar" />
 		<pathelement location="war/WEB-INF/lib/catalina-ant.jar" />
+		<pathelement location="/home/deekay/TeamCity/buildAgent/plugins/coveragePlugin/lib/emma.jar" />
 	</path>
 	<target name="init">
 		<mkdir dir="war/WEB-INF/classes" />
