@@ -12,6 +12,7 @@ public enum Roles
 	
 	//ASQUARE
 	Acquisition_Organization_Engineer("Acquisition Organization Engineer"),
+	
 	Contractor("Contractor"),
 	COTS_Vendor("COTS Vendor"),
 	Security_Specialist("Security Specialist"),

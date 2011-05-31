@@ -23,5 +23,4 @@ public interface HomePaneMessages extends CommonMessages
 
 	String projectFocus();
 
-
 }

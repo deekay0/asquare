@@ -18,5 +18,5 @@ public interface ChooseProjectServiceAsync
 	 * @param userId The User whose list of projects are retrieved.
 	 * @return A list of projects and additional information for the user.
 	 */
-	void getProjectsForUser(Integer userId, AsyncCallback<List<GwtProject>[]> callback);
+	void getProjectsForUser(Integer userId, Integer caseId, AsyncCallback<List<GwtProject>[]> callback);
 }

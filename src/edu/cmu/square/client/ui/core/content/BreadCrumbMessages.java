@@ -25,5 +25,6 @@ public interface BreadCrumbMessages extends Messages
 	String preferences();
 	String projectMembers();
 	String chooseProject();
+	String chooseCase();
 	String welcome(String username);
 }

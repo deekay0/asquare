@@ -19,7 +19,7 @@ import edu.cmu.square.client.navigation.SquareStateChangedEvent;
 import edu.cmu.square.client.navigation.State;
 import edu.cmu.square.client.remoteService.interfaces.AppPropertiesService;
 import edu.cmu.square.client.remoteService.interfaces.AppPropertiesServiceAsync;
-import edu.cmu.square.client.ui.chooseProject.HomePilot;
+import edu.cmu.square.client.ui.chooseCase.ChooseCasePilot;
 import edu.cmu.square.client.ui.core.FooterPane;
 import edu.cmu.square.client.ui.core.HeaderPane;
 
@@ -52,7 +52,6 @@ public class SquareGwt implements EntryPoint, SquareStateChangedEvent.ITakesMyEv
 				{
 					loadPage();
 					ExceptionHelper.SquareRootRPCExceptionHandler(caught, "loadProperties");
-				
 				}
 
 				public void onSuccess(GWTAppProperties result)
@@ -67,7 +66,6 @@ public class SquareGwt implements EntryPoint, SquareStateChangedEvent.ITakesMyEv
 					{
 						loadPage();
 					}
-
 				}
 			});
 	}
@@ -92,7 +90,6 @@ public class SquareGwt implements EntryPoint, SquareStateChangedEvent.ITakesMyEv
 					{
 						isTimeout = true;
 					}
-					
 					loadPage();
 				}
 			});
@@ -126,21 +123,21 @@ public class SquareGwt implements EntryPoint, SquareStateChangedEvent.ITakesMyEv
 		History.addValueChangeHandler(historian);
 		this.headerPane = new HeaderPane(this.appProperties, stateInfo);
 
+		System.out.println("loadloadload             loadloadload");
+		
 		// Identifies the first request,
 		if (this.isFirtRequest())
 		{
-			this.stateInfo.setCurrentView(HomePilot.generateNavigationId(HomePilot.PageId.login)); // Default View
+			this.stateInfo.setCurrentView(ChooseCasePilot.generateNavigationId(ChooseCasePilot.PageId.login)); // Default View
 			this.setFirstRequest(false);
 			History.newItem(this.stateInfo.getCurrentView());
 		}
 		else 		// request will be consider refresh actions from the user
 		{
-			
-			this.stateInfo.loadStateFromCookies();
-			
+			this.stateInfo.loadStateFromCookies();	
 			if (isTimeout)
 			{
-				History.newItem(HomePilot.generateNavigationId(HomePilot.PageId.logout) + "?timeout=1");
+				History.newItem(ChooseCasePilot.generateNavigationId(ChooseCasePilot.PageId.logout) + "?timeout=1");
 			}
 			else
 			{

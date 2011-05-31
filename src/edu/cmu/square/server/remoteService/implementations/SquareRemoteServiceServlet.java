@@ -70,7 +70,6 @@ public abstract class SquareRemoteServiceServlet extends RemoteServiceServlet
 			gwtPropeties.setFooterOrganizationURL(props.getProperty("FooterlinkOrganizationURL"));
 			gwtPropeties.setFooterLabelCopyRight(props.getProperty("FooterlabelCopyRight"));
 			
-			
 			return gwtPropeties;
 
 		}

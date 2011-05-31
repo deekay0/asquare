@@ -52,6 +52,7 @@ public class Project implements java.io.Serializable
 	private String securityTechniqueRationale;
 	private Date dateCreated;
 	private Date dateModified;
+	private AsquareCase cases;
 	private Set<Term> terms = new HashSet<Term>(0);
 	private Set<Technique> techniques = new HashSet<Technique>(0);
 	private Set<InspectionTechnique> inspectionTechniques = new HashSet<InspectionTechnique>(0);
@@ -76,6 +77,9 @@ public class Project implements java.io.Serializable
 			this.lite = project.isLite();
 			this.security = project.isSecurity();
 			this.privacy = project.isPrivacy();
+			
+			this.cases = new AsquareCase(project.getCases());
+			
 			if (project.getCurrentRole() != null)
 			{
 				this.currentRole = new Role(project.getCurrentRole());
@@ -83,11 +87,9 @@ public class Project implements java.io.Serializable
 			if (project.getLeadRequirementEngineer() != null)
 			{
 				this.leadRequirementsEngineer = new User(project.getLeadRequirementEngineer(), "");
-			}
-
-
-			
+			}		
 		}
+	
 
 	public Project(int projectId)
 		{
@@ -137,10 +139,21 @@ public class Project implements java.io.Serializable
 	{
 		return this.leadRequirementsEngineer;
 	}
-
 	public void setLeadRequirementEngineer(User user)
 	{
 		this.leadRequirementsEngineer = user;
+	}
+	
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "cases", nullable = false)
+	public AsquareCase getCases()
+	{
+		return this.cases;
+	}
+
+	public void setCases(AsquareCase cases)
+	{
+		this.cases = cases;
 	}
 
 	@ManyToOne(fetch = FetchType.LAZY)
@@ -466,11 +479,14 @@ public class Project implements java.io.Serializable
 		{
 			gwtProject.setLeadRequirementEngineer(this.leadRequirementsEngineer.createGwtUser());
 		}
+		gwtProject.setCases(this.cases.createGwtCase());
 		
 		if (this.currentRole != null)
 		{
 			gwtProject.setCurrentRole(this.currentRole.createGwtRole());
 		}
+		
+		
 		
 		//Elicitation Technique
 		if (this.getSecurityTechnique() != null)

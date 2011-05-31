@@ -20,6 +20,7 @@ import edu.cmu.square.client.ui.SelectSecurityTechnique.SelectSecurityElicitatio
 import edu.cmu.square.client.ui.agreeOnDefinitions.AgreeOnDefinitionsPilot;
 import edu.cmu.square.client.ui.assetsAndGoals.AssetsAndGoalsPilot;
 import edu.cmu.square.client.ui.categorizeRequirements.CategorizeRequirementsPilot;
+import edu.cmu.square.client.ui.chooseCase.ChooseCasePilot;
 import edu.cmu.square.client.ui.chooseProject.HomePilot;
 import edu.cmu.square.client.ui.collectArtifacts.CollectArtifactsPilot;
 import edu.cmu.square.client.ui.core.AccessDeniedPane;
@@ -63,11 +64,13 @@ public class HistoryManager implements ValueChangeHandler<String>
 	private Pilot artifactsPilot = new CollectArtifactsPilot();
 	private Pilot inspectionPilot = new InspectRequirementsPilot();
 	private Pilot chooseStepPilot = new ChooseStepPilot();
+	private Pilot chooseCasePilot = new ChooseCasePilot();
 	private BreadCrumbMessages messages = (BreadCrumbMessages)GWT.create(BreadCrumbMessages.class);
 
 	public static class ViewId
 	{
 		public static final String home = "m";
+		public static final String chooseCase = "chooseCase";
 		public static final String selectSecurityElicitationTechnique = "select-security-elicitation-technique";
 		public static final String manageProject = "project";
 		public static final String manageSite = "site";
@@ -102,7 +105,7 @@ public class HistoryManager implements ValueChangeHandler<String>
 		// if you aren't authenticated, then force you to go to the login page.
 		if (!this.currentState.isAuthenticated())
 		{
-			destination = HomePilot.generateNavigationId(HomePilot.PageId.login);
+			destination = ChooseCasePilot.generateNavigationId(ChooseCasePilot.PageId.login);
 		}
 
 		currentState.setCurrentView(destination);
@@ -197,20 +200,20 @@ public class HistoryManager implements ValueChangeHandler<String>
 	{
 		this.breadCrumbPane.clear();
 	
-		Hyperlink chooseProject = new Hyperlink(messages.chooseProject(), HomePilot.generateNavigationId(HomePilot.PageId.home));
+		Hyperlink chooseCase = new Hyperlink(messages.chooseCase(), ChooseCasePilot.generateNavigationId(ChooseCasePilot.PageId.home));
 		HorizontalPanel crumbBar = new HorizontalPanel();
 		Label crumbText = new Label(crumb);
 		
 		
 		crumbText.setStyleName("square-crumb");
-		chooseProject.setStyleName("square-crumb");
+		chooseCase.setStyleName("square-crumb");
 		
 		
 		if (crumb.trim().length()!=0) //Bread crumb text is not empty.
 		{
 			Hyperlink chooseStep = new Hyperlink(this.currentState.getProjectName(), ChooseStepPilot.generateNavigationId(ChooseStepPilot.PageId.home));
 			chooseStep.setStyleName("square-crumb");
-			crumbBar.add(chooseProject);
+			crumbBar.add(chooseCase);
 			
 			if(this.currentState.getProjectName()!="none") //empty value of project
 			 { 
@@ -325,6 +328,10 @@ public class HistoryManager implements ValueChangeHandler<String>
 		else if (ViewId.chooseStep.equals(view))
 		{
 			return this.chooseStepPilot;
+		}
+		else if (ViewId.chooseCase.equals(view))
+		{
+			return this.chooseCasePilot;
 		}
 		else
 		{

@@ -42,6 +42,7 @@ public class State extends StateHandler
 	private int riskCommand = 0;
 
 	private int projectID;
+	private int caseID;
 	private int totalPrioritizations;
 	private String projectName = "";
 	private String projectInspectionStatus = null;
@@ -75,6 +76,7 @@ public class State extends StateHandler
 		setRiskCommand(0);
 
 		setProjectID(-1);
+		setCaseID(-1);
 		setAppProperties(null);
 
 	}
@@ -237,6 +239,17 @@ public class State extends StateHandler
 	public int getProjectID()
 	{
 		return projectID;
+	}
+	
+	public void setCaseID(int caseID)
+	{
+		this.caseID = caseID;
+		Cookies.setCookie("caseID", String.valueOf(caseID));
+	}
+
+	public int getCaseID()
+	{
+		return caseID;
 	}
 
 	public void setMode(GwtModesType mode)

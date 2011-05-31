@@ -27,7 +27,7 @@ public class ChooseProjectAsync extends GWTTestCase
 		ServiceDefTarget endpoint = (ServiceDefTarget) chooseService;
 		endpoint.setServiceEntryPoint(GWT.getModuleBaseURL() + "chooseProject.rpc");
 		
-		chooseService.getProjectsForUser(1, 
+		chooseService.getProjectsForUser(1, 1,
 				new AsyncCallback<List<GwtProject>[]>()
 				{
 

@@ -15,8 +15,8 @@ public interface ProjectDao extends AbstractDao<Project, Integer> {
 
 	Project findByName(String projectName);
 	
-	List<Project> getIncompleteProjectsForUser(Integer userId);
+	List<Project> getIncompleteProjectsForUser(Integer userId, Integer caseId);
 	
-	List<Project> getCompletedProjectsForUser(Integer userId);
+	List<Project> getCompletedProjectsForUser(Integer userId, Integer caseId);
 	
 }

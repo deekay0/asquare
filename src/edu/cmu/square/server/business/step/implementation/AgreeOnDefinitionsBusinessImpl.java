@@ -29,7 +29,7 @@ public class AgreeOnDefinitionsBusinessImpl extends BaseBusinessImpl implements 
 	@Resource
 	private TermDao termDao;
 
-	@AllowedRoles(roles = {Roles.Acquisition_Organization_Engineer, Roles.Contractor, Roles.Security_Specialist})
+	@AllowedRoles(roles = {Roles.All})
 	public GwtTerm addTerm(GwtProject gwtProject, GwtTerm gwtTerm) throws SquareException
 	{
 		Project project = new Project(gwtProject.getId());
@@ -41,7 +41,7 @@ public class AgreeOnDefinitionsBusinessImpl extends BaseBusinessImpl implements 
 		return term.createGwtTerm();
 	}
 
-	@AllowedRoles(roles = {Roles.Acquisition_Organization_Engineer, Roles.Contractor, Roles.Security_Specialist})
+	@AllowedRoles(roles = {Roles.All})
 	public List<GwtTerm> getTerms(GwtProject gwtProject) throws SquareException
 	{
 		List<GwtTerm> termList = new ArrayList<GwtTerm>();
@@ -57,13 +57,13 @@ public class AgreeOnDefinitionsBusinessImpl extends BaseBusinessImpl implements 
 
 	}
 
-	@AllowedRoles(roles = {Roles.Acquisition_Organization_Engineer, Roles.Contractor, Roles.Security_Specialist})
+	@AllowedRoles(roles = {Roles.All})
 	public void removeTerm(GwtTerm gwtTerm) throws SquareException
 	{
 		termDao.deleteById(gwtTerm.getId());
 	}
 	
-	@AllowedRoles(roles = {Roles.Acquisition_Organization_Engineer, Roles.Contractor, Roles.Security_Specialist})
+	@AllowedRoles(roles = {Roles.All})
 	public void updateTerm(GwtProject gwtProject, GwtTerm gwtTerm) throws SquareException
 	{
 		Term term = new Term(gwtTerm);

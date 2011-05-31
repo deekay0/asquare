@@ -41,7 +41,8 @@ public class ChooseProjectBusinessImplTest extends AbstractSpringBase
 		testProject.getSteps().addAll(steps);
 		projectDao.update(testProject);
 	}
-	@Test
+/*	added by Nan
+ * @Test
 	public void testGetProjectsForUser()
 	{
 		try
@@ -55,7 +56,7 @@ public class ChooseProjectBusinessImplTest extends AbstractSpringBase
 			e.printStackTrace();
 			fail("Error " + e);
 		}
-	}
+	}*/ 
 
 	
 //	@Test

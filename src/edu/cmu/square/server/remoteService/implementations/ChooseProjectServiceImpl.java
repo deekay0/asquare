@@ -28,9 +28,9 @@ public class ChooseProjectServiceImpl extends SquareRemoteServiceServlet impleme
 	}
 
 	@Override
-	public List<GwtProject>[] getProjectsForUser(Integer userId) throws SquareException
+	public List<GwtProject>[] getProjectsForUser(Integer userId, Integer caseId) throws SquareException
 	{
-		return chooseProject.getProjectsForUser(userId);
+		return chooseProject.getProjectsForUser(userId, caseId);
 	}
 
 }

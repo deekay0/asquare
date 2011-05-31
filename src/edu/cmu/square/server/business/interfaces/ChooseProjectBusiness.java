@@ -16,5 +16,5 @@ public interface ChooseProjectBusiness extends BaseBusinessInterface
 	 * @param userId The User whose list of projects are retrieved.
 	 * @return A list of projects and additional informaiton for the user.
 	 */
-	List<GwtProject>[] getProjectsForUser(Integer userId) throws SquareException;
+	List<GwtProject>[] getProjectsForUser(Integer userId, Integer caseId) throws SquareException;
 }

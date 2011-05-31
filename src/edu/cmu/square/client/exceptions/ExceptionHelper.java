@@ -4,7 +4,7 @@ import com.google.gwt.core.client.GWT;
 import com.google.gwt.user.client.History;
 import com.google.gwt.user.client.Window;
 
-import edu.cmu.square.client.ui.chooseProject.HomePilot;
+import edu.cmu.square.client.ui.chooseCase.ChooseCasePilot;
 import edu.cmu.square.client.ui.core.content.RPCCallsMessages;
 
 public class ExceptionHelper
@@ -24,7 +24,7 @@ public class ExceptionHelper
 				
 				case sessionTimeOut :
 					
-					History.newItem(HomePilot.generateNavigationId(HomePilot.PageId.logout)+"?timeout=1");
+					History.newItem(ChooseCasePilot.generateNavigationId(ChooseCasePilot.PageId.logout)+"?timeout=1");
 					break;
 
 				default :

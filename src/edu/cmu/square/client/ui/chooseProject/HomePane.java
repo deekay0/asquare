@@ -51,7 +51,8 @@ public class HomePane extends BasePane
 
 	public void initializePane()
 	{
-		chooseService.getProjectsForUser(currentState.getUserId(), new AsyncCallback<List<GwtProject>[]>()
+		chooseService.getProjectsForUser(currentState.getUserId(), currentState.getCaseID(),
+				new AsyncCallback<List<GwtProject>[]>()
 			{
 
 				@Override

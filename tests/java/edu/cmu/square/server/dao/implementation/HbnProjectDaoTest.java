@@ -222,7 +222,8 @@ public class HbnProjectDaoTest extends AbstractSpringBase
 		assertTrue(testProject.getInspectionTechnique().getName().equalsIgnoreCase("FaganUpdtated"));
 	
 	}
-	@Test
+	/*added by Nan
+	 * @Test
 	public void testGetProjectsForUserStatus() 
 	{
 		Integer userId = testUser.getId();
@@ -230,6 +231,6 @@ public class HbnProjectDaoTest extends AbstractSpringBase
 		List<Project> projectsWithStep = projectDao.getIncompleteProjectsForUser(userId);
 		assertTrue(projectsWithStep.size() == 1);
 		
-	}
+	}*/
 	
 }

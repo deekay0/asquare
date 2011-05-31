@@ -34,5 +34,7 @@
 	<servlet path='/appPropertiesService.rpc' class='edu.cmu.square.server.remoteService.implementations.AppPropertiesServiceImpl'/>
 	<servlet path='/prioritizeRequirements.rpc' class='edu.cmu.square.server.remoteService.implementations.PrioritizeRequirementsServiceImpl'/>
 	 -->
-	 <servlet path='/chooseProject.rpc' class='edu.cmu.square.server.remoteService.implementations.ChooseProjectServiceImpl'/>
+	 <!-- <servlet path='/chooseProject.rpc' class='edu.cmu.square.server.remoteService.implementations.ChooseProjectServiceImpl'/>
+	 --><servlet path='/chooseCase.rpc' class='edu.cmu.square.server.remoteService.implementations.ChooseCaseServiceImpl'/>
+
 </module>

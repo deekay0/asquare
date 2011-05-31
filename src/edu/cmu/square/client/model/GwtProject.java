@@ -28,9 +28,8 @@ public class GwtProject implements Serializable {
 	private List<GwtStep> steps = new ArrayList<GwtStep>();
 	private GwtRole currentRole;
 	private GwtUser leadRequirementEngineer;
-	/**
-	 * 
-	 */
+	private GwtAsquareCase cases;
+	
 
 	public GwtProject(Integer id)
 	{
@@ -41,6 +40,13 @@ public class GwtProject implements Serializable {
 		this.id=id;
 		this.name= projectName;
 		this.leadRequirementEngineer= new GwtUser(leadRequirementEngineer);
+	}
+	public GwtProject(Integer id, String projectName, int leadRequirementEngineer, int cases)
+	{
+		this.id=id;
+		this.name= projectName;
+		this.leadRequirementEngineer= new GwtUser(leadRequirementEngineer);
+		this.cases = new GwtAsquareCase(cases);
 	}
 	public GwtProject()
 	{
@@ -162,6 +168,17 @@ public class GwtProject implements Serializable {
 	{
 		return leadRequirementEngineer;
 	}
+	
+	public void setCases(GwtAsquareCase cases)
+	{
+		this.cases = cases;
+	}
+	public GwtAsquareCase getCases()
+	{
+		return cases;
+	}
+	
+	
 	public boolean isInDatabase()
 	{
 		return this.id != -1;

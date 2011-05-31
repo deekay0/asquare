@@ -23,7 +23,7 @@ import edu.cmu.square.client.model.GwtUser;
 import edu.cmu.square.client.navigation.State;
 import edu.cmu.square.client.remoteService.interfaces.LogInService;
 import edu.cmu.square.client.remoteService.interfaces.LogInServiceAsync;
-import edu.cmu.square.client.ui.chooseProject.HomePilot;
+import edu.cmu.square.client.ui.chooseCase.ChooseCasePilot;
 import edu.cmu.square.client.ui.core.content.LoginPaneMessages;
 
 
@@ -35,8 +35,7 @@ public class LoginPane extends BasePane
 	 
 	public LoginPane(State stateInfo)
 	{
-		super(stateInfo);
-		
+		super(stateInfo);	
 				
 		final PasswordTextBox password = new PasswordTextBox();
 		password.setWidth("200px");
@@ -90,8 +89,7 @@ public class LoginPane extends BasePane
 		loginButton.addClickHandler(new ClickHandler()
 		{	
 			public void onClick(ClickEvent event)
-			{
-				
+			{				
 				logIn(username.getText(), password.getText());
 				password.setText("");
 			}
@@ -124,7 +122,6 @@ public class LoginPane extends BasePane
 		
 		
 		this.getContent().add(bigLayout);
-		
 	}
 
 	
@@ -183,7 +180,7 @@ public class LoginPane extends BasePane
 						currentState.setAccountLocked(result.isLocked());
 						currentState.setAuthenticated(result.isAuthenticated());
 						
-						History.newItem(HomePilot.generateNavigationId(HomePilot.PageId.home));
+						History.newItem(ChooseCasePilot.generateNavigationId(ChooseCasePilot.PageId.home));
 					}
 					else
 					{
