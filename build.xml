@@ -130,6 +130,7 @@
 			<!-- Additional arguments like -style PRETTY or -logLevel DEBUG -->
 			<arg line="${gwt.args}" />
 			<arg value="edu.cmu.square.SquareGwt" />
+			<arg value="-draftCompile" />
 		</java>
 	</target>
 
