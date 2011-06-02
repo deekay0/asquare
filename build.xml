@@ -116,7 +116,7 @@
   
 	<!-- Configure path to GWT SDK -->
 	<property name="gwt.sdk" location="/usr/local/lib/gwt-2.1.0" />
-
+ 
 	<target name="gwtc" depends="build-project" description="GWT compile to JavaScript (production mode)">
 		<java failonerror="true" fork="true" classname="com.google.gwt.dev.Compiler">
 			<classpath>
