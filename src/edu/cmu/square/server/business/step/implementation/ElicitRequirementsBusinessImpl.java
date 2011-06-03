@@ -41,7 +41,7 @@ public class ElicitRequirementsBusinessImpl extends BaseBusinessImpl implements 
 	@Resource
 	private CategoryDao categoryDao;
 
-	@AllowedRoles(roles = {Roles.Lead_Requirements_Engineer, Roles.Requirements_Engineer})
+	@AllowedRoles(roles = {Roles.Contractor, Roles.Security_Specialist, Roles.Administrator})
 	public int addRequirementToProject(Integer projectId, GwtRequirement gwtRequirement) throws SquareException
 	{
 		
@@ -68,7 +68,7 @@ public class ElicitRequirementsBusinessImpl extends BaseBusinessImpl implements 
 
 	}
 
-	@AllowedRoles(roles = {Roles.Lead_Requirements_Engineer, Roles.Requirements_Engineer})
+	@AllowedRoles(roles = {Roles.Contractor, Roles.Security_Specialist, Roles.Administrator})
 	public void deleteRequirement(Integer requirementId, Integer projectId) throws SquareException
 	{
 		requirementDao.deleteById(requirementId);
@@ -76,7 +76,7 @@ public class ElicitRequirementsBusinessImpl extends BaseBusinessImpl implements 
 	}
 
 
-	@AllowedRoles(roles = {Roles.Lead_Requirements_Engineer, Roles.Requirements_Engineer})
+	@AllowedRoles(roles = {Roles.Contractor, Roles.Security_Specialist, Roles.Administrator})
 	public void updateRequirement(GwtRequirement gwtRequirement) throws SquareException
 	{
 	
