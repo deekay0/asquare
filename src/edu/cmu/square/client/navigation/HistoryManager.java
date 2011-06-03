@@ -14,6 +14,7 @@ import edu.cmu.square.client.model.GwtModesType;
 import edu.cmu.square.client.remoteService.interfaces.StepService;
 import edu.cmu.square.client.remoteService.interfaces.StepServiceAsync;
 import edu.cmu.square.client.ui.ChooseStep.ChooseStepPilot;
+import edu.cmu.square.client.ui.ChooseStepCase3.ChooseStepCase3Pilot;
 import edu.cmu.square.client.ui.ManageProject.ManageProjectPilot;
 import edu.cmu.square.client.ui.ManageSite.ManageSitePilot;
 import edu.cmu.square.client.ui.SelectSecurityTechnique.SelectSecurityElicitationTechniquePilot;
@@ -64,6 +65,7 @@ public class HistoryManager implements ValueChangeHandler<String>
 	private Pilot artifactsPilot = new CollectArtifactsPilot();
 	private Pilot inspectionPilot = new InspectRequirementsPilot();
 	private Pilot chooseStepPilot = new ChooseStepPilot();
+	private Pilot chooseStepCase3Pilot = new ChooseStepCase3Pilot();
 	private Pilot chooseCasePilot = new ChooseCasePilot();
 	private BreadCrumbMessages messages = (BreadCrumbMessages)GWT.create(BreadCrumbMessages.class);
 
@@ -83,6 +85,7 @@ public class HistoryManager implements ValueChangeHandler<String>
 		public static final String collectArtifacts = "artifacts";
 		public static final String inspectRequirements = "inspect";
 		public static final String chooseStep = "chooseStep";
+		public static final String chooseStepCase3 = "chooseStepCase3";
 	}
 
 	public HistoryManager(Panel contentPane, Panel breadCrumbPane, State stateInfo)
@@ -328,6 +331,10 @@ public class HistoryManager implements ValueChangeHandler<String>
 		else if (ViewId.chooseStep.equals(view))
 		{
 			return this.chooseStepPilot;
+		}
+		else if (ViewId.chooseStepCase3.equals(view))
+		{
+			return this.chooseStepCase3Pilot;
 		}
 		else if (ViewId.chooseCase.equals(view))
 		{
