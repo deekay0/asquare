@@ -42,6 +42,10 @@ public class AsquareCase implements java.io.Serializable {
 
 
 	public AsquareCase(GwtAsquareCase gwtCase) {
+		if(gwtCase == null)
+		{
+			return;
+		}
 		this.id = gwtCase.getId();
 		this.name = gwtCase.getName();
 		this.description = gwtCase.getDescription();

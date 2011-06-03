@@ -245,6 +245,7 @@ public class HomePane extends BasePane
 				currentState.setUserProjectRole(pr);
 			}
 		}
+		System.out.println("homepane before choose steps........."+project.getCases().getId());
 		History.newItem(ChooseStepPilot.generateNavigationId(ChooseStepPilot.PageId.home));
 	}
 
@@ -265,7 +266,5 @@ public class HomePane extends BasePane
 		{
 			return project;
 		}
-
 	}
-
 }

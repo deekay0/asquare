@@ -33,23 +33,26 @@ public class GwtProject implements Serializable {
 
 	public GwtProject(Integer id)
 	{
+		System.out.println("Cons1");
 		this.id=id;
 	}
 	public GwtProject(Integer id, String projectName, int leadRequirementEngineer)
 	{
+		System.out.println("Cons2");
 		this.id=id;
 		this.name= projectName;
 		this.leadRequirementEngineer= new GwtUser(leadRequirementEngineer);
 	}
 	public GwtProject(Integer id, String projectName, int leadRequirementEngineer, int cases)
 	{
+		System.out.println("Cons3");
 		this.id=id;
 		this.name= projectName;
 		this.leadRequirementEngineer= new GwtUser(leadRequirementEngineer);
 		this.cases = new GwtAsquareCase(cases);
 	}
 	public GwtProject()
-	{
+	{System.out.println("Cons4");
 		
 	}
 

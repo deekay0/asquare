@@ -167,7 +167,7 @@ public class ProjectGrid extends Composite implements Command
 				{
 					if (project.isInDatabase())
 					{
-						CreateProjectDialog dialog = new CreateProjectDialog(project.getId(), project.getName(),project.getLeadRequirementEngineer().getUserId(), listOfProjects, result, caller);
+						CreateProjectDialog dialog = new CreateProjectDialog(project.getId(), project.getName(),project.getLeadRequirementEngineer().getUserId(), listOfProjects, result, caller, project.getCases().getId());
 						dialog.center();
 						dialog.setModal(true);
 						dialog.show();

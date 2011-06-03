@@ -71,7 +71,7 @@ public class CreateProjectDialog extends DialogBox
 		}
 
 	public CreateProjectDialog(int projectId, String projectName, int leadRequirementId, List<GwtProject> projects, List<GwtUser> users,
-			ProjectGrid caller)
+			ProjectGrid caller, int casesId)
 		{
 			super();
 
@@ -79,7 +79,7 @@ public class CreateProjectDialog extends DialogBox
 			this.listOfUsers = users;
 			this.caller = caller;
 
-			this.initializeDialog(new GwtProject(projectId, projectName, leadRequirementId));
+			this.initializeDialog(new GwtProject(projectId, projectName, leadRequirementId, casesId));
 		}
 
 	/**
