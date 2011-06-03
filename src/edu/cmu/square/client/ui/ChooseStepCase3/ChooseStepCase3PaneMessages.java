@@ -1,19 +1,19 @@
 /**
  * 
  */
-package edu.cmu.square.client.ui.ChooseStep;
+package edu.cmu.square.client.ui.ChooseStepCase3;
 
 import com.google.gwt.i18n.client.Messages;
 
 
-public interface ChooseStepPaneMessages extends Messages
+public interface ChooseStepCase3PaneMessages extends Messages
 {
 	String errorRetrieveSteps();
 	String viewMembersLink();
 	String editSettingsLink();
 	String determineContextLabel();
 	String gatherSecurityRequirementsLabel();
-	//String analyzeRequirementsLabel();
+	String analyzeRequirementsLabel();
 	String gatherPrivacyRequirementsLabel();
 	String errorRetrieveProject();
 	String errorRoleRetrieval();
@@ -22,6 +22,7 @@ public interface ChooseStepPaneMessages extends Messages
 	String pageTitle();
 	String thisIsYou();
 	String administrator();
+	String step7();
 	String step8();
 	String step1();
 	String step2();

@@ -25,6 +25,7 @@ import edu.cmu.square.client.navigation.State;
 import edu.cmu.square.client.remoteService.interfaces.ChooseProjectService;
 import edu.cmu.square.client.remoteService.interfaces.ChooseProjectServiceAsync;
 import edu.cmu.square.client.ui.ChooseStep.ChooseStepPilot;
+import edu.cmu.square.client.ui.ChooseStepCase3.ChooseStepCase3Pilot;
 import edu.cmu.square.client.ui.core.BasePane;
 import edu.cmu.square.client.ui.core.SquareHyperlink;
 import edu.cmu.square.client.utils.SquareUtil;
@@ -246,7 +247,16 @@ public class HomePane extends BasePane
 			}
 		}
 		System.out.println("homepane before choose steps........."+project.getCases().getId());
-		History.newItem(ChooseStepPilot.generateNavigationId(ChooseStepPilot.PageId.home));
+		if(project.getCases().getId()==1)
+		{
+			System.out.println("case id ...............1");
+			History.newItem(ChooseStepPilot.generateNavigationId(ChooseStepPilot.PageId.home));
+		}
+		else if(project.getCases().getId()==3)
+		{
+			System.out.println("case id ...............3");
+			History.newItem(ChooseStepCase3Pilot.generateNavigationId(ChooseStepCase3Pilot.PageId.home));
+		}
 	}
 
 	class ChooseProjectLink extends SquareHyperlink
