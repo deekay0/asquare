@@ -112,7 +112,7 @@ public class AgreeOnDefinitionsPane extends BasePane
 
 				public void onFailure(Throwable caught)
 				{
-					ExceptionHelper.SquareRootRPCExceptionHandler(caught, "Retriving Terms");
+					ExceptionHelper.SquareRootRPCExceptionHandler(caught, "Retrieving Terms");
 				}
 
 				public void onSuccess(List<GwtTerm> result)
@@ -172,7 +172,7 @@ public class AgreeOnDefinitionsPane extends BasePane
 
 				public void onFailure(Throwable caught)
 				{
-					ExceptionHelper.SquareRootRPCExceptionHandler(caught, "Retriving Terms");
+					ExceptionHelper.SquareRootRPCExceptionHandler(caught, "Retrieving Terms");
 
 				}
 
@@ -204,7 +204,7 @@ public class AgreeOnDefinitionsPane extends BasePane
 
 				public void onFailure(Throwable caught)
 				{
-					ExceptionHelper.SquareRootRPCExceptionHandler(caught, "Retriving Terms");
+					ExceptionHelper.SquareRootRPCExceptionHandler(caught, "Retrieving Terms");
 				}
 
 				@Override
