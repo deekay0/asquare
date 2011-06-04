@@ -13,7 +13,7 @@
 	<!-- Gwt Incubator -->
 	<inherits name='com.google.gwt.widgetideas.WidgetIdeas' />   
    <inherits name='com.google.gwt.libideas.LibIdeas' />
-	<!-- Junit -->
+	<!-- Junit --> 
 	<inherits name="com.google.gwt.junit.JUnit"/>
 	
 	<!-- Inherit the default GWT style sheet.  You can change       -->
