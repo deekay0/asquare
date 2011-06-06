@@ -233,6 +233,7 @@ public class HomePane extends BasePane
 		this.showLoadingStatusBar();
 
 		currentState.setProjectName(project.getName());
+		currentState.setCaseName(project.getCases().getName());
 		currentState.setProjectInspectionStatus(null);
 		
 		if (project.getInspectionStatus() != null)

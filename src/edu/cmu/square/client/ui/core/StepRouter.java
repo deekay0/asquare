@@ -2,7 +2,7 @@ package edu.cmu.square.client.ui.core;
 
 import edu.cmu.square.client.model.GwtStep;
 import edu.cmu.square.client.navigation.StepEnum;
-import edu.cmu.square.client.ui.chooseProject.HomePilot;
+import edu.cmu.square.client.ui.chooseCase.ChooseCasePilot;
 
 public class StepRouter
 {
@@ -23,7 +23,7 @@ public class StepRouter
 				return se.getLink();
 			}
 		}
-		return HomePilot.generateNavigationId(HomePilot.PageId.FourOhFour);
+		return ChooseCasePilot.generateNavigationId(ChooseCasePilot.PageId.FourOhFour);
 	}
 	
 	
