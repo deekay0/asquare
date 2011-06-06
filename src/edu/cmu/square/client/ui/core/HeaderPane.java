@@ -24,7 +24,7 @@ import edu.cmu.square.client.navigation.State;
 import edu.cmu.square.client.remoteService.interfaces.LogInService;
 import edu.cmu.square.client.remoteService.interfaces.LogInServiceAsync;
 import edu.cmu.square.client.ui.ManageSite.ManageSitePilot;
-import edu.cmu.square.client.ui.chooseProject.HomePilot;
+import edu.cmu.square.client.ui.chooseCase.ChooseCasePilot;
 import edu.cmu.square.client.ui.core.content.HeaderPaneMessages;
 
 
@@ -85,7 +85,7 @@ public class HeaderPane extends Composite
 			public void onClick(ClickEvent event)
 			{
 				//when you click on the image, go to the home page.
-				History.newItem(HomePilot.generateNavigationId(HomePilot.PageId.home));
+				History.newItem(ChooseCasePilot.generateNavigationId(ChooseCasePilot.PageId.home));
 			}
 		});
 		
@@ -138,7 +138,7 @@ public class HeaderPane extends Composite
 		}
 		
 		// user preferences page
-		Hyperlink preference = new Hyperlink(messages.linkTitle2(), HomePilot.generateNavigationId(HomePilot.PageId.preferences));
+		Hyperlink preference = new Hyperlink(messages.linkTitle2(), ChooseCasePilot.generateNavigationId(ChooseCasePilot.PageId.preferences));
 		this.linksPanel.add(preference);
 		this.linksPanel.add(new Label(messages.delimiter()));
 		
@@ -149,7 +149,7 @@ public class HeaderPane extends Composite
 		this.linksPanel.add(new Label(messages.delimiter()));
 		
 		// sign out
-		Hyperlink signOut = new Hyperlink("sign out", HomePilot.generateNavigationId(HomePilot.PageId.logout));
+		Hyperlink signOut = new Hyperlink("sign out", ChooseCasePilot.generateNavigationId(ChooseCasePilot.PageId.logout));
 		this.linksPanel.add(signOut);
 		signOut.addClickHandler(new ClickHandler()
 		{

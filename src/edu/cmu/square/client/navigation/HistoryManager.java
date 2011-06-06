@@ -71,7 +71,7 @@ public class HistoryManager implements ValueChangeHandler<String>
 
 	public static class ViewId
 	{
-		public static final String home = "m";
+		public static final String home = "chooseProject";
 		public static final String chooseCase = "chooseCase";
 		public static final String selectSecurityElicitationTechnique = "select-security-elicitation-technique";
 		public static final String manageProject = "project";
@@ -214,19 +214,31 @@ public class HistoryManager implements ValueChangeHandler<String>
 		
 		if (crumb.trim().length()!=0) //Bread crumb text is not empty.
 		{
+			System.out.println("asdfasdf....."+this.currentState.getProjectName());
 			Hyperlink chooseStep = new Hyperlink(this.currentState.getProjectName(), ChooseStepPilot.generateNavigationId(ChooseStepPilot.PageId.home));
 			chooseStep.setStyleName("square-crumb");
 			crumbBar.add(chooseCase);
 			
+			Hyperlink chooseProject = new Hyperlink(this.currentState.getCaseName(), HomePilot.generateNavigationId(HomePilot.PageId.home));
+			chooseProject.setStyleName("square-crumb");
+			
+			/*
+			if(this.currentState.getCaseName()!="none")
+			{
+				
+			}*/
+			
 			if(this.currentState.getProjectName()!="none") //empty value of project
 			 { 
+				crumbBar.add(new Label(" > "));
+				crumbBar.add(chooseProject);
 				crumbBar.add(new Label(" > "));
 				crumbBar.add(chooseStep);
 			 }
 			
 			crumbBar.add(new Label(" > "));
 			crumbBar.add(crumbText);
-			crumbBar.setSpacing(3);
+			crumbBar.setSpacing(4);
 
 		}
 		this.breadCrumbPane.add(crumbBar);

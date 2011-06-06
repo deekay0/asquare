@@ -10,7 +10,7 @@ import com.google.gwt.user.client.ui.Hyperlink;
 import com.google.gwt.user.client.ui.VerticalPanel;
 
 import edu.cmu.square.client.navigation.State;
-import edu.cmu.square.client.ui.chooseProject.HomePilot;
+import edu.cmu.square.client.ui.chooseCase.ChooseCasePilot;
 import edu.cmu.square.client.ui.core.content.SignOutPaneMessages;
 
 
@@ -51,7 +51,7 @@ public class SignOutPane extends BasePane
 		verticalPanel.setHorizontalAlignment(HasHorizontalAlignment.ALIGN_CENTER);
 
 		flexTable.setWidget(2, 1, s);
-		flexTable.setWidget(3, 1, new Hyperlink(messages.signInMessage(), HomePilot.generateNavigationId(HomePilot.PageId.login)));
+		flexTable.setWidget(3, 1, new Hyperlink(messages.signInMessage(), ChooseCasePilot.generateNavigationId(ChooseCasePilot.PageId.login)));
 		
 		verticalPanel.add(flexTable);
 	
