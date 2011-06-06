@@ -78,7 +78,12 @@ public class Project implements java.io.Serializable
 			this.security = project.isSecurity();
 			this.privacy = project.isPrivacy();
 			
-			this.cases = new AsquareCase(project.getCases());
+			//this.cases = new AsquareCase(project.getCases());
+			if (project.getCases() != null) {
+				this.cases = new AsquareCase(project.getCases());
+			}else {
+				this.cases = null;
+			}
 			
 			if (project.getCurrentRole() != null)
 			{
@@ -145,7 +150,7 @@ public class Project implements java.io.Serializable
 	}
 	
 	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "cases", nullable = false)
+	@JoinColumn(name = "cases", nullable = true)
 	public AsquareCase getCases()
 	{
 		return this.cases;
