@@ -165,4 +165,76 @@
 	</target>
 
 
+	<target name="unit_test" depends="clean, build" description="Runs all unit tests of the project">
+	<javac srcdir="${basedir}/tests/java" includes="**" 
+		excludes="**/*GwtTest*.java" encoding="utf-8"
+					        destdir="${gwtproj.output.dir}"
+					        nowarn="true"
+					        debug="true" debuglevel="lines,vars,source"
+				source="1.6"
+				>
+		<classpath>
+			<fileset file="${basedir}/lib/junit.jar">
+			</fileset>
+			
+			<path refid="project.classpath"/>
+		</classpath>
+	</javac>
+		<copy  todir="${basedir}/war/WEB-INF/classes">
+					<fileset dir="${basedir}/resources/" includes="**.*">
+					</fileset>
+				</copy>
+	<junit printsummary="yes" haltonfailure="yes">
+		<classpath>
+			<fileset file="${basedir}/lib/junit.jar"/>
+			<path refid="project.classpath"/>
+
+		</classpath>
+
+
+		<batchtest fork="yes" todir="${test.reports}">
+			<fileset dir="${basedir}/tests/java">
+				<include name="**/*Test*.java"/>
+				<exclude name="**/*GwtTest*.java"/>
+			</fileset>
+			<formatter type="xml"/>
+		</batchtest>
+	</junit>
+
+	</target>
+
+
+	<target name="gwt_test" depends="clean, build" description="Runs all gwt tests of the project">
+	<javac srcdir="${basedir}/tests/java" includes="**/*GwtTest*.java"  encoding="utf-8"
+						        destdir="${gwtproj.output.dir}"
+						        nowarn="true"
+						        debug="true" debuglevel="lines,vars,source"
+					source="1.6"
+					>
+		<classpath>
+			<fileset file="${basedir}/lib/junit.jar">
+			</fileset>
+			<path refid="project.classpath"/>
+		</classpath>
+	</javac>
+		
+	<junit printsummary="yes" haltonfailure="yes" maxmemory="1024m">
+		<classpath>
+			<fileset file="${basedir}/lib/junit.jar"/>
+			<path refid="test.classpath"/>
+			<path refid="project.classpath"/>
+			
+		</classpath>
+
+
+		<batchtest fork="yes" todir="${test.reports}">
+			<fileset dir="${basedir}/tests/java">
+				<include name="**/*GwtTest*.java"/>
+
+			</fileset>
+			<formatter type="xml"/>
+		</batchtest>
+	</junit>
+	</target>
+	
 </project>
