@@ -41,13 +41,13 @@ public class ChooseProjectBusinessImplTest extends AbstractSpringBase
 		testProject.getSteps().addAll(steps);
 		projectDao.update(testProject);
 	}
-/*	added by Nan
- * @Test
+	
+    @Test
 	public void testGetProjectsForUser()
 	{
 		try
 		{
-			List<GwtProject>[] projects = chooseBusiness.getProjectsForUser(testUser.getId());
+			List<GwtProject>[] projects = chooseBusiness.getProjectsForUser(testUser.getId(), asquareCase.getId());
 			assertTrue(projects[0].size()==1);
 			assertTrue(projects[1].size()==0);
 		}
@@ -56,7 +56,7 @@ public class ChooseProjectBusinessImplTest extends AbstractSpringBase
 			e.printStackTrace();
 			fail("Error " + e);
 		}
-	}*/ 
+	} 
 
 	
 //	@Test
