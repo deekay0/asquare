@@ -359,17 +359,16 @@ public class ManageProjectBusinessImpl extends BaseBusinessImpl implements Manag
 	@AllowedRoles(roles = {Roles.Administrator})
 	public GwtProject createProject(GwtProject newProject, List<GwtTerm> terms, List<GwtTechnique> techniques,
 			List<GwtInspectionTechnique> inspections, List<GwtEvaluation> evaluations) throws SquareException
-	{
+	{		
 		User leadRequirementEngineer = userDao.fetch(newProject.getLeadRequirementEngineer().getUserId());
-		Project project = new Project(newProject);
 		
-		//System.out.println("CASES: "+newProject.getCases().getId());
+		Project project = new Project(newProject);
 		
 		project.setLeadRequirementEngineer(leadRequirementEngineer);
 		
-		//AsquareCase acase = asquareCaseDao.fetch(1);
-		//project.setCases(acase);
-		
+		AsquareCase acase = asquareCaseDao.fetch(newProject.getCases().getId());
+		project.setCases(acase);
+		System.out.println("yay!!: ");
 		projectDao.create(project);
 		newProject.setId(project.getId());
 		

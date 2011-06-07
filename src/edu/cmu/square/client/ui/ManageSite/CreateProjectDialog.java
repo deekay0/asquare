@@ -19,10 +19,12 @@ import com.google.gwt.user.client.ui.HasHorizontalAlignment;
 import com.google.gwt.user.client.ui.HorizontalPanel;
 import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.MultiWordSuggestOracle;
+import com.google.gwt.user.client.ui.RadioButton;
 import com.google.gwt.user.client.ui.SuggestBox;
 import com.google.gwt.user.client.ui.TextBox;
 import com.google.gwt.user.client.ui.VerticalPanel;
 
+import edu.cmu.square.client.model.GwtAsquareCase;
 import edu.cmu.square.client.model.GwtProject;
 import edu.cmu.square.client.model.GwtUser;
 import edu.cmu.square.client.utils.SquareUtil;
@@ -44,6 +46,9 @@ public class CreateProjectDialog extends DialogBox
 	private MultiWordSuggestOracle oracle = new MultiWordSuggestOracle();
 	private SuggestBox userSuggestBox = new SuggestBox(oracle);
 
+	private RadioButton case1Radiobutton = new RadioButton("projectcase", "Case 1");
+	private RadioButton case3Radiobutton = new RadioButton("projectcase", "Case 3");
+	
 	private ProjectGrid caller = null;
 
 	private List<GwtProject> listOfProjects = null;
@@ -105,14 +110,20 @@ public class CreateProjectDialog extends DialogBox
 		VerticalPanel leaderLayout = new VerticalPanel();
 		VerticalPanel defaultTermsLayout = new VerticalPanel();
 		HorizontalPanel buttonsLayout = new HorizontalPanel();
-
+		VerticalPanel caseLayout = new VerticalPanel();
+		HorizontalPanel caseChoice = new HorizontalPanel();
+		
 		VerticalPanel baseLayout = new VerticalPanel();
 		baseLayout.setSpacing(10);
 		baseLayout.setHorizontalAlignment(HasHorizontalAlignment.ALIGN_CENTER);
 		baseLayout.add(nameLayout);
+		baseLayout.setHorizontalAlignment(HasHorizontalAlignment.ALIGN_LEFT);
+		baseLayout.add(caseLayout);
+		baseLayout.setHorizontalAlignment(HasHorizontalAlignment.ALIGN_CENTER);
 		baseLayout.add(leaderLayout);
 		baseLayout.add(defaultTermsLayout);
 		baseLayout.add(buttonsLayout);
+
 
 		nameLayout.add(new Label(messages.projectName()));
 		nameLayout.add(this.projectTextBox);
@@ -123,7 +134,16 @@ public class CreateProjectDialog extends DialogBox
 		leaderLayout.setHorizontalAlignment(HasHorizontalAlignment.ALIGN_LEFT);
 		leaderLayout.add(new Label(messages.leadRequirementsEngineer() + ":"));
 		leaderLayout.add(this.userSuggestBox);
+		
+		caseLayout.setHorizontalAlignment(HasHorizontalAlignment.ALIGN_LEFT);
+		caseLayout.add(new Label(messages.ASquareCase() + ":"));
+		caseLayout.add(caseChoice);
+		
+		caseChoice.add(this.case1Radiobutton);
+		caseChoice.add(this.case3Radiobutton);
 
+		this.case1Radiobutton.setValue(true);
+		
 		if (project.isInDatabase())// Is an update
 		{
 			this.setText(messages.updateProjectDialogBoxTitle());
@@ -259,6 +279,11 @@ public class CreateProjectDialog extends DialogBox
 			// set the new project's name
 			project.setName(SquareUtil.firstCharacterToUpperCase(projectTextBox.getText().trim()));
 
+			if(case1Radiobutton.getValue())
+				project.setCases(new GwtAsquareCase(1));
+			else if(case3Radiobutton.getValue())
+				project.setCases(new GwtAsquareCase(3));
+			
 			// Check to make sure this project name does not already exist in
 			// the DB.
 			for (GwtProject currentProject : listOfProjects)
