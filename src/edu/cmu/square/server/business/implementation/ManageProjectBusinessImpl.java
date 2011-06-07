@@ -31,11 +31,13 @@ import edu.cmu.square.server.business.interfaces.StepBusiness;
 import edu.cmu.square.server.business.step.interfaces.AgreeOnDefinitionsBusiness;
 import edu.cmu.square.server.business.step.interfaces.ElicitationTechniqueBusiness;
 import edu.cmu.square.server.business.step.interfaces.InspectionTechniqueBusiness;
+import edu.cmu.square.server.dao.interfaces.AsquareCaseDao;
 import edu.cmu.square.server.dao.interfaces.ProjectDao;
 import edu.cmu.square.server.dao.interfaces.RoleDao;
 import edu.cmu.square.server.dao.interfaces.StepDao;
 import edu.cmu.square.server.dao.interfaces.UserAhpDao;
 import edu.cmu.square.server.dao.interfaces.UserDao;
+import edu.cmu.square.server.dao.model.AsquareCase;
 import edu.cmu.square.server.dao.model.InspectionTechnique;
 import edu.cmu.square.server.dao.model.Project;
 import edu.cmu.square.server.dao.model.Role;
@@ -65,6 +67,9 @@ public class ManageProjectBusinessImpl extends BaseBusinessImpl implements Manag
 
 	@Resource
 	private UserAhpDao userAhpDao;
+	
+	@Resource
+	private AsquareCaseDao asquareCaseDao;
 
 	@Resource
 	private StepBusiness stepBusiness;
@@ -358,9 +363,12 @@ public class ManageProjectBusinessImpl extends BaseBusinessImpl implements Manag
 		User leadRequirementEngineer = userDao.fetch(newProject.getLeadRequirementEngineer().getUserId());
 		Project project = new Project(newProject);
 		
-		
+		//System.out.println("CASES: "+newProject.getCases().getId());
 		
 		project.setLeadRequirementEngineer(leadRequirementEngineer);
+		
+		//AsquareCase acase = asquareCaseDao.fetch(1);
+		//project.setCases(acase);
 		
 		projectDao.create(project);
 		newProject.setId(project.getId());
