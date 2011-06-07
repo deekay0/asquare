@@ -221,12 +221,7 @@ public class HistoryManager implements ValueChangeHandler<String>
 			
 			Hyperlink chooseProject = new Hyperlink(this.currentState.getCaseName(), HomePilot.generateNavigationId(HomePilot.PageId.home));
 			chooseProject.setStyleName("square-crumb");
-			
-			/*
-			if(this.currentState.getCaseName()!="none")
-			{
-				
-			}*/
+		
 			
 			if(this.currentState.getProjectName()!="none") //empty value of project
 			 { 
