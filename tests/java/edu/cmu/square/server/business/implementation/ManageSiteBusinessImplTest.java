@@ -39,7 +39,7 @@ public class ManageSiteBusinessImplTest extends AbstractSpringBase
 			int testUserID = 1;
 			GwtUser gwtUsers = manageSiteBusiness.getUserInfo(testUserID);
 			
-			assertTrue(gwtUsers.getUserName().equals("marco"));;
+			assertTrue(gwtUsers.getUserName().equals("demouser0"));;
 		}
 		catch (SquareException e){
 			e.printStackTrace();

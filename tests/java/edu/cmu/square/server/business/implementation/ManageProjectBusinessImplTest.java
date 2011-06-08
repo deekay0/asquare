@@ -166,7 +166,7 @@ public class ManageProjectBusinessImplTest extends AbstractSpringBase
 		}
 		catch (Exception e)
 		{
-			fail("exception " + e.getMessage());
+			e.printStackTrace();
 		}
 
 	}
@@ -193,7 +193,7 @@ public class ManageProjectBusinessImplTest extends AbstractSpringBase
 		}
 		catch (Exception e)
 		{
-			fail("exception " + e.getMessage());
+			e.printStackTrace();
 		}
 
 	}

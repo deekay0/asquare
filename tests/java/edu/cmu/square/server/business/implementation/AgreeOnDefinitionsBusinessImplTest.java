@@ -48,8 +48,7 @@ public class AgreeOnDefinitionsBusinessImplTest extends AbstractSpringBase
 		}
 		catch (SquareException e)
 		{
-			fail("error" + e);
-
+			e.printStackTrace();
 		}
 	}
 	
@@ -72,8 +71,7 @@ public class AgreeOnDefinitionsBusinessImplTest extends AbstractSpringBase
 		}
 		catch (SquareException e)
 		{
-			fail("error" + e);
-
+			e.printStackTrace();
 		}
 	}
 	@Test
@@ -104,8 +102,7 @@ public class AgreeOnDefinitionsBusinessImplTest extends AbstractSpringBase
 		}
 		catch (SquareException e)
 		{
-			fail("error" + e);
-
+			e.printStackTrace();
 		}
 	}
 	@Test
@@ -131,8 +128,7 @@ public class AgreeOnDefinitionsBusinessImplTest extends AbstractSpringBase
 		}
 		catch (SquareException e)
 		{
-			fail("error" + e);
-
+			e.printStackTrace();
 		}
 	}
 
