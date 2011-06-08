@@ -1,0 +1,28 @@
+<?xml version="1.0"?>
+<SquareRoot>
+	
+	<Terms>
+		<Term name="Access Control">Access control ensures that resources are only granted to those users who are entitled to them [SANS 2003].</Term>
+		<Term name="Access control list"> A list of access control entries apply to an entire object, a set of the object's properties or an individual property of an object, and that define the access granted to one or more security principals [Tulloch 2003].</Term>
+		<Term name="Artifact">The remnants of an intruder attack or incident activity. These could be software used by intruder(s), a collection of tools, malicious code, logs, files, output from tools, status of asystem after an attack or intrusion [West-Brown 2003].</Term>
+		<Term name="Attack"> An action conducted by an adversary, the attacker, on a potential victim. A set of events that an observer believes to have information assurance consequences on some entity,the target of the attack [Ellison 2003].</Term>
+		<Term name="Auditing">The information gathering and analysis of assets to ensure such things as policy compliance and security from vulnerabilities [SANS 2003].</Term>
+		<Term name="Wazaa">The truth of the wazaaa.</Term>
+	</Terms>
+	
+	<ElicitationTechniques>
+		<ElicitationTechnique name="ARM" isSecurity="true">Accelerated Requirements Method</ElicitationTechnique>
+		<ElicitationTechnique name="JAD" isSecurity="true">Joint Application Design</ElicitationTechnique>
+	</ElicitationTechniques>
+	
+	<EvaluationCriterias>
+		<EvaluationCriteria name="Adaptability">the ability to generate requirements in multiple environments</EvaluationCriteria>
+		<EvaluationCriteria name="Acceptance">the likelihood that the clients would agree to the elicitation technique in analyzing their requirements (Is the implementation too invasive in a business environment? Can the elicitation technique be implemented in a reasonable amount of time?)</EvaluationCriteria>
+	</EvaluationCriterias>
+	
+	<InspectionTechniques>
+		<InspectionTechnique name="Fagan">Structured inspection created by Michael Fagan.</InspectionTechnique>
+		<InspectionTechnique name="Wazaaa">This is the technique of the wazaaaa!</InspectionTechnique>
+	</InspectionTechniques>
+	
+</SquareRoot>
