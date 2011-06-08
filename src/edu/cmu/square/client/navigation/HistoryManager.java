@@ -89,11 +89,8 @@ public class HistoryManager implements ValueChangeHandler<String>
 		public static final String collectArtifacts = "artifacts";
 		public static final String inspectRequirements = "inspect";
 		public static final String chooseStep = "chooseStep";
-<<<<<<< HEAD
 		public static final String reviewOfRequirementsByAcquisitionOrganization = "reviewOfRequirementsByAcquisitionOrganization";
-=======
 		public static final String chooseStepCase3 = "chooseStepCase3";
->>>>>>> 28c37a80d303fec2975115ed2488803f94b71cf2
 	}
 
 	public HistoryManager(Panel contentPane, Panel breadCrumbPane, State stateInfo)
