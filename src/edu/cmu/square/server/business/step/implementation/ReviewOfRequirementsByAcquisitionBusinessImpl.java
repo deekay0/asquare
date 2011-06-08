@@ -17,6 +17,7 @@ import edu.cmu.square.client.navigation.StepEnum;
 import edu.cmu.square.server.authorization.AllowedRoles;
 import edu.cmu.square.server.authorization.Roles;
 import edu.cmu.square.server.business.implementation.BaseBusinessImpl;
+import edu.cmu.square.server.business.step.interfaces.AgreeOnDefinitionsBusiness;
 import edu.cmu.square.server.business.step.interfaces.ReviewOfRequirementsByAcquisitionBusiness;
 import edu.cmu.square.server.dao.interfaces.RequirementDao;
 import edu.cmu.square.server.dao.interfaces.TermDao;
@@ -74,22 +75,6 @@ public class ReviewOfRequirementsByAcquisitionBusinessImpl extends BaseBusinessI
 	}
 
 	@Override
-	public void updateRequirement(GwtProject gwtProject, GwtRequirement gwtRequirement) throws SquareException
-	{
-		Requirement req = new Requirement(gwtRequirement);
-		req.setProject(new Project(gwtProject.getId()));
-		requirementDao.update(req);
-	}
-
-	@Override
-	public void loadDefaultRequirements(int projectId, List<GwtRequirement> requirements) throws SquareException
-	{
-		// TODO Auto-generated method stub
-		
-	}
-
-	/*
-	@Override
 	public void loadDefaultRequirements(int projectId, List<GwtRequirement> defaultRequirements) throws SquareException
 	{
 		GwtProject project = new GwtProject(projectId);
@@ -101,15 +86,33 @@ public class ReviewOfRequirementsByAcquisitionBusinessImpl extends BaseBusinessI
 		}
 	}
 	
-	*/
+	@AllowedRoles(roles = {Roles.All})
+	public GwtRequirement addRequirement(GwtProject gwtProject, GwtRequirement gwtRequirement) throws SquareException
+	{
+		Project project = new Project(gwtProject.getId());
+		Requirement requirement = new Requirement(gwtRequirement);
+		requirement.setProject(project);
+
+		requirementDao.create(requirement);
+
+		return requirement.createGwtRequirement();
+	}
+
 	
-	
-	
-	
-	
-	
-	
-	
+		@AllowedRoles(roles = {Roles.Administrator, Roles.Contractor, Roles.Acquisition_Organization_Engineer, Roles.Security_Specialist})
+		public void removeRequirement(GwtRequirement gwtRequirement) throws SquareException
+		{
+			requirementDao.deleteById(gwtRequirement.getId());
+		}
+		
+		@AllowedRoles(roles = {Roles.Administrator, Roles.Contractor, Roles.Acquisition_Organization_Engineer, Roles.Security_Specialist})
+		public void updateRequirement(GwtProject gwtProject, GwtRequirement gwtRequirement) throws SquareException
+		{
+			Requirement requirement = new Requirement(gwtRequirement);
+			requirement.setProject(new Project(gwtProject.getId()));
+			requirementDao.update(requirement);
+		}
+		
 	
 	
 }

@@ -26,7 +26,7 @@ public interface ReviewOfRequirementsByAcquisitionServiceAsync
 	 * @throws SquareException
 	 */
 	
-	//void addRequirement(GwtProject gwtProject, GwtRequirement gwtRequirement,  AsyncCallback<GwtRequirement> callback);
+	void addRequirement(GwtProject gwtProject, GwtRequirement gwtRequirement,  AsyncCallback<GwtRequirement> callback);
 	
 	/**
 	 * This update an existing term in the project.
@@ -42,6 +42,6 @@ public interface ReviewOfRequirementsByAcquisitionServiceAsync
 	 * @param GwtTerm The term to be removed from the project.
 	 * @throws SquareException
 	 */
-	//void removeRequirement(GwtRequirement GwtRequirement,AsyncCallback<Void> callback);
+	void removeRequirement(GwtRequirement GwtRequirement,AsyncCallback<Void> callback);
 	
 }

@@ -53,7 +53,7 @@ public class ReviewOfRequirementsByAcquisitionPane extends BasePane
 	private int modifyRequirementId = -1;
 
 	//private CreateRequirementDialog createRequirementDialog;
-	//private GwtRequirement newRequirement;
+	private GwtRequirement newRequirement;
 	private String lastSearch="";
 	
 	private int pageSize=10;
@@ -67,7 +67,6 @@ public class ReviewOfRequirementsByAcquisitionPane extends BasePane
 	{
 			super(stateInfo);
 			
-
 			this.projectID = this.getCurrentState().getProjectID();
 			SetQueryString();
 			this.showLoadingStatusBar();
@@ -108,13 +107,14 @@ public class ReviewOfRequirementsByAcquisitionPane extends BasePane
 
 		ReviewOfRequirementsByAcquisitionServiceAsync service1 = GWT.create(ReviewOfRequirementsByAcquisitionService.class);
 		ServiceDefTarget endpoint = (ServiceDefTarget) service1;
+		//System.out.println("at loadRequirement()");
 		endpoint.setServiceEntryPoint(GWT.getModuleBaseURL() + "reviewOfRequirementsByAcquisitionService.rpc");
 
 		GwtProject project = new GwtProject();
 		project.setId(this.getCurrentState().getProjectID());
 
 		service1.getRequirements(project, new AsyncCallback<List<GwtRequirement>>()
-			{
+		{
 
 				public void onFailure(Throwable caught)
 				{
@@ -131,14 +131,14 @@ public class ReviewOfRequirementsByAcquisitionPane extends BasePane
 
 	}
 	
-	/*
+	
 	public void addRequirement(GwtRequirement gwtRequirement, GwtProject gwtProject)
 	{
 		this.showStatusBar("adding...");
 
 		ReviewOfRequirementsByAcquisitionServiceAsync service1 = GWT.create(ReviewOfRequirementsByAcquisitionService.class);
 		ServiceDefTarget endpoint = (ServiceDefTarget) service1;
-		endpoint.setServiceEntryPoint(GWT.getModuleBaseURL() + "agreeOnDefinitionsService.rpc");
+		endpoint.setServiceEntryPoint(GWT.getModuleBaseURL() + "reviewOfRequirementsByAcquisitionService.rpc");
 
 		GwtProject project = new GwtProject();
 		project.setId(this.getCurrentState().getProjectID());
@@ -162,16 +162,16 @@ public class ReviewOfRequirementsByAcquisitionPane extends BasePane
 			});
 
 	}
-	*/
+	
 
-	/*
+	
 	public void removeRequirement(final GwtRequirement gwtRequirement)
 	{
 
 		this.showStatusBar("removing...");
 		ReviewOfRequirementsByAcquisitionServiceAsync service1 = GWT.create(ReviewOfRequirementsByAcquisitionService.class);
 		ServiceDefTarget endpoint = (ServiceDefTarget) service1;
-		endpoint.setServiceEntryPoint(GWT.getModuleBaseURL() + "agreeOnDefinitionsService.rpc");
+		endpoint.setServiceEntryPoint(GWT.getModuleBaseURL() + "reviewOfRequirementsByAcquisitionService.rpc");
 
 		GwtProject project = new GwtProject();
 		project.setId(this.getCurrentState().getProjectID());
@@ -195,7 +195,7 @@ public class ReviewOfRequirementsByAcquisitionPane extends BasePane
 			});
 
 	}
-*/
+
 	
 	public void updateRequirement(final GwtRequirement gwtRequirement, GwtProject gwtProject)
 	{
@@ -222,11 +222,8 @@ public class ReviewOfRequirementsByAcquisitionPane extends BasePane
 				{
 					modifyRequirementId = gwtRequirement.getId();
 					loadRequirements();
-
 				}
-
 			});
-
 	}
 
 	public void initializePane()
@@ -252,7 +249,7 @@ public class ReviewOfRequirementsByAcquisitionPane extends BasePane
 		vPane.add(getHeaderRow());
 		vPane.add(vPaneData);
 		loadRequirementTableData();
-		addDoneButton();
+		//addDoneButton();
 		
 		
 		
@@ -266,9 +263,9 @@ public class ReviewOfRequirementsByAcquisitionPane extends BasePane
 
 		vPaneData.setSpacing(5);
 		int rowCount = 1;
-		for (GwtRequirement term : listOfFilteredRequirements)
+		for (GwtRequirement requirement : listOfFilteredRequirements)
 		{
-			vPaneData.add(getDataRow(rowCount, term));
+			vPaneData.add(getDataRow(rowCount, requirement));
 			rowCount++;
 		}
 
@@ -286,10 +283,12 @@ public class ReviewOfRequirementsByAcquisitionPane extends BasePane
 			diclosure.setOpen(true);
 
 		}
+		
 		else
 		{
 			//loadPaginBar(); TODO if we want to do paging.
 		}
+		
 		
 		
 
@@ -380,7 +379,7 @@ public class ReviewOfRequirementsByAcquisitionPane extends BasePane
 		vPaneData.add(pagingPanel);
 		}
 	}
-	
+	/*
 	public void navigatePaging()
 	{
 		String searchQuery="";
@@ -393,14 +392,14 @@ public class ReviewOfRequirementsByAcquisitionPane extends BasePane
 		History.newItem(ReviewOfRequirementsByAcquisitionPilot.generateNavigationId(ReviewOfRequirementsByAcquisitionPilot.PageId.start)+queryString);
 		
 	}
-	
-	public int getIndexById(int termId)
+	*/
+	public int getIndexById(int requirementId)
 	{
 		int count = 0;
 		for (GwtRequirement t : listOfFilteredRequirements)
 		{
 
-			if (t.getId().intValue() == termId)
+			if (t.getId().intValue() == requirementId)
 			{
 				return count;
 			}
@@ -547,7 +546,7 @@ public class ReviewOfRequirementsByAcquisitionPane extends BasePane
 		// clearButton.setStyleName("square-clear-label");
 		clearButton.setSize("25px", "26px");
 
-	
+	/*
 		final SquareWaterMarkTextBox searchTextBox = new SquareWaterMarkTextBox(messages.search());
 		
 		if(lastSearch.trim().length()!=0)
@@ -573,7 +572,7 @@ public class ReviewOfRequirementsByAcquisitionPane extends BasePane
 
 				}
 			});
-		
+
 		clearButton.addClickHandler(new ClickHandler()
 			{
 
@@ -590,9 +589,9 @@ public class ReviewOfRequirementsByAcquisitionPane extends BasePane
 				}
 			});
 
-		Button addRequirementButton = new Button("Add Requirement");
-		final ReviewOfRequirementsByAcquisitionPane reviewOfRequirementsByAcquisitionObject = this;
-		/*
+		//Button addRequirementButton = new Button("Add Requirement");
+		//final ReviewOfRequirementsByAcquisitionPane reviewOfRequirementsByAcquisitionObject = this;
+		
 		addRequirementButton.addClickHandler(new ClickHandler()
 			{
 
@@ -607,6 +606,7 @@ public class ReviewOfRequirementsByAcquisitionPane extends BasePane
 				}
 			});
 */
+		/*
 		if (this.getCurrentState().getMode().equals(GwtModesType.ReadWrite))
 		{
 			searchTable.setWidget(0, 0, addRequirementButton);
@@ -615,6 +615,7 @@ public class ReviewOfRequirementsByAcquisitionPane extends BasePane
 		{
 			searchTable.setWidget(0, 0, new Label(messages.termsAndDefinition()));
 		}
+		*/
 		searchTable.setWidget(0, 1, new Label(" "));
 		searchTable.setWidget(0, 2, searchBox);
 
@@ -652,9 +653,9 @@ public class ReviewOfRequirementsByAcquisitionPane extends BasePane
 					boolean response = Window.confirm(messages.confirmDelete() + "?");
 					if (response)
 					{
-						GwtRequirement term = new GwtRequirement();
-						term.setId(hyper2.getRequirementId());
-						removeRequirement(term);
+						GwtRequirement requirement = new GwtRequirement();
+						requirement.setId(hyper2.getrequirementirementId());
+						removeRequirement(requirement);
 					}
 				}
 			});
@@ -675,7 +676,7 @@ public class ReviewOfRequirementsByAcquisitionPane extends BasePane
 		}
 
 		final ReviewOfRequirementsByAcquisitionPane reviewOfRequirementsByAcquisitionObject = this;
-/*
+
 		hyper1.addClickHandler(new ClickHandler()
 			{
 
@@ -691,7 +692,7 @@ public class ReviewOfRequirementsByAcquisitionPane extends BasePane
 				}
 	
 			});
-*/
+
 		int addedItemIndex = getIndexById(modifyRequirementId);
 
 		if (addedItemIndex != -1 && (addedItemIndex + 1) == rowCount)
@@ -741,18 +742,18 @@ public class ReviewOfRequirementsByAcquisitionPane extends BasePane
 	{
 		GwtProject gwtProject = new GwtProject();
 		gwtProject.setId(projectID);
-		//addRequirement(term, gwtProject);
+		//addRequirement(requirement, gwtProject);
 
 	}
 
-	public void updateCommand(GwtRequirement term)
+	public void updateCommand(GwtRequirement requirement)
 	{
 
 		GwtProject gwtProject = new GwtProject();
 		gwtProject.setId(projectID);
-		updateRequirement(term, gwtProject);;
+		updateRequirement(requirement, gwtProject);;
 	}
-	
+	/*
 	private void addDoneButton()
 	{
 		FlexTable buttonPanel = new FlexTable();
@@ -771,7 +772,7 @@ public class ReviewOfRequirementsByAcquisitionPane extends BasePane
 		buttonPanel.getCellFormatter().setHorizontalAlignment(1,0,HasHorizontalAlignment.ALIGN_RIGHT);
 		this.vPane.add(buttonPanel);
 	}
-
+*/
 	class SummaryElementHyperLinkElement extends SquareHyperlink
 	{
 

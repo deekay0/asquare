@@ -4,13 +4,14 @@ import edu.cmu.square.client.ui.core.content.teachStep.TeachMessages;
 
 public interface ReviewOfRequirementsByAcquisitionMessages extends TeachMessages
 {
-	String retrievingRequirementsRPCAction();
+	//String title();
+	//String retrievingRequirementsRPCAction();
 
 	
-	String termsAndDefinition();
+	//String termsAndDefinition();
 
 
-	String viewDetailRequirementDialogBoxTitle();
+	//String viewDetailRequirementDialogBoxTitle();
 
 
 	String noelementsFound();

@@ -17,7 +17,7 @@ public interface ReviewOfRequirementsByAcquisitionBusiness extends StepBusinessI
 	 * @throws SquareException
 	 */
 	
-	//GwtRequirement addRequirement(GwtProject gwtProject, GwtRequirement gwtRequirement)throws SquareException;
+	GwtRequirement addRequirement(GwtProject gwtProject, GwtRequirement gwtRequirement)throws SquareException;
 	
 	/**
 	 * This update an existing term in the project.
@@ -33,7 +33,8 @@ public interface ReviewOfRequirementsByAcquisitionBusiness extends StepBusinessI
 	 * @param GwtTerm The term to be removed from the project.
 	 * @throws SquareException
 	 */
-	//void removeRequirement(GwtRequirement GwtRequirement)throws SquareException;
+	void removeRequirement(GwtRequirement GwtRequirement)throws SquareException;
 	
 	void loadDefaultRequirements(int projectId, List<GwtRequirement> requirements) throws SquareException;
+
 }

@@ -31,7 +31,7 @@ public enum StepEnum
 			PrioritizeRequirementsPilot.generateNavigationId(PrioritizeRequirementsPilot.PageId.home)),
 	Inspect_Requirements("Step 9: Inspect Requirements",
 			InspectRequirementsPilot.generateNavigationId(InspectRequirementsPilot.PageId.home)),
-	Review_Of_Requirements_By_Acquisition_Organization("Case 1 - Step 4:Review Of Requirements By Acquisition Organization", 
+	Review_Of_Requirements_By_Acquisition_Organization("Case 1 - Step 4: Review Of Requirements By Acquisition Organization", 
 			ReviewOfRequirementsByAcquisitionPilot.generateNavigationId(ReviewOfRequirementsByAcquisitionPilot.PageId.home));
 	
 	private String description;

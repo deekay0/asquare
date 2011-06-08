@@ -27,7 +27,7 @@ public interface ReviewOfRequirementsByAcquisitionService extends RemoteService 
 		 * @throws SquareException
 		 */
 		
-		//GwtRequirement addRequirement(GwtProject gwtProject, GwtRequirement gwtRequirement)throws SquareException;
+		GwtRequirement addRequirement(GwtProject gwtProject, GwtRequirement gwtRequirement)throws SquareException;
 		
 		/**
 		 * This update an existing term in the project.
@@ -43,6 +43,6 @@ public interface ReviewOfRequirementsByAcquisitionService extends RemoteService 
 		 * @param GwtTerm The term to be removed from the project.
 		 * @throws SquareException
 		 */
-		//void removeRequirement(GwtRequirement GwtRequirement)throws SquareException;
+		void removeRequirement(GwtRequirement GwtRequirement)throws SquareException;
 		
 }

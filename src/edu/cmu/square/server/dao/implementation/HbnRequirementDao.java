@@ -64,7 +64,7 @@ public class HbnRequirementDao extends HbnAbstractDao<Requirement, Integer> impl
 		return q.list();
 	}
 	
-	@SuppressWarnings("unchecked")
+	
 	@Override
 	public List<Requirement> getRequirementByProject(Project project)
 	{

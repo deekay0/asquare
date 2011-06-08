@@ -1,5 +1,6 @@
 package edu.cmu.square.client.ui.reviewOfRequirementsByAcquisitionOrganization;
 
+import com.google.gwt.core.client.GWT;
 import com.google.gwt.user.client.ui.Widget;
 
 import edu.cmu.square.client.model.GwtModesType;
@@ -7,9 +8,8 @@ import edu.cmu.square.client.model.ProjectRole;
 import edu.cmu.square.client.navigation.HistoryManager;
 import edu.cmu.square.client.navigation.Pilot;
 import edu.cmu.square.client.navigation.State;
-import edu.cmu.square.client.ui.agreeOnDefinitions.AgreeOnDefinitionsPane;
-import edu.cmu.square.client.ui.agreeOnDefinitions.AgreeOnDefinitionsPilot.PageId;
 import edu.cmu.square.client.ui.core.TeachStepPane;
+import edu.cmu.square.client.ui.core.content.BreadCrumbMessages;
 
 public class ReviewOfRequirementsByAcquisitionPilot extends Pilot
 {
@@ -24,7 +24,7 @@ public class ReviewOfRequirementsByAcquisitionPilot extends Pilot
 	public ReviewOfRequirementsByAcquisitionPilot()
 	{
 		this.isStep=true;
-		this.STEP_DESCRIPTION="Case 1 - Step 4 : Review Of Requirements By Acquisition Organization";
+		this.STEP_DESCRIPTION="Case 1 - Step 4: Review Of Requirements By Acquisition Organization";
 	}
 	
 
@@ -83,7 +83,9 @@ public class ReviewOfRequirementsByAcquisitionPilot extends Pilot
 		}
 		else if (currentState.getUserProjectRole() == ProjectRole.None)
 		{
-			currentState.setMode(GwtModesType.NoAccess);
+			
+			currentState.setMode(GwtModesType.ReadWrite);
+			//currentState.setMode(GwtModesType.NoAccess);
 		}
 		else 
 		{
@@ -95,9 +97,10 @@ public class ReviewOfRequirementsByAcquisitionPilot extends Pilot
 	@Override
 	public String getBreadCrumb()
 	{
-		// TODO Auto-generated method stub
-		return null;
+		final BreadCrumbMessages messages = (BreadCrumbMessages) GWT.create(BreadCrumbMessages.class);
+		return messages.reviewOfRequirementsByAcquisitionOrganization();
 	}
+	
 	public static String generateNavigationId(String pageId)
 	{
 		return HistoryManager.ViewId.reviewOfRequirementsByAcquisitionOrganization+ "/" + pageId;
