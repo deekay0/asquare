@@ -23,7 +23,7 @@ public enum StepEnum
 			RiskAssessmentPilot.generateNavigationId(RiskAssessmentPilot.PageId.home)),
 	Select_Elicitation_Technique("Step 5: Select Elicitation Technique",
 			SelectSecurityElicitationTechniquePilot.generateNavigationId(SelectSecurityElicitationTechniquePilot.PageId.home)),		
-	Elicit_Security_Requirements("Step 6: Elicit Security Requirements",
+	Elicit_Security_Requirements("Step 3: Identify Preliminary Security Requirements",
 			ElicitSecurityRequirementsPilot.generateNavigationId(ElicitSecurityRequirementsPilot.PageId.home)),		
 	Categorize_Requirements("Step 7: Categorize Requirements",
 			CategorizeRequirementsPilot.generateNavigationId(CategorizeRequirementsPilot.PageId.home)),

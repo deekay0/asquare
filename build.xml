@@ -9,7 +9,8 @@
 	<property name="debuglevel" value="source,lines,vars" />
 	<property name="target" value="1.6" />
 	<property name="source" value="1.6" />
-
+	<property name="gwtproj.output.dir" value="${basedir}/war/WEB-INF/classes"/>
+	<property name="test.reports" value="${basedir}/tests/test_reports"/>
 	<property name="url" value="http://localhost:8080/manager" />
 	<property name="username" value="tomcat" />
 	<property name="password" value="tomcat" />
@@ -141,6 +142,7 @@
 
 
 	<!-- Configure the custom Ant tasks for the Manager application -->
+	
 	<taskdef name="deploy" classname="org.apache.catalina.ant.DeployTask" />
 	<taskdef name="list" classname="org.apache.catalina.ant.ListTask" />
 	<taskdef name="reload" classname="org.apache.catalina.ant.ReloadTask" />
@@ -149,6 +151,7 @@
 	<taskdef name="start" classname="org.apache.catalina.ant.StartTask" />
 	<taskdef name="stop" classname="org.apache.catalina.ant.StopTask" />
 	<taskdef name="undeploy" classname="org.apache.catalina.ant.UndeployTask" />
+	 
 
 
 
@@ -165,4 +168,76 @@
 	</target>
 
 
+	<target name="unit_test" depends="" description="Runs all unit tests of the project">
+	<javac srcdir="${basedir}/tests/java" includes="**" 
+		excludes="**/*GwtTest*.java" encoding="utf-8"
+					        destdir="${gwtproj.output.dir}"
+					        nowarn="true"
+					        debug="true" debuglevel="lines,vars,source"
+				source="1.6"
+				>
+		<classpath>
+			<fileset file="${basedir}/lib/junit.jar">
+			</fileset>
+			
+			<path refid="SquareGwt.classpath"/>
+		</classpath>
+	</javac>
+		<copy  todir="${basedir}/war/WEB-INF/classes">
+					<fileset dir="${basedir}/resources/" includes="**.*">
+					</fileset>
+				</copy>
+	<junit printsummary="yes" haltonfailure="yes">
+		<classpath>
+			<fileset file="${basedir}/lib/junit.jar"/>
+			<path refid="SquareGwt.classpath"/>
+
+		</classpath>
+
+
+		<batchtest fork="yes" todir="${test.reports}">
+			<fileset dir="${basedir}/tests/java">
+				<include name="**/*Test*.java"/>
+				<exclude name="**/*GwtTest*.java"/>
+			</fileset>
+			<formatter type="xml"/>
+		</batchtest>
+	</junit>
+
+	</target>
+
+
+	<target name="gwt_test" depends="" description="Runs all gwt tests of the project">
+	<javac srcdir="${basedir}/tests/java" includes="**/*GwtTest*.java"  encoding="utf-8"
+						        destdir="${gwtproj.output.dir}"
+						        nowarn="true"
+						        debug="true" debuglevel="lines,vars,source"
+					source="1.6"
+					>
+		<classpath>
+			<fileset file="${basedir}/lib/junit.jar">
+			</fileset>
+			<path refid="SquareGwt.classpath"/>
+		</classpath>
+	</javac>
+		
+	<junit printsummary="yes" haltonfailure="yes" maxmemory="1024m">
+		<classpath>
+			<fileset file="${basedir}/lib/junit.jar"/>
+			<path refid="test.classpath"/>
+			<path refid="SquareGwt.classpath"/>
+			
+		</classpath>
+
+
+		<batchtest fork="yes" todir="${test.reports}">
+			<fileset dir="${basedir}/tests/java">
+				<include name="**/*GwtTest*.java"/>
+
+			</fileset>
+			<formatter type="xml"/>
+		</batchtest>
+	</junit>
+	</target>
+	
 </project>

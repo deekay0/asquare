@@ -31,11 +31,13 @@ import edu.cmu.square.server.business.interfaces.StepBusiness;
 import edu.cmu.square.server.business.step.interfaces.AgreeOnDefinitionsBusiness;
 import edu.cmu.square.server.business.step.interfaces.ElicitationTechniqueBusiness;
 import edu.cmu.square.server.business.step.interfaces.InspectionTechniqueBusiness;
+import edu.cmu.square.server.dao.interfaces.AsquareCaseDao;
 import edu.cmu.square.server.dao.interfaces.ProjectDao;
 import edu.cmu.square.server.dao.interfaces.RoleDao;
 import edu.cmu.square.server.dao.interfaces.StepDao;
 import edu.cmu.square.server.dao.interfaces.UserAhpDao;
 import edu.cmu.square.server.dao.interfaces.UserDao;
+import edu.cmu.square.server.dao.model.AsquareCase;
 import edu.cmu.square.server.dao.model.InspectionTechnique;
 import edu.cmu.square.server.dao.model.Project;
 import edu.cmu.square.server.dao.model.Role;
@@ -65,6 +67,9 @@ public class ManageProjectBusinessImpl extends BaseBusinessImpl implements Manag
 
 	@Resource
 	private UserAhpDao userAhpDao;
+	
+	@Resource
+	private AsquareCaseDao asquareCaseDao;
 
 	@Resource
 	private StepBusiness stepBusiness;
@@ -354,14 +359,16 @@ public class ManageProjectBusinessImpl extends BaseBusinessImpl implements Manag
 	@AllowedRoles(roles = {Roles.Administrator})
 	public GwtProject createProject(GwtProject newProject, List<GwtTerm> terms, List<GwtTechnique> techniques,
 			List<GwtInspectionTechnique> inspections, List<GwtEvaluation> evaluations) throws SquareException
-	{
+	{		
 		User leadRequirementEngineer = userDao.fetch(newProject.getLeadRequirementEngineer().getUserId());
+		
 		Project project = new Project(newProject);
-		
-		
 		
 		project.setLeadRequirementEngineer(leadRequirementEngineer);
 		
+		AsquareCase acase = asquareCaseDao.fetch(newProject.getCases().getId());
+		project.setCases(acase);
+		System.out.println("yay!!: ");
 		projectDao.create(project);
 		newProject.setId(project.getId());
 		

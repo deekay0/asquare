@@ -14,6 +14,7 @@ import edu.cmu.square.client.model.GwtModesType;
 import edu.cmu.square.client.remoteService.interfaces.StepService;
 import edu.cmu.square.client.remoteService.interfaces.StepServiceAsync;
 import edu.cmu.square.client.ui.ChooseStep.ChooseStepPilot;
+import edu.cmu.square.client.ui.ChooseStepCase3.ChooseStepCase3Pilot;
 import edu.cmu.square.client.ui.ManageProject.ManageProjectPilot;
 import edu.cmu.square.client.ui.ManageSite.ManageSitePilot;
 import edu.cmu.square.client.ui.SelectSecurityTechnique.SelectSecurityElicitationTechniquePilot;
@@ -65,6 +66,7 @@ public class HistoryManager implements ValueChangeHandler<String>
 	private Pilot artifactsPilot = new CollectArtifactsPilot();
 	private Pilot inspectionPilot = new InspectRequirementsPilot();
 	private Pilot chooseStepPilot = new ChooseStepPilot();
+	private Pilot chooseStepCase3Pilot = new ChooseStepCase3Pilot();
 	private Pilot chooseCasePilot = new ChooseCasePilot();
 	private BreadCrumbMessages messages = (BreadCrumbMessages)GWT.create(BreadCrumbMessages.class);
 
@@ -73,7 +75,7 @@ public class HistoryManager implements ValueChangeHandler<String>
 	
 	public static class ViewId
 	{
-		public static final String home = "m";
+		public static final String home = "chooseProject";
 		public static final String chooseCase = "chooseCase";
 		public static final String selectSecurityElicitationTechnique = "select-security-elicitation-technique";
 		public static final String manageProject = "project";
@@ -87,7 +89,11 @@ public class HistoryManager implements ValueChangeHandler<String>
 		public static final String collectArtifacts = "artifacts";
 		public static final String inspectRequirements = "inspect";
 		public static final String chooseStep = "chooseStep";
+<<<<<<< HEAD
 		public static final String reviewOfRequirementsByAcquisitionOrganization = "reviewOfRequirementsByAcquisitionOrganization";
+=======
+		public static final String chooseStepCase3 = "chooseStepCase3";
+>>>>>>> 28c37a80d303fec2975115ed2488803f94b71cf2
 	}
 
 	public HistoryManager(Panel contentPane, Panel breadCrumbPane, State stateInfo)
@@ -216,19 +222,26 @@ public class HistoryManager implements ValueChangeHandler<String>
 		
 		if (crumb.trim().length()!=0) //Bread crumb text is not empty.
 		{
+			System.out.println("asdfasdf....."+this.currentState.getProjectName());
 			Hyperlink chooseStep = new Hyperlink(this.currentState.getProjectName(), ChooseStepPilot.generateNavigationId(ChooseStepPilot.PageId.home));
 			chooseStep.setStyleName("square-crumb");
 			crumbBar.add(chooseCase);
 			
+			Hyperlink chooseProject = new Hyperlink(this.currentState.getCaseName(), HomePilot.generateNavigationId(HomePilot.PageId.home));
+			chooseProject.setStyleName("square-crumb");
+		
+			
 			if(this.currentState.getProjectName()!="none") //empty value of project
 			 { 
+				crumbBar.add(new Label(" > "));
+				crumbBar.add(chooseProject);
 				crumbBar.add(new Label(" > "));
 				crumbBar.add(chooseStep);
 			 }
 			
 			crumbBar.add(new Label(" > "));
 			crumbBar.add(crumbText);
-			crumbBar.setSpacing(3);
+			crumbBar.setSpacing(4);
 
 		}
 		this.breadCrumbPane.add(crumbBar);
@@ -333,6 +346,10 @@ public class HistoryManager implements ValueChangeHandler<String>
 		else if (ViewId.chooseStep.equals(view))
 		{
 			return this.chooseStepPilot;
+		}
+		else if (ViewId.chooseStepCase3.equals(view))
+		{
+			return this.chooseStepCase3Pilot;
 		}
 		else if (ViewId.chooseCase.equals(view))
 		{

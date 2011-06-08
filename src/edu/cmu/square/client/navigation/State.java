@@ -44,6 +44,7 @@ public class State extends StateHandler
 	private int projectID;
 	private int caseID;
 	private int totalPrioritizations;
+	private String caseName = "";
 	private String projectName = "";
 	private String projectInspectionStatus = null;
 	private GWTAppProperties appProperties;
@@ -57,6 +58,7 @@ public class State extends StateHandler
 		setSessionID("");
 		setUserName("anonymous");
 		setProjectName("");
+		setCaseName("");
 		setCurrentView("LogInPane");
 		setAuthenticated(null);
 		setSiteAdministrator(false);
@@ -309,6 +311,22 @@ public class State extends StateHandler
 	public String getProjectName()
 	{
 		return projectName;
+	}
+	
+	public void setCaseName(String caseName)
+	{
+		this.caseName = caseName;
+		Cookies.setCookie("caseName", caseName);
+		if (caseName.trim().length() > 0)
+		{
+			super.fireEvent("caseName", caseName);
+		}
+
+	}
+
+	public String getCaseName()
+	{
+		return caseName;
 	}
 
 	/**

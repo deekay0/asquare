@@ -73,5 +73,7 @@ public interface ManageSitePaneMessages extends CommonMessages {
 	String useDefaultEvaluations();
 	String useDefaultInspections();
 	String errorDeletingLeadRequirementsEngineer();
+	
+	String ASquareCase();
 
 }

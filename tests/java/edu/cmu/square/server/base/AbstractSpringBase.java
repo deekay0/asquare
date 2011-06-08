@@ -18,6 +18,7 @@ import edu.cmu.square.client.model.GwtInspectionTechnique;
 import edu.cmu.square.client.model.GwtTechnique;
 import edu.cmu.square.client.model.GwtTerm;
 import edu.cmu.square.server.dao.interfaces.ArtifactDao;
+import edu.cmu.square.server.dao.interfaces.AsquareCaseDao;
 import edu.cmu.square.server.dao.interfaces.CategoryDao;
 import edu.cmu.square.server.dao.interfaces.GoalDao;
 import edu.cmu.square.server.dao.interfaces.ProjectDao;
@@ -26,6 +27,7 @@ import edu.cmu.square.server.dao.interfaces.RiskDao;
 import edu.cmu.square.server.dao.interfaces.RoleDao;
 import edu.cmu.square.server.dao.interfaces.UserDao;
 import edu.cmu.square.server.dao.model.Artifact;
+import edu.cmu.square.server.dao.model.AsquareCase;
 import edu.cmu.square.server.dao.model.Category;
 import edu.cmu.square.server.dao.model.Goal;
 import edu.cmu.square.server.dao.model.GoalType;
@@ -41,6 +43,7 @@ import edu.cmu.square.server.dao.model.User;
 public class AbstractSpringBase {
 	
 	
+	protected AsquareCase asquareCase;
 	
 	protected Project testProject;
 	protected User testUser;
@@ -54,6 +57,8 @@ public class AbstractSpringBase {
 	protected Category testCategory1;
 	protected Category testCategory2;
 	
+	@Resource
+	protected AsquareCaseDao caseDao;
 	@Resource
 	protected GoalDao goalDao;
 	@Resource
@@ -97,6 +102,11 @@ public class AbstractSpringBase {
 		
 		map.put("user", testUser);
 		
+		
+		asquareCase = caseDao.fetch(1);
+		map.put("asquareCase", asquareCase);
+		
+		
 		//create project
 		testProject = new Project();
 		testProject.setName("TestManageProject" + r.nextDouble());
@@ -106,6 +116,7 @@ public class AbstractSpringBase {
 		testProject.setPrivacyTechniqueRationale("None");
 		testProject.setSecurityTechniqueRationale("None");
 		testProject.setLeadRequirementEngineer(testUser);
+		testProject.setCases(asquareCase);
 	
 		
 		projectDao.create(testProject);
@@ -129,6 +140,7 @@ public class AbstractSpringBase {
 		map.put("role", testRole);
 		return map;
 	}
+	
 	
 	public void createRequirementsWithCategories() {
 		
