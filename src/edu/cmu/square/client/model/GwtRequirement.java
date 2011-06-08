@@ -22,8 +22,13 @@ public class GwtRequirement implements Serializable, Comparable<GwtRequirement>
 	private int priority=0;              
 	private int projectID;
 	
+	
+	private String status;
+	
+	
 	public Integer getId() 
 	{
+		System.out.println("I try getId");
 		return id;
 	}
 	
@@ -91,6 +96,15 @@ public class GwtRequirement implements Serializable, Comparable<GwtRequirement>
 		this.priority = priority;
 	}
 	
+	public String getStatus()
+	{
+		System.out.println("I try getStatus");
+		return status;
+	}
+	public void setStatus(String status)
+	{
+		this.status = status;
+	}
 	
 	public int getProjectID()
 	{
@@ -117,6 +131,8 @@ public class GwtRequirement implements Serializable, Comparable<GwtRequirement>
 	{
 		this.risks = risks;
 	}
+	
+	
 
 	public List<GwtRisk> getRisks()
 	{

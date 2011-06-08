@@ -13,7 +13,7 @@
 	<property name="test.reports" value="${basedir}/tests/test_reports"/>
 	<property name="url" value="http://localhost:8080/manager" />
 	<property name="username" value="tomcat" />
-	<property name="password" value="tomcat" />
+	<property name="password" value="drowssap123" />
 
 	<property name="path" value="/SquareGwt" />
 

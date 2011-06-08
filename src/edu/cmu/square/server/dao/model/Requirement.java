@@ -45,6 +45,7 @@ public class Requirement implements java.io.Serializable
 	private boolean security;
 	private boolean privacy;
 	private String description;
+	private String status;
 	
 	private int priority;
 	private Project project;
@@ -77,6 +78,8 @@ public class Requirement implements java.io.Serializable
 		this.privacy=gwtRequirement.isPrivacy();
 		this.security = gwtRequirement.isSecurity();
 		this.priority = gwtRequirement.getPriority();
+		this.status = gwtRequirement.getStatus();
+		
 		for(GwtRisk r: gwtRequirement.getRisks()) {
 			this.getRisks().add(new Risk(r));
 		}
@@ -164,6 +167,15 @@ public class Requirement implements java.io.Serializable
 	public void setPriority(int priority)
 	{
 		this.priority = priority;
+	}
+	
+	@Column(name = "status", nullable = false, length = 65535)
+	public String getStatus()
+	{
+		return this.status;
+	}
+	public void setStatus(String status){
+		this.status = status;
 	}
 
 	@Temporal(TemporalType.TIMESTAMP)
@@ -286,6 +298,7 @@ public class Requirement implements java.io.Serializable
 		GwtRequirement gwtRequirement = new GwtRequirement();
 		gwtRequirement.setId(this.id);
 		gwtRequirement.setDescription(this.description);
+		gwtRequirement.setStatus(this.status);
 		gwtRequirement.setPriority(this.priority);
 		gwtRequirement.setPrivacy(this.privacy);
 		gwtRequirement.setProjectID(this.project!=null?this.project.getId():null);

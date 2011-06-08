@@ -13,6 +13,7 @@ import org.hibernate.Session;
 import org.springframework.stereotype.Repository;
 
 import edu.cmu.square.server.dao.interfaces.RequirementDao;
+import edu.cmu.square.server.dao.model.Project;
 import edu.cmu.square.server.dao.model.Requirement;
 
 /**
@@ -62,5 +63,18 @@ public class HbnRequirementDao extends HbnAbstractDao<Requirement, Integer> impl
 		q.setParameter("projectId", projectId);
 		return q.list();
 	}
+	
+	
+	@Override
+	public List<Requirement> getRequirementByProject(Project project)
+	{
+		Session session = super.getSession();
+		String query = "Select p.requirements from Project p where p=:myProject";
+		Query q = session.createQuery(query);
+		q.setParameter("myProject", project);
+		return q.list();
+	}
+	
+	
 
 }

@@ -13,6 +13,7 @@ import com.google.gwt.user.client.ui.VerticalPanel;
 import com.google.gwt.user.client.ui.Widget;
 
 import edu.cmu.square.client.navigation.HistoryManager;
+import edu.cmu.square.client.remoteService.step.interfaces.ReviewOfRequirementsByAcquisitionServiceAsync;
 import edu.cmu.square.client.ui.SelectSecurityTechnique.SelectSecurityTechniqueMessages;
 import edu.cmu.square.client.ui.agreeOnDefinitions.AgreeOnDefinitionsMessages;
 import edu.cmu.square.client.ui.assetsAndGoals.IdentifyAssetsAndGoalsMessages;
@@ -23,6 +24,7 @@ import edu.cmu.square.client.ui.core.content.teachStep.TeachStepMessages;
 import edu.cmu.square.client.ui.elicitSecurityRequirements.ElicitSecurityRequirementsMessages;
 import edu.cmu.square.client.ui.inspectRequirements.InspectRequirementsMessages;
 import edu.cmu.square.client.ui.prioritizeRequirements.PrioritizeMessages;
+import edu.cmu.square.client.ui.reviewOfRequirementsByAcquisitionOrganization.ReviewOfRequirementsByAcquisitionMessages;
 import edu.cmu.square.client.ui.risksAssessment.SecurityRiskAssessmentMessages;
 
 
@@ -81,6 +83,10 @@ public class TeachStepPane extends Composite
 		else if (stepToTeach.equals(HistoryManager.ViewId.inspectRequirements))
 		{
 			messages = (InspectRequirementsMessages)GWT.create(InspectRequirementsMessages.class);
+		}
+		else if (stepToTeach.equals(HistoryManager.ViewId.reviewOfRequirementsByAcquisitionOrganization))
+		{
+			messages = (ReviewOfRequirementsByAcquisitionMessages)GWT.create(ReviewOfRequirementsByAcquisitionMessages.class);
 		}
 		else
 		{
