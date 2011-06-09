@@ -34,6 +34,7 @@ import edu.cmu.square.client.ui.core.BasePane;
 import edu.cmu.square.client.ui.elicitSecurityRequirements.ElicitSecurityRequirementsPilot;
 import edu.cmu.square.client.ui.inspectRequirements.InspectRequirementsPilot;
 import edu.cmu.square.client.ui.prioritizeRequirements.PrioritizeRequirementsPilot;
+import edu.cmu.square.client.ui.reviewOfRequirementsByAcquisitionOrganization.ReviewOfRequirementsByAcquisitionPilot;
 import edu.cmu.square.client.ui.risksAssessment.RiskAssessmentPilot;
 
 public class ChooseStepPane extends BasePane
@@ -229,8 +230,8 @@ public class ChooseStepPane extends BasePane
 				}
 				else
 				{
-					this.projectStepTable.setWidget(4, 0, new Hyperlink(s.getDescription(), CollectArtifactsPilot
-							.generateNavigationId(CollectArtifactsPilot.PageId.home)));
+					this.projectStepTable.setWidget(4, 0, new Hyperlink(s.getDescription(), ElicitSecurityRequirementsPilot
+							.generateNavigationId(ElicitSecurityRequirementsPilot.PageId.home)));
 				}
 				this.projectStepTable.setWidget(4, 1, new Label(s.getStatus().getLabel()));
 				formatter.setStyleName(4, 0, "square-choose-step");
@@ -238,7 +239,7 @@ public class ChooseStepPane extends BasePane
 				formatter.setHorizontalAlignment(4, 0, HasHorizontalAlignment.ALIGN_LEFT);
 				formatter.setHorizontalAlignment(4, 1, HasHorizontalAlignment.ALIGN_RIGHT);
 			}
-			else if (s.getDescription().equals(messages.step6()))
+			else if (s.getDescription().equals(messages.step4()))
 			{
 				if (s.getStatus() == StepStatus.NotStarted)
 				{
@@ -246,8 +247,8 @@ public class ChooseStepPane extends BasePane
 				}
 				else
 				{
-					this.projectStepTable.setWidget(5, 0, new Hyperlink(s.getDescription(), ElicitSecurityRequirementsPilot
-							.generateNavigationId(ElicitSecurityRequirementsPilot.PageId.home)));
+					this.projectStepTable.setWidget(5, 0, new Hyperlink(s.getDescription(), ReviewOfRequirementsByAcquisitionPilot.
+							generateNavigationId(ReviewOfRequirementsByAcquisitionPilot.PageId.home)));
 				}
 				this.projectStepTable.setWidget(5, 1, new Label(s.getStatus().getLabel()));
 				formatter.setStyleName(5, 0, "square-choose-step");
@@ -255,6 +256,7 @@ public class ChooseStepPane extends BasePane
 				formatter.setHorizontalAlignment(5, 0, HasHorizontalAlignment.ALIGN_LEFT);
 				formatter.setHorizontalAlignment(5, 1, HasHorizontalAlignment.ALIGN_RIGHT);
 			}
+			
 			
 			this.projectStepTable.setWidget(6, 0, new Label(" "));
 			formatter.setColSpan(6, 0, 2);
