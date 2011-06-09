@@ -39,7 +39,8 @@ import edu.cmu.square.client.ui.reviewOfRequirementsByAcquisitionOrganization.Re
 import edu.cmu.square.client.ui.core.BasePane;
 import edu.cmu.square.client.ui.core.SquareHyperlink;
 import edu.cmu.square.client.ui.core.SquareWaterMarkTextBox;
-import edu.cmu.square.client.ui.elicitSecurityRequirements.ElicitSecurityRequirementsPilot;
+//import edu.cmu.square.client.ui.elicitSecurityRequirements.ElicitSecurityRequirementsPilot;
+//import edu.cmu.square.client.ui.elicitSecurityRequirements.ElicitSecurityRequirementSummaryPane.SummaryElementHyperLinkElement;
 
 public class ReviewOfRequirementsByAcquisitionPane extends BasePane
 {
@@ -642,7 +643,7 @@ public class ReviewOfRequirementsByAcquisitionPane extends BasePane
 		Label reqStatusLabel = new Label(req.getStatus());
 		
 		
-		final SummaryElementHyperLinkElement hyper1 = new SummaryElementHyperLinkElement(req.getId(), "View Detail");
+		final SummaryElementHyperLinkElement viewDetailLink = new SummaryElementHyperLinkElement(req.getId(), "View Detail");
 		//final SummaryElementHyperLinkElement hyper2 = new SummaryElementHyperLinkElement(req.getId(), "Remove");
 
 		/*
@@ -667,7 +668,7 @@ public class ReviewOfRequirementsByAcquisitionPane extends BasePane
 		{
 			HorizontalPanel links = new HorizontalPanel();
 			links.setStyleName("flex-link-bar");
-			links.add(hyper1);
+			links.add(viewDetailLink);
 			// links.add(new Label(" "));
 			//links.add(hyper2);
 			rowTable.setWidget(0, 3, links);
@@ -679,16 +680,17 @@ public class ReviewOfRequirementsByAcquisitionPane extends BasePane
 
 		final ReviewOfRequirementsByAcquisitionPane reviewOfRequirementsByAcquisitionObject = this;
 
-		hyper1.addClickHandler(new ClickHandler()
+//view detail hyperlink
+		viewDetailLink.addClickHandler(new ClickHandler()
 			{
 
 				@Override
 				public void onClick(ClickEvent event)
 				{
 
-					//currentState.setCurrentRisk(requiremenTitle.getRequirementID());
+					currentState.setCurrentRisk(viewDetailLink.getRequirementId());
 					currentState.setRiskCommand(1);
-					History.newItem(ElicitSecurityRequirementsPilot.generateNavigationId(ElicitSecurityRequirementsPilot.PageId.requirementDetail));
+					History.newItem(ReviewOfRequirementsByAcquisitionPilot.generateNavigationId(ReviewOfRequirementsByAcquisitionPilot.PageId.requirementDetail));
 
 				}
 	

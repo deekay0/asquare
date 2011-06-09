@@ -42,6 +42,7 @@ import edu.cmu.square.client.remoteService.step.interfaces.CollectArtifactsServi
 import edu.cmu.square.client.remoteService.step.interfaces.CollectArtifactsServiceAsync;
 import edu.cmu.square.client.remoteService.step.interfaces.IdentifyGoalsAssetsService;
 import edu.cmu.square.client.remoteService.step.interfaces.IdentifyGoalsAssetsServiceAsync;
+import edu.cmu.square.client.remoteService.step.interfaces.ReviewOfRequirementsByAcquisitionService;
 import edu.cmu.square.client.remoteService.step.interfaces.ReviewOfRequirementsByAcquisitionServiceAsync;
 import edu.cmu.square.client.remoteService.step.interfaces.RiskAssessmentService;
 import edu.cmu.square.client.remoteService.step.interfaces.RiskAssessmentServiceAsync;
@@ -53,7 +54,7 @@ public class ReviewOfRequirementsByAcquisitionDetailPane extends BasePane implem
 {
 		final ReviewOfRequirementsByAcquisitionDetailPaneMessages messages = (ReviewOfRequirementsByAcquisitionDetailPaneMessages) GWT
 				.create(ReviewOfRequirementsByAcquisitionDetailPaneMessages.class);
-		private ReviewOfRequirementsByAcquisitionServiceAsync requirementService = GWT.create(ReviewOfRequirementsByAcquisitionServiceAsync.class);
+		private ReviewOfRequirementsByAcquisitionServiceAsync requirementService = GWT.create(ReviewOfRequirementsByAcquisitionService.class);
 		private RiskAssessmentServiceAsync riskService = GWT.create(RiskAssessmentService.class);
 
 		private GwtProject currentProject;
