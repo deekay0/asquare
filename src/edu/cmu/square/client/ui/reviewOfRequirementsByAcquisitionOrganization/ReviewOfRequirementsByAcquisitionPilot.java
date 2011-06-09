@@ -10,6 +10,8 @@ import edu.cmu.square.client.navigation.Pilot;
 import edu.cmu.square.client.navigation.State;
 import edu.cmu.square.client.ui.core.TeachStepPane;
 import edu.cmu.square.client.ui.core.content.BreadCrumbMessages;
+import edu.cmu.square.client.ui.elicitSecurityRequirements.ElicitSecurityRequirementPane;
+import edu.cmu.square.client.ui.elicitSecurityRequirements.ElicitSecurityRequirementsPilot.PageId;
 
 public class ReviewOfRequirementsByAcquisitionPilot extends Pilot
 {
@@ -18,6 +20,7 @@ public class ReviewOfRequirementsByAcquisitionPilot extends Pilot
 	{
 		public static final String home = "teach";
 		public static final String start = "summary";
+		public static final String requirementDetail = "requirementDetail";
 	}
 
 	
@@ -52,6 +55,10 @@ public class ReviewOfRequirementsByAcquisitionPilot extends Pilot
 		else if (pageId.equals(PageId.start))
 		{
 			return new ReviewOfRequirementsByAcquisitionPane(currentStateInformation);
+		}
+		else if(pageId.equals(PageId.requirementDetail))
+		{
+			return  new ReviewOfRequirementsByAcquisitionDetailPane(currentStateInformation);
 		}
 		
 		return null;

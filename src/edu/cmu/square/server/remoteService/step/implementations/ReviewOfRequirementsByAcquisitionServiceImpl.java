@@ -6,6 +6,8 @@ import javax.annotation.Resource;
 
 import org.springframework.stereotype.Service;
 
+import com.google.gwt.user.client.rpc.AsyncCallback;
+
 import edu.cmu.square.client.exceptions.SquareException;
 import edu.cmu.square.client.model.GwtProject;
 import edu.cmu.square.client.model.GwtRequirement;
@@ -46,10 +48,51 @@ public class ReviewOfRequirementsByAcquisitionServiceImpl extends SquareRemoteSe
 			
 		}
 
-
 		public void updateRequirement(GwtProject gwtProject, GwtRequirement gwtRequirement) throws SquareException
 		{
 				reviewOfRequirementsByAcquisitionBusiness.updateRequirement(gwtProject, gwtRequirement);
 		}
+		
+		
+		//Detail Pane for ASQUARE
+		public List<GwtRequirement> getRequirementsFromProject(Integer projectID) throws SquareException
+		{
+			
+			return reviewOfRequirementsByAcquisitionBusiness.getRequirementsFromProject(projectID);
+		}
+
 	
+		public void updateRequirement(GwtRequirement Requirement) throws SquareException
+		{
+			reviewOfRequirementsByAcquisitionBusiness.updateRequirement(Requirement);
+			
+		}
+		
+		public void assignRequirementsToCategory(List<GwtRequirement> requirements,int categoryID) throws SquareException
+		{
+			reviewOfRequirementsByAcquisitionBusiness.assignRequirementsToCategory(requirements,categoryID);
+		}
+
+		
+		public void removeRequirementsFromCategory(List<GwtRequirement> requirements, int categoryID) throws SquareException
+		{
+			reviewOfRequirementsByAcquisitionBusiness.removeRequirementsFromCategory(requirements,categoryID);
+			
+		}
+
+
+		public void deleteRequirement(Integer requirementId, Integer projectId) throws SquareException
+		{
+			reviewOfRequirementsByAcquisitionBusiness.deleteRequirement(requirementId, projectId);
+			
+		}
+
+
+		public Integer addRequirementToProject(Integer projectId, GwtRequirement Requirement) throws SquareException
+		{
+			return reviewOfRequirementsByAcquisitionBusiness.addRequirementToProject(projectId, Requirement);
+			
+		}
+		
+		
 }

@@ -39,6 +39,7 @@ import edu.cmu.square.client.ui.reviewOfRequirementsByAcquisitionOrganization.Re
 import edu.cmu.square.client.ui.core.BasePane;
 import edu.cmu.square.client.ui.core.SquareHyperlink;
 import edu.cmu.square.client.ui.core.SquareWaterMarkTextBox;
+import edu.cmu.square.client.ui.elicitSecurityRequirements.ElicitSecurityRequirementsPilot;
 
 public class ReviewOfRequirementsByAcquisitionPane extends BasePane
 {
@@ -633,11 +634,12 @@ public class ReviewOfRequirementsByAcquisitionPane extends BasePane
 	{
 		FlexTable rowTable = new FlexTable();
 		rowTable.setStyleName("square-agree-on-definition-flex"); //ASQUARE change!!!!
-		rowTable.setCellSpacing(3);
+		rowTable.setCellSpacing(4);
 		rowTable.setSize("100%", "50px");
 
 		Label reqTitleLabel = new Label(req.getTitle());
 		Label reqDescriptionLabel = new Label(req.getDescription());
+		Label reqStatusLabel = new Label(req.getStatus());
 		
 		
 		final SummaryElementHyperLinkElement hyper1 = new SummaryElementHyperLinkElement(req.getId(), "View Detail");
@@ -668,7 +670,7 @@ public class ReviewOfRequirementsByAcquisitionPane extends BasePane
 			links.add(hyper1);
 			// links.add(new Label(" "));
 			//links.add(hyper2);
-			rowTable.setWidget(0, 2, links);
+			rowTable.setWidget(0, 3, links);
 		}
 		else
 		{
@@ -684,10 +686,9 @@ public class ReviewOfRequirementsByAcquisitionPane extends BasePane
 				public void onClick(ClickEvent event)
 				{
 
-					ViewDetailDialog viewDetailDialog = new ViewDetailDialog(getRequirementById(hyper1.requirementID), listOfRequirements, reviewOfRequirementsByAcquisitionObject);
-					viewDetailDialog.center();
-					viewDetailDialog.setModal(true);
-					viewDetailDialog.show();
+					//currentState.setCurrentRisk(requiremenTitle.getRequirementID());
+					currentState.setRiskCommand(1);
+					History.newItem(ElicitSecurityRequirementsPilot.generateNavigationId(ElicitSecurityRequirementsPilot.PageId.requirementDetail));
 
 				}
 	
@@ -704,10 +705,12 @@ public class ReviewOfRequirementsByAcquisitionPane extends BasePane
 
 		rowTable.setWidget(0, 0, reqTitleLabel);
 		rowTable.setWidget(0, 1, reqDescriptionLabel);
+		rowTable.setWidget(0, 2, reqStatusLabel);
 
 		rowTable.getCellFormatter().setWidth(0, 0, "20%");
-		rowTable.getCellFormatter().setWidth(0, 1, "70%");
+		rowTable.getCellFormatter().setWidth(0, 1, "60%");
 		rowTable.getCellFormatter().setWidth(0, 2, "15%");
+		rowTable.getCellFormatter().setWidth(0, 3, "20%");
 		
 		rowTable.getCellFormatter().setHorizontalAlignment(0, 2, HasHorizontalAlignment.ALIGN_CENTER);
 		rowTable.getCellFormatter().setVerticalAlignment(0, 0, HasVerticalAlignment.ALIGN_TOP);

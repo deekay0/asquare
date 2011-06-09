@@ -37,4 +37,25 @@ public interface ReviewOfRequirementsByAcquisitionBusiness extends StepBusinessI
 	
 	void loadDefaultRequirements(int projectId, List<GwtRequirement> requirements) throws SquareException;
 
+	void deleteRequirement(Integer requirementId, Integer projectId) throws SquareException;
+
+
+	List<GwtRequirement> getRequirementsFromProject(int projectID) throws SquareException;
+	
+	void assignRequirementsToCategory(List<GwtRequirement> requirements,int categoryID) throws SquareException;
+	
+	void removeRequirementsFromCategory(List<GwtRequirement> requirements,int categoryID) throws SquareException;
+
+	void updateRequirement(GwtRequirement requirement) throws SquareException;
+
+	/** from elicit step
+	 * Adds a requirement to a project
+	 * @param projectId The id of the project.
+	 * @param requirement The requirement to be added.
+	 * @throws SquareException Exception thrown if the database cannot add the requirement.
+	 */
+
+	int addRequirementToProject(Integer projectId, GwtRequirement gwtRequirement) throws SquareException;
+
+
 }
