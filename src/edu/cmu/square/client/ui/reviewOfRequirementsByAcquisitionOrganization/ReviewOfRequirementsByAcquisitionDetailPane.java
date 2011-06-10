@@ -108,6 +108,7 @@ public class ReviewOfRequirementsByAcquisitionDetailPane extends BasePane implem
 			insert, update, read
 		};
 		
+		
 		private CommandTypes currentCommand;
 		private SubGoalDialogBox subGoalDialog;
 		private ArtifactDialogBox artifactDialog;
@@ -344,6 +345,7 @@ public class ReviewOfRequirementsByAcquisitionDetailPane extends BasePane implem
 			if (currentCommand == CommandTypes.read)
 			{
 				// Configure the table when the command is to view.
+//ASQUARE!!!!
 				loadReadOnlyRequirementForm();
 			}
 			else
@@ -399,7 +401,7 @@ public class ReviewOfRequirementsByAcquisitionDetailPane extends BasePane implem
 			}
 
 		}
-		public void loadReadOnlyRequirementForm()
+		public void loadReadOnlyRequirementForm() //loadApprovedRequirementForm
 		{
 			this.matrix.setWidget(0, 0, getField(requirementTitleTextBox));
 			this.matrix.getCellFormatter().setAlignment(0, 0, HasHorizontalAlignment.ALIGN_LEFT, HasVerticalAlignment.ALIGN_TOP);
@@ -415,8 +417,12 @@ public class ReviewOfRequirementsByAcquisitionDetailPane extends BasePane implem
 			{
 				FlexTable bottonControlPanel = new FlexTable();
 				bottonControlPanel.setWidth("85%");
-				bottonControlPanel.setWidget(0, 0, editRequirement);
-				bottonControlPanel.setWidget(1, 0, deleteRequirement);
+			
+				if(currentRequirement.getStatus().equals("Request revision")){
+					bottonControlPanel.setWidget(0, 0, editRequirement);
+					bottonControlPanel.setWidget(1, 0, deleteRequirement);
+				}
+				
 				bottonControlPanel.setWidget(2, 0, new Label(" "));
 				bottonControlPanel.setWidget(3, 0, gotToSummary);
 				bottonControlPanel.getCellFormatter().setHorizontalAlignment(0,0,HasHorizontalAlignment.ALIGN_LEFT);
@@ -458,7 +464,7 @@ public class ReviewOfRequirementsByAcquisitionDetailPane extends BasePane implem
 					}
 				});
 		}
-		
+
 		public void loadEditableRequirementForm()
 		{
 			this.matrix.setWidget(0, 0, requirementTitleLabel);
