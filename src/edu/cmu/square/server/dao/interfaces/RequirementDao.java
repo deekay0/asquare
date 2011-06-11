@@ -16,4 +16,6 @@ public interface RequirementDao extends AbstractDao<Requirement, Integer>
 
 	List<Requirement> getRequirementByProject(Project project);
 
+	void changeStatusToApproved(Requirement r);
+
 }

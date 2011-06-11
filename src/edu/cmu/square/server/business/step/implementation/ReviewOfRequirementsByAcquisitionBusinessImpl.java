@@ -262,6 +262,18 @@ public class ReviewOfRequirementsByAcquisitionBusinessImpl extends BaseBusinessI
 
 
 		}
+
+		@AllowedRoles(roles = {Roles.Administrator, Roles.Contractor, Roles.Acquisition_Organization_Engineer, Roles.Security_Specialist})
+		public void changeStatusToApproveRequirement(GwtRequirement gwtRequirement)
+		{
+			Requirement  r = requirementDao.fetch(gwtRequirement.getId());
+			//r.getStatus().replace("Pending", "Approved");
+			//r.getStatus().replace("Request revision", "Approved");
+			r.update(gwtRequirement);
+			requirementDao.changeStatusToApproved(r);		
+			
+			
+		}
 		
 	
 	

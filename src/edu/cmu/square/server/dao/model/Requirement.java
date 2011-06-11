@@ -298,6 +298,7 @@ public class Requirement implements java.io.Serializable
 		GwtRequirement gwtRequirement = new GwtRequirement();
 		gwtRequirement.setId(this.id);
 		gwtRequirement.setDescription(this.description);
+		//ASQUARE
 		gwtRequirement.setStatus(this.status);
 		gwtRequirement.setPriority(this.priority);
 		gwtRequirement.setPrivacy(this.privacy);

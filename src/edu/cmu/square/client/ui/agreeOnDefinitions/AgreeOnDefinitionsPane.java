@@ -155,7 +155,7 @@ public class AgreeOnDefinitionsPane extends BasePane
 			});
 
 	}
-
+//Remove
 	public void removeTerm(final GwtTerm gwtTerm)
 	{
 
@@ -717,7 +717,7 @@ public class AgreeOnDefinitionsPane extends BasePane
 
 		GwtProject gwtProject = new GwtProject();
 		gwtProject.setId(projectID);
-		updateTerm(term, gwtProject);;
+		updateTerm(term, gwtProject);
 	}
 	
 	private void addDoneButton()

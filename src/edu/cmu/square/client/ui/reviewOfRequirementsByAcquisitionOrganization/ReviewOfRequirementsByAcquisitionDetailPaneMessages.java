@@ -45,4 +45,6 @@ public interface ReviewOfRequirementsByAcquisitionDetailPaneMessages extends Com
 	String requirementTitle();
 	String uploadFileFormat();
 	String associateSubGoalFirst();
+	String confirmRequestRevision();
+	String confirmApprove();
 }

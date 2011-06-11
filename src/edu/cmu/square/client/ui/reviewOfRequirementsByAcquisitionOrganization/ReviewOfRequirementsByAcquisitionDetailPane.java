@@ -37,7 +37,10 @@ import edu.cmu.square.client.model.GwtProject;
 import edu.cmu.square.client.model.GwtRequirement;
 import edu.cmu.square.client.model.GwtRisk;
 import edu.cmu.square.client.model.GwtSubGoal;
+import edu.cmu.square.client.model.GwtTerm;
 import edu.cmu.square.client.navigation.State;
+import edu.cmu.square.client.remoteService.step.interfaces.AgreeOnDefinitionsService;
+import edu.cmu.square.client.remoteService.step.interfaces.AgreeOnDefinitionsServiceAsync;
 import edu.cmu.square.client.remoteService.step.interfaces.CollectArtifactsService;
 import edu.cmu.square.client.remoteService.step.interfaces.CollectArtifactsServiceAsync;
 import edu.cmu.square.client.remoteService.step.interfaces.IdentifyGoalsAssetsService;
@@ -46,6 +49,8 @@ import edu.cmu.square.client.remoteService.step.interfaces.ReviewOfRequirementsB
 import edu.cmu.square.client.remoteService.step.interfaces.ReviewOfRequirementsByAcquisitionServiceAsync;
 import edu.cmu.square.client.remoteService.step.interfaces.RiskAssessmentService;
 import edu.cmu.square.client.remoteService.step.interfaces.RiskAssessmentServiceAsync;
+import edu.cmu.square.client.ui.agreeOnDefinitions.AgreeOnDefinitionsPane;
+import edu.cmu.square.client.ui.agreeOnDefinitions.CreateTermDialog;
 import edu.cmu.square.client.ui.core.BasePane;
 import edu.cmu.square.client.ui.core.SquareHyperlink;
 import edu.cmu.square.client.ui.risksAssessment.ArtifactDialogBox;
@@ -82,6 +87,10 @@ public class ReviewOfRequirementsByAcquisitionDetailPane extends BasePane implem
 		private Button cancel;
 		private Label errorMessage = null;
 
+		//ASQUARE
+		private Button approveButton = new Button("Approve");
+		private Button requestRevisionButton = new Button("Request revision");
+		
 		private SquareHyperlink editRequirement;
 		private SquareHyperlink deleteRequirement;
 		private SquareHyperlink gotToSummary;
@@ -115,6 +124,8 @@ public class ReviewOfRequirementsByAcquisitionDetailPane extends BasePane implem
 		private RiskDialogBox riskDialogBox;
 
 		private GwtBusinessGoal businessGoalInfo = new GwtBusinessGoal();
+		
+		
 
 		public ReviewOfRequirementsByAcquisitionDetailPane(final State stateInfo)
 		{
@@ -345,7 +356,6 @@ public class ReviewOfRequirementsByAcquisitionDetailPane extends BasePane implem
 			if (currentCommand == CommandTypes.read)
 			{
 				// Configure the table when the command is to view.
-//ASQUARE!!!!
 				loadReadOnlyRequirementForm();
 			}
 			else
@@ -412,7 +422,49 @@ public class ReviewOfRequirementsByAcquisitionDetailPane extends BasePane implem
 			this.matrix.setWidget(3, 0, riskLabel);
 			this.matrix.setWidget(4, 0, artifactLabel);
 
+			//System.out.println("before button");
+			
+			
+			//final ReviewOfRequirementsByAcquisitionDetailPane reviewOfRequirementsByAcquisitionObject = this;			
+			approveButton.addClickHandler(new ClickHandler()
+				{
 
+					@Override
+					public void onClick(ClickEvent event)
+					{
+						System.out.println("Hello, you clicked approve button.");
+						boolean response = Window.confirm(messages.confirmApprove() + "?");
+						if (response)
+						{
+							System.out.println("approv button response is working");
+							GwtRequirement req = new GwtRequirement();
+							//req.setId(approveButton.getRequirementId());
+							req.setId(currentRequirementId);
+							System.out.println("currentRequirementId"+currentRequirementId);
+							changeStatusToApproveRequirement(req);
+						}
+					}
+
+				}
+			);
+			/*
+			requestRevisionButton.addClickHandler(new ClickHandler()
+			{
+
+				@Override
+				public void onClick(ClickEvent event)
+				{
+					System.out.println("Hello, you clicked request revision button.");
+					boolean response = Window.confirm(messages.confirmRequestRevision() + "?");
+					if (response)
+					{
+						GwtRequirement req = new GwtRequirement();
+						req.setId(requestRevisionButton.getRequirementId());
+						changeStatusToRequestRevisionRequirement(req);
+					}
+				}
+			});
+			*/
 			if (currentState.getMode() == GwtModesType.ReadWrite)
 			{
 				FlexTable bottonControlPanel = new FlexTable();
@@ -421,6 +473,12 @@ public class ReviewOfRequirementsByAcquisitionDetailPane extends BasePane implem
 				if(currentRequirement.getStatus().equals("Request revision")){
 					bottonControlPanel.setWidget(0, 0, editRequirement);
 					bottonControlPanel.setWidget(1, 0, deleteRequirement);
+					bottonControlPanel.setWidget(0, 2, approveButton);
+				}
+				
+				if(currentRequirement.getStatus().equals("Pending")){
+					bottonControlPanel.setWidget(0, 1, requestRevisionButton);
+					bottonControlPanel.setWidget(0, 2, approveButton);
 				}
 				
 				bottonControlPanel.setWidget(2, 0, new Label(" "));
@@ -1090,6 +1148,69 @@ public class ReviewOfRequirementsByAcquisitionDetailPane extends BasePane implem
 				}
 			}
 		
+		}
+		
+		//Remove
+		public void changeStatusToApproveRequirement(final GwtRequirement gwtRequirement)
+		{
+
+			this.showStatusBar("changing...");
+			ReviewOfRequirementsByAcquisitionServiceAsync service1 = GWT.create(ReviewOfRequirementsByAcquisitionService.class);
+			ServiceDefTarget endpoint = (ServiceDefTarget) service1;
+			endpoint.setServiceEntryPoint(GWT.getModuleBaseURL() + "reviewOfRequirementsByAcquisitionService.rpc");
+
+			GwtProject project = new GwtProject();
+			project.setId(this.getCurrentState().getProjectID());
+
+			service1.changeStatusToApproveRequirement(gwtRequirement, new AsyncCallback<Void>()
+				{
+
+					public void onFailure(Throwable caught)
+					{
+						ExceptionHelper.SquareRootRPCExceptionHandler(caught, "Changing Status to 'Pending'");
+
+					}
+
+					@Override
+					public void onSuccess(Void result)
+					{
+						System.out.println("success on chaning status to approved");
+						loadRequirementForm();
+					}
+
+				});
+
+		}
+		
+		public void changeStatusToRequestRevisionRequirement(final GwtRequirement gwtRequirement)
+		{
+
+			this.showStatusBar("changing...");
+			ReviewOfRequirementsByAcquisitionServiceAsync service1 = GWT.create(ReviewOfRequirementsByAcquisitionService.class);
+			ServiceDefTarget endpoint = (ServiceDefTarget) service1;
+			endpoint.setServiceEntryPoint(GWT.getModuleBaseURL() + "reviewOfRequirementsByAcquisitionService.rpc");
+
+			GwtProject project = new GwtProject();
+			project.setId(this.getCurrentState().getProjectID());
+
+			service1.changeStatusToRequestRevisionRequirement(gwtRequirement, new AsyncCallback<Void>()
+				{
+
+					public void onFailure(Throwable caught)
+					{
+						ExceptionHelper.SquareRootRPCExceptionHandler(caught, "Changing Requirements to 'Request revision'");
+
+					}
+
+					@Override
+					public void onSuccess(Void result)
+					{
+
+						loadRequirementForm();
+					}
+
+				});
+
 		}
 }
 
