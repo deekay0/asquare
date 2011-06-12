@@ -10,12 +10,14 @@ import java.util.List;
 import javax.annotation.Resource;
 
 import org.junit.After;
+import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
 import edu.cmu.square.server.base.AbstractSpringBase;
 import edu.cmu.square.server.dao.interfaces.CategoryDao;
 import edu.cmu.square.server.dao.interfaces.ProjectDao;
+import edu.cmu.square.server.dao.model.Category;
 
 
 /**
@@ -53,24 +55,17 @@ public class HbnCategoryDaoTest extends AbstractSpringBase
 	@Test
 	public void testAddCategoryToProject()
 	{
-//		//Add the category to the DB
-//		this.categoryDao.addCategoryToProject(this.testProject, this.testCategory1);
-//		
-//		//check that the category was added
-//		List<Category> categories = this.categoryDao.getCategoriesByProject(testProject);
-//		Assert.assertEquals(1, categories.size());
-//		Assert.assertEquals(testCategory1.getLabel(), categories.get(0).getLabel());
-//		Assert.assertEquals(testCategory1.getProject().getId(), categories.get(0).getProject().getId());
+		//Add the category to the DB
+		this.categoryDao.addCategoryToProject(this.testProject, this.testCategory1);
+		
+		//check that the category was added
+		List<Category> categories = this.categoryDao.getCategoriesByProject(testProject);
+		Assert.assertEquals(1, categories.size());
+		Assert.assertEquals(testCategory1.getLabel(), categories.get(0).getLabel());
+		Assert.assertEquals(testCategory1.getProject().getId(), categories.get(0).getProject().getId());
 	}
 
-	/**
-	 * Test method for {@link edu.cmu.square.server.dao.implementation.HbnCategoryDao#getCategoriesByNameAndProject(java.lang.String, java.lang.Integer)}.
-	 */
-	@Test
-	public void testGetCategoriesByNameAndProject()
-	{
-//		fail("Not yet implemented"); // TODO
-	}
+	
 
 	/**
 	 * Test method for {@link edu.cmu.square.server.dao.implementation.HbnCategoryDao#getCategoriesByProject(edu.cmu.square.server.dao.model.Project)}.
