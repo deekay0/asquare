@@ -18,4 +18,6 @@ public interface RequirementDao extends AbstractDao<Requirement, Integer>
 
 	void changeStatusToApproved(Requirement r);
 
+	void changeStatusToRequestRevision(Requirement r);
+
 }

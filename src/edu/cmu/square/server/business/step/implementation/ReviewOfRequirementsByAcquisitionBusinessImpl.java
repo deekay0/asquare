@@ -273,14 +273,22 @@ public class ReviewOfRequirementsByAcquisitionBusinessImpl extends BaseBusinessI
 			
 			requirement.setProject(project);
 			requirement.setId(gwtRequirement.getId());
-			requirement.setStatus(gwtRequirement.getStatus());
-			//requirement.setDescription(gwtRequirement.getDescription());
-			
-			//System.out.println("businessImpl after set \t"+requirement + requirement.getDescription());
 			requirementDao.changeStatusToApproved(requirement);
 
 		}
 		
+		@AllowedRoles(roles = {Roles.Administrator, Roles.Contractor, Roles.Acquisition_Organization_Engineer, Roles.Security_Specialist})
+		public void changeStatusToRequestRevisionRequirement(Integer projectId, GwtRequirement gwtRequirement)
+		{
+			Project project = new Project();
+			project.setId(projectId);
+			Requirement requirement = requirementDao.fetch(gwtRequirement.getId());
+			
+			requirement.setProject(project);
+			requirement.setId(gwtRequirement.getId());
+			requirementDao.changeStatusToRequestRevision(requirement);
+
+		}
 	
 	
 }

@@ -447,7 +447,7 @@ public class ReviewOfRequirementsByAcquisitionDetailPane extends BasePane implem
 
 				}
 			);
-			/*
+			
 			requestRevisionButton.addClickHandler(new ClickHandler()
 			{
 
@@ -458,13 +458,15 @@ public class ReviewOfRequirementsByAcquisitionDetailPane extends BasePane implem
 					boolean response = Window.confirm(messages.confirmRequestRevision() + "?");
 					if (response)
 					{
+						System.out.println("request button response is working");
 						GwtRequirement req = new GwtRequirement();
-						req.setId(requestRevisionButton.getRequirementId());
+						req.setId(currentRequirementId);
+						//req.setId(requestRevisionButton.getRequirementId());
 						changeStatusToRequestRevisionRequirement(req);
 					}
 				}
 			});
-			*/
+			
 			if (currentState.getMode() == GwtModesType.ReadWrite)
 			{
 				FlexTable bottonControlPanel = new FlexTable();
@@ -1150,7 +1152,7 @@ public class ReviewOfRequirementsByAcquisitionDetailPane extends BasePane implem
 		
 		}
 		
-		//Remove
+//Approve button
 		public void changeStatusToApproveRequirement(final GwtRequirement gwtRequirement)
 		{
 
@@ -1169,7 +1171,7 @@ public class ReviewOfRequirementsByAcquisitionDetailPane extends BasePane implem
 
 					public void onFailure(Throwable caught)
 					{
-						ExceptionHelper.SquareRootRPCExceptionHandler(caught, "Changing Status to 'Pending'");
+						ExceptionHelper.SquareRootRPCExceptionHandler(caught, "Changing Status to 'Appproved'");
 
 					}
 
@@ -1177,7 +1179,7 @@ public class ReviewOfRequirementsByAcquisitionDetailPane extends BasePane implem
 					public void onSuccess(Void result)
 					{
 						System.out.println("success on chaning status to approved");
-						loadRequirementForm();
+						History.newItem(ReviewOfRequirementsByAcquisitionPilot.generateNavigationId(ReviewOfRequirementsByAcquisitionPilot.PageId.home));
 					}
 
 				});
@@ -1195,7 +1197,7 @@ public class ReviewOfRequirementsByAcquisitionDetailPane extends BasePane implem
 			GwtProject project = new GwtProject();
 			project.setId(this.getCurrentState().getProjectID());
 
-			service1.changeStatusToRequestRevisionRequirement(gwtRequirement, new AsyncCallback<Void>()
+			service1.changeStatusToRequestRevisionRequirement(currentState.getProjectID(), gwtRequirement, new AsyncCallback<Void>()
 				{
 
 					public void onFailure(Throwable caught)
@@ -1207,8 +1209,8 @@ public class ReviewOfRequirementsByAcquisitionDetailPane extends BasePane implem
 					@Override
 					public void onSuccess(Void result)
 					{
-
-						loadRequirementForm();
+						System.out.println("success on chaning status to request");
+						History.newItem(ReviewOfRequirementsByAcquisitionPilot.generateNavigationId(ReviewOfRequirementsByAcquisitionPilot.PageId.home));
 					}
 
 				});

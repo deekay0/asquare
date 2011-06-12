@@ -76,5 +76,5 @@ public interface ReviewOfRequirementsByAcquisitionServiceAsync
 
 	void changeStatusToApproveRequirement(Integer projectId, GwtRequirement gwtRequirement, AsyncCallback<Void> asyncCallback);
 
-	void changeStatusToRequestRevisionRequirement(GwtRequirement gwtRequirement, AsyncCallback<Void> asyncCallback);
+	void changeStatusToRequestRevisionRequirement(Integer projectId, GwtRequirement gwtRequirement, AsyncCallback<Void> asyncCallback);
 }

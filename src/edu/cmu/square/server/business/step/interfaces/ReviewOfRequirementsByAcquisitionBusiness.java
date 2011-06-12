@@ -59,5 +59,5 @@ public interface ReviewOfRequirementsByAcquisitionBusiness extends StepBusinessI
 
 	void changeStatusToApproveRequirement(Integer projectId, GwtRequirement gwtRequirement);
 
-
+	void changeStatusToRequestRevisionRequirement(Integer projectId, GwtRequirement gwtRequirement);
 }

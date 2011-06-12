@@ -104,9 +104,9 @@ public class ReviewOfRequirementsByAcquisitionServiceImpl extends SquareRemoteSe
 
 
 		@Override
-		public void changeStatusToRequestRevisionRequirement(GwtRequirement gwtRequirement) throws SquareException
+		public void changeStatusToRequestRevisionRequirement(Integer projectId, GwtRequirement gwtRequirement) throws SquareException
 		{
-			// TODO Auto-generated method stub
+			reviewOfRequirementsByAcquisitionBusiness.changeStatusToRequestRevisionRequirement(projectId, gwtRequirement);
 			
 		}
 		

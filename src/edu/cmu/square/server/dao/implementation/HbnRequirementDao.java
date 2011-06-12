@@ -78,17 +78,20 @@ public class HbnRequirementDao extends HbnAbstractDao<Requirement, Integer> impl
 	@Override
 	public void changeStatusToApproved(Requirement r)
 	{
-		System.out.println(r);
-		System.out.println("0 HBnRequirementDAO");
-		
 		String query = "Update Requirement r set r.status='Approved' where r.id=:requirementId";
 		Query q = getSession().createQuery(query);
 		q.setParameter("requirementId", r.getId());
-		//q.setString("approvedStatus", "Approved");
-		System.out.println("4 HBnRequirementDAO");
 		q.executeUpdate();
-		System.out.println("5 HBnRequirementDAO");
+		
 	}
 	
+	@Override
+	public void changeStatusToRequestRevision(Requirement r)
+	{
+		String query = "Update Requirement r set r.status='Request revision' where r.id=:requirementId";
+		Query q = getSession().createQuery(query);
+		q.setParameter("requirementId", r.getId());
+		q.executeUpdate();
+	}
 
 }
