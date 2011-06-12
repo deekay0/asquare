@@ -26,6 +26,7 @@ import edu.cmu.square.server.dao.interfaces.CategoryDao;
 import edu.cmu.square.server.dao.interfaces.ProjectDao;
 import edu.cmu.square.server.dao.interfaces.RequirementDao;
 import edu.cmu.square.server.dao.interfaces.TermDao;
+import edu.cmu.square.server.dao.model.Asset;
 import edu.cmu.square.server.dao.model.Category;
 import edu.cmu.square.server.dao.model.Project;
 import edu.cmu.square.server.dao.model.Requirement;
@@ -264,15 +265,20 @@ public class ReviewOfRequirementsByAcquisitionBusinessImpl extends BaseBusinessI
 		}
 
 		@AllowedRoles(roles = {Roles.Administrator, Roles.Contractor, Roles.Acquisition_Organization_Engineer, Roles.Security_Specialist})
-		public void changeStatusToApproveRequirement(GwtRequirement gwtRequirement)
+		public void changeStatusToApproveRequirement(Integer projectId, GwtRequirement gwtRequirement)
 		{
-			Requirement  r = requirementDao.fetch(gwtRequirement.getId());
-			//r.getStatus().replace("Pending", "Approved");
-			//r.getStatus().replace("Request revision", "Approved");
-			r.update(gwtRequirement);
-			requirementDao.changeStatusToApproved(r);		
+			Project project = new Project();
+			project.setId(projectId);
+			Requirement requirement = requirementDao.fetch(gwtRequirement.getId());
 			
+			requirement.setProject(project);
+			requirement.setId(gwtRequirement.getId());
+			requirement.setStatus(gwtRequirement.getStatus());
+			//requirement.setDescription(gwtRequirement.getDescription());
 			
+			//System.out.println("businessImpl after set \t"+requirement + requirement.getDescription());
+			requirementDao.changeStatusToApproved(requirement);
+
 		}
 		
 	

@@ -174,7 +174,8 @@ public class Requirement implements java.io.Serializable
 	{
 		return this.status;
 	}
-	public void setStatus(String status){
+	public void setStatus(String status)
+	{
 		this.status = status;
 	}
 
@@ -346,7 +347,7 @@ public class Requirement implements java.io.Serializable
 	@Override
 	public String toString()
 	{
-		return "id: " + this.id + "  priority: " + this.priority;
+		return "id: " + this.id + "  priority: " + this.priority + "  status: " + this.status;
 	}
 
 }

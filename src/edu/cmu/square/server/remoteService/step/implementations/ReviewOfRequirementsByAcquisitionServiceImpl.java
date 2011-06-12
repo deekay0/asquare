@@ -96,9 +96,9 @@ public class ReviewOfRequirementsByAcquisitionServiceImpl extends SquareRemoteSe
 
 
 		@Override
-		public void changeStatusToApproveRequirement(GwtRequirement gwtRequirement) throws SquareException
+		public void changeStatusToApproveRequirement(Integer projectId, GwtRequirement gwtRequirement) throws SquareException
 		{
-			reviewOfRequirementsByAcquisitionBusiness.changeStatusToApproveRequirement(gwtRequirement);
+			reviewOfRequirementsByAcquisitionBusiness.changeStatusToApproveRequirement(projectId, gwtRequirement);
 			
 		}
 

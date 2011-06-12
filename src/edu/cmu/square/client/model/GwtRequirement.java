@@ -21,9 +21,8 @@ public class GwtRequirement implements Serializable, Comparable<GwtRequirement>
 	private List<GwtCategory> categories = new ArrayList<GwtCategory>();
 	private int priority=0;              
 	private int projectID;
-	
-	
-	private String status;
+		
+	private String status="";
 	
 	
 	public Integer getId() 

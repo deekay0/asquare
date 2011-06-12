@@ -1161,8 +1161,10 @@ public class ReviewOfRequirementsByAcquisitionDetailPane extends BasePane implem
 
 			GwtProject project = new GwtProject();
 			project.setId(this.getCurrentState().getProjectID());
-
-			service1.changeStatusToApproveRequirement(gwtRequirement, new AsyncCallback<Void>()
+			
+			System.out.println("DetailPane"+gwtRequirement);
+			
+			service1.changeStatusToApproveRequirement(currentState.getProjectID(),  gwtRequirement, new AsyncCallback<Void>()
 				{
 
 					public void onFailure(Throwable caught)

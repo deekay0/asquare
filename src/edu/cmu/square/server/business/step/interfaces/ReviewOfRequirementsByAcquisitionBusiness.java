@@ -57,7 +57,7 @@ public interface ReviewOfRequirementsByAcquisitionBusiness extends StepBusinessI
 
 	int addRequirementToProject(Integer projectId, GwtRequirement gwtRequirement) throws SquareException;
 
-	void changeStatusToApproveRequirement(GwtRequirement gwtRequirement);
+	void changeStatusToApproveRequirement(Integer projectId, GwtRequirement gwtRequirement);
 
 
 }
