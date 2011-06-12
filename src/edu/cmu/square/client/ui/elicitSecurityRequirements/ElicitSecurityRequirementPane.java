@@ -60,14 +60,14 @@ public class ElicitSecurityRequirementPane extends BasePane implements Command
 	private GwtProject currentProject;
 	private FlexTable matrix = new FlexTable();
 
-	private VerticalPanel risksPane = new VerticalPanel();
+//	private VerticalPanel risksPane = new VerticalPanel();
 
 
 	private Label requirementTitleLabel = new Label(messages.labelRequirementTitle());
 	private Label requirementDescriptionLabel = new Label(messages.description());
 
 	private Label subGoalLabel = new Label(messages.securityGoal());
-	private Label riskLabel = new Label(messages.risks());
+//	private Label riskLabel = new Label(messages.risks());
 	private Label artifactLabel = new Label(messages.artifacts());
 
 
@@ -111,7 +111,7 @@ public class ElicitSecurityRequirementPane extends BasePane implements Command
 	private CommandTypes currentCommand;
 	private SubGoalDialogBox subGoalDialog;
 	private ArtifactDialogBox artifactDialog;
-	private RiskDialogBox riskDialogBox;
+//	private RiskDialogBox riskDialogBox;
 
 	private GwtBusinessGoal businessGoalInfo = new GwtBusinessGoal();
 
@@ -356,8 +356,8 @@ public class ElicitSecurityRequirementPane extends BasePane implements Command
 		this.matrix.setWidget(1, 1, getField(requirementDescriptionTextBox));
 
 		this.matrix.setWidget(2, 1, createHTMLSubGoalList());
-		this.matrix.setWidget(3, 1, createHTMLRisksList());
-		this.matrix.setWidget(4, 1, createHTMLArtifactsList());
+//		this.matrix.setWidget(3, 1, createHTMLRisksList());
+		this.matrix.setWidget(3, 1, createHTMLArtifactsList());
 
 		
 		this.matrix.getCellFormatter().setAlignment(1, 0, HasHorizontalAlignment.ALIGN_RIGHT, HasVerticalAlignment.ALIGN_TOP);
@@ -381,7 +381,7 @@ public class ElicitSecurityRequirementPane extends BasePane implements Command
 		this.requirementDescriptionLabel.setStyleName("Risk-Input-Labels");
 
 		this.subGoalLabel.setStyleName("Risk-Input-Labels");
-		this.riskLabel.setStyleName("Risk-Input-Labels");
+//		this.riskLabel.setStyleName("Risk-Input-Labels");
 		this.artifactLabel.setStyleName("Risk-Input-Labels");
 
 		this.requirementTitleTextBox.setStyleName("square-long-textBox");
@@ -407,8 +407,8 @@ public class ElicitSecurityRequirementPane extends BasePane implements Command
 		((FlexCellFormatter) this.matrix.getCellFormatter()).setColSpan(0, 0, 2);
 
 		this.matrix.setWidget(2, 0, subGoalLabel);
-		this.matrix.setWidget(3, 0, riskLabel);
-		this.matrix.setWidget(4, 0, artifactLabel);
+//		this.matrix.setWidget(3, 0, riskLabel);
+		this.matrix.setWidget(3, 0, artifactLabel);
 
 
 		if (currentState.getMode() == GwtModesType.ReadWrite)
@@ -465,11 +465,11 @@ public class ElicitSecurityRequirementPane extends BasePane implements Command
 		this.matrix.setWidget(0, 1, getField(requirementTitleTextBox));
 
 		this.matrix.setWidget(2, 0, getEditSubGoalsHyperLink(this));
-		this.matrix.setWidget(3, 0, getEditRisksHyperLink(this));
-		this.matrix.setWidget(4, 0, getEditArtifactsHyperLink(this));
+//		this.matrix.setWidget(3, 0, getEditRisksHyperLink(this));
+		this.matrix.setWidget(3, 0, getEditArtifactsHyperLink(this));
 
 		subGoalLabel.setStyleName("Risk-Input-Labels");
-		riskLabel.setStyleName("Risk-Input-Labels");
+//		riskLabel.setStyleName("Risk-Input-Labels");
 
 		matrix.getCellFormatter().setAlignment(0, 0, HasHorizontalAlignment.ALIGN_RIGHT, HasVerticalAlignment.ALIGN_TOP);
 		matrix.getCellFormatter().setAlignment(0, 1, HasHorizontalAlignment.ALIGN_LEFT, HasVerticalAlignment.ALIGN_TOP);
@@ -780,14 +780,14 @@ public class ElicitSecurityRequirementPane extends BasePane implements Command
 				textValue = field.getItemText(field.getSelectedIndex()).trim();
 				setValidationStyle(field, textValue);
 			}
-			else if (w instanceof VerticalPanel)
-			{
-				if (listOfRiksMapppedToRequirement == null || listOfRiksMapppedToRequirement.isEmpty())
-				{
-					textValue = "";
-				}
-				setValidationStyle(risksPane, textValue);
-			}
+//			else if (w instanceof VerticalPanel)
+//			{
+//				if (listOfRiksMapppedToRequirement == null || listOfRiksMapppedToRequirement.isEmpty())
+//				{
+//					textValue = "";
+//				}
+//				setValidationStyle(risksPane, textValue);
+//			}
 
 			if (textValue.trim().length() == 0)
 			{
@@ -802,12 +802,12 @@ public class ElicitSecurityRequirementPane extends BasePane implements Command
 			subGoalEmptyLabel.setStyleName("square-RequiredMessage");
 			return false;
 		}
-		else if (listOfRiksMapppedToRequirement.size() == 0)
-		{
-			disPanel.setOpen(true);
-			riskEmptyLabel.setStyleName("square-RequiredMessage");
-			return false;
-		}
+//		else if (listOfRiksMapppedToRequirement.size() == 0)
+//		{
+//			disPanel.setOpen(true);
+//			riskEmptyLabel.setStyleName("square-RequiredMessage");
+//			return false;
+//		}
 		else if (listOfArtifactsMappedToRequirement.size() == 0)
 		{
 			disPanel.setOpen(true);
@@ -856,25 +856,25 @@ public class ElicitSecurityRequirementPane extends BasePane implements Command
 		return associateLink;
 
 	}
-	public Widget getEditRisksHyperLink(final ElicitSecurityRequirementPane riksPane)
-	{
-
-		SquareHyperlink associateLink = new SquareHyperlink(messages.editRisksLink());
-		associateLink.addClickHandler(new ClickHandler()
-			{
-				public void onClick(ClickEvent event)
-				{
-					riskDialogBox = new RiskDialogBox(riksPane, listOfProjectFilteredRisks, listOfRiksMapppedToRequirement);
-					riskDialogBox.setModal(true);
-					riskDialogBox.center();
-					currentDialog = "Risk";
-					riskDialogBox.show();
-
-				}
-			});
-		return associateLink;
-
-	}
+//	public Widget getEditRisksHyperLink(final ElicitSecurityRequirementPane riksPane)
+//	{
+//
+//		SquareHyperlink associateLink = new SquareHyperlink(messages.editRisksLink());
+//		associateLink.addClickHandler(new ClickHandler()
+//			{
+//				public void onClick(ClickEvent event)
+//				{
+//					riskDialogBox = new RiskDialogBox(riksPane, listOfProjectFilteredRisks, listOfRiksMapppedToRequirement);
+//					riskDialogBox.setModal(true);
+//					riskDialogBox.center();
+//					currentDialog = "Risk";
+//					riskDialogBox.show();
+//
+//				}
+//			});
+//		return associateLink;
+//
+//	}
 
 	public Widget getEditArtifactsHyperLink(final ElicitSecurityRequirementPane riksPane)
 	{
@@ -921,33 +921,33 @@ public class ElicitSecurityRequirementPane extends BasePane implements Command
 		}
 
 	}
-	public Widget createHTMLRisksList()
-	{
-		if (listOfRiksMapppedToRequirement.size() > 0)
-		{
-			String listStart = "<UL>";
-			String listEnd = "</UL>";
-			StringBuilder listBuilder = new StringBuilder();
-
-			listBuilder.append(listStart);
-			for (GwtRisk a : listOfRiksMapppedToRequirement)
-			{
-				listBuilder.append("<LI><font color=\"black\">" + a.getRiskTitle() + "</font></LI>");
-
-			}
-			listBuilder.append(listEnd);
-			HTML list = new HTML(listBuilder.toString());
-			list.setStyleName("square-sssets-listing");
-			return list;
-		}
-		else
-		{
-			riskEmptyLabel = new Label(messages.noSelectedRisks());
-			riskEmptyLabel.setStyleName("square-note");
-			return riskEmptyLabel;
-		}
-
-	}
+//	public Widget createHTMLRisksList()
+//	{
+//		if (listOfRiksMapppedToRequirement.size() > 0)
+//		{
+//			String listStart = "<UL>";
+//			String listEnd = "</UL>";
+//			StringBuilder listBuilder = new StringBuilder();
+//
+//			listBuilder.append(listStart);
+//			for (GwtRisk a : listOfRiksMapppedToRequirement)
+//			{
+//				listBuilder.append("<LI><font color=\"black\">" + a.getRiskTitle() + "</font></LI>");
+//
+//			}
+//			listBuilder.append(listEnd);
+//			HTML list = new HTML(listBuilder.toString());
+//			list.setStyleName("square-sssets-listing");
+//			return list;
+//		}
+//		else
+//		{
+//			riskEmptyLabel = new Label(messages.noSelectedRisks());
+//			riskEmptyLabel.setStyleName("square-note");
+//			return riskEmptyLabel;
+//		}
+//
+//	}
 
 	public Widget createHTMLArtifactsList()
 	{
@@ -1013,24 +1013,24 @@ public class ElicitSecurityRequirementPane extends BasePane implements Command
 		
 			listOfSubGoalsMappedToRequirement = subGoalDialog.getNewSelectedSubGoals();
 			listOfRiksMapppedToRequirement.clear();
-			this.matrix.setWidget(3, 1, createHTMLRisksList());
+//			this.matrix.setWidget(3, 1, createHTMLRisksList());
 			listOfProjectFilteredRisks= filterRiskBaseOnGoals(listOfSubGoalsMappedToRequirement, listOfProjectRisks);
 			this.matrix.setWidget(2, 1, createHTMLSubGoalList());
 			
 		}
-		else if (currentDialog.equalsIgnoreCase("Risk"))
-		{
-			listRiskChanged(listOfRiksMapppedToRequirement,  riskDialogBox.getNewSelectedRisks());
-			
-			listOfRiksMapppedToRequirement = riskDialogBox.getNewSelectedRisks();
-			this.matrix.setWidget(3, 1, createHTMLRisksList());
-		}
+//		else if (currentDialog.equalsIgnoreCase("Risk"))
+//		{
+//			listRiskChanged(listOfRiksMapppedToRequirement,  riskDialogBox.getNewSelectedRisks());
+//			
+//			listOfRiksMapppedToRequirement = riskDialogBox.getNewSelectedRisks();
+//			this.matrix.setWidget(3, 1, createHTMLRisksList());
+//		}
 		else if (currentDialog.equalsIgnoreCase("Artifact"))
 		{
 			listArtifactChanged(listOfArtifactsMappedToRequirement,artifactDialog.getNewSelectedArtifacts());
 			
 			listOfArtifactsMappedToRequirement = artifactDialog.getNewSelectedArtifacts();
-			this.matrix.setWidget(4, 1, createHTMLArtifactsList());
+			this.matrix.setWidget(3, 1, createHTMLArtifactsList());
 		}
 
 	}
