@@ -157,6 +157,7 @@ public class AbstractSpringBase {
 		testRequirement.setPrivacy(false);
 		testRequirement.setSecurity(true);
 		testRequirement.setProject(testProject);
+		//testRequirement.setStatus(status);
 		testRequirement.setTitle("Test requirement title");
 		
 		Risk risk1 = new Risk();

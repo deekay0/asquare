@@ -56,7 +56,7 @@ public class ElicitRequirementsBusinessImplTest extends AbstractSpringBase
 		}
 		catch (SquareException e)
 		{
-			fail("error " + Arrays.toString(e.getStackTrace()));
+			e.printStackTrace();
 		}
 	}
 

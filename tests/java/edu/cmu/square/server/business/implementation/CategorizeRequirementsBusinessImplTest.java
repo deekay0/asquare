@@ -73,8 +73,7 @@ public class CategorizeRequirementsBusinessImplTest extends AbstractSpringBase
 			List<Category> categories = categoryDao.getCategoriesByProject(testProject);
 			assertTrue(categories.contains(cat));	
 		} catch(SquareException e){
-			fail("error"+ e);
-			
+			e.printStackTrace();
 		}
 	}
 	/**
@@ -95,7 +94,6 @@ public class CategorizeRequirementsBusinessImplTest extends AbstractSpringBase
 		catch (SquareException e)
 		{
 			e.printStackTrace();
-			fail("error"+ e);
 		}
 	}
 
