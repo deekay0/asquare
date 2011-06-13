@@ -17,6 +17,11 @@
 
 	<property name="path" value="/SquareGwt" />
 
+	<path id="test.classpath">
+			<fileset file="${basedir}/lib/junit.jar">
+			</fileset>
+			<pathelement location="${basedir}/tests/java"/>
+		</path>
 
 	<path id="SquareGwt.classpath">
 		<pathelement location="war/WEB-INF/classes" />
@@ -151,7 +156,7 @@
 	<taskdef name="start" classname="org.apache.catalina.ant.StartTask" />
 	<taskdef name="stop" classname="org.apache.catalina.ant.StopTask" />
 	<taskdef name="undeploy" classname="org.apache.catalina.ant.UndeployTask" />
-	 
+
 
 
 
@@ -187,7 +192,7 @@
 					<fileset dir="${basedir}/resources/" includes="**.*">
 					</fileset>
 				</copy>
-	<junit printsummary="yes" haltonfailure="yes">
+	<junit printsummary="yes" haltonfailure="no">
 		<classpath>
 			<fileset file="${basedir}/lib/junit.jar"/>
 			<path refid="SquareGwt.classpath"/>
@@ -195,7 +200,7 @@
 		</classpath>
 
 
-		<batchtest fork="yes" todir="${test.reports}">
+		<batchtest fork="yes" todir="${test.reports}" >
 			<fileset dir="${basedir}/tests/java">
 				<include name="**/*Test*.java"/>
 				<exclude name="**/*GwtTest*.java"/>

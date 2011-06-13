@@ -119,12 +119,12 @@ public class ReviewOfRequirementsByAcquisitionBusinessImpl extends BaseBusinessI
 		Project p = projectDao.fetch(projectId);
 		Requirement requirement = new Requirement(gwtRequirement);
 		requirement.setProject(p);
-		if(gwtRequirement.getRisks().isEmpty()) 
-		{
-			SquareException se = new SquareException("At least one risk is required.");
-			se.setType(ExceptionType.missingLink);
-			throw se;
-		}
+//		if(gwtRequirement.getRisks().isEmpty()) 
+//		{
+//			SquareException se = new SquareException("At least one risk is required.");
+//			se.setType(ExceptionType.missingLink);
+//			throw se;
+//		}
 		if(gwtRequirement.getArtifacts().isEmpty()) 
 		{
 			SquareException se = new SquareException("At least one artifact is required.");

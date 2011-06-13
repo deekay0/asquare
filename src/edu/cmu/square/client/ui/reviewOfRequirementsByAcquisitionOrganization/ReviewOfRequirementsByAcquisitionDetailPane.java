@@ -65,14 +65,14 @@ public class ReviewOfRequirementsByAcquisitionDetailPane extends BasePane implem
 		private GwtProject currentProject;
 		private FlexTable matrix = new FlexTable();
 
-		private VerticalPanel risksPane = new VerticalPanel();
+		//private VerticalPanel risksPane = new VerticalPanel();
 
 
 		private Label requirementTitleLabel = new Label(messages.labelRequirementTitle());
 		private Label requirementDescriptionLabel = new Label(messages.description());
 
 		private Label subGoalLabel = new Label(messages.securityGoal());
-		private Label riskLabel = new Label(messages.risks());
+//		private Label riskLabel = new Label(messages.risks());
 		private Label artifactLabel = new Label(messages.artifacts());
 
 
@@ -368,8 +368,8 @@ public class ReviewOfRequirementsByAcquisitionDetailPane extends BasePane implem
 			this.matrix.setWidget(1, 1, getField(requirementDescriptionTextBox));
 
 			this.matrix.setWidget(2, 1, createHTMLSubGoalList());
-			this.matrix.setWidget(3, 1, createHTMLRisksList());
-			this.matrix.setWidget(4, 1, createHTMLArtifactsList());
+//			this.matrix.setWidget(3, 1, createHTMLRisksList());
+			this.matrix.setWidget(3, 1, createHTMLArtifactsList());
 
 			
 			this.matrix.getCellFormatter().setAlignment(1, 0, HasHorizontalAlignment.ALIGN_RIGHT, HasVerticalAlignment.ALIGN_TOP);
@@ -393,7 +393,7 @@ public class ReviewOfRequirementsByAcquisitionDetailPane extends BasePane implem
 			this.requirementDescriptionLabel.setStyleName("Risk-Input-Labels");
 
 			this.subGoalLabel.setStyleName("Risk-Input-Labels");
-			this.riskLabel.setStyleName("Risk-Input-Labels");
+//			this.riskLabel.setStyleName("Risk-Input-Labels");
 			this.artifactLabel.setStyleName("Risk-Input-Labels");
 
 			this.requirementTitleTextBox.setStyleName("square-long-textBox");
@@ -419,8 +419,8 @@ public class ReviewOfRequirementsByAcquisitionDetailPane extends BasePane implem
 			((FlexCellFormatter) this.matrix.getCellFormatter()).setColSpan(0, 0, 2);
 
 			this.matrix.setWidget(2, 0, subGoalLabel);
-			this.matrix.setWidget(3, 0, riskLabel);
-			this.matrix.setWidget(4, 0, artifactLabel);
+//			this.matrix.setWidget(3, 0, riskLabel);
+			this.matrix.setWidget(3, 0, artifactLabel);
 
 			//System.out.println("before button");
 			
@@ -531,11 +531,11 @@ public class ReviewOfRequirementsByAcquisitionDetailPane extends BasePane implem
 			this.matrix.setWidget(0, 1, getField(requirementTitleTextBox));
 
 			this.matrix.setWidget(2, 0, getEditSubGoalsHyperLink(this));
-			this.matrix.setWidget(3, 0, getEditRisksHyperLink(this));
-			this.matrix.setWidget(4, 0, getEditArtifactsHyperLink(this));
+//			this.matrix.setWidget(3, 0, getEditRisksHyperLink(this));
+			this.matrix.setWidget(3, 0, getEditArtifactsHyperLink(this));
 
 			subGoalLabel.setStyleName("Risk-Input-Labels");
-			riskLabel.setStyleName("Risk-Input-Labels");
+//			riskLabel.setStyleName("Risk-Input-Labels");
 
 			matrix.getCellFormatter().setAlignment(0, 0, HasHorizontalAlignment.ALIGN_RIGHT, HasVerticalAlignment.ALIGN_TOP);
 			matrix.getCellFormatter().setAlignment(0, 1, HasHorizontalAlignment.ALIGN_LEFT, HasVerticalAlignment.ALIGN_TOP);
@@ -846,14 +846,14 @@ public class ReviewOfRequirementsByAcquisitionDetailPane extends BasePane implem
 					textValue = field.getItemText(field.getSelectedIndex()).trim();
 					setValidationStyle(field, textValue);
 				}
-				else if (w instanceof VerticalPanel)
-				{
-					if (listOfRiksMapppedToRequirement == null || listOfRiksMapppedToRequirement.isEmpty())
-					{
-						textValue = "";
-					}
-					setValidationStyle(risksPane, textValue);
-				}
+//				else if (w instanceof VerticalPanel)
+//				{
+//					if (listOfRiksMapppedToRequirement == null || listOfRiksMapppedToRequirement.isEmpty())
+//					{
+//						textValue = "";
+//					}
+//					setValidationStyle(risksPane, textValue);
+//				}
 
 				if (textValue.trim().length() == 0)
 				{
@@ -868,12 +868,12 @@ public class ReviewOfRequirementsByAcquisitionDetailPane extends BasePane implem
 				subGoalEmptyLabel.setStyleName("square-RequiredMessage");
 				return false;
 			}
-			else if (listOfRiksMapppedToRequirement.size() == 0)
-			{
-				disPanel.setOpen(true);
-				riskEmptyLabel.setStyleName("square-RequiredMessage");
-				return false;
-			}
+//			else if (listOfRiksMapppedToRequirement.size() == 0)
+//			{
+//				disPanel.setOpen(true);
+//				riskEmptyLabel.setStyleName("square-RequiredMessage");
+//				return false;
+//			}
 			else if (listOfArtifactsMappedToRequirement.size() == 0)
 			{
 				disPanel.setOpen(true);
@@ -1079,24 +1079,24 @@ public class ReviewOfRequirementsByAcquisitionDetailPane extends BasePane implem
 			
 				listOfSubGoalsMappedToRequirement = subGoalDialog.getNewSelectedSubGoals();
 				listOfRiksMapppedToRequirement.clear();
-				this.matrix.setWidget(3, 1, createHTMLRisksList());
-				listOfProjectFilteredRisks= filterRiskBaseOnGoals(listOfSubGoalsMappedToRequirement, listOfProjectRisks);
+			//	this.matrix.setWidget(3, 1, createHTMLRisksList());
+			//	listOfProjectFilteredRisks= filterRiskBaseOnGoals(listOfSubGoalsMappedToRequirement, listOfProjectRisks);
 				this.matrix.setWidget(2, 1, createHTMLSubGoalList());
 				
 			}
-			else if (currentDialog.equalsIgnoreCase("Risk"))
-			{
-				listRiskChanged(listOfRiksMapppedToRequirement,  riskDialogBox.getNewSelectedRisks());
-				
-				listOfRiksMapppedToRequirement = riskDialogBox.getNewSelectedRisks();
-				this.matrix.setWidget(3, 1, createHTMLRisksList());
-			}
+//			else if (currentDialog.equalsIgnoreCase("Risk"))
+//			{
+//				listRiskChanged(listOfRiksMapppedToRequirement,  riskDialogBox.getNewSelectedRisks());
+//				
+//				listOfRiksMapppedToRequirement = riskDialogBox.getNewSelectedRisks();
+//				this.matrix.setWidget(3, 1, createHTMLRisksList());
+//			}
 			else if (currentDialog.equalsIgnoreCase("Artifact"))
 			{
 				listArtifactChanged(listOfArtifactsMappedToRequirement,artifactDialog.getNewSelectedArtifacts());
 				
 				listOfArtifactsMappedToRequirement = artifactDialog.getNewSelectedArtifacts();
-				this.matrix.setWidget(4, 1, createHTMLArtifactsList());
+				this.matrix.setWidget(3, 1, createHTMLArtifactsList());
 			}
 
 		}

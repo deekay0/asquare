@@ -16,9 +16,11 @@ import org.junit.Test;
 import edu.cmu.square.client.exceptions.ExceptionType;
 import edu.cmu.square.client.exceptions.SquareException;
 import edu.cmu.square.client.model.GwtArtifact;
+import edu.cmu.square.client.model.GwtAsquareCase;
 import edu.cmu.square.client.model.GwtProject;
 import edu.cmu.square.server.base.AbstractSpringBase;
 import edu.cmu.square.server.business.step.interfaces.CollectArtifactsBusiness;
+import edu.cmu.square.server.dao.model.AsquareCase;
 import edu.cmu.square.server.dao.model.Project;
 
 public class CollectArtifactsBusinessImplTest extends AbstractSpringBase
@@ -243,6 +245,7 @@ public class CollectArtifactsBusinessImplTest extends AbstractSpringBase
 		testProject.setPrivacyTechniqueRationale("None");
 		testProject.setSecurityTechniqueRationale("None");
 		testProject.setLeadRequirementEngineer(this.testUser);
+		testProject.setCases(new AsquareCase(new GwtAsquareCase(1)));
 		projectDao.create(testProject);
 		
 		return testProject.createGwtProject();
