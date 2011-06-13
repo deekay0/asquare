@@ -48,6 +48,7 @@ public class ElicitRequirementsBusinessImpl extends BaseBusinessImpl implements 
 		Project p = projectDao.fetch(projectId);
 		Requirement requirement = new Requirement(gwtRequirement);
 		requirement.setProject(p);
+		requirement.setStatus("Pending");
 //		if(gwtRequirement.getRisks().isEmpty()) 
 //		{
 //			SquareException se = new SquareException("At least one risk is required.");
