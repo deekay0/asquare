@@ -257,8 +257,8 @@ public class ElicitSecurityRequirementSummaryPane extends BasePane
 
 				if(! r.getStatus().equals("Approved"))
 				{
-				requirementTable.setWidget(rowNumber, 1, change);
-				requirementTable.setWidget(rowNumber, 2, remove);
+					requirementTable.setWidget(rowNumber, 1, change);
+					requirementTable.setWidget(rowNumber, 2, remove);
 				}
 			}
 			else
