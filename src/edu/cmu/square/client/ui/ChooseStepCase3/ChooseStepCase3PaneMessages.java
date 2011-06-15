@@ -23,12 +23,12 @@ public interface ChooseStepCase3PaneMessages extends Messages
 	String thisIsYou();
 	String administrator();
 	String step7();
-	String step8();
+	//String step8();
 	String step1();
 	String step2();
 	String step3();
 	String step4();
 	String step5();
 	String step6();
-	String step9();
+	//String step9();
 }
