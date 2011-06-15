@@ -24,7 +24,7 @@ public class HbnQualityAttributeDao extends HbnAbstractDao<QualityAttribute, Int
 	
 	public List<QualityAttribute> getProjectAttributes(Project project)
 	{
-		if(project == null)
+		if(project == null) 
 			return null;
 		
 		List<QualityAttribute> attributes = null;
