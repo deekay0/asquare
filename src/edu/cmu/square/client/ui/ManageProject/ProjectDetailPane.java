@@ -96,8 +96,6 @@ public class ProjectDetailPane extends VerticalPanel
 
 	public void updateProjectName()
 	{
-		
-
 		final GwtProject project = new GwtProject();
 		project.setId(projectId);
 		project.setName(projectName);
@@ -233,6 +231,9 @@ public class ProjectDetailPane extends VerticalPanel
 			HTML warningLabel = new HTML();
 			Label resultLabel = new Label();
 			this.verifyStep(this.projectId, step.getId(), warningLabel, resultLabel, stepResult);
+			
+			System.out.println("project detial..."+step.getId()+"..."+step.getDescription());
+			
 			analysisResults.add(new Hyperlink(step.getDescription(), StepRouter.CreateStepLink(step)));
 			analysisResults.add(warningLabel);
 

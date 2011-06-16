@@ -43,7 +43,6 @@ public class ChooseCasePane extends BasePane
 		
 			super.cleanProjectContext();
 			super.showLoadingStatusBar();
-			System.out.println("choose case pane 1.....       .....");
 			initializePane();
 
 		}
@@ -151,7 +150,6 @@ public class ChooseCasePane extends BasePane
 			currentRow++;
 		}
 		
-	
 		// fill in the flextable rows with project data
 		return casesTable;
 	}

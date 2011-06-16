@@ -19,4 +19,8 @@ public interface StepDao extends AbstractDao<Step, Integer>
 	String isStepClosed(String description, Integer projectId);
 
 	List<Step> getSecuritySteps();
+	
+	List<Step> getCase1Steps();
+	
+	List<Step> getCase3Steps();
 }

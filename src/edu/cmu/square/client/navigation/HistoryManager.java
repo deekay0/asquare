@@ -221,6 +221,8 @@ public class HistoryManager implements ValueChangeHandler<String>
 		{
 			System.out.println("asdfasdf....."+this.currentState.getProjectName());
 			Hyperlink chooseStep = new Hyperlink(this.currentState.getProjectName(), ChooseStepPilot.generateNavigationId(ChooseStepPilot.PageId.home));
+			Hyperlink chooseStepCase3 = new Hyperlink(this.currentState.getProjectName(), ChooseStepCase3Pilot.generateNavigationId(ChooseStepCase3Pilot.PageId.home));
+			
 			chooseStep.setStyleName("square-crumb");
 			crumbBar.add(chooseCase);
 			
@@ -233,7 +235,10 @@ public class HistoryManager implements ValueChangeHandler<String>
 				crumbBar.add(new Label(" > "));
 				crumbBar.add(chooseProject);
 				crumbBar.add(new Label(" > "));
-				crumbBar.add(chooseStep);
+				if(this.currentState.getCaseID()==1)
+					crumbBar.add(chooseStep);
+				if(this.currentState.getCaseID()==3)
+					crumbBar.add(chooseStepCase3);
 			 }
 			
 			crumbBar.add(new Label(" > "));
