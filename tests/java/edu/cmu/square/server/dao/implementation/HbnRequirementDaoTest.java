@@ -20,4 +20,17 @@ public class HbnRequirementDaoTest extends AbstractSpringBase
 		super.createRequirementsWithCategories();
 	}
 	
+	@Test
+	public void testFindByCategoryId()
+	{
+		List<Requirement> requirements = requirementDao.fetchAll();
+		assertTrue(requirements.size()>0);
+	}
+	@Test
+	public void testRequirementExport()
+	{
+		
+		requirementDao.exportToXML(null);
+	}
+
 }
