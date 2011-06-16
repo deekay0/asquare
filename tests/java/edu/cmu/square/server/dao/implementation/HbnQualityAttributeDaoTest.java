@@ -50,7 +50,6 @@ public class HbnQualityAttributeDaoTest extends AbstractSpringBase
 	public void testGetProjectAttributes() {
 		
 		List<QualityAttribute> attributeList = qualityAttributeDao.getProjectAttributes(getTestProject());
-		System.out.println(attributeList.get(0).getDescription());
 		assertNotNull(attributeList);
 		assertTrue(attributeList.size()>0);
 	}
