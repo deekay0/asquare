@@ -70,9 +70,9 @@ public interface ReviewOfRequirementsByAcquisitionServiceAsync
 
 	void getRequirementsFromProject(Integer projectID, AsyncCallback<List<GwtRequirement>> callback); 
 	
-	void assignRequirementsToCategory(List<GwtRequirement> requirements,int categoryID, AsyncCallback<Void> callback);
+//	void assignRequirementsToCategory(List<GwtRequirement> requirements,int categoryID, AsyncCallback<Void> callback);
 	
-	void removeRequirementsFromCategory(List<GwtRequirement> requirements,int categoryID, AsyncCallback<Void> callback);
+	//void removeRequirementsFromCategory(List<GwtRequirement> requirements,int categoryID, AsyncCallback<Void> callback);
 
 	void changeStatusToApproveRequirement(Integer projectId, GwtRequirement gwtRequirement, AsyncCallback<Void> asyncCallback);
 

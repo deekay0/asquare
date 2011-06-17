@@ -133,7 +133,7 @@ public class ReviewOfRequirementsByAcquisitionPane extends BasePane
 
 	}
 	
-	
+/*0617
 	public void addRequirement(GwtRequirement gwtRequirement, GwtProject gwtProject)
 	{
 		this.showStatusBar("adding...");
@@ -164,7 +164,7 @@ public class ReviewOfRequirementsByAcquisitionPane extends BasePane
 			});
 
 	}
-	
+*/	
 
 	
 	public void removeRequirement(final GwtRequirement gwtRequirement)

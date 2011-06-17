@@ -758,6 +758,8 @@ public class ReviewOfRequirementsByAcquisitionDetailPane extends BasePane implem
 				}
 			}
 		}
+		
+		
 		public void addRequirementToProject(GwtRequirement gwtRequirement)
 		{
 

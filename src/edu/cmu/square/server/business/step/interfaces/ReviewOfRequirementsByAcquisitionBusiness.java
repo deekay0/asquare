@@ -42,9 +42,9 @@ public interface ReviewOfRequirementsByAcquisitionBusiness extends StepBusinessI
 
 	List<GwtRequirement> getRequirementsFromProject(int projectID) throws SquareException;
 	
-	void assignRequirementsToCategory(List<GwtRequirement> requirements,int categoryID) throws SquareException;
+	//void assignRequirementsToCategory(List<GwtRequirement> requirements,int categoryID) throws SquareException;
 	
-	void removeRequirementsFromCategory(List<GwtRequirement> requirements,int categoryID) throws SquareException;
+	//void removeRequirementsFromCategory(List<GwtRequirement> requirements,int categoryID) throws SquareException;
 
 	void updateRequirement(GwtRequirement requirement) throws SquareException;
 

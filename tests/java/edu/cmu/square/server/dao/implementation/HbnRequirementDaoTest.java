@@ -37,5 +37,34 @@ public class HbnRequirementDaoTest extends AbstractSpringBase
 		
 		requirementDao.exportToXML(null);
 	}
-
+	/*
+	@Test
+	public void testGetRequirementByProject()
+	{
+		List<Requirement> requirements3 = requirementDao.getRequirementByProject(testProject);
+		System.out.println("testGetReq->"+requirements3);
+		assertEquals(requirements3, testProject.getRequirements()); 
+		
+	}
+	*/
+	/*
+	@Test
+	public void testChangeStatusToApproved()
+	{
+		//Requirement req = requirementDao.changeStatusToApproved(testRequirement);
+		String approvedStatus = "Approved";
+		
+		requirementDao.changeStatusToApproved(testRequirement);
+		System.out.println(testRequirement.getStatus());
+		assertEquals(testRequirement.getStatus(), approvedStatus);
+	}
+	@Test
+	public void testChangeStatusToRequestRevision()
+	{
+		String requeststatus = "Request revision";
+		
+		requirementDao.changeStatusToApproved(testRequirement2);
+		assertEquals(testRequirement2.getStatus(), requeststatus);
+	}
+*/
 }
