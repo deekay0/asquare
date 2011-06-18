@@ -6,7 +6,7 @@ public class GwtRating implements Serializable {
 
 	/**
 	 * 
-	 */
+	 */ 
 	private static final long serialVersionUID = -2671167946873842684L;
 	private Integer packageId = -1;
 	private Integer attributeId = -1;
