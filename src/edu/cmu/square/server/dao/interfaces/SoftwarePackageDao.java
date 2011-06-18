@@ -14,6 +14,8 @@ import edu.cmu.square.server.dao.model.SoftwarePackage;
  */
 public interface SoftwarePackageDao extends AbstractDao<SoftwarePackage, Integer> 
 {	
-	List<SoftwarePackage> getProjectPackages(Project project);
+	List<SoftwarePackage> getSoftwarePackagesByProject(Project project);
 	List<SoftwarePackage> getAll();
+	List<SoftwarePackage> getSoftwarePackagesByNameAndProject(String name, Integer projectId);
+	void addSoftwarePackageToProject(Project project, SoftwarePackage softwarePackage);
 }
