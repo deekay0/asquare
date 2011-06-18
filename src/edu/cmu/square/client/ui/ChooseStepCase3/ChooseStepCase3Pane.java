@@ -34,6 +34,7 @@ import edu.cmu.square.client.ui.core.BasePane;
 import edu.cmu.square.client.ui.elicitSecurityRequirements.ElicitSecurityRequirementsPilot;
 import edu.cmu.square.client.ui.inspectRequirements.InspectRequirementsPilot;
 import edu.cmu.square.client.ui.prioritizeRequirements.PrioritizeRequirementsPilot;
+import edu.cmu.square.client.ui.reviewAndFinalizeRequirements.ReviewAndFinalizeRequirementsPilot;
 import edu.cmu.square.client.ui.risksAssessment.RiskAssessmentPilot;
 
 public class ChooseStepCase3Pane extends BasePane
@@ -332,8 +333,8 @@ public class ChooseStepCase3Pane extends BasePane
 				}
 				else
 				{
-					this.projectStepTable.setWidget(6, 0, new Hyperlink(s.getDescription(), CollectArtifactsPilot
-							.generateNavigationId(CollectArtifactsPilot.PageId.home)));
+					this.projectStepTable.setWidget(6, 0, new Hyperlink(s.getDescription(), ReviewAndFinalizeRequirementsPilot
+							.generateNavigationId(ReviewAndFinalizeRequirementsPilot.PageId.home)));
 				}
 				this.projectStepTable.setWidget(6, 1, new Label(s.getStatus().getLabel()));
 				formatter.setStyleName(6, 0, "square-choose-step");
@@ -343,7 +344,6 @@ public class ChooseStepCase3Pane extends BasePane
 			}
 			else if (s.getDescription().equals(messages.step6()))
 			{
-				System.out.println("case 3...............step6");
 				if (s.getStatus() == StepStatus.NotStarted)
 				{
 					this.projectStepTable.setWidget(7, 0, new Label(s.getDescription()));
