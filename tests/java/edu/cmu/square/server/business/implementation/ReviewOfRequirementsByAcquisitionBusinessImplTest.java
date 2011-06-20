@@ -35,13 +35,7 @@ public class ReviewOfRequirementsByAcquisitionBusinessImplTest extends AbstractS
 		Map<String, Object> testMap = super.createUserProjectforRole();
 		testProject = ((Project) testMap.get("project")).createGwtProject();
 	}
-	
-	@Test
-	public void  testGetRequirements(){
 		
-	}
-	
-	
 	@Test
 	public void testAddRequirement(){
 		try
@@ -105,13 +99,13 @@ public class ReviewOfRequirementsByAcquisitionBusinessImplTest extends AbstractS
 	
 			gwtRequirement = reviewOfRequirementsByAcquisitionBusiness.addRequirement(gwtProject, gwtRequirement);
 			gwtRequirement2 = reviewOfRequirementsByAcquisitionBusiness.addRequirement(gwtProject, gwtRequirement2);
-			List<GwtRequirement> terms = reviewOfRequirementsByAcquisitionBusiness.getRequirements(gwtProject);
-			assertTrue(terms.size() == 2);
+			List<GwtRequirement> reqs = reviewOfRequirementsByAcquisitionBusiness.getRequirements(gwtProject);
+			assertTrue(reqs.size() == 2);
 	
 			reviewOfRequirementsByAcquisitionBusiness.removeRequirement(gwtRequirement);
 	
-			terms = reviewOfRequirementsByAcquisitionBusiness.getRequirements(gwtProject);
-			assertTrue(terms.size() == 1);
+			reqs = reviewOfRequirementsByAcquisitionBusiness.getRequirements(gwtProject);
+			assertTrue(reqs.size() == 1);
 		}catch (SquareException e)
 		{
 			e.printStackTrace();
@@ -152,6 +146,28 @@ public class ReviewOfRequirementsByAcquisitionBusinessImplTest extends AbstractS
 
 	@Test
 	public void testChangeStatusToApproveRequirement(){
+		String approvedStatus = "Approved";
+			
+		try
+		{
+			GwtRequirement gwtRequirement = new GwtRequirement();
+			gwtRequirement.setTitle("req test title");
+			gwtRequirement.setDescription("req test description.");
+			gwtRequirement.setStatus("Pending");
+			GwtProject gwtProject = testProject;
+
+			gwtRequirement = reviewOfRequirementsByAcquisitionBusiness.addRequirement(gwtProject, gwtRequirement);
+			reviewOfRequirementsByAcquisitionBusiness.updateRequirement(gwtProject, gwtRequirement);
+
+			List<GwtRequirement> reqs = reviewOfRequirementsByAcquisitionBusiness.getRequirements(gwtProject);
+			reqs = reviewOfRequirementsByAcquisitionBusiness.getRequirements(gwtProject);
+			assertTrue(reqs.get(0).getStatus().equals(approvedStatus));
+
+		}
+		catch (SquareException e)
+		{
+			e.printStackTrace();
+		}
 		
 	}
 
