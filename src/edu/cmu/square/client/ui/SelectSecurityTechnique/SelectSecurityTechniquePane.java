@@ -126,7 +126,7 @@ public class SelectSecurityTechniquePane extends BasePane
 				
 				History.newItem(SelectSecurityElicitationTechniquePilot.generateNavigationId(SelectSecurityElicitationTechniquePilot.PageId.selectTechnique));
 			}});
-
+ 
 		cmdLoadTopTechnique.addStyleName("square-button");
 		
 		this.getContent().clear();
