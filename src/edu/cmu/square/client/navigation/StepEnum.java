@@ -9,6 +9,7 @@ import edu.cmu.square.client.ui.elicitSecurityRequirements.ElicitSecurityRequire
 import edu.cmu.square.client.ui.inspectRequirements.InspectRequirementsPilot;
 import edu.cmu.square.client.ui.prioritizeRequirements.PrioritizeRequirementsPilot;
 import edu.cmu.square.client.ui.reviewOfRequirementsByAcquisitionOrganization.ReviewOfRequirementsByAcquisitionPilot;
+import edu.cmu.square.client.ui.reviewPackages.ReviewPackagesPilot;
 import edu.cmu.square.client.ui.risksAssessment.RiskAssessmentPilot;
 
 public enum StepEnum
@@ -32,7 +33,10 @@ public enum StepEnum
 	Inspect_Requirements("Step 9: Inspect Requirements",
 			InspectRequirementsPilot.generateNavigationId(InspectRequirementsPilot.PageId.home)),
 	Review_Of_Requirements_By_Acquisition_Organization("Case 1 - Step 4: Review Of Requirements By Acquisition Organization", 
-			ReviewOfRequirementsByAcquisitionPilot.generateNavigationId(ReviewOfRequirementsByAcquisitionPilot.PageId.home));
+			ReviewOfRequirementsByAcquisitionPilot.generateNavigationId(ReviewOfRequirementsByAcquisitionPilot.PageId.home)),
+	Review_COTS_Software_Package_Information_And_Specification("Case 3 - Step 4: Review COTS software package information and specification", 
+			ReviewPackagesPilot.generateNavigationId(ReviewPackagesPilot.PageId.home));
+	
 	
 	private String description;
 	private String link;

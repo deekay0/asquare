@@ -28,4 +28,5 @@ public interface BreadCrumbMessages extends Messages
 	String chooseCase();
 	String welcome(String username);
 	String reviewOfRequirementsByAcquisitionOrganization();
+	String reviewPackages();
 }

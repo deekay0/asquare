@@ -31,6 +31,7 @@ import edu.cmu.square.client.ui.elicitSecurityRequirements.ElicitSecurityRequire
 import edu.cmu.square.client.ui.inspectRequirements.InspectRequirementsPilot;
 import edu.cmu.square.client.ui.prioritizeRequirements.PrioritizeRequirementsPilot;
 import edu.cmu.square.client.ui.reviewOfRequirementsByAcquisitionOrganization.ReviewOfRequirementsByAcquisitionPilot;
+import edu.cmu.square.client.ui.reviewPackages.ReviewPackagesPilot;
 import edu.cmu.square.client.ui.risksAssessment.RiskAssessmentPilot;
 
 /**
@@ -71,8 +72,9 @@ public class HistoryManager implements ValueChangeHandler<String>
 	private BreadCrumbMessages messages = (BreadCrumbMessages)GWT.create(BreadCrumbMessages.class);
 
 	private Pilot reviewOfRequirementsByAcquisitionOrganizationPilot = new ReviewOfRequirementsByAcquisitionPilot();
+	private Pilot reviewPackagesPilot = new ReviewPackagesPilot();
 	
-	
+	 
 	public static class ViewId
 	{
 		public static final String home = "chooseProject";
@@ -91,6 +93,7 @@ public class HistoryManager implements ValueChangeHandler<String>
 		public static final String chooseStep = "chooseStep";
 		public static final String reviewOfRequirementsByAcquisitionOrganization = "reviewOfRequirementsByAcquisitionOrganization";
 		public static final String chooseStepCase3 = "chooseStepCase3";
+		public static final String reviewPackages = "reviewPackages";
 	}
 
 	public HistoryManager(Panel contentPane, Panel breadCrumbPane, State stateInfo)
@@ -359,6 +362,9 @@ public class HistoryManager implements ValueChangeHandler<String>
 		}
 		else if (ViewId.reviewOfRequirementsByAcquisitionOrganization.equals(view)){
 			return this.reviewOfRequirementsByAcquisitionOrganizationPilot;
+		}
+		else if (ViewId.reviewPackages.equals(view)){
+			return this.reviewPackagesPilot;
 		}
 			
 		else

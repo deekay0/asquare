@@ -10,11 +10,11 @@ import com.google.gwt.core.client.GWT;
 import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.google.gwt.user.client.rpc.ServiceDefTarget;
 import com.google.gwt.user.client.ui.FlexTable;
+import com.google.gwt.user.client.ui.FlexTable.FlexCellFormatter;
 import com.google.gwt.user.client.ui.HasHorizontalAlignment;
 import com.google.gwt.user.client.ui.HorizontalPanel;
 import com.google.gwt.user.client.ui.Hyperlink;
 import com.google.gwt.user.client.ui.Label;
-import com.google.gwt.user.client.ui.FlexTable.FlexCellFormatter;
 
 import edu.cmu.square.client.exceptions.ExceptionHelper;
 import edu.cmu.square.client.model.GwtModesType;
@@ -25,17 +25,14 @@ import edu.cmu.square.client.navigation.State;
 import edu.cmu.square.client.remoteService.interfaces.ManageProjectService;
 import edu.cmu.square.client.remoteService.interfaces.ManageProjectServiceAsync;
 import edu.cmu.square.client.ui.ManageProject.ManageProjectPilot;
-import edu.cmu.square.client.ui.SelectSecurityTechnique.SelectSecurityElicitationTechniquePilot;
 import edu.cmu.square.client.ui.agreeOnDefinitions.AgreeOnDefinitionsPilot;
 import edu.cmu.square.client.ui.assetsAndGoals.AssetsAndGoalsPilot;
 import edu.cmu.square.client.ui.categorizeRequirements.CategorizeRequirementsPilot;
 import edu.cmu.square.client.ui.collectArtifacts.CollectArtifactsPilot;
 import edu.cmu.square.client.ui.core.BasePane;
 import edu.cmu.square.client.ui.elicitSecurityRequirements.ElicitSecurityRequirementsPilot;
-import edu.cmu.square.client.ui.inspectRequirements.InspectRequirementsPilot;
-import edu.cmu.square.client.ui.prioritizeRequirements.PrioritizeRequirementsPilot;
 import edu.cmu.square.client.ui.reviewAndFinalizeRequirements.ReviewAndFinalizeRequirementsPilot;
-import edu.cmu.square.client.ui.risksAssessment.RiskAssessmentPilot;
+import edu.cmu.square.client.ui.reviewPackages.ReviewPackagesPilot;
 
 public class ChooseStepCase3Pane extends BasePane
 {
@@ -316,8 +313,8 @@ public class ChooseStepCase3Pane extends BasePane
 				}
 				else
 				{
-					this.projectStepTable.setWidget(5, 0, new Hyperlink(s.getDescription(), CollectArtifactsPilot
-							.generateNavigationId(CollectArtifactsPilot.PageId.home)));
+					this.projectStepTable.setWidget(5, 0, new Hyperlink(s.getDescription(), ReviewPackagesPilot
+							.generateNavigationId(ReviewPackagesPilot.PageId.home)));
 				}
 				this.projectStepTable.setWidget(5, 1, new Label(s.getStatus().getLabel()));
 				formatter.setStyleName(5, 0, "square-choose-step");

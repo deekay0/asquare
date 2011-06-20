@@ -94,8 +94,8 @@ public class QualityAttribute implements java.io.Serializable
 	}
 	
 	
-	public GwtSoftwarePackage createGwtSoftwarePackage() {
-		GwtSoftwarePackage gwtPackage = new GwtSoftwarePackage();
+	public GwtQualityAttribute createGwtQualityAttribute() {
+		GwtQualityAttribute gwtPackage = new GwtQualityAttribute();
 		gwtPackage.setDescription(this.description);
 		gwtPackage.setName(this.name);
 		gwtPackage.setId(this.id);
@@ -104,9 +104,7 @@ public class QualityAttribute implements java.io.Serializable
 	
 	public String toString() {
 		return this.name;
-	}
-
-	
+	}	
 }
 
 
