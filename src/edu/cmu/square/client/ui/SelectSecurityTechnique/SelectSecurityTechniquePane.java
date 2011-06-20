@@ -121,8 +121,8 @@ public class SelectSecurityTechniquePane extends BasePane
 			
 			public void onClick(ClickEvent event) {
 				List<GwtTechnique> list= getTopValues();
-				
-				currentState.setTopTechniqueList(list);
+//			TODO	
+//				currentState.setTopTechniqueList(list);
 				
 				History.newItem(SelectSecurityElicitationTechniquePilot.generateNavigationId(SelectSecurityElicitationTechniquePilot.PageId.selectTechnique));
 			}});
