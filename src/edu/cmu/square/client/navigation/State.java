@@ -7,7 +7,8 @@ import com.google.gwt.user.client.Cookies;
 
 import edu.cmu.square.client.model.GWTAppProperties;
 import edu.cmu.square.client.model.GwtModesType;
-import edu.cmu.square.client.model.GwtTechnique;
+import edu.cmu.square.client.model.GwtPackage;
+import edu.cmu.square.client.model.GwtSoftwarePackage;
 import edu.cmu.square.client.model.ProjectRole;
 
 /**
@@ -36,7 +37,7 @@ public class State extends StateHandler
 
 	private GwtModesType mode = GwtModesType.ReadOnly;// Read, Write and Hide
 
-	private List<GwtTechnique> topTechniqueList = new ArrayList<GwtTechnique>();
+	private List<GwtSoftwarePackage> topPackageList = new ArrayList<GwtSoftwarePackage>();
 
 	private int currentRiskID = -1; // Contains the risk to be edited or view
 	private int riskCommand = 0;
@@ -71,8 +72,8 @@ public class State extends StateHandler
 
 		setMode(GwtModesType.NoAccess);
 
-		topTechniqueList.clear();
-		this.topTechniqueList = new ArrayList<GwtTechnique>();
+		topPackageList.clear();
+		this.topPackageList = new ArrayList<GwtSoftwarePackage>();
 
 		setCurrentRisk(-1);
 		setRiskCommand(0);
@@ -265,14 +266,14 @@ public class State extends StateHandler
 		return mode;
 	}
 
-	public void setTopTechniqueList(List<GwtTechnique> topTechniqueList)
+	public void setTopPackageList(List<GwtSoftwarePackage> topPackageList)
 	{
-		this.topTechniqueList = topTechniqueList;
+		this.topPackageList = topPackageList;
 	}
 
-	public List<GwtTechnique> getTopTechniqueList()
+	public List<GwtSoftwarePackage> getTopTechniqueList()
 	{
-		return topTechniqueList;
+		return topPackageList;
 	}
 
 	public void setCurrentRisk(int currentRisk)

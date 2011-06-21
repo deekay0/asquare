@@ -58,4 +58,20 @@ public class HbnStepDao extends HbnAbstractDao<Step, Integer> implements StepDao
 		Query q = getSession().createQuery(query);
 		return q.list();
 	}
+
+	@Override
+	public List<Step> getCase1Steps()
+	{
+		String query = "Select s from Step s where s.security=true";
+		Query q = getSession().createQuery(query);
+		return q.list();
+	}
+
+	@Override
+	public List<Step> getCase3Steps()
+	{
+		String query = "Select s from Step s where s.privacy=true";
+		Query q = getSession().createQuery(query);
+		return q.list();
+	}
 }

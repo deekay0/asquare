@@ -31,6 +31,7 @@ import edu.cmu.square.client.ui.elicitSecurityRequirements.ElicitSecurityRequire
 import edu.cmu.square.client.ui.inspectRequirements.InspectRequirementsPilot;
 import edu.cmu.square.client.ui.prioritizeRequirements.PrioritizeRequirementsPilot;
 import edu.cmu.square.client.ui.reviewOfRequirementsByAcquisitionOrganization.ReviewOfRequirementsByAcquisitionPilot;
+import edu.cmu.square.client.ui.reviewPackages.ReviewPackagesPilot;
 import edu.cmu.square.client.ui.risksAssessment.RiskAssessmentPilot;
 
 /**
@@ -71,8 +72,9 @@ public class HistoryManager implements ValueChangeHandler<String>
 	private BreadCrumbMessages messages = (BreadCrumbMessages)GWT.create(BreadCrumbMessages.class);
 
 	private Pilot reviewOfRequirementsByAcquisitionOrganizationPilot = new ReviewOfRequirementsByAcquisitionPilot();
+	private Pilot reviewPackagesPilot = new ReviewPackagesPilot();
 	
-	
+	 
 	public static class ViewId
 	{
 		public static final String home = "chooseProject";
@@ -91,6 +93,7 @@ public class HistoryManager implements ValueChangeHandler<String>
 		public static final String chooseStep = "chooseStep";
 		public static final String reviewOfRequirementsByAcquisitionOrganization = "reviewOfRequirementsByAcquisitionOrganization";
 		public static final String chooseStepCase3 = "chooseStepCase3";
+		public static final String reviewPackages = "reviewPackages";
 	}
 
 	public HistoryManager(Panel contentPane, Panel breadCrumbPane, State stateInfo)
@@ -221,6 +224,8 @@ public class HistoryManager implements ValueChangeHandler<String>
 		{
 			System.out.println("asdfasdf....."+this.currentState.getProjectName());
 			Hyperlink chooseStep = new Hyperlink(this.currentState.getProjectName(), ChooseStepPilot.generateNavigationId(ChooseStepPilot.PageId.home));
+			Hyperlink chooseStepCase3 = new Hyperlink(this.currentState.getProjectName(), ChooseStepCase3Pilot.generateNavigationId(ChooseStepCase3Pilot.PageId.home));
+			
 			chooseStep.setStyleName("square-crumb");
 			crumbBar.add(chooseCase);
 			
@@ -233,7 +238,10 @@ public class HistoryManager implements ValueChangeHandler<String>
 				crumbBar.add(new Label(" > "));
 				crumbBar.add(chooseProject);
 				crumbBar.add(new Label(" > "));
-				crumbBar.add(chooseStep);
+				if(this.currentState.getCaseID()==1)
+					crumbBar.add(chooseStep);
+				if(this.currentState.getCaseID()==3)
+					crumbBar.add(chooseStepCase3);
 			 }
 			
 			crumbBar.add(new Label(" > "));
@@ -354,6 +362,9 @@ public class HistoryManager implements ValueChangeHandler<String>
 		}
 		else if (ViewId.reviewOfRequirementsByAcquisitionOrganization.equals(view)){
 			return this.reviewOfRequirementsByAcquisitionOrganizationPilot;
+		}
+		else if (ViewId.reviewPackages.equals(view)){
+			return this.reviewPackagesPilot;
 		}
 			
 		else

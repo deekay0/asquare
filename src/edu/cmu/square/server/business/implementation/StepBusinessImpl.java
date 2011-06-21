@@ -87,10 +87,21 @@ public class StepBusinessImpl extends BaseBusinessImpl implements StepBusiness
 	@Override
 	public void createStepsForProject(GwtProject project)
 	{
-		  List<Step> steps = stepDao.fetchAll();
+		List<Step> steps;
+		if(project.getCases().getId()==1)
+		{
+			steps = stepDao.getCase1Steps();
+		}
+		else
+		{
+			steps = stepDao.getCase3Steps();
+		}
+		  
+		System.out.println("create new project....case:"+project.getCases().getId()+"  size:"+steps.size());
+		
 		   for(Step s: steps)
 		   {
-			   if (project.isSecurity()&&!project.isPrivacy()&& s.isSecurity())
+			   /*if (project.isSecurity()&&!project.isPrivacy()&& s.isSecurity())
 			   {
 				   ProjectStep projectStep = new ProjectStep();
 				   ProjectStepId projectStepId = new ProjectStepId();
@@ -102,35 +113,17 @@ public class StepBusinessImpl extends BaseBusinessImpl implements StepBusiness
 				   projectStep.setStatus(StepStatus.NotStarted.getLabel());
 				   
 				   projectStepDao.create(projectStep);
-			   }
-			   else if(!project.isSecurity()&&project.isPrivacy()&& s.isPrivacy())
-			   {
-				   ProjectStep projectStep = new ProjectStep();
-				   ProjectStepId projectStepId = new ProjectStepId();
+			   }*/
+			   ProjectStep projectStep = new ProjectStep();
+			   ProjectStepId projectStepId = new ProjectStepId();
 				   
-				   projectStepId.setProjectId(project.getId());
-				   projectStepId.setStepId(s.getId());
+			   projectStepId.setProjectId(project.getId());
+			   projectStepId.setStepId(s.getId());
 				   
-				   projectStep.setId(projectStepId);
-				   projectStep.setStatus(StepStatus.NotStarted.getLabel());
+			   projectStep.setId(projectStepId);
+			   projectStep.setStatus(StepStatus.NotStarted.getLabel());
 				   
-				   projectStepDao.create(projectStep);
-				 
-			   }
-			   else if(project.isSecurity()&&project.isPrivacy())
-			   {
-				   //TODO: Add Steps for both 
-				   
-			
-				 
-			   }
-			   else if(!project.isLite())
-			   {
-				   //TODO: Only add the steps for SQUARE lite
-				 
-			   }
-			   
-			  
+			   projectStepDao.create(projectStep);
 		   }
 		
 	}
@@ -151,6 +144,7 @@ public class StepBusinessImpl extends BaseBusinessImpl implements StepBusiness
 		}
 		for (Step s : steps)
 		{
+			System.out.println("step business....."+s.getId());
 			GwtStep gs = s.createGwtStep(projectId);
 			
 			//find the logic

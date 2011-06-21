@@ -10,11 +10,11 @@ import com.google.gwt.core.client.GWT;
 import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.google.gwt.user.client.rpc.ServiceDefTarget;
 import com.google.gwt.user.client.ui.FlexTable;
+import com.google.gwt.user.client.ui.FlexTable.FlexCellFormatter;
 import com.google.gwt.user.client.ui.HasHorizontalAlignment;
 import com.google.gwt.user.client.ui.HorizontalPanel;
 import com.google.gwt.user.client.ui.Hyperlink;
 import com.google.gwt.user.client.ui.Label;
-import com.google.gwt.user.client.ui.FlexTable.FlexCellFormatter;
 
 import edu.cmu.square.client.exceptions.ExceptionHelper;
 import edu.cmu.square.client.model.GwtModesType;
@@ -25,16 +25,14 @@ import edu.cmu.square.client.navigation.State;
 import edu.cmu.square.client.remoteService.interfaces.ManageProjectService;
 import edu.cmu.square.client.remoteService.interfaces.ManageProjectServiceAsync;
 import edu.cmu.square.client.ui.ManageProject.ManageProjectPilot;
-import edu.cmu.square.client.ui.SelectSecurityTechnique.SelectSecurityElicitationTechniquePilot;
 import edu.cmu.square.client.ui.agreeOnDefinitions.AgreeOnDefinitionsPilot;
 import edu.cmu.square.client.ui.assetsAndGoals.AssetsAndGoalsPilot;
 import edu.cmu.square.client.ui.categorizeRequirements.CategorizeRequirementsPilot;
 import edu.cmu.square.client.ui.collectArtifacts.CollectArtifactsPilot;
 import edu.cmu.square.client.ui.core.BasePane;
 import edu.cmu.square.client.ui.elicitSecurityRequirements.ElicitSecurityRequirementsPilot;
-import edu.cmu.square.client.ui.inspectRequirements.InspectRequirementsPilot;
-import edu.cmu.square.client.ui.prioritizeRequirements.PrioritizeRequirementsPilot;
-import edu.cmu.square.client.ui.risksAssessment.RiskAssessmentPilot;
+import edu.cmu.square.client.ui.reviewAndFinalizeRequirements.ReviewAndFinalizeRequirementsPilot;
+import edu.cmu.square.client.ui.reviewPackages.ReviewPackagesPilot;
 
 public class ChooseStepCase3Pane extends BasePane
 {
@@ -83,7 +81,6 @@ public class ChooseStepCase3Pane extends BasePane
 					getProjectType();
 				}
 			});
-
 	}
 	private void getProjectType()
 	{
@@ -299,8 +296,8 @@ public class ChooseStepCase3Pane extends BasePane
 				}
 				else
 				{
-					this.projectStepTable.setWidget(4, 0, new Hyperlink(s.getDescription(), CollectArtifactsPilot
-							.generateNavigationId(CollectArtifactsPilot.PageId.home)));
+					this.projectStepTable.setWidget(4, 0, new Hyperlink(s.getDescription(), ElicitSecurityRequirementsPilot
+							.generateNavigationId(ElicitSecurityRequirementsPilot.PageId.home)));
 				}
 				this.projectStepTable.setWidget(4, 1, new Label(s.getStatus().getLabel()));
 				formatter.setStyleName(4, 0, "square-choose-step");
@@ -316,8 +313,8 @@ public class ChooseStepCase3Pane extends BasePane
 				}
 				else
 				{
-					this.projectStepTable.setWidget(5, 0, new Hyperlink(s.getDescription(), CollectArtifactsPilot
-							.generateNavigationId(CollectArtifactsPilot.PageId.home)));
+					this.projectStepTable.setWidget(5, 0, new Hyperlink(s.getDescription(), ReviewPackagesPilot
+							.generateNavigationId(ReviewPackagesPilot.PageId.home)));
 				}
 				this.projectStepTable.setWidget(5, 1, new Label(s.getStatus().getLabel()));
 				formatter.setStyleName(5, 0, "square-choose-step");
@@ -327,15 +324,14 @@ public class ChooseStepCase3Pane extends BasePane
 			}
 			else if (s.getDescription().equals(messages.step5()))
 			{
-				System.out.println("case 3...............step5");
 				if (s.getStatus() == StepStatus.NotStarted)
 				{
 					this.projectStepTable.setWidget(6, 0, new Label(s.getDescription()));
 				}
 				else
 				{
-					this.projectStepTable.setWidget(6, 0, new Hyperlink(s.getDescription(), CollectArtifactsPilot
-							.generateNavigationId(CollectArtifactsPilot.PageId.home)));
+					this.projectStepTable.setWidget(6, 0, new Hyperlink(s.getDescription(), ReviewAndFinalizeRequirementsPilot
+							.generateNavigationId(ReviewAndFinalizeRequirementsPilot.PageId.home)));
 				}
 				this.projectStepTable.setWidget(6, 1, new Label(s.getStatus().getLabel()));
 				formatter.setStyleName(6, 0, "square-choose-step");
@@ -345,7 +341,6 @@ public class ChooseStepCase3Pane extends BasePane
 			}
 			else if (s.getDescription().equals(messages.step6()))
 			{
-				System.out.println("case 3...............step6");
 				if (s.getStatus() == StepStatus.NotStarted)
 				{
 					this.projectStepTable.setWidget(7, 0, new Label(s.getDescription()));
@@ -390,68 +385,4 @@ public class ChooseStepCase3Pane extends BasePane
 
 	}
 
-	/*private void drawSecurityRequirements(int rowID)
-	{
-		rowID++;
-		this.projectStepTable.setWidget(rowID, 0, new Label(messages.gatherSecurityRequirementsLabel()));
-		formatter.setColSpan(rowID, 0, 2);
-		formatter.setHorizontalAlignment(rowID, 0, HasHorizontalAlignment.ALIGN_LEFT);
-		formatter.setStyleName(rowID, 0, "square-choose-step-title");
-
-		for (final GwtStep s : gwtProjectStepList)
-		{
-			if (s.getDescription().equals(messages.step4()))
-			{
-				if (s.getStatus() == StepStatus.NotStarted)
-				{
-					this.projectStepTable.setWidget(rowID + 1, 0, new Label(s.getDescription()));
-				}
-				else
-				{
-					this.projectStepTable.setWidget(rowID + 1, 0, new Hyperlink(s.getDescription(), RiskAssessmentPilot
-							.generateNavigationId(RiskAssessmentPilot.PageId.home)));
-				}
-				this.projectStepTable.setWidget(rowID + 1, 1, new Label(s.getStatus().getLabel()));
-				formatter.setStyleName(rowID + 1, 0, "square-choose-step");
-				formatter.setStyleName(rowID + 1, 1, "square-choose-step");
-				formatter.setHorizontalAlignment(rowID + 1, 0, HasHorizontalAlignment.ALIGN_LEFT);
-				formatter.setHorizontalAlignment(rowID + 1, 1, HasHorizontalAlignment.ALIGN_RIGHT);
-			}
-			else if (s.getDescription().equals(messages.step5()))
-			{
-				if (s.getStatus() == StepStatus.NotStarted)
-				{
-					this.projectStepTable.setWidget(rowID + 2, 0, new Label(s.getDescription()));
-				}
-				else
-				{
-					this.projectStepTable.setWidget(rowID + 2, 0, new Hyperlink(s.getDescription(), SelectSecurityElicitationTechniquePilot
-							.generateNavigationId(SelectSecurityElicitationTechniquePilot.PageId.home)));
-				}
-				this.projectStepTable.setWidget(rowID + 2, 1, new Label(s.getStatus().getLabel()));
-				formatter.setStyleName(rowID + 2, 0, "square-choose-step");
-				formatter.setStyleName(rowID + 2, 1, "square-choose-step");
-				formatter.setHorizontalAlignment(rowID + 2, 0, HasHorizontalAlignment.ALIGN_LEFT);
-				formatter.setHorizontalAlignment(rowID + 2, 1, HasHorizontalAlignment.ALIGN_RIGHT);
-			}
-			else if (s.getDescription().equals(messages.step6()))
-			{
-				if (s.getStatus() == StepStatus.NotStarted)
-				{
-					this.projectStepTable.setWidget(rowID + 3, 0, new Label(s.getDescription()));
-				}
-				else
-				{
-					this.projectStepTable.setWidget(rowID + 3, 0, new Hyperlink(s.getDescription(), ElicitSecurityRequirementsPilot
-							.generateNavigationId(ElicitSecurityRequirementsPilot.PageId.home)));
-				}
-				this.projectStepTable.setWidget(rowID + 3, 1, new Label(s.getStatus().getLabel()));
-				formatter.setStyleName(rowID + 3, 0, "square-choose-step");
-				formatter.setStyleName(rowID + 3, 1, "square-choose-step");
-				formatter.setHorizontalAlignment(rowID + 3, 0, HasHorizontalAlignment.ALIGN_LEFT);
-				formatter.setHorizontalAlignment(rowID + 3, 1, HasHorizontalAlignment.ALIGN_RIGHT);
-			}
-		}
-	}
-*/
 }

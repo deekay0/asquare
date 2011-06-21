@@ -163,7 +163,7 @@ public class AbstractSpringBase {
 		testRequirement.setSecurity(true);
 		testRequirement.setStatus("Pending");
 		testRequirement.setProject(testProject);
-		//testRequirement.setStatus(status);
+		testRequirement.setStatus("Pending");
 		testRequirement.setTitle("Test requirement title");
 		
 		Risk risk1 = new Risk();
@@ -239,6 +239,7 @@ public class AbstractSpringBase {
 		testRequirement2.setStatus("Pending");
 		testRequirement2.setProject(testProject);
 		testRequirement2.setTitle("Test requirement title");
+		testRequirement2.setStatus("Approved");
 		
 		Risk risk12 = new Risk();
 		risk12.setCurrentMeasures("currentMeasures");

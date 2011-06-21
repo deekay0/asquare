@@ -62,8 +62,8 @@ public class SelectTopRatedTechniquePane extends BasePane
 		
 		stepTitle.setHorizontalAlignment(HasHorizontalAlignment.ALIGN_CENTER);
 		stepTitle.setStyleName("step-Title-heading");
-		final List<GwtTechnique> list= stateInfo.getTopTechniqueList();
-		
+		final List<GwtTechnique> list= null;//stateInfo.getTopTechniqueList();
+//		TODO
 		this.service.getProject(this.getCurrentState().getProjectID(), new AsyncCallback<GwtProject>()
 		{
 			public void onFailure(Throwable caught) 
@@ -294,7 +294,8 @@ public class SelectTopRatedTechniquePane extends BasePane
 	
 	private GwtTechnique GwtTechinqueById(int id)
 	{
-		List<GwtTechnique> list= this.getCurrentState().getTopTechniqueList();
+//		/TODO
+		List<GwtTechnique> list= null;//this.getCurrentState().getTopTechniqueList();
 		for (GwtTechnique t: list)
 		{
 			if(id==t.getTechniqueId())
