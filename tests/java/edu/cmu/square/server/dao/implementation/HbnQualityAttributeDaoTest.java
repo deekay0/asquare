@@ -45,7 +45,7 @@ public class HbnQualityAttributeDaoTest extends AbstractSpringBase
 		assertNotNull(attributeList);
 		assertTrue(attributeList.size()>0);
 	}
-	
+/*	
 	@Test
 	public void testGetProjectAttributes() {
 		
@@ -61,5 +61,5 @@ public class HbnQualityAttributeDaoTest extends AbstractSpringBase
 		assertNotNull(attributeList);
 		assertTrue(attributeList.size()>0);
 	}
-
+*/
 }

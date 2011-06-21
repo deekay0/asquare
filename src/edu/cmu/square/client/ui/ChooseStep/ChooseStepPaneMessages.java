@@ -30,4 +30,5 @@ public interface ChooseStepPaneMessages extends Messages
 	String step5();
 	String step6();
 	String step9();
+	String case3_step5();
 }

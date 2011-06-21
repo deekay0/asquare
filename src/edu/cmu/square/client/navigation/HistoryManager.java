@@ -30,6 +30,7 @@ import edu.cmu.square.client.ui.core.content.BreadCrumbMessages;
 import edu.cmu.square.client.ui.elicitSecurityRequirements.ElicitSecurityRequirementsPilot;
 import edu.cmu.square.client.ui.inspectRequirements.InspectRequirementsPilot;
 import edu.cmu.square.client.ui.prioritizeRequirements.PrioritizeRequirementsPilot;
+import edu.cmu.square.client.ui.reviewAndFinalizeRequirements.ReviewAndFinalizeRequirementsPilot;
 import edu.cmu.square.client.ui.reviewOfRequirementsByAcquisitionOrganization.ReviewOfRequirementsByAcquisitionPilot;
 import edu.cmu.square.client.ui.reviewPackages.ReviewPackagesPilot;
 import edu.cmu.square.client.ui.risksAssessment.RiskAssessmentPilot;
@@ -73,6 +74,8 @@ public class HistoryManager implements ValueChangeHandler<String>
 
 	private Pilot reviewOfRequirementsByAcquisitionOrganizationPilot = new ReviewOfRequirementsByAcquisitionPilot();
 	private Pilot reviewPackagesPilot = new ReviewPackagesPilot();
+	private Pilot reviewAndFinalizeRequirementsPilot = new ReviewAndFinalizeRequirementsPilot();
+	
 	
 	 
 	public static class ViewId
@@ -94,6 +97,7 @@ public class HistoryManager implements ValueChangeHandler<String>
 		public static final String reviewOfRequirementsByAcquisitionOrganization = "reviewOfRequirementsByAcquisitionOrganization";
 		public static final String chooseStepCase3 = "chooseStepCase3";
 		public static final String reviewPackages = "reviewPackages";
+		public static final String reviewAndFinalizeRequirements = "reviewAndFinalizeRequirements";
 	}
 
 	public HistoryManager(Panel contentPane, Panel breadCrumbPane, State stateInfo)
@@ -222,7 +226,7 @@ public class HistoryManager implements ValueChangeHandler<String>
 		
 		if (crumb.trim().length()!=0) //Bread crumb text is not empty.
 		{
-			System.out.println("asdfasdf....."+this.currentState.getProjectName());
+			//System.out.println("asdfasdf....."+this.currentState.getProjectName());
 			Hyperlink chooseStep = new Hyperlink(this.currentState.getProjectName(), ChooseStepPilot.generateNavigationId(ChooseStepPilot.PageId.home));
 			Hyperlink chooseStepCase3 = new Hyperlink(this.currentState.getProjectName(), ChooseStepCase3Pilot.generateNavigationId(ChooseStepCase3Pilot.PageId.home));
 			
@@ -366,7 +370,9 @@ public class HistoryManager implements ValueChangeHandler<String>
 		else if (ViewId.reviewPackages.equals(view)){
 			return this.reviewPackagesPilot;
 		}
-			
+		else if (ViewId.reviewAndFinalizeRequirements.equals(view)){
+			return this.reviewAndFinalizeRequirementsPilot;
+		}		
 		else
 		{
 			return null;

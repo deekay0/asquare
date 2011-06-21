@@ -432,15 +432,15 @@ public class ReviewOfRequirementsByAcquisitionDetailPane extends BasePane implem
 					@Override
 					public void onClick(ClickEvent event)
 					{
-						System.out.println("Hello, you clicked approve button.");
+						//System.out.println("Hello, you clicked approve button.");
 						boolean response = Window.confirm(messages.confirmApprove() + "?");
 						if (response)
 						{
-							System.out.println("approv button response is working");
+							//System.out.println("approv button response is working");
 							GwtRequirement req = new GwtRequirement();
 							//req.setId(approveButton.getRequirementId());
 							req.setId(currentRequirementId);
-							System.out.println("currentRequirementId"+currentRequirementId);
+							//System.out.println("currentRequirementId"+currentRequirementId);
 							changeStatusToApproveRequirement(req);
 						}
 					}
@@ -454,11 +454,11 @@ public class ReviewOfRequirementsByAcquisitionDetailPane extends BasePane implem
 				@Override
 				public void onClick(ClickEvent event)
 				{
-					System.out.println("Hello, you clicked request revision button.");
+					//System.out.println("Hello, you clicked request revision button.");
 					boolean response = Window.confirm(messages.confirmRequestRevision() + "?");
 					if (response)
 					{
-						System.out.println("request button response is working");
+						//System.out.println("request button response is working");
 						GwtRequirement req = new GwtRequirement();
 						req.setId(currentRequirementId);
 						//req.setId(requestRevisionButton.getRequirementId());
