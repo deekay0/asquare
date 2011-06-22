@@ -37,7 +37,6 @@ import edu.cmu.square.client.model.GwtProject;
 import edu.cmu.square.client.model.GwtRequirement;
 import edu.cmu.square.client.model.GwtRisk;
 import edu.cmu.square.client.model.GwtSubGoal;
-import edu.cmu.square.client.model.GwtTerm;
 import edu.cmu.square.client.navigation.State;
 import edu.cmu.square.client.remoteService.step.interfaces.AgreeOnDefinitionsService;
 import edu.cmu.square.client.remoteService.step.interfaces.AgreeOnDefinitionsServiceAsync;
@@ -45,8 +44,8 @@ import edu.cmu.square.client.remoteService.step.interfaces.CollectArtifactsServi
 import edu.cmu.square.client.remoteService.step.interfaces.CollectArtifactsServiceAsync;
 import edu.cmu.square.client.remoteService.step.interfaces.IdentifyGoalsAssetsService;
 import edu.cmu.square.client.remoteService.step.interfaces.IdentifyGoalsAssetsServiceAsync;
-import edu.cmu.square.client.remoteService.step.interfaces.ReviewOfRequirementsByAcquisitionService;
-import edu.cmu.square.client.remoteService.step.interfaces.ReviewOfRequirementsByAcquisitionServiceAsync;
+import edu.cmu.square.client.remoteService.step.interfaces.ReviewAndFinalizeRequirementsService;
+import edu.cmu.square.client.remoteService.step.interfaces.ReviewAndFinalizeRequirementsServiceAsync;
 import edu.cmu.square.client.remoteService.step.interfaces.RiskAssessmentService;
 import edu.cmu.square.client.remoteService.step.interfaces.RiskAssessmentServiceAsync;
 import edu.cmu.square.client.ui.agreeOnDefinitions.AgreeOnDefinitionsPane;
@@ -59,7 +58,7 @@ public class ReviewAndFinalizeRequirementsDetailPane extends BasePane implements
 {
 		final ReviewAndFinalizeRequirementsDetailPaneMessages messages = (ReviewAndFinalizeRequirementsDetailPaneMessages) GWT
 				.create(ReviewAndFinalizeRequirementsDetailPaneMessages.class);
-		private ReviewOfRequirementsByAcquisitionServiceAsync requirementService = GWT.create(ReviewOfRequirementsByAcquisitionService.class);
+		private ReviewAndFinalizeRequirementsServiceAsync requirementService = GWT.create(ReviewAndFinalizeRequirementsService.class);
 		private RiskAssessmentServiceAsync riskService = GWT.create(RiskAssessmentService.class);
 
 		private GwtProject currentProject;
@@ -190,7 +189,7 @@ public class ReviewAndFinalizeRequirementsDetailPane extends BasePane implements
 		public void loadProjectRequirements()
 		{
 			ServiceDefTarget endpoint = (ServiceDefTarget) requirementService;
-			endpoint.setServiceEntryPoint(GWT.getModuleBaseURL() + "reviewOfRequirementsByAcquisitionService.rpc");
+			endpoint.setServiceEntryPoint(GWT.getModuleBaseURL() + "reviewAndFinalizeRequirementsService.rpc");
 			
 			this.requirementService.getRequirementsFromProject(this.currentProject.getId(), new AsyncCallback<List<GwtRequirement>>()
 			{
@@ -1157,9 +1156,9 @@ public class ReviewAndFinalizeRequirementsDetailPane extends BasePane implements
 		{
 
 			this.showStatusBar("changing...");
-			ReviewOfRequirementsByAcquisitionServiceAsync service1 = GWT.create(ReviewOfRequirementsByAcquisitionService.class);
+			ReviewAndFinalizeRequirementsServiceAsync service1 = GWT.create(ReviewAndFinalizeRequirementsService.class);
 			ServiceDefTarget endpoint = (ServiceDefTarget) service1;
-			endpoint.setServiceEntryPoint(GWT.getModuleBaseURL() + "reviewOfRequirementsByAcquisitionService.rpc");
+			endpoint.setServiceEntryPoint(GWT.getModuleBaseURL() + "reviewAndFinalizeRequirementsService.rpc");
 
 			GwtProject project = new GwtProject();
 			project.setId(this.getCurrentState().getProjectID());
@@ -1190,9 +1189,9 @@ public class ReviewAndFinalizeRequirementsDetailPane extends BasePane implements
 		{
 
 			this.showStatusBar("changing...");
-			ReviewOfRequirementsByAcquisitionServiceAsync service1 = GWT.create(ReviewOfRequirementsByAcquisitionService.class);
+			ReviewAndFinalizeRequirementsServiceAsync service1 = GWT.create(ReviewAndFinalizeRequirementsService.class);
 			ServiceDefTarget endpoint = (ServiceDefTarget) service1;
-			endpoint.setServiceEntryPoint(GWT.getModuleBaseURL() + "reviewOfRequirementsByAcquisitionService.rpc");
+			endpoint.setServiceEntryPoint(GWT.getModuleBaseURL() + "reviewAndFinalizeRequirementsService.rpc");
 
 			GwtProject project = new GwtProject();
 			project.setId(this.getCurrentState().getProjectID());

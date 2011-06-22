@@ -27,14 +27,14 @@ public class ReviewAndFinalizeRequirementsPilot extends Pilot
 	public ReviewAndFinalizeRequirementsPilot()
 	{
 		this.isStep=true;
-		this.STEP_DESCRIPTION="Case 1 - Step 4: Review Of Requirements By Acquisition Organization";
+		this.STEP_DESCRIPTION="Case 3 - Step 5: Review and Finalize Security Requirements";
 	}
 	
 
 	public Widget navigateTo(String pageId, State currentStateInformation)
 	{
 		
-		String step = HistoryManager.ViewId.reviewOfRequirementsByAcquisitionOrganization;
+		String step = HistoryManager.ViewId.reviewAndFinalizeRequirements;
 
 		//If user settings indicates to skip teach step, the target page will be the start page not the teach step 
 		if(currentStateInformation.getSkipTeachSetp() && pageId.equals(PageId.home))
@@ -82,17 +82,24 @@ public class ReviewAndFinalizeRequirementsPilot extends Pilot
 		//ASQUARE
 		else if (currentState.getUserProjectRole() == ProjectRole.Acquisition_Organization_Engineer)
 		{
-			currentState.setMode(GwtModesType.ReadWrite);
+			currentState.setMode(GwtModesType.ReadOnly);
 		}
 		else if (currentState.getUserProjectRole() == ProjectRole.Contractor)
 		{
+			currentState.setMode(GwtModesType.NoAccess);
+		}
+		else if (currentState.getUserProjectRole() == ProjectRole.Security_Specialist)
+		{
 			currentState.setMode(GwtModesType.ReadWrite);
 		}
-		else if (currentState.getUserProjectRole() == ProjectRole.None)
+		else if (currentState.getUserProjectRole() == ProjectRole.COTS_Vendor)
 		{
-			
+			currentState.setMode(GwtModesType.ReadOnly);
+		}		
+		else if (currentState.getUserProjectRole() == ProjectRole.None)
+		{			
 			currentState.setMode(GwtModesType.ReadWrite);
-			//currentState.setMode(GwtModesType.NoAccess);
+			//currentState.setMode(GwtModesType.NoAccess);//<----!!!!!! Try to change
 		}
 		else 
 		{
@@ -105,11 +112,11 @@ public class ReviewAndFinalizeRequirementsPilot extends Pilot
 	public String getBreadCrumb()
 	{
 		final BreadCrumbMessages messages = (BreadCrumbMessages) GWT.create(BreadCrumbMessages.class);
-		return messages.reviewOfRequirementsByAcquisitionOrganization();
+		return messages.reviewAndFinalizeRequirements();
 	}
 	
 	public static String generateNavigationId(String pageId)
 	{
-		return HistoryManager.ViewId.reviewOfRequirementsByAcquisitionOrganization+ "/" + pageId;
+		return HistoryManager.ViewId.reviewAndFinalizeRequirements+ "/" + pageId;
 	}	
 }

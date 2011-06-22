@@ -23,6 +23,7 @@ import edu.cmu.square.client.ui.core.content.teachStep.TeachStepMessages;
 import edu.cmu.square.client.ui.elicitSecurityRequirements.ElicitSecurityRequirementsMessages;
 import edu.cmu.square.client.ui.inspectRequirements.InspectRequirementsMessages;
 import edu.cmu.square.client.ui.prioritizeRequirements.PrioritizeMessages;
+import edu.cmu.square.client.ui.reviewAndFinalizeRequirements.ReviewAndFinalizeRequirementsMessages;
 import edu.cmu.square.client.ui.reviewOfRequirementsByAcquisitionOrganization.ReviewOfRequirementsByAcquisitionMessages;
 import edu.cmu.square.client.ui.reviewPackages.ReviewPackagesMessages;
 import edu.cmu.square.client.ui.risksAssessment.SecurityRiskAssessmentMessages;
@@ -92,6 +93,11 @@ public class TeachStepPane extends Composite
 		{
 			messages = (ReviewPackagesMessages)GWT.create(ReviewPackagesMessages.class);
 		}
+		else if (stepToTeach.equals(HistoryManager.ViewId.reviewAndFinalizeRequirements))
+		{
+			messages = (ReviewAndFinalizeRequirementsMessages)GWT.create(ReviewAndFinalizeRequirementsMessages.class);
+		}
+		
 		else
 		{
 			History.newItem(nextPage); //this should be a 404 page maybe?

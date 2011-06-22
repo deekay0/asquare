@@ -1,3 +1,4 @@
+
 /**
  * @author: deekay
  */
@@ -45,11 +46,11 @@ public class HbnQualityAttributeDaoTest extends AbstractSpringBase
 		assertNotNull(attributeList);
 		assertTrue(attributeList.size()>0);
 	}
-	
+/*	
 	@Test
 	public void testGetProjectAttributes() {
 		
-		List<QualityAttribute> attributeList = qualityAttributeDao.getQualityAttributesByProject(getTestProject());
+		List<QualityAttribute> attributeList = qualityAttributeDao.getProjectAttributes(getTestProject());
 		assertNotNull(attributeList);
 		assertTrue(attributeList.size()>0);
 	}
@@ -57,9 +58,9 @@ public class HbnQualityAttributeDaoTest extends AbstractSpringBase
 	@Test
 	public void testGetAll2() {
 		
-		List<QualityAttribute> attributeList = qualityAttributeDao.getAll();
+		List<ProjectPackageAttributeRating> attributeList = qualityAttributeDao.getAll2();
 		assertNotNull(attributeList);
 		assertTrue(attributeList.size()>0);
 	}
-
+*/
 }

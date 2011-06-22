@@ -78,10 +78,10 @@ public interface ReviewOfRequirementsByAcquisitionService extends RemoteService 
 		 */
 		List<GwtRequirement> getRequirementsFromProject(Integer projectID) throws SquareException;
 		
-		void assignRequirementsToCategory(List<GwtRequirement> requirements,int categoryID)throws SquareException;
+		//void assignRequirementsToCategory(List<GwtRequirement> requirements,int categoryID)throws SquareException;
 
 		
-		void removeRequirementsFromCategory(List<GwtRequirement> requirements,int categoryID)throws SquareException;
+		//void removeRequirementsFromCategory(List<GwtRequirement> requirements,int categoryID)throws SquareException;
 
 		void changeStatusToApproveRequirement(Integer projectId, GwtRequirement gwtRequirement)throws SquareException;
 
