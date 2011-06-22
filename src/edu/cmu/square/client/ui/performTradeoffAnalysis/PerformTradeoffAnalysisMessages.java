@@ -1,6 +1,8 @@
 package edu.cmu.square.client.ui.performTradeoffAnalysis;
 
-public class PerformTradeoffAnalysisMessages
-{
+import edu.cmu.square.client.ui.core.content.teachStep.TeachMessages;
 
+public interface PerformTradeoffAnalysisMessages extends TeachMessages
+{
+	String noelementsFound();
 }

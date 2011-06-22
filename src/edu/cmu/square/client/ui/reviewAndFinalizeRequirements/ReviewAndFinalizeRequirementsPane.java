@@ -77,8 +77,7 @@ public class ReviewAndFinalizeRequirementsPane extends BasePane
 	{
 		
 			if(this.getQueryString().get("PageId")!=null)
-			{
-				
+			{			
 					try
 					{
 					this.currentPage=Integer.parseInt(this.getQueryString().get("PageId"));
@@ -86,8 +85,7 @@ public class ReviewAndFinalizeRequirementsPane extends BasePane
 					catch(Exception ex)
 					{
 						this.currentPage=1;
-					}
-				
+					}			
 			}
 			
 			if(this.getQueryString().get("search")!=null)
