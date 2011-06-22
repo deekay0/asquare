@@ -77,6 +77,12 @@ public class PerformTradeoffAnalysisPane extends BasePane
 	private FlexTable matrix = new FlexTable();
 	private FlexTable matrixHeader = new FlexTable();
 	
+	SquareHyperlink editRatingsLink = new SquareHyperlink(messages.editRatingsLink());		
+	SquareHyperlink finishRatingsLink = new SquareHyperlink(messages.finishRatingsLink());
+	SquareHyperlink editPackagesLink = new SquareHyperlink(messages.editPackagesLink());
+	SquareHyperlink finishPackagesLink = new SquareHyperlink(messages.finishPackagesLink());
+	SquareHyperlink editAttributesLink = new SquareHyperlink(messages.editAttributesLink());		
+	SquareHyperlink finishAttributesLink = new SquareHyperlink(messages.finishAttributesLink());
 	
 	boolean isReadOnly=false;
 
@@ -262,6 +268,24 @@ public class PerformTradeoffAnalysisPane extends BasePane
 		this.hideStatusBar();
 		VerticalPanel layout = new VerticalPanel();
 		
+		editRatingsLink.addClickHandler(new ClickHandler(){		
+			public void onClick(ClickEvent event) {
+				isReadOnly=false;
+				//loadEvaluationsCriteria();
+				drawRateMatrix();
+				getTotalsFromMatrix();
+				PaneInitialization();
+				changeLink();		
+		}});
+		finishRatingsLink.addClickHandler(new ClickHandler(){	
+			public void onClick(ClickEvent event) {
+				isReadOnly=true;
+				//loadEvaluationsCriteria();
+				drawRateMatrix();
+				getTotalsFromMatrix();
+				PaneInitialization();
+				changeLink();		
+			}});
 		drawMatrixPage();
 	
 		//this.getContent().clear();
@@ -274,7 +298,16 @@ public class PerformTradeoffAnalysisPane extends BasePane
 	
 	private void changeLink()
 	{
-		this.matrixHeader.setWidget(3, 1, matrix);
+		if(isReadOnly)
+		{
+			this.matrixHeader.setWidget(2, 1, editRatingsLink);
+			this.matrixHeader.setWidget(3, 1, matrix);		
+		}
+		else
+		{
+			this.matrixHeader.setWidget(2, 1, finishRatingsLink);
+			this.matrixHeader.setWidget(3, 1, matrix);
+		}		
 	}
 	
 	private void drawMatrixPage()
@@ -297,10 +330,15 @@ public class PerformTradeoffAnalysisPane extends BasePane
 		
 		if(isReadOnly)
 		{
-			this.matrixHeader.setWidget(3, 1, matrix);
+			if(GwtModesType.ReadWrite==this.currentState.getMode())
+			{
+				this.matrixHeader.setWidget(2, 1, editRatingsLink);
+			}		
+			this.matrixHeader.setWidget(3, 1, matrix);		
 		}
 		else
-		{	
+		{
+			this.matrixHeader.setWidget(2, 1, finishRatingsLink);
 			this.matrixHeader.setWidget(3, 1, matrix);
 		}
 		
@@ -727,108 +765,6 @@ public class PerformTradeoffAnalysisPane extends BasePane
 
 			}
 		}
-		
-		
-		
-	
-
-		
-		for(int i=0; i<attributes.size();i++)
-		{/*		
-			for(int j=0; j<softwarePackages.size();j++)
-			{
-				
-				int tID=attributes.get(i).getId();
-				int eID=softwarePackages.get(j).getId();
-				
-				int value = getValueFromlistOfRateValues(eID, tID);
-				
-				if(isReadOnly)
-				{
-					Label valueLabel = new Label(String.valueOf(value));
-					valueLabel.setHorizontalAlignment(HasHorizontalAlignment.ALIGN_CENTER);
-					matrix.setWidget(j+1, i+1, valueLabel);
-					formatter.setHorizontalAlignment(j+1, i+1, HasHorizontalAlignment.ALIGN_CENTER);
-					formatter.setStyleName(j+1, i+1,"square-Matrix");
-				}
-				else
-				{
-					//Allow only the digits 1,2 and 3 to be inputed in the rateValueTextBox
-					final RateValueTextbox rateValueTextbox =new RateValueTextbox(tID,eID, value);
-					rateValueTextbox.setTextAlignment(TextBox.ALIGN_CENTER);
-					rateValueTextbox.addKeyPressHandler(new KeyPressHandler(){	
-						public void onKeyPress(KeyPressEvent event) {
-							char keyCode= event.getCharCode();
-							 if (
-									 ( (keyCode< '0' || keyCode>'3')) && (keyCode != (char) KeyCodes.KEY_TAB)
-							            && (keyCode != (char) KeyCodes.KEY_BACKSPACE)
-							            && (keyCode != (char) KeyCodes.KEY_DELETE) && (keyCode != (char) KeyCodes.KEY_ENTER) 
-							            && (keyCode != (char) KeyCodes.KEY_HOME) && (keyCode != (char) KeyCodes.KEY_END)
-							            && (keyCode != (char) KeyCodes.KEY_LEFT) && (keyCode != (char) KeyCodes.KEY_UP)
-							            && (keyCode != (char) KeyCodes.KEY_RIGHT) && (keyCode != (char) KeyCodes.KEY_DOWN)) {	 	
-								 	// rateValueTextbox.cancelKey() suppresses the current keyboard event.
-								 	rateValueTextbox.cancelKey();
-							 }
-						}
-						});
-						rateValueTextbox.addFocusHandler(new FocusHandler(){
-							public void onFocus(FocusEvent event)
-							{
-								rateValueTextbox.setSelectionRange(0, rateValueTextbox.getText().length());
-								
-							}});
-				
-
-						
-						rateValueTextbox.addChangeHandler(new ChangeHandler(){
-						public void onChange(ChangeEvent event) {
-						//	Window.alert("a changed happened");
-							
-							if(rateValueTextbox.getText().trim().length()==0)
-							 {
-								 rateValueTextbox.setText("0");
-							 }
-							char keyCode;
-							
-							// Validation of the textbox from Copy and Paste
-							if(rateValueTextbox.getText().trim().length()==1)
-							{
-								keyCode=rateValueTextbox.getText().trim().charAt(0);
-							   if(keyCode>= '0' && keyCode<='3')
-							   {
-								   getTotalsFromMatrix();
-								   setRateValue(rateValueTextbox.getTecniqueID(),rateValueTextbox.getEvaluationID(),Integer.parseInt(rateValueTextbox.getText()));
-									rateValueTextbox.setOldValue(rateValueTextbox.getText());
-							   }
-							   else
-							   {
-								   rateValueTextbox.setText(rateValueTextbox.getOldValue());
-							   }
-							}
-							else
-							{
-								rateValueTextbox.setText(rateValueTextbox.getOldValue());
-							}
-
-							
-						}});
-
-					matrix.setWidget(j+1, i+1, rateValueTextbox);
-					formatter.setHorizontalAlignment(j+1, i+1, HasHorizontalAlignment.ALIGN_CENTER);
-					formatter.setStyleName(j+1, i+1,"square-Matrix");
-				}
-				
-				RateValueLabel totalLabel= new RateValueLabel(attributes.get(i).getId());
-				totalLabel.setText("0");
-
-				matrix.setWidget(j+1, attributes.size()+1, totalLabel);
-				formatter.setHorizontalAlignment(j+1, attributes.size()+1,  HasHorizontalAlignment.ALIGN_CENTER);
-				formatter.setStyleName(j+1, attributes.size()+1,"square-Matrix");
-			
-			}
-			
-						
-		*/}
 	}
 	/**
 	 * Get the totals traversing the current Matrix FlexTable
