@@ -332,6 +332,7 @@ public class ReviewPackagesPane extends BasePane
 		drawRateMatrixValues();
 
 	}
+	
 	public void drawRateMatrixHeaderTechniques()
 	{
 		FlexCellFormatter formatter = this.matrix.getFlexCellFormatter();
@@ -379,13 +380,14 @@ public class ReviewPackagesPane extends BasePane
 		formatter.setStyleName(0, attributes.size()+1,"square-Matrix");
 		
 	}
+	
 	public void drawRateMatrixEvaluationCriteriaColum()
 	{
+		
 		FlexCellFormatter formatter = this.matrix.getFlexCellFormatter();
 		// Set the left columns with the evaluation criteria 
-		for(int j=0; j<softwarePackages.size();j++)
+		for(int j=0, widgetCount=0; j<softwarePackages.size();j++, ++widgetCount)
 		{
-			
 			Label evaluationLabel = new Label(softwarePackages.get(j).getName());
 			
 			final DecoratedPopupPanel simplePopup = new DecoratedPopupPanel(true);
@@ -409,9 +411,22 @@ public class ReviewPackagesPane extends BasePane
 						simplePopup.hide();
 						
 					}});
-			matrix.setWidget(j+1,0 , evaluationLabel);
-			formatter.setHorizontalAlignment(j+1,0 , HasHorizontalAlignment.ALIGN_RIGHT);
-			formatter.setStyleName(j+1,0 ,  "square-Matrix");
+			    
+			    if(j == 0)
+				{
+					matrix.setWidget(j+1,0 , evaluationLabel);
+					formatter.setHorizontalAlignment(j+1,0 , HasHorizontalAlignment.ALIGN_RIGHT);
+					formatter.setStyleName(j+1,0 ,  "square-Matrix");
+					matrix.setWidget(j+2,0 , new Label(""));
+					++widgetCount;
+					
+				}
+			    else
+			    {
+			    	matrix.setWidget(widgetCount+1,0 , evaluationLabel);
+			    	formatter.setHorizontalAlignment(widgetCount+1,0 , HasHorizontalAlignment.ALIGN_RIGHT);
+			    	formatter.setStyleName(widgetCount+1,0 ,  "square-Matrix");
+			    }
 			
 		}
 		
@@ -423,9 +438,8 @@ public class ReviewPackagesPane extends BasePane
 		for(int i=0; i<attributes.size();i++)
 		{
 			
-			for(int j=0; j<softwarePackages.size();j++)
+			for(int j=0, widgetCount = 0; j<softwarePackages.size();j++, ++widgetCount)
 			{
-				
 				int tID=attributes.get(i).getId();
 				int eID=softwarePackages.get(j).getId();
 				
@@ -435,9 +449,23 @@ public class ReviewPackagesPane extends BasePane
 				{
 					Label valueLabel = new Label(String.valueOf(value));
 					valueLabel.setHorizontalAlignment(HasHorizontalAlignment.ALIGN_CENTER);
-					matrix.setWidget(j+1, i+1, valueLabel);
-					formatter.setHorizontalAlignment(j+1, i+1, HasHorizontalAlignment.ALIGN_CENTER);
-					formatter.setStyleName(j+1, i+1,"square-Matrix");
+					
+					
+					if(j==0)
+					{
+						matrix.setWidget(1, i+1, valueLabel);
+						formatter.setHorizontalAlignment(1, i+1, HasHorizontalAlignment.ALIGN_CENTER);
+						formatter.setStyleName(1, i+1,"square-Matrix");
+						++widgetCount;
+					}
+					else
+					{
+						matrix.setWidget(widgetCount+1, i+1, valueLabel);
+						formatter.setHorizontalAlignment(widgetCount+1, i+1, HasHorizontalAlignment.ALIGN_CENTER);
+						formatter.setStyleName(widgetCount+1, i+1,"square-Matrix");
+					}
+					
+					
 				}
 				else
 				{
@@ -504,17 +532,29 @@ public class ReviewPackagesPane extends BasePane
 							
 						}});
 
-					matrix.setWidget(j+1, i+1, rateValueTextbox);
-					formatter.setHorizontalAlignment(j+1, i+1, HasHorizontalAlignment.ALIGN_CENTER);
-					formatter.setStyleName(j+1, i+1,"square-Matrix");
+						if(j==0)
+						{
+							matrix.setWidget(1, i+1, rateValueTextbox);
+							formatter.setHorizontalAlignment(1, i+1, HasHorizontalAlignment.ALIGN_CENTER);
+							formatter.setStyleName(1, i+1,"square-Matrix");
+							++widgetCount;
+						}
+						else
+						{
+							matrix.setWidget(widgetCount+1, i+1, rateValueTextbox);
+							formatter.setHorizontalAlignment(widgetCount+1, i+1, HasHorizontalAlignment.ALIGN_CENTER);
+							formatter.setStyleName(widgetCount+1, i+1,"square-Matrix");
+						}
 				}
 				RateValueLabel totalLabel= new RateValueLabel(attributes.get(i).getId());
 				totalLabel.setText("0");
 
-				matrix.setWidget(j+1, attributes.size()+1, totalLabel);
-				formatter.setHorizontalAlignment(j+1, attributes.size()+1,  HasHorizontalAlignment.ALIGN_CENTER);
-				formatter.setStyleName(j+1, attributes.size()+1,"square-Matrix");
-			
+				if(widgetCount>1)
+				{
+				matrix.setWidget(widgetCount+1, attributes.size()+1, totalLabel);
+				formatter.setHorizontalAlignment(widgetCount+1, attributes.size()+1,  HasHorizontalAlignment.ALIGN_CENTER);
+				formatter.setStyleName(widgetCount+1, attributes.size()+1,"square-Matrix");
+				}
 			}
 			
 						
@@ -525,25 +565,30 @@ public class ReviewPackagesPane extends BasePane
 	 */
 	public void getTotalsFromMatrix()
 	{
-		for(int i=1; i<=softwarePackages.size();i++)
-		{	int sum=0;
+		System.out.println("rows: "+matrix.getRowCount()+" columns: "+matrix.getCellCount(0));
+		for(int i=3; i<=softwarePackages.size()+1;i++)
+		{	
+			int sum=0;
 			
 			for(int j=1; j<=attributes.size();j++)
 			{
-				
 					Widget w =  matrix.getWidget(i, j);
+					Widget weight =  matrix.getWidget(1, j);
 					
 					if ( w instanceof RateValueTextbox) 
 					{
 						RateValueTextbox new_name = (RateValueTextbox) w;
+						RateValueTextbox weightVal = (RateValueTextbox) weight;
 						//Window.alert(new_name.getText());
-						sum=sum+ Integer.parseInt(new_name.getText());
+						sum += Integer.parseInt(new_name.getText()) * Integer.parseInt(weightVal.getText());
+							
 					}
 					else if( w instanceof Label)
 					{
-						Label new_name = (Label) w;
+						Label new_name = (Label) w;						
+						Label weightVal = (Label) weight;
 						//Window.alert(new_name.getText());
-						sum=sum+ Integer.parseInt(new_name.getText());
+						sum += Integer.parseInt(new_name.getText()) * Integer.parseInt(weightVal.getText());
 					}
 					
 			}
@@ -571,7 +616,7 @@ public class ReviewPackagesPane extends BasePane
 	private List<GwtSoftwarePackage> getTopValues()
 	{
 		List<GwtSoftwarePackage> topPackages = new ArrayList<GwtSoftwarePackage>();
-		
+	
 		int max=-1;
 		for(int i=1; i<=softwarePackages.size();i++)
 		{
