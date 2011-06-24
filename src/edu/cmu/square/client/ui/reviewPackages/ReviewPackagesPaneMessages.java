@@ -21,4 +21,36 @@ public interface ReviewPackagesPaneMessages extends CommonMessages
 	String matrixLableY();
 	String rateLegend();
 	String buttonGotoSelect();
+	String addSoftwarePackage();
+	String addQualityAttribute();
+	String createSoftwarePackageDialogBoxAdd();
+	String createQualityAttributeDialogBoxAdd();
+	
+	String createQualityAttributeDialogBoxTitle();
+
+	String createQualityAttributeDialogBoxSave();
+
+	String createQualityAttributeDialogBoxDefinition();
+
+	String createQualityAttributeDialogBoxName();
+
+	String createQualityAttributeDialogBoxCancel();
+
+	String createQualityAttributeDialogBoxAlreadyExist();
+
+	String createSoftwarePackageDialogBoxTitle();
+
+	String createSoftwarePackageDialogBoxName();
+
+	String createSoftwarePackageDialogBoxDefinition();
+
+	String createSoftwarePackageDialogBoxSave();
+
+	String createSoftwarePackageDialogBoxCancel();
+
+	String createSoftwarePackageDialogBoxAlreadyExist();
+
+	String editQualityAttributeDialogBoxTitle();
+
+	String editSoftwarePackageDialogBoxTitle();
 }
