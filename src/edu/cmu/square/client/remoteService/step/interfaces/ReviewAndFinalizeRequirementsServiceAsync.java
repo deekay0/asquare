@@ -7,9 +7,8 @@ import com.google.gwt.user.client.rpc.AsyncCallback;
 import edu.cmu.square.client.exceptions.SquareException;
 import edu.cmu.square.client.model.GwtProject;
 import edu.cmu.square.client.model.GwtRequirement;
-import edu.cmu.square.client.model.GwtTerm;
 
-public interface ReviewOfRequirementsByAcquisitionServiceAsync
+public interface ReviewAndFinalizeRequirementsServiceAsync
 {
 	/**
 	 * This returns all the terms in this project.
@@ -77,4 +76,5 @@ public interface ReviewOfRequirementsByAcquisitionServiceAsync
 	void changeStatusToApproveRequirement(Integer projectId, GwtRequirement gwtRequirement, AsyncCallback<Void> asyncCallback);
 
 	void changeStatusToRequestRevisionRequirement(Integer projectId, GwtRequirement gwtRequirement, AsyncCallback<Void> asyncCallback);
+
 }

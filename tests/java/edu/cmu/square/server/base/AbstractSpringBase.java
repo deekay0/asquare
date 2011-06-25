@@ -15,6 +15,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import edu.cmu.square.client.model.GwtEvaluation;
 import edu.cmu.square.client.model.GwtInspectionTechnique;
+import edu.cmu.square.client.model.GwtRequirement;
 import edu.cmu.square.client.model.GwtTechnique;
 import edu.cmu.square.client.model.GwtTerm;
 import edu.cmu.square.server.dao.interfaces.ArtifactDao;
@@ -46,6 +47,9 @@ public class AbstractSpringBase {
 	protected AsquareCase asquareCase;
 	
 	protected Project testProject;
+	//protected Project testProject1;
+	
+	
 	protected User testUser;
 	
 	protected User testUser1;
@@ -53,6 +57,7 @@ public class AbstractSpringBase {
 	protected Role testRole;
 	
 	protected Requirement testRequirement;
+	//protected Requirement testRequirement1;
 	protected Requirement testRequirement2;
 	protected Category testCategory1;
 	protected Category testCategory2;
@@ -156,6 +161,7 @@ public class AbstractSpringBase {
 		testRequirement.setPriority(1);
 		testRequirement.setPrivacy(false);
 		testRequirement.setSecurity(true);
+		testRequirement.setStatus("Pending");
 		testRequirement.setProject(testProject);
 		testRequirement.setStatus("Pending");
 		testRequirement.setTitle("Test requirement title");
@@ -230,6 +236,7 @@ public class AbstractSpringBase {
 		testRequirement2.setPriority(1);
 		testRequirement2.setPrivacy(false);
 		testRequirement2.setSecurity(true);
+		testRequirement2.setStatus("Pending");
 		testRequirement2.setProject(testProject);
 		testRequirement2.setTitle("Test requirement title");
 		testRequirement2.setStatus("Approved");
@@ -340,6 +347,22 @@ public class AbstractSpringBase {
 		}
 		
 		return terms;
+	}
+	
+	public List<GwtRequirement> createDefaultRequirements()
+	{
+		List<GwtRequirement> reqs = new ArrayList<GwtRequirement>();
+		
+		for (int i = 0; i < 5; i++)
+		{
+			GwtRequirement req = new GwtRequirement();
+			req.setDescription("req test description " + i);
+			req.setTitle("req test title " + i);
+			
+			reqs.add(req);
+		}
+		
+		return reqs;
 	}
 	
 	public List<GwtTechnique> createDefaultTechnique()

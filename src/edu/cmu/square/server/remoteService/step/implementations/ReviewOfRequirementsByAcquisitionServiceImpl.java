@@ -29,11 +29,7 @@ public class ReviewOfRequirementsByAcquisitionServiceImpl extends SquareRemoteSe
 		}
 
 
-		public GwtRequirement addRequirement(GwtProject gwtProject, GwtRequirement gwtRequirement) throws SquareException
-		{
-		 return	reviewOfRequirementsByAcquisitionBusiness.addRequirement(gwtProject, gwtRequirement);
-		}
-
+		
 
 		public List<GwtRequirement> getRequirements(GwtProject gwtProject) throws SquareException
 		{
@@ -41,12 +37,6 @@ public class ReviewOfRequirementsByAcquisitionServiceImpl extends SquareRemoteSe
 			return	reviewOfRequirementsByAcquisitionBusiness.getRequirements(gwtProject);
 		}
 
-
-		public void removeRequirement(GwtRequirement gwtRequirement) throws SquareException
-		{
-				reviewOfRequirementsByAcquisitionBusiness.removeRequirement(gwtRequirement);
-			
-		}
 
 		public void updateRequirement(GwtProject gwtProject, GwtRequirement gwtRequirement) throws SquareException
 		{
@@ -67,32 +57,7 @@ public class ReviewOfRequirementsByAcquisitionServiceImpl extends SquareRemoteSe
 			reviewOfRequirementsByAcquisitionBusiness.updateRequirement(Requirement);
 			
 		}
-		
-		public void assignRequirementsToCategory(List<GwtRequirement> requirements,int categoryID) throws SquareException
-		{
-			reviewOfRequirementsByAcquisitionBusiness.assignRequirementsToCategory(requirements,categoryID);
-		}
 
-		
-		public void removeRequirementsFromCategory(List<GwtRequirement> requirements, int categoryID) throws SquareException
-		{
-			reviewOfRequirementsByAcquisitionBusiness.removeRequirementsFromCategory(requirements,categoryID);
-			
-		}
-
-
-		public void deleteRequirement(Integer requirementId, Integer projectId) throws SquareException
-		{
-			reviewOfRequirementsByAcquisitionBusiness.deleteRequirement(requirementId, projectId);
-			
-		}
-
-
-		public Integer addRequirementToProject(Integer projectId, GwtRequirement Requirement) throws SquareException
-		{
-			return reviewOfRequirementsByAcquisitionBusiness.addRequirementToProject(projectId, Requirement);
-			
-		}
 
 
 		@Override
@@ -109,6 +74,48 @@ public class ReviewOfRequirementsByAcquisitionServiceImpl extends SquareRemoteSe
 			reviewOfRequirementsByAcquisitionBusiness.changeStatusToRequestRevisionRequirement(projectId, gwtRequirement);
 			
 		}
+
 		
+		
+		
+
+		public void removeRequirement(GwtRequirement gwtRequirement) throws SquareException
+		{
+				reviewOfRequirementsByAcquisitionBusiness.removeRequirement(gwtRequirement);
+			
+		}
+		
+		public GwtRequirement addRequirement(GwtProject gwtProject, GwtRequirement gwtRequirement) throws SquareException
+		{
+		 return	reviewOfRequirementsByAcquisitionBusiness.addRequirement(gwtProject, gwtRequirement);
+		
+		}
+		/*
+		public void assignRequirementsToCategory(List<GwtRequirement> requirements,int categoryID) throws SquareException
+		{
+			reviewOfRequirementsByAcquisitionBusiness.assignRequirementsToCategory(requirements,categoryID);
+		}
+
+		
+		public void removeRequirementsFromCategory(List<GwtRequirement> requirements, int categoryID) throws SquareException
+		{
+			reviewOfRequirementsByAcquisitionBusiness.removeRequirementsFromCategory(requirements,categoryID);
+			
+		}
+
+*/
+		public void deleteRequirement(Integer requirementId, Integer projectId) throws SquareException
+		{
+			reviewOfRequirementsByAcquisitionBusiness.deleteRequirement(requirementId, projectId);
+			
+		}
+
+
+		public Integer addRequirementToProject(Integer projectId, GwtRequirement Requirement) throws SquareException
+		{
+			return reviewOfRequirementsByAcquisitionBusiness.addRequirementToProject(projectId, Requirement);
+			
+		}
+
 		
 }

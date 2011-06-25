@@ -1,25 +1,25 @@
 package edu.cmu.square.server.dao.model;
 
-// @author: deekay
+// @author: Nan
 
 import javax.persistence.Column;
 import javax.persistence.Embeddable;
 
 @Embeddable
-public class ProjectPackageAttributeRatingId implements java.io.Serializable {
+public class ProjectPackageRequirementRatingId implements java.io.Serializable {
 
-	private static final long serialVersionUID = 7966111034051149077L;
+	private static final long serialVersionUID = -6507161562197844916L;
 	private int projectId;
 	private int packageId;
-	private int attributeId;
+	private int requirementId;
 
-	public ProjectPackageAttributeRatingId() {
+	public ProjectPackageRequirementRatingId() {
 	}
 
-	public ProjectPackageAttributeRatingId(int projectId, int packageId, int attributeId) {
+	public ProjectPackageRequirementRatingId(int projectId, int packageId, int requirementId) {
 		this.projectId = projectId;
 		this.packageId = packageId;
-		this.attributeId = attributeId;
+		this.requirementId = requirementId;
 	}
 
 	@Column(name = "project_id", nullable = false)
@@ -30,7 +30,7 @@ public class ProjectPackageAttributeRatingId implements java.io.Serializable {
 	public void setProjectId(int projectId) {
 		this.projectId = projectId;
 	}
-
+	
 	@Column(name = "package_id", nullable = false)
 	public int getPackageId() {
 		return this.packageId;
@@ -40,28 +40,28 @@ public class ProjectPackageAttributeRatingId implements java.io.Serializable {
 		this.packageId = packageId;
 	}
 
-	
-	@Column(name = "attribute_id", nullable = false)
-	public int getAttributeId() {
-		return this.attributeId;
+	@Column(name = "requirement_id", nullable = false)
+	public int getRequirementId() {
+		return this.requirementId;
 	}
 
-	public void setAttributeId(int attributeId) {
-		this.attributeId = attributeId;
+	public void setRequirementId(int requirementId) {
+		this.requirementId = requirementId;
 	}
+
 
 	public boolean equals(Object other) {
 		if ((this == other))
 			return true;
 		if ((other == null))
 			return false;
-		if (!(other instanceof ProjectPackageAttributeRatingId))
+		if (!(other instanceof ProjectPackageRequirementRatingId))
 			return false;
-		ProjectPackageAttributeRatingId castOther = (ProjectPackageAttributeRatingId) other;
+		ProjectPackageRequirementRatingId castOther = (ProjectPackageRequirementRatingId) other;
 
 		return (this.getPackageId() == castOther.getPackageId())
-				&& (this.getProjectId() == castOther.getProjectId())
-				&& (this.getAttributeId() == castOther.getAttributeId());
+				&&(this.getRequirementId() == castOther.getRequirementId())
+				&& (this.getProjectId() == castOther.getProjectId());
 	}
 
 	public int hashCode() {
@@ -69,7 +69,7 @@ public class ProjectPackageAttributeRatingId implements java.io.Serializable {
 
 		result = 37 * result + this.getProjectId();
 		result = 37 * result + this.getPackageId();
-		result = 37 * result + this.getAttributeId();
+		result = 37 * result + this.getRequirementId();
 		return result;
 	}
 

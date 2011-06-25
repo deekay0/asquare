@@ -28,6 +28,8 @@ import edu.cmu.square.client.model.GwtModesType;
 import edu.cmu.square.client.model.GwtProject;
 import edu.cmu.square.client.model.GwtRequirement;
 import edu.cmu.square.client.navigation.State;
+import edu.cmu.square.client.remoteService.step.interfaces.ReviewAndFinalizeRequirementsService;
+import edu.cmu.square.client.remoteService.step.interfaces.ReviewAndFinalizeRequirementsServiceAsync;
 import edu.cmu.square.client.remoteService.step.interfaces.ReviewOfRequirementsByAcquisitionService;
 import edu.cmu.square.client.remoteService.step.interfaces.ReviewOfRequirementsByAcquisitionServiceAsync;
 import edu.cmu.square.client.ui.ChooseStep.ChooseStepPilot;
@@ -104,10 +106,10 @@ public class ReviewAndFinalizeRequirementsPane extends BasePane
 	public void loadRequirements()
 	{
 
-		ReviewOfRequirementsByAcquisitionServiceAsync service1 = GWT.create(ReviewOfRequirementsByAcquisitionService.class);
+		ReviewAndFinalizeRequirementsServiceAsync service1 = GWT.create(ReviewAndFinalizeRequirementsService.class);
 		ServiceDefTarget endpoint = (ServiceDefTarget) service1;
 		//System.out.println("at loadRequirement()");
-		endpoint.setServiceEntryPoint(GWT.getModuleBaseURL() + "reviewOfRequirementsByAcquisitionService.rpc");
+		endpoint.setServiceEntryPoint(GWT.getModuleBaseURL() + "reviewAndFinalizeRequirementsService.rpc");
 
 		GwtProject project = new GwtProject();
 		project.setId(this.getCurrentState().getProjectID());
@@ -135,9 +137,9 @@ public class ReviewAndFinalizeRequirementsPane extends BasePane
 	{
 		this.showStatusBar("adding...");
 
-		ReviewOfRequirementsByAcquisitionServiceAsync service1 = GWT.create(ReviewOfRequirementsByAcquisitionService.class);
+		ReviewAndFinalizeRequirementsServiceAsync service1 = GWT.create(ReviewAndFinalizeRequirementsService.class);
 		ServiceDefTarget endpoint = (ServiceDefTarget) service1;
-		endpoint.setServiceEntryPoint(GWT.getModuleBaseURL() + "reviewOfRequirementsByAcquisitionService.rpc");
+		endpoint.setServiceEntryPoint(GWT.getModuleBaseURL() + "reviewAndFinalizeRequirementsService.rpc");
 
 		GwtProject project = new GwtProject();
 		project.setId(this.getCurrentState().getProjectID());
@@ -168,9 +170,9 @@ public class ReviewAndFinalizeRequirementsPane extends BasePane
 	{
 
 		this.showStatusBar("removing...");
-		ReviewOfRequirementsByAcquisitionServiceAsync service1 = GWT.create(ReviewOfRequirementsByAcquisitionService.class);
+		ReviewAndFinalizeRequirementsServiceAsync service1 = GWT.create(ReviewAndFinalizeRequirementsService.class);
 		ServiceDefTarget endpoint = (ServiceDefTarget) service1;
-		endpoint.setServiceEntryPoint(GWT.getModuleBaseURL() + "reviewOfRequirementsByAcquisitionService.rpc");
+		endpoint.setServiceEntryPoint(GWT.getModuleBaseURL() + "reviewAndFinalizeRequirementsService.rpc");
 
 		GwtProject project = new GwtProject();
 		project.setId(this.getCurrentState().getProjectID());
@@ -201,9 +203,9 @@ public class ReviewAndFinalizeRequirementsPane extends BasePane
 
 		this.showStatusBar("updating...");
 
-		ReviewOfRequirementsByAcquisitionServiceAsync service1 = GWT.create(ReviewOfRequirementsByAcquisitionService.class);
+		ReviewAndFinalizeRequirementsServiceAsync service1 = GWT.create(ReviewAndFinalizeRequirementsService.class);
 		ServiceDefTarget endpoint = (ServiceDefTarget) service1;
-		endpoint.setServiceEntryPoint(GWT.getModuleBaseURL() + "reviewOfRequirementsByAcquisitionService.rpc");
+		endpoint.setServiceEntryPoint(GWT.getModuleBaseURL() + "reviewAndFinalizeRequirementsService.rpc");
 
 		GwtProject project = new GwtProject();
 		project.setId(this.getCurrentState().getProjectID());
@@ -675,7 +677,7 @@ public class ReviewAndFinalizeRequirementsPane extends BasePane
 			rowTable.setWidget(0, 2, new Label(" "));
 		}
 
-		final ReviewAndFinalizeRequirementsPane reviewOfRequirementsByAcquisitionObject = this;
+		//final ReviewAndFinalizeRequirementsPane reviewOfRequirementsByAcquisitionObject = this;
 
 //view detail hyperlink
 		viewDetailLink.addClickHandler(new ClickHandler()
@@ -800,6 +802,3 @@ public class ReviewAndFinalizeRequirementsPane extends BasePane
 	
 
 }
-
-
-
