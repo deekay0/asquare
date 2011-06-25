@@ -23,6 +23,7 @@ import com.google.gwt.user.client.ui.TextBox;
 import com.google.gwt.user.client.ui.VerticalPanel;
 
 import edu.cmu.square.client.model.GwtQualityAttribute;
+import edu.cmu.square.client.model.GwtTerm;
 import edu.cmu.square.client.utils.SquareUtil;
 
 /**
@@ -37,11 +38,11 @@ public class EditQualityAttributeDialog extends DialogBox
 	private final TextBox QualityAttributeTextBox = new TextBox();
 	private final TextArea QualityAttributeDefinitionTextBox = new TextArea();
 
+	private GwtQualityAttribute current;
 	private ReviewPackagesPane updateQualityAttributeCommand;
 	private List<GwtQualityAttribute> listOfQualityAttributes = new ArrayList<GwtQualityAttribute>();
 	final ReviewPackagesPaneMessages messages = (ReviewPackagesPaneMessages) GWT.create(ReviewPackagesPaneMessages.class);
 	private Button saveButton;
-	
 	/**
 	 * Creates a new dialog box with a talk back pointer to the given category
 	 * grid.
@@ -52,7 +53,7 @@ public class EditQualityAttributeDialog extends DialogBox
 	public EditQualityAttributeDialog(GwtQualityAttribute currentQualityAttribute, List<GwtQualityAttribute> QualityAttributes, ReviewPackagesPane command)
 		{
 			super();
-		
+			current = currentQualityAttribute;
 
 			this.listOfQualityAttributes = QualityAttributes;
 			this.updateQualityAttributeCommand = command;
@@ -88,7 +89,7 @@ public class EditQualityAttributeDialog extends DialogBox
 		// Set up the buttons
 		saveButton = new Button(messages.createQualityAttributeDialogBoxSave(), new SaveHandler(this, QualityAttribute));
 		Button cancelButton = new Button(messages.createQualityAttributeDialogBoxCancel(), new CancelHandler(this));
-
+		Button deleteButton = new Button(messages.createQualityAttributeDialogBoxDelete(), new DeleteHandler(this));
 		this.QualityAttributeTextBox.addKeyUpHandler(new KeyUpHandler()
 		{
 			public void onKeyUp(KeyUpEvent event)
@@ -151,10 +152,11 @@ public class EditQualityAttributeDialog extends DialogBox
 		
 		saveButton.setWidth("100px");
 		cancelButton.setWidth("100px");
-
+		deleteButton.setWidth("100px");
 		buttonsLayout.setSpacing(10);
 		buttonsLayout.add(saveButton);
 		buttonsLayout.add(cancelButton);
+		buttonsLayout.add(deleteButton);
 
 		// set the base layout
 		baseLayout.setHorizontalAlignment(HasHorizontalAlignment.ALIGN_CENTER);
@@ -232,6 +234,25 @@ public class EditQualityAttributeDialog extends DialogBox
 		public void onClick(ClickEvent event)
 		{
 			this.dialog.hide(true);
+		}
+	}
+	
+	private class DeleteHandler implements ClickHandler
+	{
+		private EditQualityAttributeDialog dialog = null;
+
+		public DeleteHandler(EditQualityAttributeDialog dialog)
+			{
+				super();
+				this.dialog = dialog;
+			}
+
+		public void onClick(ClickEvent event)
+		{
+
+					boolean response = Window.confirm(messages.confirmDelete() + "?");
+					if (response)
+						updateQualityAttributeCommand.removeQualityAttribute(current);
 		}
 	}
 }

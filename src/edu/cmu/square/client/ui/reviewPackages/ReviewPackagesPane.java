@@ -1080,6 +1080,18 @@ editPackagesLink.addClickHandler(new ClickHandler(){
 		updateSPinDB(localSoftwarePackage);
 	}
 
+	public void removeSoftwarePackage(GwtSoftwarePackage current)
+	{
+		// TODO Auto-generated method stub
+		
+	}
+
+	public void removeQualityAttribute(GwtQualityAttribute current)
+	{
+		// TODO Auto-generated method stub
+		
+	}
+
 
 	
 }

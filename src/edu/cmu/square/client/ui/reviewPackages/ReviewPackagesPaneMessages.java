@@ -53,4 +53,7 @@ public interface ReviewPackagesPaneMessages extends CommonMessages
 	String editQualityAttributeDialogBoxTitle();
 
 	String editSoftwarePackageDialogBoxTitle();
+	String createQualityAttributeDialogBoxDelete();
+	String confirmDelete();
+	String createSoftwarePackageDialogBoxDelete();
 }

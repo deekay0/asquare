@@ -23,6 +23,7 @@ import com.google.gwt.user.client.ui.TextBox;
 import com.google.gwt.user.client.ui.VerticalPanel;
 
 import edu.cmu.square.client.model.GwtSoftwarePackage;
+import edu.cmu.square.client.model.GwtTerm;
 import edu.cmu.square.client.utils.SquareUtil;
 
 /**
@@ -37,6 +38,7 @@ public class EditSoftwarePackageDialog extends DialogBox
 	private final TextBox SoftwarePackageTextBox = new TextBox();
 	private final TextArea SoftwarePackageDefinitionTextBox = new TextArea();
 
+	private GwtSoftwarePackage current;
 	private ReviewPackagesPane updateSoftwarePackageCommand;
 	private List<GwtSoftwarePackage> listOfSoftwarePackages = new ArrayList<GwtSoftwarePackage>();
 	final ReviewPackagesPaneMessages messages = (ReviewPackagesPaneMessages) GWT.create(ReviewPackagesPaneMessages.class);
@@ -53,7 +55,7 @@ public class EditSoftwarePackageDialog extends DialogBox
 		{
 			super();
 		
-
+current = currentSoftwarePackage;
 			this.listOfSoftwarePackages = SoftwarePackages;
 			this.updateSoftwarePackageCommand = command;
 
@@ -88,7 +90,7 @@ public class EditSoftwarePackageDialog extends DialogBox
 		// Set up the buttons
 		saveButton = new Button(messages.createSoftwarePackageDialogBoxSave(), new SaveHandler(this, SoftwarePackage));
 		Button cancelButton = new Button(messages.createSoftwarePackageDialogBoxCancel(), new CancelHandler(this));
-
+		Button deleteButton = new Button(messages.createSoftwarePackageDialogBoxDelete(), new DeleteHandler(this));
 		this.SoftwarePackageTextBox.addKeyUpHandler(new KeyUpHandler()
 		{
 			public void onKeyUp(KeyUpEvent event)
@@ -151,10 +153,12 @@ public class EditSoftwarePackageDialog extends DialogBox
 		
 		saveButton.setWidth("100px");
 		cancelButton.setWidth("100px");
-
+		deleteButton.setWidth("100px");
+		
 		buttonsLayout.setSpacing(10);
 		buttonsLayout.add(saveButton);
 		buttonsLayout.add(cancelButton);
+		buttonsLayout.add(deleteButton);
 
 		// set the base layout
 		baseLayout.setHorizontalAlignment(HasHorizontalAlignment.ALIGN_CENTER);
@@ -232,6 +236,25 @@ public class EditSoftwarePackageDialog extends DialogBox
 		public void onClick(ClickEvent event)
 		{
 			this.dialog.hide(true);
+		}
+	}
+	
+	private class DeleteHandler implements ClickHandler
+	{
+		private EditSoftwarePackageDialog dialog = null;
+
+		public DeleteHandler(EditSoftwarePackageDialog dialog)
+			{
+				super();
+				this.dialog = dialog;
+			}
+
+		public void onClick(ClickEvent event)
+		{
+
+					boolean response = Window.confirm(messages.confirmDelete() + "?");
+					if (response)
+						updateSoftwarePackageCommand.removeSoftwarePackage(current);
 		}
 	}
 }
