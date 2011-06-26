@@ -334,7 +334,6 @@ public class ReviewAndFinalizeRequirementsDetailPane extends BasePane implements
 		
 		public void loadRequirementForm()
 		{
-
 			this.matrix.getCellFormatter().setWidth(1, 0, "100px");
 			this.matrix.getCellFormatter().setWidth(1, 1, "80%");
 

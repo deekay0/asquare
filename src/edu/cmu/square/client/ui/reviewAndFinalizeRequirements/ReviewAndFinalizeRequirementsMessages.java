@@ -15,4 +15,21 @@ public interface ReviewAndFinalizeRequirementsMessages extends TeachMessages
 
 
 	String noelementsFound();
+	
+	
+	
+	String cotsTableTitle();
+	String matrixLableX();
+	String matrixLableY();
+	String rateLegend();
+	//String cotsTable
+	
+	String requirementTableTitle();
+	String requirementTableBarTitle();
+	String requirementTableBarDescription();
+	String requirementTableBarStatus();
+	
+	
+	
+	
 }

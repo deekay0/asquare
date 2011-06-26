@@ -5,34 +5,53 @@ import java.util.Collections;
 import java.util.List;
 
 import com.google.gwt.core.client.GWT;
+import com.google.gwt.event.dom.client.ChangeEvent;
+import com.google.gwt.event.dom.client.ChangeHandler;
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.ClickHandler;
+import com.google.gwt.event.dom.client.FocusEvent;
+import com.google.gwt.event.dom.client.FocusHandler;
+import com.google.gwt.event.dom.client.KeyCodes;
+import com.google.gwt.event.dom.client.KeyPressEvent;
+import com.google.gwt.event.dom.client.KeyPressHandler;
 import com.google.gwt.event.dom.client.KeyUpEvent;
 import com.google.gwt.event.dom.client.KeyUpHandler;
+import com.google.gwt.event.dom.client.MouseOutEvent;
+import com.google.gwt.event.dom.client.MouseOutHandler;
+import com.google.gwt.event.dom.client.MouseOverEvent;
+import com.google.gwt.event.dom.client.MouseOverHandler;
 import com.google.gwt.user.client.History;
 import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.google.gwt.user.client.rpc.ServiceDefTarget;
 import com.google.gwt.user.client.ui.Button;
+import com.google.gwt.user.client.ui.DecoratedPopupPanel;
 import com.google.gwt.user.client.ui.DisclosurePanel;
 import com.google.gwt.user.client.ui.FlexTable;
+import com.google.gwt.user.client.ui.HTML;
 import com.google.gwt.user.client.ui.HasHorizontalAlignment;
 import com.google.gwt.user.client.ui.HasVerticalAlignment;
 import com.google.gwt.user.client.ui.HorizontalPanel;
 import com.google.gwt.user.client.ui.Label;
+import com.google.gwt.user.client.ui.TextBox;
 import com.google.gwt.user.client.ui.VerticalPanel;
 import com.google.gwt.user.client.ui.Widget;
+import com.google.gwt.user.client.ui.FlexTable.FlexCellFormatter;
 
 import edu.cmu.square.client.exceptions.ExceptionHelper;
 import edu.cmu.square.client.model.GwtModesType;
 import edu.cmu.square.client.model.GwtProject;
+import edu.cmu.square.client.model.GwtQualityAttribute;
+import edu.cmu.square.client.model.GwtRating;
 import edu.cmu.square.client.model.GwtRequirement;
+import edu.cmu.square.client.model.GwtSoftwarePackage;
 import edu.cmu.square.client.navigation.State;
 import edu.cmu.square.client.remoteService.step.interfaces.ReviewAndFinalizeRequirementsService;
 import edu.cmu.square.client.remoteService.step.interfaces.ReviewAndFinalizeRequirementsServiceAsync;
 import edu.cmu.square.client.remoteService.step.interfaces.ReviewOfRequirementsByAcquisitionService;
 import edu.cmu.square.client.remoteService.step.interfaces.ReviewOfRequirementsByAcquisitionServiceAsync;
 import edu.cmu.square.client.ui.ChooseStep.ChooseStepPilot;
+import edu.cmu.square.client.ui.SelectSecurityTechnique.SelectSecurityElicitationTechniquePilot;
 //import edu.cmu.square.client.ui.reviewOfRequirementsByAcquisitionOrganization.ViewDetailDialog;
 //import edu.cmu.square.client.ui.reviewOfRequirementsByAcquisitionOrganization.ReviewOfRequirementsByAcquisitionPane.SummaryElementHyperLinkElement;
 import edu.cmu.square.client.ui.core.BasePane;
@@ -46,11 +65,18 @@ public class ReviewAndFinalizeRequirementsPane extends BasePane
 	private int projectID;
 	private List<GwtRequirement> listOfRequirements = new ArrayList<GwtRequirement>();
 	private List<GwtRequirement> listOfFilteredRequirements = new ArrayList<GwtRequirement>();
-
+	private List<GwtSoftwarePackage> softwarePackages;
+	private List<GwtQualityAttribute> attributes;
+	private List<GwtRating> ratings;
 	
 
 	private VerticalPanel vPane = new VerticalPanel();
 	private VerticalPanel vPaneData = new VerticalPanel();
+
+	private VerticalPanel vPaneCots = new VerticalPanel();
+	private VerticalPanel vPaneCotsData = new VerticalPanel();
+	
+	
 	private int modifyRequirementId = -1;
 
 	//private CreateRequirementDialog createRequirementDialog;
@@ -234,7 +260,261 @@ public class ReviewAndFinalizeRequirementsPane extends BasePane
 
 		this.getContent().add(vPane);
 		loadRequirementsTable();
+		this.getContent().add(vPaneCots);
+		loadCotsTable();
 
+	}
+	
+	public void loadCotsTable()
+	{
+
+		filterRequirements(lastSearch);
+
+		//vPane.clear();
+		vPaneCots.setSpacing(0);
+		vPaneCots.setWidth("90%");
+		vPaneCots.setHeight("5%");
+
+		vPaneCots.add(getCotsTableHeaderRow());
+		vPaneCots.add(vPaneCotsData);
+		loadCotsTableData();
+				
+	}
+	
+	private FlexTable matrix = new FlexTable();
+	private FlexTable matrixHeader = new FlexTable();
+	
+	public void loadCotsTableData()
+	{
+		drawRateMatrix();
+		getTotalsFromMatrix();
+		//PaneInitialization();
+		//changeLink();
+		
+		drawMatrixPage();
+
+					
+		this.getContent().clear();
+		//layout.add(comparisonMatrixLabel);
+		vPaneCotsData.add(matrixHeader);
+		this.getContent().add(vPaneCotsData);
+	}
+	
+	public void drawRateMatrix()
+	{
+		matrix.clear();
+		//matrix.setBorderWidth(1);
+		matrix.setWidth("100%");
+		matrix.setStyleName("square-Matrix");
+		matrix.setCellSpacing(0);
+		drawRateMatrixHeaderTechniques();
+		drawRateMatrixEvaluationCriteriaColum();
+		drawRateMatrixValues();
+
+	}
+	
+	public void drawRateMatrixEvaluationCriteriaColum()
+	{
+		FlexCellFormatter formatter = this.matrix.getFlexCellFormatter();
+		// Set the left columns with the evaluation criteria 
+		for(int j=0; j<softwarePackages.size();j++)
+		{
+			
+			Label evaluationLabel = new Label(softwarePackages.get(j).getName());
+			
+			final DecoratedPopupPanel simplePopup = new DecoratedPopupPanel(true);
+			    simplePopup.setWidth("150px");
+			    simplePopup.setWidget(new HTML(softwarePackages.get(j).getDescription()));
+			
+			    evaluationLabel.addMouseOverHandler(new MouseOverHandler(){
+				
+				public void onMouseOver(MouseOverEvent event) {
+					Widget source = (Widget) event.getSource();
+		            int left = source.getAbsoluteLeft() + 40;
+		            int top = source.getAbsoluteTop() + 20;
+		            simplePopup.setPopupPosition(left, top);
+					simplePopup.show();
+
+				}});
+			    evaluationLabel.addMouseOutHandler(new MouseOutHandler(){
+
+					
+					public void onMouseOut(MouseOutEvent event) {
+						simplePopup.hide();
+						
+					}});
+			matrix.setWidget(j+1,0 , evaluationLabel);
+			formatter.setHorizontalAlignment(j+1,0 , HasHorizontalAlignment.ALIGN_RIGHT);
+			formatter.setStyleName(j+1,0 ,  "square-Matrix");
+			
+		}
+		
+	}
+	/**
+	 * This method search the rate values in the loaded by RCP initially
+	 * @param techniqueID
+	 * @param evaluationID
+	 * @return rateValue
+	 */
+	private int getValueFromlistOfRateValues(int techniqueID, int evaluationID)
+	{
+		
+		for(int j=0; j<ratings.size();j++)
+		{
+		
+			int eID=ratings.get(j).getAttributeId();
+			int tID =ratings.get(j).getPackageId();
+			
+			if(techniqueID==tID && evaluationID==eID)
+			{
+				return ratings.get(j).getValue();
+			}
+			
+		}
+		return 0;
+
+	}
+	public void drawRateMatrixValues()
+	{
+		FlexCellFormatter formatter = this.matrix.getFlexCellFormatter();
+		for(int i=0; i<attributes.size();i++)
+		{
+			
+			for(int j=0; j<softwarePackages.size();j++)
+			{
+				
+				int tID=attributes.get(i).getId();
+				int eID=softwarePackages.get(j).getId();
+				
+				int value = getValueFromlistOfRateValues(eID, tID);
+				
+				
+					Label valueLabel = new Label(String.valueOf(value));
+					valueLabel.setHorizontalAlignment(HasHorizontalAlignment.ALIGN_CENTER);
+					matrix.setWidget(j+1, i+1, valueLabel);
+					formatter.setHorizontalAlignment(j+1, i+1, HasHorizontalAlignment.ALIGN_CENTER);
+					formatter.setStyleName(j+1, i+1,"square-Matrix");
+				
+			
+				RateValueLabel totalLabel= new RateValueLabel(attributes.get(i).getId());
+				totalLabel.setText("0");
+
+				matrix.setWidget(j+1, attributes.size()+1, totalLabel);
+				formatter.setHorizontalAlignment(j+1, attributes.size()+1,  HasHorizontalAlignment.ALIGN_CENTER);
+				formatter.setStyleName(j+1, attributes.size()+1,"square-Matrix");
+			
+			}
+			
+						
+		}
+	}
+	public void drawRateMatrixHeaderTechniques()
+	{
+		FlexCellFormatter formatter = this.matrix.getFlexCellFormatter();
+		matrix.setWidget(0, 0, new Label(" "));
+		formatter.setStyleName(0, 0, "square-Matrix");
+		
+		// Set the header rows with techniques
+		for(int i=1; i<=attributes.size();i++)
+		{
+			Label techniqueLabel = new Label(attributes.get(i-1).getName());
+			
+				final DecoratedPopupPanel simplePopup = new DecoratedPopupPanel(true);
+			   // simplePopup.ensureDebugId("cwBasicPopup-simplePopup");
+			    simplePopup.setWidth("150px");
+			    simplePopup.setWidget(new HTML(attributes.get(i-1).getDescription()));
+			
+			    techniqueLabel.addMouseOverHandler(new MouseOverHandler(){
+				
+				public void onMouseOver(MouseOverEvent event) 
+				{
+					Widget source = (Widget) event.getSource();
+		            int left = source.getAbsoluteLeft() + 20;
+		            int top = source.getAbsoluteTop() + 20;
+		            simplePopup.setPopupPosition(left, top);
+					simplePopup.show();
+
+				}});
+			    techniqueLabel.addMouseOutHandler(new MouseOutHandler(){
+
+					
+					public void onMouseOut(MouseOutEvent event) {
+						simplePopup.hide();
+						
+					}});
+			    
+			    
+		
+			matrix.setWidget(0, i, techniqueLabel);
+			formatter.setHorizontalAlignment(0, i, HasHorizontalAlignment.ALIGN_CENTER);
+			formatter.setStyleName(0, i, "square-Matrix");
+		}
+		
+		matrix.setWidget(0, attributes.size()+1, new Label("Total"));
+		formatter.setHorizontalAlignment(0, attributes.size()+1, HasHorizontalAlignment.ALIGN_RIGHT);
+		formatter.setStyleName(0, attributes.size()+1,"square-Matrix");
+		
+	}
+	/**
+	 * Get the totals traversing the current Matrix FlexTable
+	 */
+	public void getTotalsFromMatrix()
+	{
+		for(int i=1; i<=softwarePackages.size();i++)
+		{	int sum=0;
+			
+			for(int j=1; j<=attributes.size();j++)
+			{
+				
+					Widget w =  matrix.getWidget(i, j);
+					
+					if ( w instanceof RateValueTextbox) 
+					{
+						RateValueTextbox new_name = (RateValueTextbox) w;
+						//Window.alert(new_name.getText());
+						sum=sum+ Integer.parseInt(new_name.getText());
+					}
+					else if( w instanceof Label)
+					{
+						Label new_name = (Label) w;
+						//Window.alert(new_name.getText());
+						sum=sum+ Integer.parseInt(new_name.getText());
+					}
+					
+			}
+			
+//				Widget totalLabel =  matrix.getWidget(softwarePackages.size()+1, i);
+			Widget totalLabel =  matrix.getWidget(i, attributes.size()+1);
+
+				
+				RateValueLabel new_name = (RateValueLabel) totalLabel;
+		
+				new_name.setText(String.valueOf(sum));
+				//new_name.setHorizontalAlignment(HasHorizontalAlignment.ALIGN_CENTER);
+		
+		}
+		
+		
+	}
+	private void drawMatrixPage()
+	{
+		FlexCellFormatter formatter1 = this.matrixHeader.getFlexCellFormatter();
+		this.matrixHeader.setWidth("100%");
+
+		this.matrixHeader.setWidget(1, 1, new Label(messages.matrixLableX()));
+		this.matrixHeader.setWidget(3, 0, new Label(messages.matrixLableY()));
+		this.matrixHeader.setWidget(4, 1, new Label(messages.rateLegend()));
+		//this.matrixHeader.setWidget(5, 1, cmdLoadTopTechnique);
+		
+		formatter1.setHorizontalAlignment(0, 0, HasHorizontalAlignment.ALIGN_LEFT);
+		formatter1.setHorizontalAlignment(1, 1, HasHorizontalAlignment.ALIGN_CENTER);
+		formatter1.setHorizontalAlignment(2, 1, HasHorizontalAlignment.ALIGN_RIGHT);
+		formatter1.setHorizontalAlignment(3, 1, HasHorizontalAlignment.ALIGN_LEFT);
+		formatter1.setVerticalAlignment(3, 0, HasVerticalAlignment.ALIGN_MIDDLE);
+		formatter1.setHorizontalAlignment(4, 1, HasHorizontalAlignment.ALIGN_LEFT);
+		formatter1.setHorizontalAlignment(5, 1, HasHorizontalAlignment.ALIGN_RIGHT);
+		
+		
 	}
 
 	public void loadRequirementsTable()
@@ -247,12 +527,9 @@ public class ReviewAndFinalizeRequirementsPane extends BasePane
 		vPane.setWidth("90%");
 		vPane.setHeight("5%");
 
-		vPane.add(getHeaderRow());
+		vPane.add(getRequirementHeaderRow());
 		vPane.add(vPaneData);
 		loadRequirementTableData();
-		//addDoneButton();
-		
-		
 		
 
 	}
@@ -535,97 +812,59 @@ public class ReviewAndFinalizeRequirementsPane extends BasePane
 		
 	}
 	
-	public Widget getHeaderRow()
+	public Widget getCotsTableHeaderRow()
 	{
 
+		FlexTable cotsTable = new FlexTable();
+		
+		cotsTable.setWidth("100%");
+		cotsTable.setCellSpacing(0);
+	
+		cotsTable.setWidget(0, 0, new Label(messages.cotsTableTitle()));
+		
+		
+		return cotsTable;
+	}
+	
+	
+	public Widget getRequirementHeaderRow()
+	{
+
+		//FlexTable requirementTitleTable = new FlexTable();
 		FlexTable searchTable = new FlexTable();
+		
+		//requirementTitleTable.setWidth("100%");
+		//requirementTitleTable.setCellSpacing(0);
 		searchTable.setWidth("100%");
 		searchTable.setCellSpacing(0);
-		HorizontalPanel searchBox = new HorizontalPanel();
-		searchBox.setSpacing(0);
-		Button clearButton = new Button("X");
-		// clearButton.setStyleName("square-clear-label");
-		clearButton.setSize("25px", "26px");
-
-	/*
-		final SquareWaterMarkTextBox searchTextBox = new SquareWaterMarkTextBox(messages.search());
+	
+		//requirementTitleTable.setWidget(0, 0, new Label(messages.requirementTableTitle()));
 		
-		if(lastSearch.trim().length()!=0)
-		{
-			searchTextBox.setText(lastSearch);
-			searchTextBox.setStyleName("textInput");
-		}
-		// searchTextBox.setHeight("25px");
-
-		searchBox.add(searchTextBox);
-		searchBox.add(clearButton);
-		searchBox.setStyleName("square-agree-on-definition-inner-table"); //<<<-!!!! ASQUARE 
-
-		searchTextBox.addKeyUpHandler(new KeyUpHandler()
-			{
-
-				public void onKeyUp(KeyUpEvent event)
-				{   currentPage=1;
-					filterRequirements(searchTextBox.getText());
-					loadRequirementTableData();
-					searchTextBox.setFocus(true);
-					searchTextBox.setSelectionRange(searchTextBox.getText().length(), 0);
-
-				}
-			});
-
-		clearButton.addClickHandler(new ClickHandler()
-			{
-
-				@Override
-				public void onClick(ClickEvent event)
-				{
-					currentPage=1;
-					searchTextBox.setText("");
-					filterRequirements(searchTextBox.getText());
-					loadRequirementTableData();
-					searchTextBox.setFocus(true);
-					searchTextBox.setSelectionRange(searchTextBox.getText().length(), 0);
-
-				}
-			});
-
-		//Button addRequirementButton = new Button("Add Requirement");
-		//final ReviewOfRequirementsByAcquisitionPane reviewOfRequirementsByAcquisitionObject = this;
+		//requirementTitleTable.getCellFormatter().setHorizontalAlignment(0, 0, HasHorizontalAlignment.ALIGN_CENTER);
+		//requirementTitleTable.getCellFormatter().setStyleName(0, 0, "square-Categorize-TableHeader");
 		
-		addRequirementButton.addClickHandler(new ClickHandler()
-			{
+		searchTable.setWidget(0, 0, new Label(messages.requirementTableTitle()));
+		
+		searchTable.setWidget(1, 0, new Label(messages.requirementTableBarTitle()));
+		searchTable.setWidget(1, 1, new Label(messages.requirementTableBarDescription()));
+		searchTable.setWidget(1, 2, new Label(messages.requirementTableBarStatus()));
+		searchTable.setWidget(1, 3, new Label("      "));
+		
+		searchTable.getCellFormatter().setWidth(1, 0, "20%");
+		searchTable.getCellFormatter().setWidth(1, 1, "60%");
+		searchTable.getCellFormatter().setWidth(1, 2, "15%");
+		searchTable.getCellFormatter().setWidth(1, 3, "20%");
+		
+		searchTable.getCellFormatter().setHorizontalAlignment(1, 0, HasHorizontalAlignment.ALIGN_CENTER);
+		searchTable.getCellFormatter().setHorizontalAlignment(1, 1, HasHorizontalAlignment.ALIGN_CENTER);
+		searchTable.getCellFormatter().setHorizontalAlignment(1, 2, HasHorizontalAlignment.ALIGN_CENTER);
+		searchTable.getCellFormatter().setHorizontalAlignment(1, 3, HasHorizontalAlignment.ALIGN_CENTER);
 
-				@Override
-				public void onClick(ClickEvent event)
-				{
-					createRequirementDialog = new CreateRequirementDialog(listOfRequirements, agreeOnDefinitionsObject);
-					createRequirementDialog.center();
-					createRequirementDialog.setModal(true);
-					createRequirementDialog.show();
-
-				}
-			});
-*/
-		/*
-		if (this.getCurrentState().getMode().equals(GwtModesType.ReadWrite))
-		{
-			searchTable.setWidget(0, 0, addRequirementButton);
-		}
-		else
-		{
-			searchTable.setWidget(0, 0, new Label(messages.termsAndDefinition()));
-		}
-		*/
-		searchTable.setWidget(0, 1, new Label(" "));
-		searchTable.setWidget(0, 2, searchBox);
-
-		searchTable.getCellFormatter().setHorizontalAlignment(0, 0, HasHorizontalAlignment.ALIGN_LEFT);
-		searchTable.getCellFormatter().setHorizontalAlignment(0, 2, HasHorizontalAlignment.ALIGN_RIGHT);
-
-		searchTable.getCellFormatter().setStyleName(0, 0, "square-Categorize-TableHeader");
-		searchTable.getCellFormatter().setStyleName(0, 1, "square-Categorize-TableHeader");
-		searchTable.getCellFormatter().setStyleName(0, 2, "square-Categorize-TableHeader");
+		
+		searchTable.getCellFormatter().setStyleName(1, 0, "square-Categorize-TableHeader");
+		searchTable.getCellFormatter().setStyleName(1, 1, "square-Categorize-TableHeader");
+		searchTable.getCellFormatter().setStyleName(1, 2, "square-Categorize-TableHeader");
+		searchTable.getCellFormatter().setStyleName(1, 3, "square-Categorize-TableHeader");
 
 		return searchTable;
 	}
@@ -633,7 +872,7 @@ public class ReviewAndFinalizeRequirementsPane extends BasePane
 	public Widget getDataRow(int rowCount, GwtRequirement req)
 	{
 		FlexTable rowTable = new FlexTable();
-		rowTable.setStyleName("square-agree-on-definition-flex"); //ASQUARE change!!!!
+		rowTable.setStyleName("square-agree-on-definition-flex"); 
 		rowTable.setCellSpacing(4);
 		rowTable.setSize("100%", "50px");
 
@@ -799,6 +1038,71 @@ public class ReviewAndFinalizeRequirementsPane extends BasePane
 
 	}
 	
-	
+	/**
+	 * 
+	 * the techniqueID as properties
+	 *
+	 */
+	class RateValueLabel extends Label
+	{
+		private int tecniqueID;
+		public RateValueLabel(int tecniqueID) {
+		
+			this.tecniqueID=tecniqueID;
+			
+			this.setWidth("35px");
+			
+			// TODO Auto-generated constructor stub
+		}
+		public void setTecniqueID(int tecniqueID) {
+			this.tecniqueID = tecniqueID;
+		}
+		public int getTecniqueID() {
+			return tecniqueID;
+		}
+
+	}
+	/**
+	 * 
+	 * This class extend the texbox to add 
+	 * the techniqueID and evaluationID as properties
+	 *
+	 */
+	class RateValueTextbox extends TextBox
+	{
+		private int tecniqueID;
+		private int evaluationID;
+		private String oldValue= "-1";
+		public RateValueTextbox(int tecniqueID, int evaluationID, int value) {
+		
+			this.tecniqueID=tecniqueID;
+			this.evaluationID=evaluationID;
+			
+			this.setWidth("35px");
+			this.setText(String.valueOf(value));;
+			this.setOldValue(String.valueOf(value));;
+			
+			// TODO Auto-generated constructor stub
+		}
+		public void setTecniqueID(int tecniqueID) {
+			this.tecniqueID = tecniqueID;
+		}
+		public int getTecniqueID() {
+			return tecniqueID;
+		}
+		public void setEvaluationID(int evaluationID) {
+			this.evaluationID = evaluationID;
+		}
+		public int getEvaluationID() {
+			return evaluationID;
+		}
+		public void setOldValue(String oldValue) {
+			this.oldValue = oldValue;
+		}
+		public String getOldValue() {
+			return oldValue;
+		}
+	}
+
 
 }
