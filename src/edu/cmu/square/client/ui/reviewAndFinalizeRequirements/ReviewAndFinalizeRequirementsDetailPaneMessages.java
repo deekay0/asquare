@@ -47,4 +47,7 @@ public interface ReviewAndFinalizeRequirementsDetailPaneMessages extends CommonM
 	String associateSubGoalFirst();
 	String confirmRequestRevision();
 	String confirmApprove();
+	
+	
+	
 }
