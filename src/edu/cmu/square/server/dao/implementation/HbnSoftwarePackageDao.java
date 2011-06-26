@@ -59,13 +59,23 @@ public class HbnSoftwarePackageDao extends HbnAbstractDao<SoftwarePackage, Integ
 		String query = null;
 		for(int i=0; i<QAs.size(); ++i)
 		{	
-			query = "Insert into ProjectPackageAttributeRating ps values(:projectId, :packageId, :attributeId, 1)";
-			Query q = getSession().createQuery(query);
+			
+//			query = "Replace into software_package sp values(:id, :name, :desc, curdate(), curdate())";
+//			Query q = getSession().createSQLQuery(query);
+//			q.setParameter("id", 0);
+//			q.setParameter("name", softwarePackage.getName());
+//			q.setParameter("desc", softwarePackage.getDescription());
+//			q.executeUpdate();
+//			
+			query = "Replace into project_package_attribute_rating ps values(:projectId, :packageId, :attributeId, 1)";
+			Query q = getSession().createSQLQuery(query);
 			q.setParameter("projectId", project.getId());
 			q.setParameter("packageId", softwarePackage.getId());
 			q.setParameter("attributeId", QAs.get(i).getId());
 
 			q.executeUpdate();
+			
+			
 		}
 	}
 	

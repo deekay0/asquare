@@ -7,6 +7,7 @@ import edu.cmu.square.client.ui.categorizeRequirements.CategorizeRequirementsPil
 import edu.cmu.square.client.ui.collectArtifacts.CollectArtifactsPilot;
 import edu.cmu.square.client.ui.elicitSecurityRequirements.ElicitSecurityRequirementsPilot;
 import edu.cmu.square.client.ui.inspectRequirements.InspectRequirementsPilot;
+import edu.cmu.square.client.ui.performTradeoffAnalysis.PerformTradeoffAnalysisPilot;
 import edu.cmu.square.client.ui.prioritizeRequirements.PrioritizeRequirementsPilot;
 import edu.cmu.square.client.ui.reviewOfRequirementsByAcquisitionOrganization.ReviewOfRequirementsByAcquisitionPilot;
 import edu.cmu.square.client.ui.reviewPackages.ReviewPackagesPilot;
@@ -37,6 +38,8 @@ public enum StepEnum
 			ReviewOfRequirementsByAcquisitionPilot.generateNavigationId(ReviewOfRequirementsByAcquisitionPilot.PageId.home)),
 	Review_COTS_Software_Package_Information_And_Specification("Case 3 - Step 4: Review COTS software package information and specification", 
 			ReviewPackagesPilot.generateNavigationId(ReviewPackagesPilot.PageId.home)),
+	Perform_Tradeoff_Analysis("Case 3 - Step 6: Perform tradeoff analysis", 
+			ReviewPackagesPilot.generateNavigationId(PerformTradeoffAnalysisPilot.PageId.home)),
 	Review_And_Finalize_Security_Requirements("Case 3 - Step 5: Review and Finalize Security Requirements", 
 			ReviewAndFinalizeRequirementsPilot.generateNavigationId(ReviewAndFinalizeRequirementsPilot.PageId.home));
 	

@@ -31,6 +31,7 @@ import edu.cmu.square.server.business.interfaces.StepBusiness;
 import edu.cmu.square.server.business.step.interfaces.AgreeOnDefinitionsBusiness;
 import edu.cmu.square.server.business.step.interfaces.ElicitationTechniqueBusiness;
 import edu.cmu.square.server.business.step.interfaces.InspectionTechniqueBusiness;
+import edu.cmu.square.server.dao.implementation.HbnSoftwarePackageDao;
 import edu.cmu.square.server.dao.interfaces.AsquareCaseDao;
 import edu.cmu.square.server.dao.interfaces.ProjectDao;
 import edu.cmu.square.server.dao.interfaces.RoleDao;
@@ -41,6 +42,7 @@ import edu.cmu.square.server.dao.model.AsquareCase;
 import edu.cmu.square.server.dao.model.InspectionTechnique;
 import edu.cmu.square.server.dao.model.Project;
 import edu.cmu.square.server.dao.model.Role;
+import edu.cmu.square.server.dao.model.SoftwarePackage;
 import edu.cmu.square.server.dao.model.Step;
 import edu.cmu.square.server.dao.model.Technique;
 import edu.cmu.square.server.dao.model.User;
@@ -82,6 +84,9 @@ public class ManageProjectBusinessImpl extends BaseBusinessImpl implements Manag
 
 	@Resource
 	private InspectionTechniqueBusiness inspectionTechniqueBusiness;
+	
+	@Resource
+	private HbnSoftwarePackageDao softwarePackageDao;
 
 	@AllowedRoles(roles = {Roles.Lead_Requirements_Engineer})
 	public void editRole(GwtUser gwtUser, GwtProject gwtProject) throws SquareException
@@ -368,7 +373,6 @@ public class ManageProjectBusinessImpl extends BaseBusinessImpl implements Manag
 		
 		AsquareCase acase = asquareCaseDao.fetch(newProject.getCases().getId());
 		project.setCases(acase);
-		System.out.println("yay!!: ");
 		projectDao.create(project);
 		newProject.setId(project.getId());
 		
@@ -402,6 +406,16 @@ public class ManageProjectBusinessImpl extends BaseBusinessImpl implements Manag
 		role.setName(ProjectRole.Lead_Requirements_Engineer.getLabel());
 
 		this.addUserToProject(newProject, leadRequirementEngineer.createGwtUser(), role);
+		
+		if(newProject.getCases().getName().equals("Case 3"))
+		{
+			SoftwarePackage weightsPackage = new SoftwarePackage();
+//			This is the software package with the weights
+			weightsPackage.setId(1);
+			softwarePackageDao.addSoftwarePackageToProject(project, weightsPackage);
+			System.out.println("Adding weights");
+		}
+		
 		return newProject;
 
 	}

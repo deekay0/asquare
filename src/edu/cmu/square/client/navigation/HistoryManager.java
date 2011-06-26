@@ -29,6 +29,7 @@ import edu.cmu.square.client.ui.core.NotFoundPane;
 import edu.cmu.square.client.ui.core.content.BreadCrumbMessages;
 import edu.cmu.square.client.ui.elicitSecurityRequirements.ElicitSecurityRequirementsPilot;
 import edu.cmu.square.client.ui.inspectRequirements.InspectRequirementsPilot;
+import edu.cmu.square.client.ui.performTradeoffAnalysis.PerformTradeoffAnalysisPilot;
 import edu.cmu.square.client.ui.prioritizeRequirements.PrioritizeRequirementsPilot;
 import edu.cmu.square.client.ui.reviewAndFinalizeRequirements.ReviewAndFinalizeRequirementsPilot;
 import edu.cmu.square.client.ui.reviewOfRequirementsByAcquisitionOrganization.ReviewOfRequirementsByAcquisitionPilot;
@@ -74,8 +75,8 @@ public class HistoryManager implements ValueChangeHandler<String>
 
 	private Pilot reviewOfRequirementsByAcquisitionOrganizationPilot = new ReviewOfRequirementsByAcquisitionPilot();
 	private Pilot reviewPackagesPilot = new ReviewPackagesPilot();
+	private Pilot performTradeoffAnalysisPilot = new PerformTradeoffAnalysisPilot();
 	private Pilot reviewAndFinalizeRequirementsPilot = new ReviewAndFinalizeRequirementsPilot();
-	
 	
 	 
 	public static class ViewId
@@ -97,6 +98,7 @@ public class HistoryManager implements ValueChangeHandler<String>
 		public static final String reviewOfRequirementsByAcquisitionOrganization = "reviewOfRequirementsByAcquisitionOrganization";
 		public static final String chooseStepCase3 = "chooseStepCase3";
 		public static final String reviewPackages = "reviewPackages";
+		public static final String performTradeoffAnalysis = "performTradeoffAnalysis";
 		public static final String reviewAndFinalizeRequirements = "reviewAndFinalizeRequirements";
 	}
 
@@ -369,6 +371,9 @@ public class HistoryManager implements ValueChangeHandler<String>
 		}
 		else if (ViewId.reviewPackages.equals(view)){
 			return this.reviewPackagesPilot;
+		}
+		else if(ViewId.performTradeoffAnalysis.equals(view)){
+			return this.performTradeoffAnalysisPilot;
 		}
 		else if (ViewId.reviewAndFinalizeRequirements.equals(view)){
 			return this.reviewAndFinalizeRequirementsPilot;
