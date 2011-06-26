@@ -10,7 +10,7 @@ import edu.cmu.square.client.model.GwtProject;
 import edu.cmu.square.client.model.GwtRequirementRating;
 import edu.cmu.square.client.model.StepStatus;
 
-@RemoteServiceRelativePath("reviewPackages.rpc")
+@RemoteServiceRelativePath("performTradeoffAnalysis.rpc")
 public interface PerformTradeoffAnalysisService extends RemoteService {
 	
 	List<GwtRequirementRating> getRequirementRateValues(int projectID) throws SquareException;

@@ -94,13 +94,16 @@ public class PerformTradeoffAnalysisPane extends BasePane
 		ServiceDefTarget endpoint = (ServiceDefTarget) service;
 		endpoint.setServiceEntryPoint(GWT.getModuleBaseURL() + "reviewPackages.rpc");
 		
+		ServiceDefTarget endpoint2 = (ServiceDefTarget) service;
+		endpoint2.setServiceEntryPoint(GWT.getModuleBaseURL() + "performTradeoffAnalysis.rpc");
+		
 		currentProject = new GwtProject();
 		currentProject.setId(this.getCurrentState().getProjectID());
 		
 	
 		isReadOnly = true;
 		loadRequirements();
-//		loadAttributes();
+		loadAttributes();
 	}
 	
 	public void loadRequirements()
@@ -124,7 +127,6 @@ public class PerformTradeoffAnalysisPane extends BasePane
 					initializePane();
 				}
 			});
-		loadAttributes();
 	}
 	
 	public void initializePane()
@@ -439,16 +441,11 @@ public class PerformTradeoffAnalysisPane extends BasePane
 				});		
 	}
 
-	/**
-	 * Contains RPC call to Set the rates
-	 * @param packageID
-	 * @param attributeID
-	 * @param value
-	 */
 	private void setRateValue(final int packageID, final int attributeID, final int value)
-	{	
-		this.service.setRateValue(currentProject.getId(), packageID, attributeID, value, new AsyncCallback<Void>(){
+	{
+		System.out.println("set quality attribute rate......."+packageID+"  "+attributeID+"  "+ value);
 		
+		this.service.setRateValue(currentProject.getId(), packageID, attributeID, value, new AsyncCallback<Void>(){	
 			public void onFailure(Throwable caught) {
 				if (caught instanceof SquareException) {
 					SquareException se = (SquareException) caught;
@@ -461,15 +458,45 @@ public class PerformTradeoffAnalysisPane extends BasePane
 						Window.alert(messages.error());
 						break;
 					}
-
 				} else {
 					Window.alert(messages.error());
-				}
-				
+				}		
 			}
 			
 			public void onSuccess(Void result) {
 				setValueFromlistOfRateValues(packageID, attributeID, value);			
+			}});
+	}
+	
+	
+	private void setRequirementRateValue(final int packageID, final int requirementID, final int value)
+	{	
+		System.out.println("set requirement rate......."+packageID+"  "+requirementID+"  "+ value);
+		
+		//the sequence of requirementID and packageID has problems 
+		this.performTradeoffService.setRequirementRateValue(currentProject.getId(), requirementID, packageID, value, new AsyncCallback<Void>(){
+		
+			public void onFailure(Throwable caught) {
+				
+				System.out.println("set requirement rate fail.......");
+				if (caught instanceof SquareException) {
+					SquareException se = (SquareException) caught;
+					switch (se.getType()) {
+					case authorization:
+						Window.alert(messages.rateAuthorization());
+						break;				
+					default:
+						Window.alert(messages.error());
+						break;
+					}
+
+				} else {
+					Window.alert(messages.error());
+				}				
+			}		
+			public void onSuccess(Void result) {
+				System.out.println("set requirement rate success.......");
+				setValueFromlistOfRequirementRateValues(requirementID, packageID, value);			
 			}});
 	}
 	
@@ -660,7 +687,7 @@ public class PerformTradeoffAnalysisPane extends BasePane
 								   if(keyCode>= '0' && keyCode<='3')
 								   {
 									   getTotalsFromMatrix();
-									   setRateValue(rateValueTextbox.getTecniqueID(),rateValueTextbox.getEvaluationID(),Integer.parseInt(rateValueTextbox.getText()));
+									   setRequirementRateValue(rateValueTextbox.getTecniqueID(),rateValueTextbox.getEvaluationID(),Integer.parseInt(rateValueTextbox.getText()));
 										rateValueTextbox.setOldValue(rateValueTextbox.getText());
 								   }
 								   else
@@ -954,11 +981,6 @@ public class PerformTradeoffAnalysisPane extends BasePane
 		}
 	}
 
-	/**
-	 * 
-	 * the techniqueID as properties
-	 *
-	 */
 	class RateValueLabel extends Label
 	{
 		private int tecniqueID;

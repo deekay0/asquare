@@ -1,6 +1,5 @@
 package edu.cmu.square.server.business.step.implementation;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.annotation.Resource;
@@ -8,7 +7,6 @@ import javax.annotation.Resource;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Service;
 
-import edu.cmu.square.client.exceptions.ExceptionType;
 import edu.cmu.square.client.exceptions.SquareException;
 import edu.cmu.square.client.model.GwtRequirementRating;
 import edu.cmu.square.client.model.GwtStepVerficationResult;
@@ -35,9 +33,10 @@ public class PerformTradeoffAnalysisBusinessImpl extends BaseBusinessImpl implem
 
 
 
-	@AllowedRoles(roles = {Roles.Lead_Requirements_Engineer, Roles.Requirements_Engineer})
+	@AllowedRoles(roles = {Roles.All})
 	public void setRequirementRateValue(int projectID, int packageID, int requirementID, int value) throws SquareException
 	{
+		//System.out.println("here.............."+projectID+"  "+packageID+"  "+requirementID+"  "+value);
 		if( -1 == projectRequirementRatingDao.getRating(projectID, packageID,requirementID))
 			projectRequirementRatingDao.setRating(projectID,packageID, requirementID, value);
 		else

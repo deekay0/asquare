@@ -93,7 +93,7 @@ public class HbnProjectPackageRequirementRatingDao extends HbnAbstractDao<Projec
 		q.setParameter("projectId", projectID);
 		q.setParameter("packageId", packageID);
 		q.setParameter("requirementId", requirementID);
-		q.setParameter("value", rating);
+		q.setParameter("rating", rating);
 			
 		q.executeUpdate();
 	}
