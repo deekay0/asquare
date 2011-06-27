@@ -22,12 +22,17 @@ public interface ReviewAndFinalizeRequirementsMessages extends TeachMessages
 	String matrixLableX();
 	String matrixLableY();
 	String rateLegend();
+	String attributesRetrievalError();
+	String packagesRetrievalError();
+	String ratingsRetrievalError();
 	//String cotsTable
 	
 	String requirementTableTitle();
 	String requirementTableBarTitle();
 	String requirementTableBarDescription();
 	String requirementTableBarStatus();
+	
+	
 	
 	
 	

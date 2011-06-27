@@ -45,11 +45,14 @@ import edu.cmu.square.client.model.GwtQualityAttribute;
 import edu.cmu.square.client.model.GwtRating;
 import edu.cmu.square.client.model.GwtRequirement;
 import edu.cmu.square.client.model.GwtSoftwarePackage;
+import edu.cmu.square.client.model.StepStatus;
 import edu.cmu.square.client.navigation.State;
 import edu.cmu.square.client.remoteService.step.interfaces.ReviewAndFinalizeRequirementsService;
 import edu.cmu.square.client.remoteService.step.interfaces.ReviewAndFinalizeRequirementsServiceAsync;
 import edu.cmu.square.client.remoteService.step.interfaces.ReviewOfRequirementsByAcquisitionService;
 import edu.cmu.square.client.remoteService.step.interfaces.ReviewOfRequirementsByAcquisitionServiceAsync;
+import edu.cmu.square.client.remoteService.step.interfaces.ReviewPackagesService;
+import edu.cmu.square.client.remoteService.step.interfaces.ReviewPackagesServiceAsync;
 import edu.cmu.square.client.ui.ChooseStep.ChooseStepPilot;
 import edu.cmu.square.client.ui.SelectSecurityTechnique.SelectSecurityElicitationTechniquePilot;
 //import edu.cmu.square.client.ui.reviewOfRequirementsByAcquisitionOrganization.ViewDetailDialog;
@@ -59,6 +62,9 @@ import edu.cmu.square.client.ui.core.SquareHyperlink;
 import edu.cmu.square.client.ui.core.SquareWaterMarkTextBox;
 //import edu.cmu.square.client.ui.elicitSecurityRequirements.ElicitSecurityRequirementsPilot;
 //import edu.cmu.square.client.ui.elicitSecurityRequirements.ElicitSecurityRequirementSummaryPane.SummaryElementHyperLinkElement;
+import edu.cmu.square.client.ui.reviewPackages.EditQualityAttributeDialog;
+import edu.cmu.square.client.ui.reviewPackages.EditSoftwarePackageDialog;
+import edu.cmu.square.client.ui.reviewPackages.ReviewPackagesPane;
 
 public class ReviewAndFinalizeRequirementsPane extends BasePane
 {
@@ -69,13 +75,15 @@ public class ReviewAndFinalizeRequirementsPane extends BasePane
 	private List<GwtQualityAttribute> attributes;
 	private List<GwtRating> ratings;
 	
-
+	GwtProject currentProject;
+	
 	private VerticalPanel vPane = new VerticalPanel();
 	private VerticalPanel vPaneData = new VerticalPanel();
 
 	private VerticalPanel vPaneCots = new VerticalPanel();
 	private VerticalPanel vPaneCotsData = new VerticalPanel();
-	
+	private FlexTable matrix = new FlexTable();
+	private FlexTable matrixHeader = new FlexTable();
 	
 	private int modifyRequirementId = -1;
 
@@ -87,17 +95,32 @@ public class ReviewAndFinalizeRequirementsPane extends BasePane
 	private int currentPage=1;
 	private int pageCount=0;
 	
+	boolean isReadOnly=false;
 	
 	final ReviewAndFinalizeRequirementsMessages messages = (ReviewAndFinalizeRequirementsMessages) GWT.create(ReviewAndFinalizeRequirementsMessages.class);
-
+	
+	
+	private ReviewPackagesServiceAsync packageService = GWT.create(ReviewPackagesService.class);
+	
 	public ReviewAndFinalizeRequirementsPane(State stateInfo)
 	{
 			super(stateInfo);
+			this.showLoadingStatusBar();
+			
+			ServiceDefTarget endpoint = (ServiceDefTarget) packageService;
+			endpoint.setServiceEntryPoint(GWT.getModuleBaseURL() + "reviewPackages.rpc");
+			
+			currentProject = new GwtProject();
+			currentProject.setId(this.getCurrentState().getProjectID());
+			
+			isReadOnly = true;
 			
 			this.projectID = this.getCurrentState().getProjectID();
 			SetQueryString();
-			this.showLoadingStatusBar();
-			loadRequirements();
+			
+			loadAttributes();
+		
+			
 
 	}
 
@@ -134,7 +157,7 @@ public class ReviewAndFinalizeRequirementsPane extends BasePane
 
 		ReviewAndFinalizeRequirementsServiceAsync service1 = GWT.create(ReviewAndFinalizeRequirementsService.class);
 		ServiceDefTarget endpoint = (ServiceDefTarget) service1;
-		//System.out.println("at loadRequirement()");
+		System.out.println("    ******We're at loadRequirement()");
 		endpoint.setServiceEntryPoint(GWT.getModuleBaseURL() + "reviewAndFinalizeRequirementsService.rpc");
 
 		GwtProject project = new GwtProject();
@@ -158,6 +181,88 @@ public class ReviewAndFinalizeRequirementsPane extends BasePane
 
 	}
 	
+	/**
+	 * Contains RPC Calls to retrieve the evaluation criteria for the project
+	 */
+	
+	private void loadAttributes()
+	{
+		final StepStatus stepStatus =  StepStatus.NotStarted;
+		packageService.getQualityAttributes(currentProject,stepStatus, new AsyncCallback<List<GwtQualityAttribute> >()
+				{
+					
+					@Override
+					public void onSuccess(List<GwtQualityAttribute> result)
+					{
+						System.out.println("We got quality attribute: "+result.size());
+						System.out.println("attributes"+result.toString());
+						
+						attributes = result;
+						loadPackages();
+					}
+					
+					@Override
+					public void onFailure(Throwable caught)
+					{
+						Window.alert(messages.attributesRetrievalError());
+						ExceptionHelper.SquareRootRPCExceptionHandler(caught, "Retrieving Quality Attributes");
+						
+					}
+				});
+		
+	}
+
+	private void loadPackages()
+	{
+		final StepStatus stepStatus =  StepStatus.NotStarted;
+		packageService.getSoftwarePackages(currentProject,stepStatus, new AsyncCallback<List<GwtSoftwarePackage>>()
+		{
+			
+			@Override
+			public void onSuccess(List<GwtSoftwarePackage> result)
+			{
+				softwarePackages = result;
+				System.out.println("We got software packages: "+result.size());
+				loadRatings();
+				
+			}
+			
+			@Override
+			public void onFailure(Throwable caught)
+			{
+				Window.alert(messages.packagesRetrievalError());
+				ExceptionHelper.SquareRootRPCExceptionHandler(caught, "Retrieving Software Packages");
+				
+			}
+		});
+		
+	}
+
+	private void loadRatings()
+	{
+		packageService.getRateValues(currentProject.getId(), new AsyncCallback<List<GwtRating > >()
+				{
+					
+					@Override
+					public void onSuccess(List<GwtRating >  result)
+					{
+						System.out.println("We got ratings: "+result.size());
+						ratings = result;
+						drawRateMatrix();
+						getTotalsFromMatrix();
+						loadRequirements();		
+						//initializePane();
+					}
+					
+					@Override
+					public void onFailure(Throwable caught)
+					{
+						Window.alert(messages.ratingsRetrievalError());
+						ExceptionHelper.SquareRootRPCExceptionHandler(caught, "Retrieving Ratings");
+					}
+				});
+		
+	}
 	
 	public void addRequirement(GwtRequirement gwtRequirement, GwtProject gwtProject)
 	{
@@ -257,19 +362,39 @@ public class ReviewAndFinalizeRequirementsPane extends BasePane
 
 	{
 		this.hideStatusBar();
-
+		VerticalPanel layout = new VerticalPanel();
+		
+		drawRateMatrix();
+		getTotalsFromMatrix();
+		drawQualityAttributes();
+		drawSoftwarePackages();
+		
+		drawMatrixPage();
+		
+		this.getContent().clear();
+		
 		this.getContent().add(vPane);
 		loadRequirementsTable();
+			
+		
 		this.getContent().add(vPaneCots);
 		loadCotsTable();
+		
+		
+		
+		
+		
+		
+		
+		//layout.add(comparisonMatrixLabel);
+		//layout.add(matrixHeader);
+		//this.getContent().add(layout);
 
 	}
 	
 	public void loadCotsTable()
 	{
-
-		filterRequirements(lastSearch);
-
+		
 		//vPane.clear();
 		vPaneCots.setSpacing(0);
 		vPaneCots.setWidth("90%");
@@ -280,23 +405,12 @@ public class ReviewAndFinalizeRequirementsPane extends BasePane
 		loadCotsTableData();
 				
 	}
-	
-	private FlexTable matrix = new FlexTable();
-	private FlexTable matrixHeader = new FlexTable();
-	
+		
 	public void loadCotsTableData()
 	{
-		drawRateMatrix();
-		getTotalsFromMatrix();
-		//PaneInitialization();
-		//changeLink();
-		
-		drawMatrixPage();
-
-					
-		this.getContent().clear();
-		//layout.add(comparisonMatrixLabel);
+						
 		vPaneCotsData.add(matrixHeader);
+		vPaneCotsData.add(matrix);
 		this.getContent().add(vPaneCotsData);
 	}
 	
@@ -377,6 +491,9 @@ public class ReviewAndFinalizeRequirementsPane extends BasePane
 	public void drawRateMatrixValues()
 	{
 		FlexCellFormatter formatter = this.matrix.getFlexCellFormatter();
+		
+		System.out.println("!!!!!!!!check! ********Attributes"+attributes.toString());
+		
 		for(int i=0; i<attributes.size();i++)
 		{
 			
@@ -414,6 +531,7 @@ public class ReviewAndFinalizeRequirementsPane extends BasePane
 		matrix.setWidget(0, 0, new Label(" "));
 		formatter.setStyleName(0, 0, "square-Matrix");
 		
+		System.out.println("at drawRateMatrixHeaderTechniques>>>  Attributes"+attributes.toString());
 		// Set the header rows with techniques
 		for(int i=1; i<=attributes.size();i++)
 		{
@@ -496,6 +614,165 @@ public class ReviewAndFinalizeRequirementsPane extends BasePane
 		
 		
 	}
+	
+	public void drawQualityAttributes()
+	{
+		FlexCellFormatter formatter = this.matrix.getFlexCellFormatter();
+		matrix.setWidget(0, 0, new Label(" "));
+		formatter.setStyleName(0, 0, "square-Matrix");
+
+		// Set the header rows  with techniques
+		for(int i=1; i<=attributes.size();i++)
+		{
+			if(this.isReadOnly)
+			{
+				Label techniqueLabel = new Label(attributes.get(i-1).getName());
+
+				final DecoratedPopupPanel simplePopup = new DecoratedPopupPanel(true);
+				// simplePopup.ensureDebugId("cwBasicPopup-simplePopup");
+				simplePopup.setWidth("150px");
+				simplePopup.setWidget(new HTML(attributes.get(i-1).getDescription()));
+
+				techniqueLabel.addMouseOverHandler(new MouseOverHandler(){
+
+					public void onMouseOver(MouseOverEvent event) 
+					{
+						Widget source = (Widget) event.getSource();
+						int left = source.getAbsoluteLeft() + 20;
+						int top = source.getAbsoluteTop() + 20;
+						simplePopup.setPopupPosition(left, top);
+						simplePopup.show();
+
+					}});
+				techniqueLabel.addMouseOutHandler(new MouseOutHandler(){
+
+
+					public void onMouseOut(MouseOutEvent event) {
+						simplePopup.hide();
+
+					}});
+
+
+
+				matrix.setWidget(0, i, techniqueLabel);
+				formatter.setHorizontalAlignment(0, i, HasHorizontalAlignment.ALIGN_CENTER);
+				formatter.setStyleName(0, i, "square-Matrix");
+			}
+			else
+			{
+				final SquareHyperlink qualityAttributeLink = new SquareHyperlink(attributes.get(i-1).getName());
+				final int index = i;
+				/*
+				qualityAttributeLink.addClickHandler(new ClickHandler(){
+
+					
+					public void onClick(ClickEvent event) {
+						editQualityAttributeDialog = new EditQualityAttributeDialog(attributes.get(index-1), attributes, ReviewPackagesPane.this);
+						editQualityAttributeDialog.center();
+						editQualityAttributeDialog.setModal(true);
+						editQualityAttributeDialog.show();
+						
+					}});
+					*/
+				
+				matrix.setWidget(0, i, qualityAttributeLink);
+				formatter.setHorizontalAlignment(0, i, HasHorizontalAlignment.ALIGN_CENTER);
+				formatter.setStyleName(0, i, "square-Matrix");
+			}				
+		}
+
+		matrix.setWidget(0, attributes.size()+1, new Label("Total"));
+		formatter.setHorizontalAlignment(0, attributes.size()+1, HasHorizontalAlignment.ALIGN_RIGHT);
+		formatter.setStyleName(0, attributes.size()+1,"square-Matrix");
+
+	}
+
+	public void drawSoftwarePackages()
+	{
+
+		FlexCellFormatter formatter = this.matrix.getFlexCellFormatter();
+		// Set the left columns with the evaluation criteria 
+		for(int j=0, widgetCount=0; j<softwarePackages.size();j++, ++widgetCount)
+		{
+			if(this.isReadOnly)
+			{
+				Label softwarePackageLabel = new Label(softwarePackages.get(j).getName());
+
+				final DecoratedPopupPanel simplePopup = new DecoratedPopupPanel(true);
+				simplePopup.setWidth("150px");
+				simplePopup.setWidget(new HTML(softwarePackages.get(j).getDescription()));
+
+				softwarePackageLabel.addMouseOverHandler(new MouseOverHandler(){
+
+					public void onMouseOver(MouseOverEvent event) {
+						Widget source = (Widget) event.getSource();
+						int left = source.getAbsoluteLeft() + 40;
+						int top = source.getAbsoluteTop() + 20;
+						simplePopup.setPopupPosition(left, top);
+						simplePopup.show();
+
+					}});
+				softwarePackageLabel.addMouseOutHandler(new MouseOutHandler(){
+
+
+					public void onMouseOut(MouseOutEvent event) {
+						simplePopup.hide();
+
+					}});
+
+				if(j == 0)
+				{
+					matrix.setWidget(j+1,0 , softwarePackageLabel);
+					formatter.setHorizontalAlignment(j+1,0 , HasHorizontalAlignment.ALIGN_RIGHT);
+					formatter.setStyleName(j+1,0 ,  "square-Matrix");
+					matrix.setWidget(j+2,0 , new Label(""));
+					++widgetCount;
+
+				}
+				else
+				{
+					matrix.setWidget(widgetCount+1,0 , softwarePackageLabel);
+					formatter.setHorizontalAlignment(widgetCount+1,0 , HasHorizontalAlignment.ALIGN_RIGHT);
+					formatter.setStyleName(widgetCount+1,0 ,  "square-Matrix");
+				}
+			}
+			else
+			{
+				final SquareHyperlink softwarePackageLink = new SquareHyperlink(softwarePackages.get(j).getName());
+				final int index = j;
+				/*
+				softwarePackageLink.addClickHandler(new ClickHandler(){
+
+				
+					public void onClick(ClickEvent event) {
+						editSoftwarePackageDialog = new EditSoftwarePackageDialog(softwarePackages.get(index), softwarePackages, ReviewPackagesPane.this);
+						editSoftwarePackageDialog.center();
+						editSoftwarePackageDialog.setModal(true);
+						editSoftwarePackageDialog.show();
+						
+					}});
+					*/
+				
+				if(j == 0)
+				{
+					matrix.setWidget(j+1,0, new Label(softwarePackages.get(j).getName()));
+					formatter.setHorizontalAlignment(j+1,0 , HasHorizontalAlignment.ALIGN_RIGHT);
+					formatter.setStyleName(j+1,0 ,  "square-Matrix");
+					matrix.setWidget(j+2,0 , new Label(""));
+					++widgetCount;
+				}
+				else
+				{
+					matrix.setWidget(widgetCount+1,0 , softwarePackageLink);
+					formatter.setHorizontalAlignment(widgetCount+1,0 , HasHorizontalAlignment.ALIGN_RIGHT);
+					formatter.setStyleName(widgetCount+1,0 ,  "square-Matrix");
+				}
+
+			}
+
+		}
+
+	}
 	private void drawMatrixPage()
 	{
 		FlexCellFormatter formatter1 = this.matrixHeader.getFlexCellFormatter();
@@ -520,6 +797,7 @@ public class ReviewAndFinalizeRequirementsPane extends BasePane
 	public void loadRequirementsTable()
 	{
 
+		System.out.println("We're at loadRequirementTable");
 		filterRequirements(lastSearch);
 
 		vPane.clear();
@@ -571,7 +849,7 @@ public class ReviewAndFinalizeRequirementsPane extends BasePane
 		
 
 	}
-
+/*
 	public void loadPaginBar()
 	{
 		if(pageCount>1)
@@ -671,6 +949,9 @@ public class ReviewAndFinalizeRequirementsPane extends BasePane
 		
 	}
 	*/
+	
+	
+	
 	public int getIndexById(int requirementId)
 	{
 		int count = 0;
