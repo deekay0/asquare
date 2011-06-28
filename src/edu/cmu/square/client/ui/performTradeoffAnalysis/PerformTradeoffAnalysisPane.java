@@ -43,6 +43,7 @@ import edu.cmu.square.client.model.GwtRating;
 import edu.cmu.square.client.model.GwtRequirement;
 import edu.cmu.square.client.model.GwtRequirementRating;
 import edu.cmu.square.client.model.GwtSoftwarePackage;
+import edu.cmu.square.client.model.GwtTradeoffReason;
 import edu.cmu.square.client.model.StepStatus;
 import edu.cmu.square.client.navigation.State;
 import edu.cmu.square.client.remoteService.step.interfaces.PerformTradeoffAnalysisService;
@@ -297,6 +298,37 @@ public class PerformTradeoffAnalysisPane extends BasePane
 		//initWidget(layout);
 	}	
 	
+	protected void updateTradeoffReasoninDB(GwtTradeoffReason localTradeoffReason)
+	{
+		this.performTradeoffService.setTradeoffReason(currentProject.getId(), localTradeoffReason.getPackageId(), localTradeoffReason.getTradeoffreason(), new AsyncCallback<Void>()
+				{
+					public void onFailure(Throwable caught) 
+					{
+						if (caught instanceof SquareException) 
+						{
+							SquareException se = (SquareException) caught;
+							switch (se.getType()) {
+							case authorization:
+								Window.alert(messages.rateAuthorization());
+								break;
+						
+							default:
+								Window.alert(messages.error());
+								break;
+							}
+
+						} else {
+							Window.alert(messages.error());
+						}
+					}
+					
+					public void onSuccess(Void result) 
+					{
+						
+					}
+				});	
+	}
+	
 	private void changeLink()
 	{
 		if(isReadOnly)
@@ -470,14 +502,10 @@ public class PerformTradeoffAnalysisPane extends BasePane
 	
 	private void setRequirementRateValue(final int packageID, final int requirementID, final int value)
 	{	
-		System.out.println("set requirement rate......."+packageID+"  "+requirementID+"  "+ value);
-		
 		//the sequence of requirementID and packageID has problems 
 		this.performTradeoffService.setRequirementRateValue(currentProject.getId(), requirementID, packageID, value, new AsyncCallback<Void>(){
 		
 			public void onFailure(Throwable caught) {
-				
-				System.out.println("set requirement rate fail.......");
 				if (caught instanceof SquareException) {
 					SquareException se = (SquareException) caught;
 					switch (se.getType()) {
@@ -494,7 +522,6 @@ public class PerformTradeoffAnalysisPane extends BasePane
 				}				
 			}		
 			public void onSuccess(Void result) {
-				System.out.println("set requirement rate success.......");
 				setValueFromlistOfRequirementRateValues(requirementID, packageID, value);			
 			}});
 	}
@@ -518,7 +545,7 @@ public class PerformTradeoffAnalysisPane extends BasePane
 		formatter.setStyleName(0, 0, "square-Matrix");
 			
 		int i, j;
-		// Set the header rows  with techniques
+		// Set the header rows  with requirements
 		for(i=1; i<=listOfRequirements.size();i++)
 		{
 			Label techniqueLabel = null;
@@ -553,7 +580,7 @@ public class PerformTradeoffAnalysisPane extends BasePane
 		}
 		
 		
-		// Set the header rows  with techniques
+		// Set the header rows  with attributes
 		for(j=1; j<=attributes.size();j++)
 		{
 			Label techniqueLabel = null;
@@ -591,21 +618,23 @@ public class PerformTradeoffAnalysisPane extends BasePane
 		matrix.setWidget(0, attributes.size()+listOfRequirements.size()+2, new Label("Tradeoff Reason"));
 		formatter.setHorizontalAlignment(0, attributes.size()+listOfRequirements.size()+1, HasHorizontalAlignment.ALIGN_RIGHT);
 		formatter.setStyleName(0, attributes.size()+listOfRequirements.size()+1,"square-Matrix");	
+		formatter.setHorizontalAlignment(0, attributes.size()+listOfRequirements.size()+2, HasHorizontalAlignment.ALIGN_RIGHT);
+		formatter.setStyleName(0, attributes.size()+listOfRequirements.size()+2,"square-Matrix");	
 	}
 	
 	public void drawRateMatrixEvaluationCriteriaColum()
 	{
 		FlexCellFormatter formatter = this.matrix.getFlexCellFormatter();
-		// Set the left columns with the evaluation criteria 
+		// Set the left columns with the package names 
 		for(int j=0; j<softwarePackages.size();j++)
 		{		
-			Label evaluationLabel = new Label(softwarePackages.get(j).getName());
+			Label packageLabel = new Label(softwarePackages.get(j).getName());
 			
 			final DecoratedPopupPanel simplePopup = new DecoratedPopupPanel(true);
 			simplePopup.setWidth("150px");
 			simplePopup.setWidget(new HTML(softwarePackages.get(j).getDescription()));
 			
-			evaluationLabel.addMouseOverHandler(new MouseOverHandler(){		
+			packageLabel.addMouseOverHandler(new MouseOverHandler(){		
 				public void onMouseOver(MouseOverEvent event) {
 						Widget source = (Widget) event.getSource();
 			            int left = source.getAbsoluteLeft() + 40;
@@ -613,13 +642,23 @@ public class PerformTradeoffAnalysisPane extends BasePane
 			            simplePopup.setPopupPosition(left, top);
 						simplePopup.show();
 				}});
-			evaluationLabel.addMouseOutHandler(new MouseOutHandler(){	
+			packageLabel.addMouseOutHandler(new MouseOutHandler(){	
 				public void onMouseOut(MouseOutEvent event) {
 						simplePopup.hide();
 				}});
-			matrix.setWidget(j+1,0 , evaluationLabel);
+			matrix.setWidget(j+1,0 , packageLabel);
+			
+			
+			SummaryElementHyperLinkElement tradeoffReasonLink = new SummaryElementHyperLinkElement(softwarePackages.get(j).getId(), "Tradeoff Reason");
+			
+			if(j>=1)
+			{
+				matrix.setWidget(j+1,attributes.size()+listOfRequirements.size()+2, tradeoffReasonLink);
+				formatter.setHorizontalAlignment(j+1, attributes.size()+listOfRequirements.size()+2, HasHorizontalAlignment.ALIGN_RIGHT);
+				formatter.setStyleName(j+1, attributes.size()+listOfRequirements.size()+2,  "square-Matrix");	
+			}
 			formatter.setHorizontalAlignment(j+1,0 , HasHorizontalAlignment.ALIGN_RIGHT);
-			formatter.setStyleName(j+1,0 ,  "square-Matrix");		
+			formatter.setStyleName(j+1,0, "square-Matrix");		
 		}	
 	}
 	
@@ -630,6 +669,7 @@ public class PerformTradeoffAnalysisPane extends BasePane
 		{
 			for(int j=0; j<softwarePackages.size();j++)
 			{
+				
 				if(i<listOfRequirements.size())
 				{
 					int rID=listOfRequirements.get(i).getId();
@@ -710,12 +750,13 @@ public class PerformTradeoffAnalysisPane extends BasePane
 					totalLabel.setText("0");
 	
 					//SummaryElementHyperLinkElement tradeoffReasonLink = new SummaryElementHyperLinkElement(softwarePackages.get(i).getId(), "Tradeoff Reason");
-
-					
-					matrix.setWidget(j+1, listOfRequirements.size()+1, totalLabel);
-					//matrix.setWidget(j+1, listOfRequirements.size()+2, tradeoffReasonLink);
-					formatter.setHorizontalAlignment(j+1, listOfRequirements.size()+1,  HasHorizontalAlignment.ALIGN_CENTER);
-					formatter.setStyleName(j+1, listOfRequirements.size()+1,"square-Matrix");
+					if(j>=1)
+					{
+						matrix.setWidget(j+1, listOfRequirements.size()+1, totalLabel);
+						//matrix.setWidget(j+1, listOfRequirements.size()+2, tradeoffReasonLink);
+						formatter.setHorizontalAlignment(j+1, listOfRequirements.size()+1,  HasHorizontalAlignment.ALIGN_CENTER);
+						formatter.setStyleName(j+1, listOfRequirements.size()+1,"square-Matrix");
+					}
 				}
 				else
 				{
@@ -732,6 +773,9 @@ public class PerformTradeoffAnalysisPane extends BasePane
 					RateValueLabel totalLabel= new RateValueLabel(attributes.get(i-listOfRequirements.size()).getId());
 					totalLabel.setText("0");
 	
+					
+					if(j>=1)
+					{
 					matrix.setWidget(j+1, attributes.size()+listOfRequirements.size()+1, totalLabel);
 					
 					//System.out.println("here........"+softwarePackages.get(i).getId());
@@ -739,7 +783,8 @@ public class PerformTradeoffAnalysisPane extends BasePane
 					//matrix.setWidget(j+1, listOfRequirements.size()+2, tradeoffReasonLink);
 					
 					formatter.setHorizontalAlignment(j+1, attributes.size()+listOfRequirements.size()+1,  HasHorizontalAlignment.ALIGN_CENTER);
-					formatter.setStyleName(j+1, attributes.size()+listOfRequirements.size()+1,"square-Matrix");			
+					formatter.setStyleName(j+1, attributes.size()+listOfRequirements.size()+1,"square-Matrix");	
+					}
 				}
 
 			}
@@ -975,5 +1020,11 @@ public class PerformTradeoffAnalysisPane extends BasePane
 		}
 	}
 
+	
+	
+	public void updateCommand(GwtTradeoffReason localTradeoffReason)
+	{
+		updateTradeoffReasoninDB(localTradeoffReason);
+	}
 	
 }

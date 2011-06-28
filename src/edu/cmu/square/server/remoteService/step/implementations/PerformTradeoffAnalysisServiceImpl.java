@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import edu.cmu.square.client.exceptions.SquareException;
 import edu.cmu.square.client.model.GwtProject;
 import edu.cmu.square.client.model.GwtRequirementRating;
+import edu.cmu.square.client.model.GwtTradeoffReason;
 
 import edu.cmu.square.client.remoteService.step.interfaces.PerformTradeoffAnalysisService;
 
@@ -42,6 +43,20 @@ public class PerformTradeoffAnalysisServiceImpl extends SquareRemoteServiceServl
 	{
 		// TODO Auto-generated method stub
 		setValuesForAuthorization(performTradeoffBusiness);
+	}
+
+	@Override
+	public List<GwtTradeoffReason> getTradeoffReasons(int projectID) throws SquareException
+	{
+		// TODO Auto-generated method stub
+		return performTradeoffBusiness.getTradeoffReasons(projectID);
+	}
+
+	@Override
+	public void setTradeoffReason(int projectID, int packageID, String tradeoffreason) throws SquareException
+	{
+		// TODO Auto-generated method stub
+		performTradeoffBusiness.updateTradeoffReason(projectID, packageID, tradeoffreason);
 	}
 
 }
