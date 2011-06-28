@@ -207,7 +207,6 @@ public class PerformTradeoffAnalysisPane extends BasePane
 				@Override
 				public void onClick(ClickEvent event)
 				{
-
 					currentState.setCurrentRisk(viewDetailLink.getRequirementId());
 					currentState.setRiskCommand(1);
 					//History.newItem(ReviewAndFinalizeRequirementsPilot.generateNavigationId(ReviewAndFinalizeRequirementsPilot.PageId.requirementDetail));
@@ -589,6 +588,7 @@ public class PerformTradeoffAnalysisPane extends BasePane
 		}
 		
 		matrix.setWidget(0, attributes.size()+listOfRequirements.size()+1, new Label("Total"));
+		matrix.setWidget(0, attributes.size()+listOfRequirements.size()+2, new Label("Tradeoff Reason"));
 		formatter.setHorizontalAlignment(0, attributes.size()+listOfRequirements.size()+1, HasHorizontalAlignment.ALIGN_RIGHT);
 		formatter.setStyleName(0, attributes.size()+listOfRequirements.size()+1,"square-Matrix");	
 	}
@@ -709,7 +709,11 @@ public class PerformTradeoffAnalysisPane extends BasePane
 					RateValueLabel totalLabel= new RateValueLabel(listOfRequirements.get(i).getId());
 					totalLabel.setText("0");
 	
+					//SummaryElementHyperLinkElement tradeoffReasonLink = new SummaryElementHyperLinkElement(softwarePackages.get(i).getId(), "Tradeoff Reason");
+
+					
 					matrix.setWidget(j+1, listOfRequirements.size()+1, totalLabel);
+					//matrix.setWidget(j+1, listOfRequirements.size()+2, tradeoffReasonLink);
 					formatter.setHorizontalAlignment(j+1, listOfRequirements.size()+1,  HasHorizontalAlignment.ALIGN_CENTER);
 					formatter.setStyleName(j+1, listOfRequirements.size()+1,"square-Matrix");
 				}
@@ -719,73 +723,21 @@ public class PerformTradeoffAnalysisPane extends BasePane
 					int pID=softwarePackages.get(j).getId();				
 					int value = getValueFromlistOfRateValues(pID,aID);
 					
-					if(isReadOnly)
-					{
-						Label valueLabel = new Label(String.valueOf(value));
-						valueLabel.setHorizontalAlignment(HasHorizontalAlignment.ALIGN_CENTER);
-						matrix.setWidget(j+1, i+1, valueLabel);
-						formatter.setHorizontalAlignment(j+1, i+1, HasHorizontalAlignment.ALIGN_CENTER);
-						formatter.setStyleName(j+1, i+1,"square-Matrix");
-					}
-					else
-					{
-						final RateValueTextbox rateValueTextbox =new RateValueTextbox(aID,pID, value);
-						rateValueTextbox.setTextAlignment(TextBox.ALIGN_CENTER);
-						rateValueTextbox.addKeyPressHandler(new KeyPressHandler(){	
-							public void onKeyPress(KeyPressEvent event) {
-								char keyCode= event.getCharCode();
-								 if (
-										 ( (keyCode< '0' || keyCode>'3')) && (keyCode != (char) KeyCodes.KEY_TAB)
-								            && (keyCode != (char) KeyCodes.KEY_BACKSPACE)
-								            && (keyCode != (char) KeyCodes.KEY_DELETE) && (keyCode != (char) KeyCodes.KEY_ENTER) 
-								            && (keyCode != (char) KeyCodes.KEY_HOME) && (keyCode != (char) KeyCodes.KEY_END)
-								            && (keyCode != (char) KeyCodes.KEY_LEFT) && (keyCode != (char) KeyCodes.KEY_UP)
-								            && (keyCode != (char) KeyCodes.KEY_RIGHT) && (keyCode != (char) KeyCodes.KEY_DOWN)) {	 	
-									 	rateValueTextbox.cancelKey();
-								 }
-							}
-						});
-						rateValueTextbox.addFocusHandler(new FocusHandler(){
-							public void onFocus(FocusEvent event)
-							{
-								rateValueTextbox.setSelectionRange(0, rateValueTextbox.getText().length());			
-						}});			
-						rateValueTextbox.addChangeHandler(new ChangeHandler(){
-							public void onChange(ChangeEvent event) {				
-								if(rateValueTextbox.getText().trim().length()==0)
-								 {
-									 rateValueTextbox.setText("0");
-								 }
-								char keyCode;
-								if(rateValueTextbox.getText().trim().length()==1)
-								{
-									keyCode=rateValueTextbox.getText().trim().charAt(0);
-								   if(keyCode>= '0' && keyCode<='3')
-								   {
-									   getTotalsFromMatrix();
-									   setRateValue(rateValueTextbox.getTecniqueID(),rateValueTextbox.getEvaluationID(),Integer.parseInt(rateValueTextbox.getText()));
-										rateValueTextbox.setOldValue(rateValueTextbox.getText());
-								   }
-								   else
-								   {
-									   rateValueTextbox.setText(rateValueTextbox.getOldValue());
-								   }
-								}
-								else
-								{
-									rateValueTextbox.setText(rateValueTextbox.getOldValue());
-								}			
-						}});
-						matrix.setWidget(j+1, i+1, rateValueTextbox);
-						formatter.setHorizontalAlignment(j+1, i+1, HasHorizontalAlignment.ALIGN_CENTER);
-						formatter.setStyleName(j+1, i+1,"square-Matrix");
-					}
-					
+					Label valueLabel = new Label(String.valueOf(value));
+					valueLabel.setHorizontalAlignment(HasHorizontalAlignment.ALIGN_CENTER);
+					matrix.setWidget(j+1, i+1, valueLabel);
+					formatter.setHorizontalAlignment(j+1, i+1, HasHorizontalAlignment.ALIGN_CENTER);
+					formatter.setStyleName(j+1, i+1,"square-Matrix");
 		
 					RateValueLabel totalLabel= new RateValueLabel(attributes.get(i-listOfRequirements.size()).getId());
 					totalLabel.setText("0");
 	
 					matrix.setWidget(j+1, attributes.size()+listOfRequirements.size()+1, totalLabel);
+					
+					//System.out.println("here........"+softwarePackages.get(i).getId());
+					//SummaryElementHyperLinkElement tradeoffReasonLink = new SummaryElementHyperLinkElement(softwarePackages.get(i).getId(), "Tradeoff Reason");
+					//matrix.setWidget(j+1, listOfRequirements.size()+2, tradeoffReasonLink);
+					
 					formatter.setHorizontalAlignment(j+1, attributes.size()+listOfRequirements.size()+1,  HasHorizontalAlignment.ALIGN_CENTER);
 					formatter.setStyleName(j+1, attributes.size()+listOfRequirements.size()+1,"square-Matrix");			
 				}
@@ -798,25 +750,30 @@ public class PerformTradeoffAnalysisPane extends BasePane
 	 */
 	public void getTotalsFromMatrix()
 	{
-		for(int i=1; i<=softwarePackages.size();i++)
+		for(int i=2; i<=softwarePackages.size();i++)
 		{	int sum=0;
 			
 			for(int j=1; j<=attributes.size()+listOfRequirements.size();j++)
 			{
 				
 					Widget w =  matrix.getWidget(i, j);
+					Widget weight =  matrix.getWidget(1, j);
 					
 					if ( w instanceof RateValueTextbox) 
 					{
 						RateValueTextbox new_name = (RateValueTextbox) w;
+						RateValueTextbox weightVal = (RateValueTextbox) weight;
 						//Window.alert(new_name.getText());
-						sum=sum+ Integer.parseInt(new_name.getText());
+						//sum=sum+ Integer.parseInt(new_name.getText());
+						sum += Integer.parseInt(new_name.getText()) * Integer.parseInt(weightVal.getText());
 					}
 					else if( w instanceof Label)
 					{
 						Label new_name = (Label) w;
+						Label weightVal = (Label) weight;
 						//Window.alert(new_name.getText());
-						sum=sum+ Integer.parseInt(new_name.getText());
+						//sum=sum+ Integer.parseInt(new_name.getText());
+						sum += Integer.parseInt(new_name.getText()) * Integer.parseInt(weightVal.getText());
 					}
 					
 			}
