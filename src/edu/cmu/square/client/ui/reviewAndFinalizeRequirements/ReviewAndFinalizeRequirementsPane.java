@@ -168,7 +168,7 @@ public class ReviewAndFinalizeRequirementsPane extends BasePane
 
 				public void onFailure(Throwable caught)
 				{
-					ExceptionHelper.SquareRootRPCExceptionHandler(caught, "Retriving Requirements");
+					ExceptionHelper.SquareRootRPCExceptionHandler(caught, "Retrieving Requirements");
 				}
 
 				public void onSuccess(List<GwtRequirement> result)
@@ -421,200 +421,12 @@ public class ReviewAndFinalizeRequirementsPane extends BasePane
 		matrix.setWidth("100%");
 		matrix.setStyleName("square-Matrix");
 		matrix.setCellSpacing(0);
-		drawRateMatrixHeaderTechniques();
-		drawRateMatrixEvaluationCriteriaColum();
+		drawQualityAttributes();
+		drawSoftwarePackages();
 		drawRateMatrixValues();
 
 	}
-	
-	public void drawRateMatrixEvaluationCriteriaColum()
-	{
-		FlexCellFormatter formatter = this.matrix.getFlexCellFormatter();
-		// Set the left columns with the evaluation criteria 
-		for(int j=0; j<softwarePackages.size();j++)
-		{
-			
-			Label evaluationLabel = new Label(softwarePackages.get(j).getName());
-			
-			final DecoratedPopupPanel simplePopup = new DecoratedPopupPanel(true);
-			    simplePopup.setWidth("150px");
-			    simplePopup.setWidget(new HTML(softwarePackages.get(j).getDescription()));
-			
-			    evaluationLabel.addMouseOverHandler(new MouseOverHandler(){
-				
-				public void onMouseOver(MouseOverEvent event) {
-					Widget source = (Widget) event.getSource();
-		            int left = source.getAbsoluteLeft() + 40;
-		            int top = source.getAbsoluteTop() + 20;
-		            simplePopup.setPopupPosition(left, top);
-					simplePopup.show();
 
-				}});
-			    evaluationLabel.addMouseOutHandler(new MouseOutHandler(){
-
-					
-					public void onMouseOut(MouseOutEvent event) {
-						simplePopup.hide();
-						
-					}});
-			matrix.setWidget(j+1,0 , evaluationLabel);
-			formatter.setHorizontalAlignment(j+1,0 , HasHorizontalAlignment.ALIGN_RIGHT);
-			formatter.setStyleName(j+1,0 ,  "square-Matrix");
-			
-		}
-		
-	}
-	/**
-	 * This method search the rate values in the loaded by RCP initially
-	 * @param techniqueID
-	 * @param evaluationID
-	 * @return rateValue
-	 */
-	private int getValueFromlistOfRateValues(int techniqueID, int evaluationID)
-	{
-		
-		for(int j=0; j<ratings.size();j++)
-		{
-		
-			int eID=ratings.get(j).getAttributeId();
-			int tID =ratings.get(j).getPackageId();
-			
-			if(techniqueID==tID && evaluationID==eID)
-			{
-				return ratings.get(j).getValue();
-			}
-			
-		}
-		return 0;
-
-	}
-	public void drawRateMatrixValues()
-	{
-		FlexCellFormatter formatter = this.matrix.getFlexCellFormatter();
-		
-		System.out.println("!!!!!!!!check! ********Attributes"+attributes.toString());
-		
-		for(int i=0; i<attributes.size();i++)
-		{
-			
-			for(int j=0; j<softwarePackages.size();j++)
-			{
-				
-				int tID=attributes.get(i).getId();
-				int eID=softwarePackages.get(j).getId();
-				
-				int value = getValueFromlistOfRateValues(eID, tID);
-				
-				
-					Label valueLabel = new Label(String.valueOf(value));
-					valueLabel.setHorizontalAlignment(HasHorizontalAlignment.ALIGN_CENTER);
-					matrix.setWidget(j+1, i+1, valueLabel);
-					formatter.setHorizontalAlignment(j+1, i+1, HasHorizontalAlignment.ALIGN_CENTER);
-					formatter.setStyleName(j+1, i+1,"square-Matrix");
-				
-			
-				RateValueLabel totalLabel= new RateValueLabel(attributes.get(i).getId());
-				totalLabel.setText("0");
-
-				matrix.setWidget(j+1, attributes.size()+1, totalLabel);
-				formatter.setHorizontalAlignment(j+1, attributes.size()+1,  HasHorizontalAlignment.ALIGN_CENTER);
-				formatter.setStyleName(j+1, attributes.size()+1,"square-Matrix");
-			
-			}
-			
-						
-		}
-	}
-	public void drawRateMatrixHeaderTechniques()
-	{
-		FlexCellFormatter formatter = this.matrix.getFlexCellFormatter();
-		matrix.setWidget(0, 0, new Label(" "));
-		formatter.setStyleName(0, 0, "square-Matrix");
-		
-		System.out.println("at drawRateMatrixHeaderTechniques>>>  Attributes"+attributes.toString());
-		// Set the header rows with techniques
-		for(int i=1; i<=attributes.size();i++)
-		{
-			Label techniqueLabel = new Label(attributes.get(i-1).getName());
-			
-				final DecoratedPopupPanel simplePopup = new DecoratedPopupPanel(true);
-			   // simplePopup.ensureDebugId("cwBasicPopup-simplePopup");
-			    simplePopup.setWidth("150px");
-			    simplePopup.setWidget(new HTML(attributes.get(i-1).getDescription()));
-			
-			    techniqueLabel.addMouseOverHandler(new MouseOverHandler(){
-				
-				public void onMouseOver(MouseOverEvent event) 
-				{
-					Widget source = (Widget) event.getSource();
-		            int left = source.getAbsoluteLeft() + 20;
-		            int top = source.getAbsoluteTop() + 20;
-		            simplePopup.setPopupPosition(left, top);
-					simplePopup.show();
-
-				}});
-			    techniqueLabel.addMouseOutHandler(new MouseOutHandler(){
-
-					
-					public void onMouseOut(MouseOutEvent event) {
-						simplePopup.hide();
-						
-					}});
-			    
-			    
-		
-			matrix.setWidget(0, i, techniqueLabel);
-			formatter.setHorizontalAlignment(0, i, HasHorizontalAlignment.ALIGN_CENTER);
-			formatter.setStyleName(0, i, "square-Matrix");
-		}
-		
-		matrix.setWidget(0, attributes.size()+1, new Label("Total"));
-		formatter.setHorizontalAlignment(0, attributes.size()+1, HasHorizontalAlignment.ALIGN_RIGHT);
-		formatter.setStyleName(0, attributes.size()+1,"square-Matrix");
-		
-	}
-	/**
-	 * Get the totals traversing the current Matrix FlexTable
-	 */
-	public void getTotalsFromMatrix()
-	{
-		for(int i=1; i<=softwarePackages.size();i++)
-		{	int sum=0;
-			
-			for(int j=1; j<=attributes.size();j++)
-			{
-				
-					Widget w =  matrix.getWidget(i, j);
-					
-					if ( w instanceof RateValueTextbox) 
-					{
-						RateValueTextbox new_name = (RateValueTextbox) w;
-						//Window.alert(new_name.getText());
-						sum=sum+ Integer.parseInt(new_name.getText());
-					}
-					else if( w instanceof Label)
-					{
-						Label new_name = (Label) w;
-						//Window.alert(new_name.getText());
-						sum=sum+ Integer.parseInt(new_name.getText());
-					}
-					
-			}
-			
-//				Widget totalLabel =  matrix.getWidget(softwarePackages.size()+1, i);
-			Widget totalLabel =  matrix.getWidget(i, attributes.size()+1);
-
-				
-				RateValueLabel new_name = (RateValueLabel) totalLabel;
-		
-				new_name.setText(String.valueOf(sum));
-				//new_name.setHorizontalAlignment(HasHorizontalAlignment.ALIGN_CENTER);
-		
-		}
-		
-		
-	}
-	
 	public void drawQualityAttributes()
 	{
 		FlexCellFormatter formatter = this.matrix.getFlexCellFormatter();
@@ -624,8 +436,8 @@ public class ReviewAndFinalizeRequirementsPane extends BasePane
 		// Set the header rows  with techniques
 		for(int i=1; i<=attributes.size();i++)
 		{
-			if(this.isReadOnly)
-			{
+			
+			
 				Label techniqueLabel = new Label(attributes.get(i-1).getName());
 
 				final DecoratedPopupPanel simplePopup = new DecoratedPopupPanel(true);
@@ -656,29 +468,7 @@ public class ReviewAndFinalizeRequirementsPane extends BasePane
 
 				matrix.setWidget(0, i, techniqueLabel);
 				formatter.setHorizontalAlignment(0, i, HasHorizontalAlignment.ALIGN_CENTER);
-				formatter.setStyleName(0, i, "square-Matrix");
-			}
-			else
-			{
-				final SquareHyperlink qualityAttributeLink = new SquareHyperlink(attributes.get(i-1).getName());
-				final int index = i;
-				/*
-				qualityAttributeLink.addClickHandler(new ClickHandler(){
-
-					
-					public void onClick(ClickEvent event) {
-						editQualityAttributeDialog = new EditQualityAttributeDialog(attributes.get(index-1), attributes, ReviewPackagesPane.this);
-						editQualityAttributeDialog.center();
-						editQualityAttributeDialog.setModal(true);
-						editQualityAttributeDialog.show();
-						
-					}});
-					*/
-				
-				matrix.setWidget(0, i, qualityAttributeLink);
-				formatter.setHorizontalAlignment(0, i, HasHorizontalAlignment.ALIGN_CENTER);
-				formatter.setStyleName(0, i, "square-Matrix");
-			}				
+				formatter.setStyleName(0, i, "square-Matrix");		
 		}
 
 		matrix.setWidget(0, attributes.size()+1, new Label("Total"));
@@ -694,8 +484,7 @@ public class ReviewAndFinalizeRequirementsPane extends BasePane
 		// Set the left columns with the evaluation criteria 
 		for(int j=0, widgetCount=0; j<softwarePackages.size();j++, ++widgetCount)
 		{
-			if(this.isReadOnly)
-			{
+			
 				Label softwarePackageLabel = new Label(softwarePackages.get(j).getName());
 
 				final DecoratedPopupPanel simplePopup = new DecoratedPopupPanel(true);
@@ -735,43 +524,124 @@ public class ReviewAndFinalizeRequirementsPane extends BasePane
 					formatter.setHorizontalAlignment(widgetCount+1,0 , HasHorizontalAlignment.ALIGN_RIGHT);
 					formatter.setStyleName(widgetCount+1,0 ,  "square-Matrix");
 				}
-			}
-			else
-			{
-				final SquareHyperlink softwarePackageLink = new SquareHyperlink(softwarePackages.get(j).getName());
-				final int index = j;
-				/*
-				softwarePackageLink.addClickHandler(new ClickHandler(){
-
-				
-					public void onClick(ClickEvent event) {
-						editSoftwarePackageDialog = new EditSoftwarePackageDialog(softwarePackages.get(index), softwarePackages, ReviewPackagesPane.this);
-						editSoftwarePackageDialog.center();
-						editSoftwarePackageDialog.setModal(true);
-						editSoftwarePackageDialog.show();
-						
-					}});
-					*/
-				
-				if(j == 0)
-				{
-					matrix.setWidget(j+1,0, new Label(softwarePackages.get(j).getName()));
-					formatter.setHorizontalAlignment(j+1,0 , HasHorizontalAlignment.ALIGN_RIGHT);
-					formatter.setStyleName(j+1,0 ,  "square-Matrix");
-					matrix.setWidget(j+2,0 , new Label(""));
-					++widgetCount;
-				}
-				else
-				{
-					matrix.setWidget(widgetCount+1,0 , softwarePackageLink);
-					formatter.setHorizontalAlignment(widgetCount+1,0 , HasHorizontalAlignment.ALIGN_RIGHT);
-					formatter.setStyleName(widgetCount+1,0 ,  "square-Matrix");
-				}
-
-			}
+			
+			
 
 		}
 
+	}
+	
+	private int getValueFromlistOfRateValues(int packageID, int attributeID)
+	{
+		for(int j=0; j<ratings.size();j++)
+		{
+			int aID=ratings.get(j).getAttributeId();
+			int pID =ratings.get(j).getPackageId();
+			
+			if(packageID==pID && attributeID==aID)
+			{
+				return ratings.get(j).getValue();
+			}			
+		}
+		return 0;
+	}
+	
+	public void drawRateMatrixValues()
+	{
+		FlexCellFormatter formatter = this.matrix.getFlexCellFormatter();
+		for(int i=0; i<attributes.size();i++)
+		{
+			
+			for(int j=0, widgetCount = 0; j<softwarePackages.size();j++, ++widgetCount)
+			{
+				int tID=attributes.get(i).getId();
+				int eID=softwarePackages.get(j).getId();
+				
+				int value = getValueFromlistOfRateValues(eID, tID);
+				
+				if(isReadOnly)
+				{
+					Label valueLabel = new Label(String.valueOf(value));
+					valueLabel.setHorizontalAlignment(HasHorizontalAlignment.ALIGN_CENTER);
+					
+					
+					if(j==0)
+					{
+						matrix.setWidget(1, i+1, valueLabel);
+						formatter.setHorizontalAlignment(1, i+1, HasHorizontalAlignment.ALIGN_CENTER);
+						formatter.setStyleName(1, i+1,"square-Matrix");
+						++widgetCount;
+					}
+					else
+					{
+						matrix.setWidget(widgetCount+1, i+1, valueLabel);
+						formatter.setHorizontalAlignment(widgetCount+1, i+1, HasHorizontalAlignment.ALIGN_CENTER);
+						formatter.setStyleName(widgetCount+1, i+1,"square-Matrix");
+					}
+					
+					
+				}
+				RateValueLabel totalLabel= new RateValueLabel(attributes.get(i).getId());
+				totalLabel.setText("0");
+
+				if(widgetCount>1)
+				{
+				matrix.setWidget(widgetCount+1, attributes.size()+1, totalLabel);
+				formatter.setHorizontalAlignment(widgetCount+1, attributes.size()+1,  HasHorizontalAlignment.ALIGN_CENTER);
+				formatter.setStyleName(widgetCount+1, attributes.size()+1,"square-Matrix");
+				}
+			}
+			
+						
+		}
+	}
+	
+	
+	/**
+	 * Get the totals traversing the current Matrix FlexTable
+	 */
+	public void getTotalsFromMatrix()
+	{
+		System.out.println("rows: "+matrix.getRowCount()+" columns: "+matrix.getCellCount(0));
+		for(int i=3; i<=softwarePackages.size()+1;i++)
+		{	
+			int sum=0;
+			
+			for(int j=1; j<=attributes.size();j++)
+			{
+					Widget w =  matrix.getWidget(i, j);
+					Widget weight =  matrix.getWidget(1, j);
+					
+					if ( w instanceof RateValueTextbox) 
+					{
+						RateValueTextbox new_name = (RateValueTextbox) w;
+						RateValueTextbox weightVal = (RateValueTextbox) weight;
+						//Window.alert(new_name.getText());
+						sum += Integer.parseInt(new_name.getText()) * Integer.parseInt(weightVal.getText());
+							
+					}
+					else if( w instanceof Label)
+					{
+						Label new_name = (Label) w;						
+						Label weightVal = (Label) weight;
+						//Window.alert(new_name.getText());
+						sum += Integer.parseInt(new_name.getText()) * Integer.parseInt(weightVal.getText());
+					}
+					
+			}
+			
+//				Widget totalLabel =  matrix.getWidget(softwarePackages.size()+1, i);
+			Widget totalLabel =  matrix.getWidget(i, attributes.size()+1);
+
+				
+				RateValueLabel new_name = (RateValueLabel) totalLabel;
+		
+				new_name.setText(String.valueOf(sum));
+				//new_name.setHorizontalAlignment(HasHorizontalAlignment.ALIGN_CENTER);
+		
+		}
+		
+		
 	}
 	private void drawMatrixPage()
 	{
