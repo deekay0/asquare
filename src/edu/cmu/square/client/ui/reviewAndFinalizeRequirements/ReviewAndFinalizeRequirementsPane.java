@@ -181,10 +181,6 @@ public class ReviewAndFinalizeRequirementsPane extends BasePane
 
 	}
 	
-	/**
-	 * Contains RPC Calls to retrieve the evaluation criteria for the project
-	 */
-	
 	private void loadAttributes()
 	{
 		final StepStatus stepStatus =  StepStatus.NotStarted;
@@ -195,8 +191,6 @@ public class ReviewAndFinalizeRequirementsPane extends BasePane
 					public void onSuccess(List<GwtQualityAttribute> result)
 					{
 						System.out.println("We got quality attribute: "+result.size());
-						System.out.println("attributes"+result.toString());
-						
 						attributes = result;
 						loadPackages();
 					}
@@ -250,8 +244,8 @@ public class ReviewAndFinalizeRequirementsPane extends BasePane
 						ratings = result;
 						drawRateMatrix();
 						getTotalsFromMatrix();
-						loadRequirements();		
-						//initializePane();
+						loadRequirements();
+						//PaneInitialization();
 					}
 					
 					@Override
@@ -376,14 +370,11 @@ public class ReviewAndFinalizeRequirementsPane extends BasePane
 		this.getContent().add(vPane);
 		loadRequirementsTable();
 			
-		
 		this.getContent().add(vPaneCots);
+		vPaneCotsData.add(layout);
+		layout.add(matrixHeader);
+		this.getContent().add(vPaneCotsData);
 		loadCotsTable();
-		
-		
-		
-		
-		
 		
 		
 		//layout.add(comparisonMatrixLabel);
@@ -401,17 +392,7 @@ public class ReviewAndFinalizeRequirementsPane extends BasePane
 		vPaneCots.setHeight("5%");
 
 		vPaneCots.add(getCotsTableHeaderRow());
-		vPaneCots.add(vPaneCotsData);
-		loadCotsTableData();
-				
-	}
-		
-	public void loadCotsTableData()
-	{
-						
-		vPaneCotsData.add(matrixHeader);
-		vPaneCotsData.add(matrix);
-		this.getContent().add(vPaneCotsData);
+		//vPaneCots.add(vPaneCotsData);
 	}
 	
 	public void drawRateMatrix()
@@ -426,6 +407,138 @@ public class ReviewAndFinalizeRequirementsPane extends BasePane
 		drawRateMatrixValues();
 
 	}
+<<<<<<< HEAD
+=======
+
+	
+	public void drawRateMatrixEvaluationCriteriaColum()
+	{
+		FlexCellFormatter formatter = this.matrix.getFlexCellFormatter();
+		// Set the left columns with the evaluation criteria 
+		for(int j=0; j<softwarePackages.size();j++)
+		{
+			
+			Label evaluationLabel = new Label(softwarePackages.get(j).getName());
+			
+			final DecoratedPopupPanel simplePopup = new DecoratedPopupPanel(true);
+			    simplePopup.setWidth("150px");
+			    simplePopup.setWidget(new HTML(softwarePackages.get(j).getDescription()));
+			
+			    evaluationLabel.addMouseOverHandler(new MouseOverHandler(){
+				
+				public void onMouseOver(MouseOverEvent event) {
+					Widget source = (Widget) event.getSource();
+		            int left = source.getAbsoluteLeft() + 40;
+		            int top = source.getAbsoluteTop() + 20;
+		            simplePopup.setPopupPosition(left, top);
+					simplePopup.show();
+
+				}});
+			    evaluationLabel.addMouseOutHandler(new MouseOutHandler(){
+
+					
+					public void onMouseOut(MouseOutEvent event) {
+						simplePopup.hide();
+						
+					}});
+			matrix.setWidget(j+1,0 , evaluationLabel);
+			formatter.setHorizontalAlignment(j+1,0 , HasHorizontalAlignment.ALIGN_RIGHT);
+			formatter.setStyleName(j+1,0 ,  "square-Matrix");
+			
+		}
+		
+	}
+	/**
+	 * This method search the rate values in the loaded by RCP initially
+	 * @param techniqueID
+	 * @param evaluationID
+	 * @return rateValue
+	 */
+	private int getValueFromlistOfRateValues(int techniqueID, int evaluationID)
+	{
+		
+		for(int j=0; j<ratings.size();j++)
+		{
+		
+			int eID=ratings.get(j).getAttributeId();
+			int tID =ratings.get(j).getPackageId();
+			
+			if(techniqueID==tID && evaluationID==eID)
+			{
+				return ratings.get(j).getValue();
+			}
+			
+		}
+		return 0;
+
+	}
+	public void drawRateMatrixValues()
+	{
+		FlexCellFormatter formatter = this.matrix.getFlexCellFormatter();
+		
+		System.out.println("!!!!!!!!check! ********Attributes"+attributes.toString());
+		
+		for(int i=0; i<attributes.size();i++)
+		{
+			
+			for(int j=0; j<softwarePackages.size();j++)
+			{
+				
+				int tID=attributes.get(i).getId();
+				int eID=softwarePackages.get(j).getId();
+				
+				int value = getValueFromlistOfRateValues(eID, tID);
+				
+				
+					Label valueLabel = new Label(String.valueOf(value));
+					valueLabel.setHorizontalAlignment(HasHorizontalAlignment.ALIGN_CENTER);
+					matrix.setWidget(j+1, i+1, valueLabel);
+					formatter.setHorizontalAlignment(j+1, i+1, HasHorizontalAlignment.ALIGN_CENTER);
+					formatter.setStyleName(j+1, i+1,"square-Matrix");
+				
+			
+				RateValueLabel totalLabel= new RateValueLabel(attributes.get(i).getId());
+				totalLabel.setText("0");
+
+				matrix.setWidget(j+1, attributes.size()+1, totalLabel);
+				formatter.setHorizontalAlignment(j+1, attributes.size()+1,  HasHorizontalAlignment.ALIGN_CENTER);
+				formatter.setStyleName(j+1, attributes.size()+1,"square-Matrix");
+			
+			}
+			
+						
+		}
+	}
+	public void drawRateMatrixHeaderTechniques()
+	{
+		FlexCellFormatter formatter = this.matrix.getFlexCellFormatter();
+		matrix.setWidget(0, 0, new Label(" "));
+		formatter.setStyleName(0, 0, "square-Matrix");
+		
+		System.out.println("at drawRateMatrixHeaderTechniques>>>  Attributes"+attributes.toString());
+		// Set the header rows with techniques
+		for(int i=1; i<=attributes.size();i++)
+		{
+			Label techniqueLabel = new Label(attributes.get(i-1).getName());
+			
+				final DecoratedPopupPanel simplePopup = new DecoratedPopupPanel(true);
+			   // simplePopup.ensureDebugId("cwBasicPopup-simplePopup");
+			    simplePopup.setWidth("150px");
+			    simplePopup.setWidget(new HTML(attributes.get(i-1).getDescription()));
+			
+			    techniqueLabel.addMouseOverHandler(new MouseOverHandler(){
+				
+				public void onMouseOver(MouseOverEvent event) 
+				{
+					Widget source = (Widget) event.getSource();
+		            int left = source.getAbsoluteLeft() + 20;
+		            int top = source.getAbsoluteTop() + 20;
+		            simplePopup.setPopupPosition(left, top);
+					simplePopup.show();
+
+				}});
+			    techniqueLabel.addMouseOutHandler(new MouseOutHandler(){
+>>>>>>> 26f7482d95ac86408f2b1f02d838be87e6c2c846
 
 	public void drawQualityAttributes()
 	{
@@ -648,26 +761,54 @@ public class ReviewAndFinalizeRequirementsPane extends BasePane
 		FlexCellFormatter formatter1 = this.matrixHeader.getFlexCellFormatter();
 		this.matrixHeader.setWidth("100%");
 
-		this.matrixHeader.setWidget(1, 1, new Label(messages.matrixLableX()));
-		this.matrixHeader.setWidget(3, 0, new Label(messages.matrixLableY()));
+		VerticalPanel XPanel = new VerticalPanel();
+		VerticalPanel YPanel = new VerticalPanel();
+		
+		XPanel.add(new Label(messages.matrixLableX()));
+		//XPanel.add(addQualityAttribute);
+		
+		YPanel.add(new Label(messages.matrixLableY()));
+		//YPanel.add(addSoftwarePackage);
+		
+		this.matrixHeader.setWidget(1, 1, XPanel);
+		this.matrixHeader.setWidget(3, 0,YPanel);
 		this.matrixHeader.setWidget(4, 1, new Label(messages.rateLegend()));
-		//this.matrixHeader.setWidget(5, 1, cmdLoadTopTechnique);
+//		this.matrixHeader.setWidget(5, 1, cmdLoadTopTechnique);
 		
 		formatter1.setHorizontalAlignment(0, 0, HasHorizontalAlignment.ALIGN_LEFT);
 		formatter1.setHorizontalAlignment(1, 1, HasHorizontalAlignment.ALIGN_CENTER);
 		formatter1.setHorizontalAlignment(2, 1, HasHorizontalAlignment.ALIGN_RIGHT);
 		formatter1.setHorizontalAlignment(3, 1, HasHorizontalAlignment.ALIGN_LEFT);
-		formatter1.setVerticalAlignment(3, 0, HasVerticalAlignment.ALIGN_MIDDLE);
 		formatter1.setHorizontalAlignment(4, 1, HasHorizontalAlignment.ALIGN_LEFT);
 		formatter1.setHorizontalAlignment(5, 1, HasHorizontalAlignment.ALIGN_RIGHT);
 		
+		formatter1.setVerticalAlignment(3, 0, HasVerticalAlignment.ALIGN_MIDDLE);
+		
+		
+		if(isReadOnly)
+		{
+			if(GwtModesType.ReadWrite==this.currentState.getMode())
+			{
+				//this.matrixHeader.setWidget(2, 1, editRatingsLink);
+			}
+			
+			this.matrixHeader.setWidget(3, 1, matrix);
+			
+			
+			
+		}
+		else
+		{
+			//this.matrixHeader.setWidget(2, 1, finishRatingsLink);
+			this.matrixHeader.setWidget(3, 1, matrix);
+		}
 		
 	}
 
 	public void loadRequirementsTable()
 	{
 
-		System.out.println("We're at loadRequirementTable");
+		//System.out.println("We're at loadRequirementTable");
 		filterRequirements(lastSearch);
 
 		vPane.clear();
@@ -714,11 +855,10 @@ public class ReviewAndFinalizeRequirementsPane extends BasePane
 		{
 			//loadPaginBar(); TODO if we want to do paging.
 		}
-		
-		
-		
-
 	}
+	
+	
+	
 /*
 	public void loadPaginBar()
 	{
@@ -1033,25 +1173,7 @@ public class ReviewAndFinalizeRequirementsPane extends BasePane
 		
 		
 		final SummaryElementHyperLinkElement viewDetailLink = new SummaryElementHyperLinkElement(req.getId(), "View Detail");
-		//final SummaryElementHyperLinkElement hyper2 = new SummaryElementHyperLinkElement(req.getId(), "Remove");
-
-		/*
-		hyper2.addClickHandler(new ClickHandler()
-			{
-
-				@Override
-				public void onClick(ClickEvent event)
-				{
-					boolean response = Window.confirm(messages.confirmDelete() + "?");
-					if (response)
-					{
-						GwtRequirement requirement = new GwtRequirement();
-						requirement.setId(hyper2.getrequirementirementId());
-						removeRequirement(requirement);
-					}
-				}
-			});
-			*/
+		
 
 		if (this.getCurrentState().getMode().equals(GwtModesType.ReadWrite))
 		{
@@ -1067,7 +1189,7 @@ public class ReviewAndFinalizeRequirementsPane extends BasePane
 			rowTable.setWidget(0, 2, new Label(" "));
 		}
 
-		//final ReviewAndFinalizeRequirementsPane reviewOfRequirementsByAcquisitionObject = this;
+
 
 //view detail hyperlink
 		viewDetailLink.addClickHandler(new ClickHandler()

@@ -407,7 +407,7 @@ editPackagesLink.addClickHandler(new ClickHandler(){
 		YPanel.add(addSoftwarePackage);
 		
 		this.matrixHeader.setWidget(1, 1, XPanel);
-		this.matrixHeader.setWidget(3, 0,YPanel);
+		this.matrixHeader.setWidget(3, 0, YPanel);
 		this.matrixHeader.setWidget(4, 1, new Label(messages.rateLegend()));
 //		this.matrixHeader.setWidget(5, 1, cmdLoadTopTechnique);
 		
@@ -415,9 +415,11 @@ editPackagesLink.addClickHandler(new ClickHandler(){
 		formatter1.setHorizontalAlignment(1, 1, HasHorizontalAlignment.ALIGN_CENTER);
 		formatter1.setHorizontalAlignment(2, 1, HasHorizontalAlignment.ALIGN_RIGHT);
 		formatter1.setHorizontalAlignment(3, 1, HasHorizontalAlignment.ALIGN_LEFT);
-		formatter1.setVerticalAlignment(3, 0, HasVerticalAlignment.ALIGN_MIDDLE);
 		formatter1.setHorizontalAlignment(4, 1, HasHorizontalAlignment.ALIGN_LEFT);
 		formatter1.setHorizontalAlignment(5, 1, HasHorizontalAlignment.ALIGN_RIGHT);
+		
+		formatter1.setVerticalAlignment(3, 0, HasVerticalAlignment.ALIGN_MIDDLE);
+		
 		
 		if(isReadOnly)
 		{
