@@ -181,10 +181,6 @@ public class ReviewAndFinalizeRequirementsPane extends BasePane
 
 	}
 	
-	/**
-	 * Contains RPC Calls to retrieve the evaluation criteria for the project
-	 */
-	
 	private void loadAttributes()
 	{
 		final StepStatus stepStatus =  StepStatus.NotStarted;
@@ -195,8 +191,6 @@ public class ReviewAndFinalizeRequirementsPane extends BasePane
 					public void onSuccess(List<GwtQualityAttribute> result)
 					{
 						System.out.println("We got quality attribute: "+result.size());
-						System.out.println("attributes"+result.toString());
-						
 						attributes = result;
 						loadPackages();
 					}
@@ -250,8 +244,8 @@ public class ReviewAndFinalizeRequirementsPane extends BasePane
 						ratings = result;
 						drawRateMatrix();
 						getTotalsFromMatrix();
-						loadRequirements();		
-						//initializePane();
+						loadRequirements();
+						//PaneInitialization();
 					}
 					
 					@Override
@@ -376,14 +370,11 @@ public class ReviewAndFinalizeRequirementsPane extends BasePane
 		this.getContent().add(vPane);
 		loadRequirementsTable();
 			
-		
 		this.getContent().add(vPaneCots);
+		vPaneCotsData.add(layout);
+		layout.add(matrixHeader);
+		this.getContent().add(vPaneCotsData);
 		loadCotsTable();
-		
-		
-		
-		
-		
 		
 		
 		//layout.add(comparisonMatrixLabel);
@@ -401,17 +392,7 @@ public class ReviewAndFinalizeRequirementsPane extends BasePane
 		vPaneCots.setHeight("5%");
 
 		vPaneCots.add(getCotsTableHeaderRow());
-		vPaneCots.add(vPaneCotsData);
-		loadCotsTableData();
-				
-	}
-		
-	public void loadCotsTableData()
-	{
-						
-		vPaneCotsData.add(matrixHeader);
-		vPaneCotsData.add(matrix);
-		this.getContent().add(vPaneCotsData);
+		//vPaneCots.add(vPaneCotsData);
 	}
 	
 	public void drawRateMatrix()
@@ -426,6 +407,7 @@ public class ReviewAndFinalizeRequirementsPane extends BasePane
 		drawRateMatrixValues();
 
 	}
+
 	
 	public void drawRateMatrixEvaluationCriteriaColum()
 	{
@@ -778,26 +760,54 @@ public class ReviewAndFinalizeRequirementsPane extends BasePane
 		FlexCellFormatter formatter1 = this.matrixHeader.getFlexCellFormatter();
 		this.matrixHeader.setWidth("100%");
 
-		this.matrixHeader.setWidget(1, 1, new Label(messages.matrixLableX()));
-		this.matrixHeader.setWidget(3, 0, new Label(messages.matrixLableY()));
+		VerticalPanel XPanel = new VerticalPanel();
+		VerticalPanel YPanel = new VerticalPanel();
+		
+		XPanel.add(new Label(messages.matrixLableX()));
+		//XPanel.add(addQualityAttribute);
+		
+		YPanel.add(new Label(messages.matrixLableY()));
+		//YPanel.add(addSoftwarePackage);
+		
+		this.matrixHeader.setWidget(1, 1, XPanel);
+		this.matrixHeader.setWidget(3, 0,YPanel);
 		this.matrixHeader.setWidget(4, 1, new Label(messages.rateLegend()));
-		//this.matrixHeader.setWidget(5, 1, cmdLoadTopTechnique);
+//		this.matrixHeader.setWidget(5, 1, cmdLoadTopTechnique);
 		
 		formatter1.setHorizontalAlignment(0, 0, HasHorizontalAlignment.ALIGN_LEFT);
 		formatter1.setHorizontalAlignment(1, 1, HasHorizontalAlignment.ALIGN_CENTER);
 		formatter1.setHorizontalAlignment(2, 1, HasHorizontalAlignment.ALIGN_RIGHT);
 		formatter1.setHorizontalAlignment(3, 1, HasHorizontalAlignment.ALIGN_LEFT);
-		formatter1.setVerticalAlignment(3, 0, HasVerticalAlignment.ALIGN_MIDDLE);
 		formatter1.setHorizontalAlignment(4, 1, HasHorizontalAlignment.ALIGN_LEFT);
 		formatter1.setHorizontalAlignment(5, 1, HasHorizontalAlignment.ALIGN_RIGHT);
 		
+		formatter1.setVerticalAlignment(3, 0, HasVerticalAlignment.ALIGN_MIDDLE);
+		
+		
+		if(isReadOnly)
+		{
+			if(GwtModesType.ReadWrite==this.currentState.getMode())
+			{
+				//this.matrixHeader.setWidget(2, 1, editRatingsLink);
+			}
+			
+			this.matrixHeader.setWidget(3, 1, matrix);
+			
+			
+			
+		}
+		else
+		{
+			//this.matrixHeader.setWidget(2, 1, finishRatingsLink);
+			this.matrixHeader.setWidget(3, 1, matrix);
+		}
 		
 	}
 
 	public void loadRequirementsTable()
 	{
 
-		System.out.println("We're at loadRequirementTable");
+		//System.out.println("We're at loadRequirementTable");
 		filterRequirements(lastSearch);
 
 		vPane.clear();
@@ -844,11 +854,10 @@ public class ReviewAndFinalizeRequirementsPane extends BasePane
 		{
 			//loadPaginBar(); TODO if we want to do paging.
 		}
-		
-		
-		
-
 	}
+	
+	
+	
 /*
 	public void loadPaginBar()
 	{
@@ -1163,25 +1172,7 @@ public class ReviewAndFinalizeRequirementsPane extends BasePane
 		
 		
 		final SummaryElementHyperLinkElement viewDetailLink = new SummaryElementHyperLinkElement(req.getId(), "View Detail");
-		//final SummaryElementHyperLinkElement hyper2 = new SummaryElementHyperLinkElement(req.getId(), "Remove");
-
-		/*
-		hyper2.addClickHandler(new ClickHandler()
-			{
-
-				@Override
-				public void onClick(ClickEvent event)
-				{
-					boolean response = Window.confirm(messages.confirmDelete() + "?");
-					if (response)
-					{
-						GwtRequirement requirement = new GwtRequirement();
-						requirement.setId(hyper2.getrequirementirementId());
-						removeRequirement(requirement);
-					}
-				}
-			});
-			*/
+		
 
 		if (this.getCurrentState().getMode().equals(GwtModesType.ReadWrite))
 		{
@@ -1197,7 +1188,7 @@ public class ReviewAndFinalizeRequirementsPane extends BasePane
 			rowTable.setWidget(0, 2, new Label(" "));
 		}
 
-		//final ReviewAndFinalizeRequirementsPane reviewOfRequirementsByAcquisitionObject = this;
+
 
 //view detail hyperlink
 		viewDetailLink.addClickHandler(new ClickHandler()
