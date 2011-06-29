@@ -141,9 +141,13 @@ public class EditTradeoffReasonDialog extends DialogBox
 		public SaveHandler(EditTradeoffReasonDialog dialogPointer, GwtTradeoffReason newTradeoffReason)
 			{
 				super();
+				
+				System.out.println("edit tradeoff dialog........."+newTradeoffReason.getPackageId());
+				
 				this.dialog = dialogPointer;
 				this.localTradeoffReason = new GwtTradeoffReason();
 				this.localTradeoffReason.setProjectId(newTradeoffReason.getProjectId());
+				this.localTradeoffReason.setPackageId(newTradeoffReason.getPackageId());
 				this.localTradeoffReason.setTradeoffreason(newTradeoffReason.getTradeoffreason());
 				currentTradeoffReason = newTradeoffReason.getTradeoffreason();
 			}

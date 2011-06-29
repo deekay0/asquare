@@ -58,6 +58,8 @@ public class HbnTradeoffReasonDao extends HbnAbstractDao<ProjectPackageTradeoffr
 	@Override
 	public void setTradeoffReason(int projectID, int packageId, String tradeoffreason)
 	{
+		System.out.println("here...."+projectID+"   "+packageId+"  "+tradeoffreason);
+		
 		String query = "replace into project_package_tradeoffreason values(:projectId, :packageId,:tradeoffreason)";
 		
 		Query q = getSession().createSQLQuery(query);

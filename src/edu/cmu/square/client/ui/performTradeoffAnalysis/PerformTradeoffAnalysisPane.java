@@ -71,6 +71,9 @@ public class PerformTradeoffAnalysisPane extends BasePane
 	private List<GwtQualityAttribute> attributes;
 	private List<GwtRating> ratings;
 	private List<GwtRequirementRating> requirementRatings;
+	private List<GwtTradeoffReason> tradeoffReasons;
+	
+	protected EditTradeoffReasonDialog editTradeoffReasonDialog;
 	
 	GwtProject currentProject;
 	
@@ -105,6 +108,7 @@ public class PerformTradeoffAnalysisPane extends BasePane
 		isReadOnly = true;
 		loadRequirements();
 		loadAttributes();
+		loadTradeoffReasons();
 	}
 	
 	public void loadRequirements()
@@ -425,6 +429,29 @@ public class PerformTradeoffAnalysisPane extends BasePane
 			}
 		});
 	}
+	
+	private void loadTradeoffReasons()
+	{
+		performTradeoffService.getTradeoffReasons(currentProject.getId(), new AsyncCallback<List<GwtTradeoffReason>>()		
+				{		
+					@Override
+					public void onSuccess(List<GwtTradeoffReason> result)
+					{
+						System.out.println("tradeoff reason: "+result.size());
+						System.out.println("tradeoff reason:........"+result.get(0).getTradeoffreason());
+						tradeoffReasons = result;
+						drawRateMatrix();
+						getTotalsFromMatrix();
+						PaneInitialization();
+					}
+					@Override
+					public void onFailure(Throwable caught)
+					{
+						Window.alert(messages.ratingsRetrievalError());
+						ExceptionHelper.SquareRootRPCExceptionHandler(caught, "Retrieving Tradeoff Reasons");
+					}	
+				});		
+	}
 
 	private void loadRatings()
 	{
@@ -649,7 +676,17 @@ public class PerformTradeoffAnalysisPane extends BasePane
 			matrix.setWidget(j+1,0 , packageLabel);
 			
 			
-			SummaryElementHyperLinkElement tradeoffReasonLink = new SummaryElementHyperLinkElement(softwarePackages.get(j).getId(), "Tradeoff Reason");
+			final SummaryElementHyperLinkElement tradeoffReasonLink = new SummaryElementHyperLinkElement(softwarePackages.get(j).getId(), "Tradeoff Reason");
+			final int index = j;
+			tradeoffReasonLink.addClickHandler(new ClickHandler(){
+				public void onClick(ClickEvent event) {
+					editTradeoffReasonDialog = new EditTradeoffReasonDialog(tradeoffReasons.get(index),tradeoffReasons,PerformTradeoffAnalysisPane.this);
+					editTradeoffReasonDialog.center();
+					editTradeoffReasonDialog.setModal(true);
+					editTradeoffReasonDialog.show();
+					
+				}});
+			
 			
 			if(j>=1)
 			{
