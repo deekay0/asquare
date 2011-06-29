@@ -157,7 +157,7 @@ public class ReviewAndFinalizeRequirementsPane extends BasePane
 
 		ReviewAndFinalizeRequirementsServiceAsync service1 = GWT.create(ReviewAndFinalizeRequirementsService.class);
 		ServiceDefTarget endpoint = (ServiceDefTarget) service1;
-		System.out.println("    ******We're at loadRequirement()");
+		//System.out.println("    ******We're at loadRequirement()");
 		endpoint.setServiceEntryPoint(GWT.getModuleBaseURL() + "reviewAndFinalizeRequirementsService.rpc");
 
 		GwtProject project = new GwtProject();
@@ -407,8 +407,7 @@ public class ReviewAndFinalizeRequirementsPane extends BasePane
 		drawRateMatrixValues();
 
 	}
-<<<<<<< HEAD
-=======
+
 
 	
 	public void drawRateMatrixEvaluationCriteriaColum()
@@ -454,7 +453,7 @@ public class ReviewAndFinalizeRequirementsPane extends BasePane
 	 * @param evaluationID
 	 * @return rateValue
 	 */
-	private int getValueFromlistOfRateValues(int techniqueID, int evaluationID)
+	private int getValueFromlistOfRateValues_Origin(int techniqueID, int evaluationID)
 	{
 		
 		for(int j=0; j<ratings.size();j++)
@@ -472,11 +471,11 @@ public class ReviewAndFinalizeRequirementsPane extends BasePane
 		return 0;
 
 	}
-	public void drawRateMatrixValues()
+	public void drawRateMatrixValues_Orgin()
 	{
 		FlexCellFormatter formatter = this.matrix.getFlexCellFormatter();
 		
-		System.out.println("!!!!!!!!check! ********Attributes"+attributes.toString());
+		//System.out.println("!!!!!!!!check! ********Attributes"+attributes.toString());
 		
 		for(int i=0; i<attributes.size();i++)
 		{
@@ -504,11 +503,10 @@ public class ReviewAndFinalizeRequirementsPane extends BasePane
 				formatter.setHorizontalAlignment(j+1, attributes.size()+1,  HasHorizontalAlignment.ALIGN_CENTER);
 				formatter.setStyleName(j+1, attributes.size()+1,"square-Matrix");
 			
-			}
-			
-						
+			}						
 		}
 	}
+/*
 	public void drawRateMatrixHeaderTechniques()
 	{
 		FlexCellFormatter formatter = this.matrix.getFlexCellFormatter();
@@ -538,8 +536,9 @@ public class ReviewAndFinalizeRequirementsPane extends BasePane
 
 				}});
 			    techniqueLabel.addMouseOutHandler(new MouseOutHandler(){
->>>>>>> 26f7482d95ac86408f2b1f02d838be87e6c2c846
-
+//>>>>>>> 26f7482d95ac86408f2b1f02d838be87e6c2c846
+ * */
+ 
 	public void drawQualityAttributes()
 	{
 		FlexCellFormatter formatter = this.matrix.getFlexCellFormatter();
