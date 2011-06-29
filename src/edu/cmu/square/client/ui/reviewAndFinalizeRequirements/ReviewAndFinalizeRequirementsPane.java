@@ -44,6 +44,7 @@ import edu.cmu.square.client.remoteService.step.interfaces.ReviewAndFinalizeRequ
 import edu.cmu.square.client.remoteService.step.interfaces.ReviewAndFinalizeRequirementsServiceAsync;
 import edu.cmu.square.client.remoteService.step.interfaces.ReviewPackagesService;
 import edu.cmu.square.client.remoteService.step.interfaces.ReviewPackagesServiceAsync;
+import edu.cmu.square.client.ui.ChooseStepCase3.ChooseStepCase3Pilot;
 import edu.cmu.square.client.ui.core.BasePane;
 import edu.cmu.square.client.ui.core.SquareHyperlink;
 
@@ -375,6 +376,7 @@ public class ReviewAndFinalizeRequirementsPane extends BasePane
 
 		vPaneCots.add(getCotsTableHeaderRow());
 		//vPaneCots.add(vPaneCotsData);
+		addDoneButton();
 	}
 	
 	public void drawRateMatrix()
@@ -593,8 +595,8 @@ public class ReviewAndFinalizeRequirementsPane extends BasePane
 					
 			}
 			
-//				Widget totalLabel =  matrix.getWidget(softwarePackages.size()+1, i);
-			Widget totalLabel =  matrix.getWidget(i, attributes.size()+1);
+				//Widget totalLabel =  matrix.getWidget(softwarePackages.size()+1, i);
+				Widget totalLabel =  matrix.getWidget(i, attributes.size()+1);
 
 				
 				RateValueLabel new_name = (RateValueLabel) totalLabel;
@@ -623,7 +625,7 @@ public class ReviewAndFinalizeRequirementsPane extends BasePane
 		this.matrixHeader.setWidget(1, 1, XPanel);
 		this.matrixHeader.setWidget(3, 0,YPanel);
 		this.matrixHeader.setWidget(4, 1, new Label(messages.rateLegend()));
-//		this.matrixHeader.setWidget(5, 1, cmdLoadTopTechnique);
+		//this.matrixHeader.setWidget(5, 1, cmdLoadTopTechnique);
 		
 		formatter1.setHorizontalAlignment(0, 0, HasHorizontalAlignment.ALIGN_LEFT);
 		formatter1.setHorizontalAlignment(1, 1, HasHorizontalAlignment.ALIGN_CENTER);
@@ -957,9 +959,9 @@ public class ReviewAndFinalizeRequirementsPane extends BasePane
 		cotsTable.setWidth("100%");
 		cotsTable.setCellSpacing(0);
 	
-		cotsTable.setWidget(0, 0, new Label(messages.cotsTableTitle()));
-		
-		
+		cotsTable.setWidget(0, 0, new Label("  "));
+		cotsTable.setWidget(2, 1, new Label(messages.cotsTableTitle()));
+				
 		return cotsTable;
 	}
 	
@@ -1115,7 +1117,7 @@ public class ReviewAndFinalizeRequirementsPane extends BasePane
 		gwtProject.setId(projectID);
 		updateRequirement(requirement, gwtProject);;
 	}
-	/*
+	
 	private void addDoneButton()
 	{
 		FlexTable buttonPanel = new FlexTable();
@@ -1125,16 +1127,20 @@ public class ReviewAndFinalizeRequirementsPane extends BasePane
 
 			public void onClick(ClickEvent event)
 			{
-				History.newItem(ChooseStepPilot.generateNavigationId(ChooseStepPilot.PageId.home));
+				History.newItem(ChooseStepCase3Pilot.generateNavigationId(ChooseStepCase3Pilot.PageId.home));
 				
 			}});
 		buttonPanel.setWidget(0,0,new Label(" "));
-		buttonPanel.setWidget(1, 0, done);
+		buttonPanel.setWidget(0,1,new Label(" "));
+		buttonPanel.setWidget(1,1,new Label(" "));
+		buttonPanel.setWidget(2,1,new Label(" "));
+		buttonPanel.setWidget(2,2,done);
 		buttonPanel.setWidth("100%");
-		buttonPanel.getCellFormatter().setHorizontalAlignment(1,0,HasHorizontalAlignment.ALIGN_RIGHT);
-		this.vPane.add(buttonPanel);
+		done.setWidth("10%");
+		buttonPanel.getCellFormatter().setHorizontalAlignment(2,2,HasHorizontalAlignment.ALIGN_RIGHT);
+		this.vPaneCotsData.add(buttonPanel);
 	}
-*/
+
 	class SummaryElementHyperLinkElement extends SquareHyperlink
 	{
 
@@ -1170,9 +1176,8 @@ public class ReviewAndFinalizeRequirementsPane extends BasePane
 			this.tecniqueID=tecniqueID;
 			
 			this.setWidth("35px");
-			
-			// TODO Auto-generated constructor stub
 		}
+		
 		public void setTecniqueID(int tecniqueID) {
 			this.tecniqueID = tecniqueID;
 		}
@@ -1201,7 +1206,6 @@ public class ReviewAndFinalizeRequirementsPane extends BasePane
 			this.setText(String.valueOf(value));;
 			this.setOldValue(String.valueOf(value));;
 			
-			// TODO Auto-generated constructor stub
 		}
 		public void setTecniqueID(int tecniqueID) {
 			this.tecniqueID = tecniqueID;
