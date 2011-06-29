@@ -5,17 +5,10 @@ import java.util.Collections;
 import java.util.List;
 
 import com.google.gwt.core.client.GWT;
-import com.google.gwt.event.dom.client.ChangeEvent;
-import com.google.gwt.event.dom.client.ChangeHandler;
+
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.ClickHandler;
-import com.google.gwt.event.dom.client.FocusEvent;
-import com.google.gwt.event.dom.client.FocusHandler;
-import com.google.gwt.event.dom.client.KeyCodes;
-import com.google.gwt.event.dom.client.KeyPressEvent;
-import com.google.gwt.event.dom.client.KeyPressHandler;
-import com.google.gwt.event.dom.client.KeyUpEvent;
-import com.google.gwt.event.dom.client.KeyUpHandler;
+
 import com.google.gwt.event.dom.client.MouseOutEvent;
 import com.google.gwt.event.dom.client.MouseOutHandler;
 import com.google.gwt.event.dom.client.MouseOverEvent;
@@ -49,22 +42,11 @@ import edu.cmu.square.client.model.StepStatus;
 import edu.cmu.square.client.navigation.State;
 import edu.cmu.square.client.remoteService.step.interfaces.ReviewAndFinalizeRequirementsService;
 import edu.cmu.square.client.remoteService.step.interfaces.ReviewAndFinalizeRequirementsServiceAsync;
-import edu.cmu.square.client.remoteService.step.interfaces.ReviewOfRequirementsByAcquisitionService;
-import edu.cmu.square.client.remoteService.step.interfaces.ReviewOfRequirementsByAcquisitionServiceAsync;
 import edu.cmu.square.client.remoteService.step.interfaces.ReviewPackagesService;
 import edu.cmu.square.client.remoteService.step.interfaces.ReviewPackagesServiceAsync;
-import edu.cmu.square.client.ui.ChooseStep.ChooseStepPilot;
-import edu.cmu.square.client.ui.SelectSecurityTechnique.SelectSecurityElicitationTechniquePilot;
-//import edu.cmu.square.client.ui.reviewOfRequirementsByAcquisitionOrganization.ViewDetailDialog;
-//import edu.cmu.square.client.ui.reviewOfRequirementsByAcquisitionOrganization.ReviewOfRequirementsByAcquisitionPane.SummaryElementHyperLinkElement;
 import edu.cmu.square.client.ui.core.BasePane;
 import edu.cmu.square.client.ui.core.SquareHyperlink;
-import edu.cmu.square.client.ui.core.SquareWaterMarkTextBox;
-//import edu.cmu.square.client.ui.elicitSecurityRequirements.ElicitSecurityRequirementsPilot;
-//import edu.cmu.square.client.ui.elicitSecurityRequirements.ElicitSecurityRequirementSummaryPane.SummaryElementHyperLinkElement;
-import edu.cmu.square.client.ui.reviewPackages.EditQualityAttributeDialog;
-import edu.cmu.square.client.ui.reviewPackages.EditSoftwarePackageDialog;
-import edu.cmu.square.client.ui.reviewPackages.ReviewPackagesPane;
+
 
 public class ReviewAndFinalizeRequirementsPane extends BasePane
 {
@@ -408,137 +390,6 @@ public class ReviewAndFinalizeRequirementsPane extends BasePane
 
 	}
 
-
-	
-	public void drawRateMatrixEvaluationCriteriaColum()
-	{
-		FlexCellFormatter formatter = this.matrix.getFlexCellFormatter();
-		// Set the left columns with the evaluation criteria 
-		for(int j=0; j<softwarePackages.size();j++)
-		{
-			
-			Label evaluationLabel = new Label(softwarePackages.get(j).getName());
-			
-			final DecoratedPopupPanel simplePopup = new DecoratedPopupPanel(true);
-			    simplePopup.setWidth("150px");
-			    simplePopup.setWidget(new HTML(softwarePackages.get(j).getDescription()));
-			
-			    evaluationLabel.addMouseOverHandler(new MouseOverHandler(){
-				
-				public void onMouseOver(MouseOverEvent event) {
-					Widget source = (Widget) event.getSource();
-		            int left = source.getAbsoluteLeft() + 40;
-		            int top = source.getAbsoluteTop() + 20;
-		            simplePopup.setPopupPosition(left, top);
-					simplePopup.show();
-
-				}});
-			    evaluationLabel.addMouseOutHandler(new MouseOutHandler(){
-
-					
-					public void onMouseOut(MouseOutEvent event) {
-						simplePopup.hide();
-						
-					}});
-			matrix.setWidget(j+1,0 , evaluationLabel);
-			formatter.setHorizontalAlignment(j+1,0 , HasHorizontalAlignment.ALIGN_RIGHT);
-			formatter.setStyleName(j+1,0 ,  "square-Matrix");
-			
-		}
-		
-	}
-	/**
-	 * This method search the rate values in the loaded by RCP initially
-	 * @param techniqueID
-	 * @param evaluationID
-	 * @return rateValue
-	 */
-	private int getValueFromlistOfRateValues_Origin(int techniqueID, int evaluationID)
-	{
-		
-		for(int j=0; j<ratings.size();j++)
-		{
-		
-			int eID=ratings.get(j).getAttributeId();
-			int tID =ratings.get(j).getPackageId();
-			
-			if(techniqueID==tID && evaluationID==eID)
-			{
-				return ratings.get(j).getValue();
-			}
-			
-		}
-		return 0;
-
-	}
-	public void drawRateMatrixValues_Orgin()
-	{
-		FlexCellFormatter formatter = this.matrix.getFlexCellFormatter();
-		
-		//System.out.println("!!!!!!!!check! ********Attributes"+attributes.toString());
-		
-		for(int i=0; i<attributes.size();i++)
-		{
-			
-			for(int j=0; j<softwarePackages.size();j++)
-			{
-				
-				int tID=attributes.get(i).getId();
-				int eID=softwarePackages.get(j).getId();
-				
-				int value = getValueFromlistOfRateValues(eID, tID);
-				
-				
-					Label valueLabel = new Label(String.valueOf(value));
-					valueLabel.setHorizontalAlignment(HasHorizontalAlignment.ALIGN_CENTER);
-					matrix.setWidget(j+1, i+1, valueLabel);
-					formatter.setHorizontalAlignment(j+1, i+1, HasHorizontalAlignment.ALIGN_CENTER);
-					formatter.setStyleName(j+1, i+1,"square-Matrix");
-				
-			
-				RateValueLabel totalLabel= new RateValueLabel(attributes.get(i).getId());
-				totalLabel.setText("0");
-
-				matrix.setWidget(j+1, attributes.size()+1, totalLabel);
-				formatter.setHorizontalAlignment(j+1, attributes.size()+1,  HasHorizontalAlignment.ALIGN_CENTER);
-				formatter.setStyleName(j+1, attributes.size()+1,"square-Matrix");
-			
-			}						
-		}
-	}
-/*
-	public void drawRateMatrixHeaderTechniques()
-	{
-		FlexCellFormatter formatter = this.matrix.getFlexCellFormatter();
-		matrix.setWidget(0, 0, new Label(" "));
-		formatter.setStyleName(0, 0, "square-Matrix");
-		
-		System.out.println("at drawRateMatrixHeaderTechniques>>>  Attributes"+attributes.toString());
-		// Set the header rows with techniques
-		for(int i=1; i<=attributes.size();i++)
-		{
-			Label techniqueLabel = new Label(attributes.get(i-1).getName());
-			
-				final DecoratedPopupPanel simplePopup = new DecoratedPopupPanel(true);
-			   // simplePopup.ensureDebugId("cwBasicPopup-simplePopup");
-			    simplePopup.setWidth("150px");
-			    simplePopup.setWidget(new HTML(attributes.get(i-1).getDescription()));
-			
-			    techniqueLabel.addMouseOverHandler(new MouseOverHandler(){
-				
-				public void onMouseOver(MouseOverEvent event) 
-				{
-					Widget source = (Widget) event.getSource();
-		            int left = source.getAbsoluteLeft() + 20;
-		            int top = source.getAbsoluteTop() + 20;
-		            simplePopup.setPopupPosition(left, top);
-					simplePopup.show();
-
-				}});
-			    techniqueLabel.addMouseOutHandler(new MouseOutHandler(){
-//>>>>>>> 26f7482d95ac86408f2b1f02d838be87e6c2c846
- * */
- 
 	public void drawQualityAttributes()
 	{
 		FlexCellFormatter formatter = this.matrix.getFlexCellFormatter();
@@ -792,9 +643,7 @@ public class ReviewAndFinalizeRequirementsPane extends BasePane
 			}
 			
 			this.matrixHeader.setWidget(3, 1, matrix);
-			
-			
-			
+					
 		}
 		else
 		{
@@ -806,7 +655,6 @@ public class ReviewAndFinalizeRequirementsPane extends BasePane
 
 	public void loadRequirementsTable()
 	{
-
 		//System.out.println("We're at loadRequirementTable");
 		filterRequirements(lastSearch);
 
@@ -819,7 +667,6 @@ public class ReviewAndFinalizeRequirementsPane extends BasePane
 		vPane.add(vPaneData);
 		loadRequirementTableData();
 		
-
 	}
 
 	public void loadRequirementTableData()
