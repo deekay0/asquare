@@ -1,5 +1,6 @@
 package edu.cmu.square.server.business.step.implementation;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.annotation.Resource;
@@ -7,18 +8,26 @@ import javax.annotation.Resource;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Service;
 
+import edu.cmu.square.client.exceptions.ExceptionType;
 import edu.cmu.square.client.exceptions.SquareException;
+import edu.cmu.square.client.model.GwtProject;
 import edu.cmu.square.client.model.GwtRequirementRating;
+import edu.cmu.square.client.model.GwtSoftwarePackage;
 import edu.cmu.square.client.model.GwtStepVerficationResult;
+import edu.cmu.square.client.model.GwtTradeoffReason;
+import edu.cmu.square.client.model.StepStatus;
 import edu.cmu.square.client.navigation.StepEnum;
 import edu.cmu.square.server.authorization.AllowedRoles;
 import edu.cmu.square.server.authorization.Roles;
 import edu.cmu.square.server.business.implementation.BaseBusinessImpl;
 import edu.cmu.square.server.business.step.interfaces.PerformTradeoffAnalysisBusiness;
 import edu.cmu.square.server.dao.interfaces.ProjectDao;
+import edu.cmu.square.server.dao.interfaces.TradeoffReasonDao;
 import edu.cmu.square.server.dao.interfaces.ProjectPackageRequirementRatingDao;
 
 import edu.cmu.square.server.dao.model.Project;
+import edu.cmu.square.server.dao.model.ProjectPackageTradeoffreason;
+import edu.cmu.square.server.dao.model.QualityAttribute;
 
 
 @Service
@@ -29,9 +38,9 @@ public class PerformTradeoffAnalysisBusinessImpl extends BaseBusinessImpl implem
 	@Resource
 	private ProjectDao projectDao;
 	@Resource
+	private TradeoffReasonDao tradeoffReasonDao;
+	@Resource
 	private ProjectPackageRequirementRatingDao projectRequirementRatingDao;
-
-
 
 	@AllowedRoles(roles = {Roles.All})
 	public void setRequirementRateValue(int projectID, int packageID, int requirementID, int value) throws SquareException
@@ -63,48 +72,6 @@ public class PerformTradeoffAnalysisBusinessImpl extends BaseBusinessImpl implem
 	}
 	
 
-	
-	
-	
-/*	@AllowedRoles(roles = {Roles.All})
-	public List<GwtQualityAttribute> getQualityAttributes(GwtProject gwtProject, StepStatus stepStatus) throws SquareException
-	{
-		List<GwtQualityAttribute> evaluationList = new ArrayList<GwtQualityAttribute>();
-		Project project = new Project(gwtProject);
-		List<QualityAttribute> evaluations = qualityAttributeDao.getQualityAttributesByProject(project);
-
-		if (evaluations == null)
-		{
-			return evaluationList;
-		}
-		for (QualityAttribute t : evaluations)
-		{
-			evaluationList.add(t.createGwtQualityAttribute());
-		}
-		return evaluationList;
-	}
-
-	@AllowedRoles(roles = {Roles.All})
-	public List<GwtSoftwarePackage> getSoftwarePackages(GwtProject gwtProject, StepStatus stepStatus) throws SquareException
-	{
-		List<GwtSoftwarePackage> softwarePackageList = new ArrayList<GwtSoftwarePackage>();
-		Project project = new Project(gwtProject);
-		List<SoftwarePackage> packages = softwarePackageDao.getSoftwarePackagesByProject(project);
-		if (packages == null)
-		{
-			return softwarePackageList;
-		}
-		for (SoftwarePackage t : packages)
-		{
-			softwarePackageList.add(t.createGwtSoftwarePackage());
-		}
-		return softwarePackageList;
-	}
-*/
-	
-
-
-
 	@Override
 	public StepEnum getStepDescription() throws SquareException
 	{
@@ -127,5 +94,36 @@ public class PerformTradeoffAnalysisBusinessImpl extends BaseBusinessImpl implem
 		}
 		return result;
 	}
+
+	@Override
+	public List<GwtTradeoffReason> getTradeoffReasons(int projectID) throws SquareException
+	{
+		Project project = new Project();
+		project.setId(projectID);
+		return tradeoffReasonDao.getAllTradeoffReasons(project);
+	}
+
+	@Override
+	public void addTradeoffReason(int projectID, int packageID, String tradeoffReason) throws SquareException
+	{
+		// TODO Auto-generated method stub
+		tradeoffReasonDao.setTradeoffReason(projectID, packageID, tradeoffReason);
+	}
+
+	@Override
+	public void updateTradeoffReason(int projectID, int packageId, String tradeoffReason) throws SquareException
+	{
+		// TODO Auto-generated method stub
+		if( "".equals( tradeoffReasonDao.getTradeoffReason(projectID, packageId)))
+				tradeoffReasonDao.setTradeoffReason(projectID, packageId, tradeoffReason);
+		else
+		{
+			tradeoffReasonDao.updateTradeoffReason(projectID, packageId, tradeoffReason);
+		}
+	}
+
+
+
+	
 
 }
