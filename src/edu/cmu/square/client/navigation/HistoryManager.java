@@ -15,6 +15,7 @@ import edu.cmu.square.client.remoteService.interfaces.StepService;
 import edu.cmu.square.client.remoteService.interfaces.StepServiceAsync;
 import edu.cmu.square.client.ui.ChooseStep.ChooseStepPilot;
 import edu.cmu.square.client.ui.ChooseStepCase3.ChooseStepCase3Pilot;
+import edu.cmu.square.client.ui.FinalProductSelection.FinalProductSelectionPilot;
 import edu.cmu.square.client.ui.ManageProject.ManageProjectPilot;
 import edu.cmu.square.client.ui.ManageSite.ManageSitePilot;
 import edu.cmu.square.client.ui.SelectSecurityTechnique.SelectSecurityElicitationTechniquePilot;
@@ -77,6 +78,7 @@ public class HistoryManager implements ValueChangeHandler<String>
 	private Pilot reviewPackagesPilot = new ReviewPackagesPilot();
 	private Pilot performTradeoffAnalysisPilot = new PerformTradeoffAnalysisPilot();
 	private Pilot reviewAndFinalizeRequirementsPilot = new ReviewAndFinalizeRequirementsPilot();
+	private Pilot finalProductSelectionPilot = new FinalProductSelectionPilot();
 	
 	 
 	public static class ViewId
@@ -100,6 +102,7 @@ public class HistoryManager implements ValueChangeHandler<String>
 		public static final String reviewPackages = "reviewPackages";
 		public static final String performTradeoffAnalysis = "performTradeoffAnalysis";
 		public static final String reviewAndFinalizeRequirements = "reviewAndFinalizeRequirements";
+		public static final String finalProductSelection = "finalProductSelection";
 	}
 
 	public HistoryManager(Panel contentPane, Panel breadCrumbPane, State stateInfo)
@@ -377,7 +380,11 @@ public class HistoryManager implements ValueChangeHandler<String>
 		}
 		else if (ViewId.reviewAndFinalizeRequirements.equals(view)){
 			return this.reviewAndFinalizeRequirementsPilot;
-		}		
+		}
+		else if (ViewId.finalProductSelection.equals(view)){
+			return this.finalProductSelectionPilot ;
+		}
+		
 		else
 		{
 			return null;
