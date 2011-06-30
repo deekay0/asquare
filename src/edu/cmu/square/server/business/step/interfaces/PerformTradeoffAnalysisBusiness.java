@@ -31,4 +31,5 @@ public interface PerformTradeoffAnalysisBusiness extends StepBusinessInterface
 	
 	void updateTradeoffReason(int projectID, int packageID, String tradeoffReason) throws SquareException;
 	
+	void updatePriority(int projectID, int packageID, int priority) throws SquareException;
 }

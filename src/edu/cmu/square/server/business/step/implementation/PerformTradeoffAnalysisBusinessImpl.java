@@ -122,6 +122,12 @@ public class PerformTradeoffAnalysisBusinessImpl extends BaseBusinessImpl implem
 		}
 	}
 
+	@Override
+	public void updatePriority(int projectID, int packageID, int priority) throws SquareException
+	{
+		tradeoffReasonDao.setPriority(projectID, packageID, priority);
+	}
+
 
 
 	

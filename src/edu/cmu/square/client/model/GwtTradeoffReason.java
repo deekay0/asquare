@@ -8,9 +8,18 @@ public class GwtTradeoffReason implements Serializable {
 	private Integer projectId = -1;
 	private Integer packageId = -1;
 	private String tradeoffreason = "";
+	private Integer priority = -1;
 	public Integer getProjectId()
 	{
 		return projectId;
+	}
+	public Integer getPriority()
+	{
+		return priority;
+	}
+	public void setPriority(Integer priority)
+	{
+		this.priority = priority;
 	}
 	public void setProjectId(Integer projectId)
 	{

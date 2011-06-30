@@ -21,6 +21,7 @@ public interface PerformTradeoffAnalysisServiceAsync {
 	
 	void setTradeoffReason(int projectID,int packageID, String tradeoffreason, AsyncCallback<Void> callback);
 	
+	void setPriority(int projectID, int packageID, int priority, AsyncCallback<Void> callback);
 
 
 

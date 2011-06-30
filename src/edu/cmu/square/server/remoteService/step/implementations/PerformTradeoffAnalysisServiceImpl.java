@@ -59,4 +59,11 @@ public class PerformTradeoffAnalysisServiceImpl extends SquareRemoteServiceServl
 		performTradeoffBusiness.updateTradeoffReason(projectID, packageID, tradeoffreason);
 	}
 
+	@Override
+	public void setPriority(int projectID, int packageID, int priority) throws SquareException
+	{
+		// TODO Auto-generated method stub
+		performTradeoffBusiness.updatePriority(projectID, packageID, priority);
+	}
+
 }

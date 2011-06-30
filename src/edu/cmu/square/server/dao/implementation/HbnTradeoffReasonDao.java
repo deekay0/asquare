@@ -49,6 +49,7 @@ public class HbnTradeoffReasonDao extends HbnAbstractDao<ProjectPackageTradeoffr
 			current.setProjectId(lines.get(i).getId().getProjectId());
 			current.setPackageId(lines.get(i).getId().getPackageId());
 			current.setTradeoffreason(lines.get(i).getTradeoffreason());
+			current.setPriority(lines.get(i).getPriority());
 			result.add(current);
 		}
 		
@@ -103,5 +104,36 @@ public class HbnTradeoffReasonDao extends HbnAbstractDao<ProjectPackageTradeoffr
 		q.executeUpdate();
 	}
 
+	@Override
+	public void setPriority(int projectID, int packageId, int priority)
+	{
+		//System.out.println("here...."+projectID+"   "+packageId+"  "+tradeoffreason);
+		
+		String query = "replace into project_package_tradeoffreason values(:projectId, :packageId,:priority)";
+		
+		Query q = getSession().createSQLQuery(query);
+		
+		q.setParameter("projectId", projectID);
+		q.setParameter("packageId", packageId);
+		q.setParameter("priority", priority);
+		q.executeUpdate();
+	}
+
+	@Override
+	public Integer getPriority(int projectID, int packageId)
+	{
+		int priority = -1;
+		String query = "Select s from ProjectPackageTradeoffreason s where s.project.id=:projectId and s.softwarePackage.id=:packageId)";		
+		Query q = getSession().createQuery(query);
+		
+		q.setParameter("projectId", projectID);
+		q.setParameter("packageId", packageId);
+		
+		List<ProjectPackageTradeoffreason> list = q.list(); 
+		if(list.size() == 1)
+			priority = list.get(0).getPriority();
+			
+		return priority;
+	}
 
 }

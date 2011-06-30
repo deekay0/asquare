@@ -25,16 +25,18 @@ public class ProjectPackageTradeoffreason implements java.io.Serializable {
 	private Project project;
 	private SoftwarePackage softwarePackage;
 	private String tradeoffreason;
+	private int priority;
 
 	public ProjectPackageTradeoffreason() {
 	}
 
 	public ProjectPackageTradeoffreason(ProjectPackageTradeoffreasonId id, Project project, 
-			SoftwarePackage softwarePackage,String tradeoffreason) {
+			SoftwarePackage softwarePackage,String tradeoffreason, int priority) {
 		this.id = id;
 		this.project = project;
 		this.softwarePackage = softwarePackage;
 		this.tradeoffreason = tradeoffreason;
+		this.priority = priority;
 	}
 
 
@@ -79,10 +81,20 @@ public class ProjectPackageTradeoffreason implements java.io.Serializable {
 		this.tradeoffreason = tradeoffreason;
 	}
 	
+	@Column(name = "priority", nullable = false, length = 1)
+	public int getPriority() {
+		return this.priority;
+	}
+
+	public void setPriority(int priority) {
+		this.priority =  priority;
+	}
+	
 	public GwtTradeoffReason createGwtTradeoffReason() {
 		GwtTradeoffReason gwtTradeoffReason = new GwtTradeoffReason();
 		gwtTradeoffReason.setProjectId(this.id.getProjectId());
 		gwtTradeoffReason.setPackageId(this.id.getPackageId());
+		gwtTradeoffReason.setPriority(this.priority);
 		gwtTradeoffReason.setTradeoffreason(this.tradeoffreason);
 	
 		return gwtTradeoffReason;

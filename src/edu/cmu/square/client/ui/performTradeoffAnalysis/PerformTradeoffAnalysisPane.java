@@ -30,6 +30,7 @@ import com.google.gwt.user.client.ui.HasHorizontalAlignment;
 import com.google.gwt.user.client.ui.HasVerticalAlignment;
 import com.google.gwt.user.client.ui.HorizontalPanel;
 import com.google.gwt.user.client.ui.Label;
+import com.google.gwt.user.client.ui.ListBox;
 import com.google.gwt.user.client.ui.TextBox;
 import com.google.gwt.user.client.ui.VerticalPanel;
 import com.google.gwt.user.client.ui.Widget;
@@ -687,12 +688,49 @@ public class PerformTradeoffAnalysisPane extends BasePane
 					
 				}});
 			
+			final ListBox priorityListBox = new ListBox();
+			for(int k=0; k<softwarePackages.size(); k++)
+				priorityListBox.addItem(k+"", k+1+"");
+			
+			if(tradeoffReasons.get(j).getPriority().intValue()!=-1)
+			{
+				priorityListBox.setSelectedIndex(tradeoffReasons.get(j).getPriority().intValue());
+			}
+			else
+			{
+				System.out.println("here1.....");
+				priorityListBox.setSelectedIndex(0);
+			}
+			
+			priorityListBox.addChangeHandler(new ChangeHandler()
+			{
+				public void onChange(ChangeEvent event)
+				{
+					int valueSelected = priorityListBox.getSelectedIndex();
+					if(valueSelected == 0)
+					{
+						valueSelected =-1;
+					}
+					System.out.println("here2....."+valueSelected);
+					tradeoffReasons.get(index).setPriority(valueSelected);
+					System.out.println("here3.....");
+				}
+			});
+			
+			
+			
+			
+			
 			
 			if(j>=1)
 			{
 				matrix.setWidget(j+1,attributes.size()+listOfRequirements.size()+2, tradeoffReasonLink);
 				formatter.setHorizontalAlignment(j+1, attributes.size()+listOfRequirements.size()+2, HasHorizontalAlignment.ALIGN_RIGHT);
-				formatter.setStyleName(j+1, attributes.size()+listOfRequirements.size()+2,  "square-Matrix");	
+				formatter.setStyleName(j+1, attributes.size()+listOfRequirements.size()+2,  "square-Matrix");
+				
+				matrix.setWidget(j+1,attributes.size()+listOfRequirements.size()+3, priorityListBox);
+				formatter.setHorizontalAlignment(j+1, attributes.size()+listOfRequirements.size()+3, HasHorizontalAlignment.ALIGN_RIGHT);
+				formatter.setStyleName(j+1, attributes.size()+listOfRequirements.size()+3,  "square-Matrix");
 			}
 			formatter.setHorizontalAlignment(j+1,0 , HasHorizontalAlignment.ALIGN_RIGHT);
 			formatter.setStyleName(j+1,0, "square-Matrix");		

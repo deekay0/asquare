@@ -22,4 +22,5 @@ public interface PerformTradeoffAnalysisService extends RemoteService {
 	
 	void setTradeoffReason(int projectID,int packageID, String tradeoffreason) throws SquareException;
 	
+	void setPriority(int projectID, int packageID, int priority) throws SquareException;
 }
