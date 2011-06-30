@@ -554,6 +554,34 @@ public class PerformTradeoffAnalysisPane extends BasePane
 			}});
 	}
 	
+	
+	private void setPackagePriority(final int packageID, final int priority)
+	{	
+		//the sequence of requirementID and packageID has problems 
+		System.out.println("priority in pane...."+currentProject.getId());
+		
+		this.performTradeoffService.setPriority(currentProject.getId(), packageID, priority, new AsyncCallback<Void>(){
+		
+			public void onFailure(Throwable caught) {
+				if (caught instanceof SquareException) {
+					SquareException se = (SquareException) caught;
+					switch (se.getType()) {
+					case authorization:
+						Window.alert(messages.rateAuthorization());
+						break;				
+					default:
+						Window.alert(messages.error());
+						break;
+					}
+				} else {
+					Window.alert(messages.error());
+				}				
+			}		
+			public void onSuccess(Void result) {			
+			}});
+	}
+	
+	
 	public void drawRateMatrix()
 	{
 		matrix.clear();
@@ -644,10 +672,13 @@ public class PerformTradeoffAnalysisPane extends BasePane
 		
 		matrix.setWidget(0, attributes.size()+listOfRequirements.size()+1, new Label("Total"));
 		matrix.setWidget(0, attributes.size()+listOfRequirements.size()+2, new Label("Tradeoff Reason"));
+		matrix.setWidget(0, attributes.size()+listOfRequirements.size()+3, new Label("Prioritize"));
 		formatter.setHorizontalAlignment(0, attributes.size()+listOfRequirements.size()+1, HasHorizontalAlignment.ALIGN_RIGHT);
 		formatter.setStyleName(0, attributes.size()+listOfRequirements.size()+1,"square-Matrix");	
 		formatter.setHorizontalAlignment(0, attributes.size()+listOfRequirements.size()+2, HasHorizontalAlignment.ALIGN_RIGHT);
 		formatter.setStyleName(0, attributes.size()+listOfRequirements.size()+2,"square-Matrix");	
+		formatter.setHorizontalAlignment(0, attributes.size()+listOfRequirements.size()+3, HasHorizontalAlignment.ALIGN_RIGHT);
+		formatter.setStyleName(0, attributes.size()+listOfRequirements.size()+3,"square-Matrix");	
 	}
 	
 	public void drawRateMatrixEvaluationCriteriaColum()
@@ -711,8 +742,9 @@ public class PerformTradeoffAnalysisPane extends BasePane
 					{
 						valueSelected =-1;
 					}
-					System.out.println("here2....."+valueSelected);
-					tradeoffReasons.get(index).setPriority(valueSelected);
+					System.out.println("here2....."+"  "+index+"   "+valueSelected);
+					//setPackagePriority(index,valueSelected);
+					//tradeoffReasons.get(index).setPriority(valueSelected);
 					System.out.println("here3.....");
 				}
 			});

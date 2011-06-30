@@ -61,14 +61,12 @@ public class HbnTradeoffReasonDao extends HbnAbstractDao<ProjectPackageTradeoffr
 	{
 		System.out.println("here...."+projectID+"   "+packageId+"  "+tradeoffreason);
 		
-		String query = "replace into project_package_tradeoffreason values(:projectId, :packageId,:tradeoffreason)";
 		
-		Query q = getSession().createSQLQuery(query);
-		
+		String query = "Update ProjectPackageTradeoffreason r set r.tradeoffreason=:tradeoffreason where r.projectId=:projectId and r.packageId=:packageId";
+		Query q = getSession().createQuery(query);
 		q.setParameter("projectId", projectID);
 		q.setParameter("packageId", packageId);
 		q.setParameter("tradeoffreason", tradeoffreason);
-			
 		q.executeUpdate();
 	}
 
@@ -93,14 +91,14 @@ public class HbnTradeoffReasonDao extends HbnAbstractDao<ProjectPackageTradeoffr
 	@Override
 	public void updateTradeoffReason(int projectID, int packageId, String tradeoffreason)
 	{
-		String query = "replace into project_package_tradeoffreason values(:projectId,:packageId,:tradeoffreason)";
+		System.out.println("update here...."+projectID+"   "+packageId+"  "+tradeoffreason);
 		
-		Query q = getSession().createSQLQuery(query);
 		
+		String query = "Update ProjectPackageTradeoffreason r set r.tradeoffreason=:tradeoffreason where r.project.id=:projectId and r.softwarePackage.id=:packageId";
+		Query q = getSession().createQuery(query);
 		q.setParameter("projectId", projectID);
 		q.setParameter("packageId", packageId);
 		q.setParameter("tradeoffreason", tradeoffreason);
-			
 		q.executeUpdate();
 	}
 
@@ -109,7 +107,10 @@ public class HbnTradeoffReasonDao extends HbnAbstractDao<ProjectPackageTradeoffr
 	{
 		//System.out.println("here...."+projectID+"   "+packageId+"  "+tradeoffreason);
 		
-		String query = "replace into project_package_tradeoffreason values(:projectId, :packageId,:priority)";
+
+		System.out.println("here priority...."+projectID+"   "+packageId+"  "+priority);
+		
+		String query = "replace into project_package_tradeoffreason values(:projectId,:packageId,:priority)";
 		
 		Query q = getSession().createSQLQuery(query);
 		
