@@ -3,6 +3,8 @@ package edu.cmu.square.client.ui.agreeOnDefinitions;
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.user.client.ui.Widget;
 
+import edu.cmu.square.client.model.AsquareCase;
+import edu.cmu.square.client.model.GwtAsquareCase;
 import edu.cmu.square.client.model.GwtModesType;
 import edu.cmu.square.client.model.ProjectRole;
 import edu.cmu.square.client.navigation.HistoryManager;
@@ -57,26 +59,60 @@ public class AgreeOnDefinitionsPilot extends Pilot
 
 	public void determineAccessRights(String page, State currentState)
 	{
-		if (currentState.getUserProjectRole() == ProjectRole.Lead_Requirements_Engineer)
+		//case1
+		if(currentState.getCaseName() == AsquareCase.Case1)
 		{
-			currentState.setMode(GwtModesType.ReadWrite);
+			if (currentState.getUserProjectRole() == ProjectRole.Acquisition_Organization_Engineer)
+			{
+				currentState.setMode(GwtModesType.ReadWrite);
+			}		
+			else if (currentState.getUserProjectRole() == ProjectRole.Contractor)
+			{
+				currentState.setMode(GwtModesType.ReadOnly);
+			}
+			else if (currentState.getUserProjectRole() == ProjectRole.Security_Specialist)
+			{
+				currentState.setMode(GwtModesType.NoAccess);
+			}
+			else if (currentState.getUserProjectRole() == ProjectRole.COTS_Vendor)
+			{
+				currentState.setMode(GwtModesType.NoAccess);
+			}
+			else if (currentState.getUserProjectRole() == ProjectRole.None)
+			{
+				currentState.setMode(GwtModesType.NoAccess);
+			}
+			else 
+			{
+				currentState.setMode(GwtModesType.ReadOnly);
+			}
 		}
-		else if (currentState.getUserProjectRole() == ProjectRole.Requirements_Engineer)
+		else if(currentState.getCaseName() == AsquareCase.Case3)
 		{
-			currentState.setMode(GwtModesType.ReadWrite);
-		}
-		else if (currentState.getUserProjectRole() == ProjectRole.Stakeholder)
-		{
-			currentState.setMode(GwtModesType.ReadWrite);
-		}
-		else if (currentState.getUserProjectRole() == ProjectRole.None)
-		{
-			currentState.setMode(GwtModesType.NoAccess);
-		}
-		else 
-		{
-			currentState.setMode(GwtModesType.ReadOnly);
-			
+			if (currentState.getUserProjectRole() == ProjectRole.Acquisition_Organization_Engineer)
+			{
+				currentState.setMode(GwtModesType.ReadOnly);
+			}		
+			else if (currentState.getUserProjectRole() == ProjectRole.Contractor)
+			{
+				currentState.setMode(GwtModesType.NoAccess);
+			}
+			else if (currentState.getUserProjectRole() == ProjectRole.Security_Specialist)
+			{
+				currentState.setMode(GwtModesType.NoAccess);
+			}
+			else if (currentState.getUserProjectRole() == ProjectRole.COTS_Vendor)
+			{
+				currentState.setMode(GwtModesType.NoAccess);
+			}
+			else if (currentState.getUserProjectRole() == ProjectRole.None)
+			{
+				currentState.setMode(GwtModesType.NoAccess);
+			}
+			else 
+			{
+				currentState.setMode(GwtModesType.ReadOnly);
+			}
 		}
 		
 	}
