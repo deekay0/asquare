@@ -38,6 +38,8 @@ import edu.cmu.square.client.model.GwtRequirement;
 import edu.cmu.square.client.model.GwtRisk;
 import edu.cmu.square.client.model.GwtSubGoal;
 import edu.cmu.square.client.navigation.State;
+import edu.cmu.square.client.remoteService.step.interfaces.AgreeOnDefinitionsService;
+import edu.cmu.square.client.remoteService.step.interfaces.AgreeOnDefinitionsServiceAsync;
 import edu.cmu.square.client.remoteService.step.interfaces.CollectArtifactsService;
 import edu.cmu.square.client.remoteService.step.interfaces.CollectArtifactsServiceAsync;
 import edu.cmu.square.client.remoteService.step.interfaces.IdentifyGoalsAssetsService;
@@ -46,8 +48,11 @@ import edu.cmu.square.client.remoteService.step.interfaces.ReviewAndFinalizeRequ
 import edu.cmu.square.client.remoteService.step.interfaces.ReviewAndFinalizeRequirementsServiceAsync;
 import edu.cmu.square.client.remoteService.step.interfaces.RiskAssessmentService;
 import edu.cmu.square.client.remoteService.step.interfaces.RiskAssessmentServiceAsync;
+import edu.cmu.square.client.ui.agreeOnDefinitions.AgreeOnDefinitionsPane;
+import edu.cmu.square.client.ui.agreeOnDefinitions.CreateTermDialog;
 import edu.cmu.square.client.ui.core.BasePane;
 import edu.cmu.square.client.ui.core.SquareHyperlink;
+import edu.cmu.square.client.ui.risksAssessment.ArtifactDialogBox;
 
 public class RequirementsDetailPane extends BasePane implements Command
 {
@@ -81,9 +86,6 @@ public class RequirementsDetailPane extends BasePane implements Command
 		private Button cancel;
 		private Label errorMessage = null;
 
-		//ASQUARE
-		private Button approveButton = new Button("Approve");
-		private Button requestRevisionButton = new Button("Request revision");
 		
 		private SquareHyperlink editRequirement;
 		private SquareHyperlink deleteRequirement;
@@ -113,6 +115,9 @@ public class RequirementsDetailPane extends BasePane implements Command
 		
 		
 		private CommandTypes currentCommand;
+		//private SubGoalDialogBox subGoalDialog;
+		private ArtifactDialogBox artifactDialog;
+		//private RiskDialogBox riskDialogBox;
 
 		private GwtBusinessGoal businessGoalInfo = new GwtBusinessGoal();
 		
@@ -200,11 +205,70 @@ public class RequirementsDetailPane extends BasePane implements Command
 						listOfRiksMapppedToRequirement = currentRequirement.getRisks();
 						listOfArtifactsMappedToRequirement = currentRequirement.getArtifacts();
 					}
+					loadProjectRisks();
 				}
 			});
 		}
 
+		public void loadProjectRisks()
+		{
+			int projectId = this.getCurrentState().getProjectID();
+			ServiceDefTarget endpoint = (ServiceDefTarget) riskService;
+			endpoint.setServiceEntryPoint(GWT.getModuleBaseURL() + "riskAssessment.rpc");
+			
+			riskService.getRisksFromProject(projectId, new AsyncCallback<List<GwtRisk>>()
+			{
+				public void onFailure(Throwable caught)
+				{
+					ExceptionHelper.SquareRootRPCExceptionHandler(caught, "retrieving risks");
+				}
 
+				public void onSuccess(List<GwtRisk> result)
+				{
+					listOfProjectRisks = result;
+					listOfProjectFilteredRisks=filterRiskBaseOnGoals(listOfSubGoalsMappedToRequirement, listOfProjectRisks);
+					PaneInitialization();
+				}
+			});
+		}
+
+		public void updateRequirement(int requirementId, GwtRequirement gwtRequirement)
+		{
+			gwtRequirement.setId(requirementId);
+			this.requirementService.updateRequirement(gwtRequirement, new AsyncCallback<Void>()
+			{
+				public void onFailure(Throwable caught)
+				{
+					ExceptionHelper.SquareRootRPCExceptionHandler(caught, messages.errorUpdatingRequirements());
+				}
+				
+				public void onSuccess(Void result)
+				{
+					currentCommand = CommandTypes.read;
+					loadProjectRequirements();
+				}
+			});
+		}
+
+		public void removeRequirement(int requirementId)
+		{
+			boolean response = Window.confirm(messages.confirmDelete());
+			if (response)
+			{
+				this.requirementService.deleteRequirement(requirementId, currentState.getProjectID(), new AsyncCallback<Void>()
+				{
+					public void onFailure(Throwable caught)
+					{
+						ExceptionHelper.SquareRootRPCExceptionHandler(caught, messages.errorRemovingRequirements());
+					}
+					
+					public void onSuccess(Void result)
+					{
+						History.newItem(PerformTradeoffAnalysisPilot.generateNavigationId(PerformTradeoffAnalysisPilot.PageId.home));
+					}
+				});
+			}
+		}
 
 		// ------------------------------------------------------
 		// Risk Manipulation section
@@ -214,7 +278,10 @@ public class RequirementsDetailPane extends BasePane implements Command
 		{
 			this.hideStatusBar();
 			this.contetHasChanged = false;
-
+			this.save = new Button(messages.save());
+			this.cancel = new Button(messages.cancel());
+			this.save.setWidth("80px");
+			this.cancel.setWidth("80px");
 			this.getContent().clear();
 			getContent().add(loadRiskNavigator());
 
@@ -234,6 +301,32 @@ public class RequirementsDetailPane extends BasePane implements Command
 
 			loadRequirementForm();
 
+			this.save.addClickHandler(new ClickHandler()
+				{
+					public void onClick(ClickEvent event)
+					{
+
+						saveRequirement(currentRequirementId);
+					}
+				});
+
+			cancel.addClickHandler(new ClickHandler()
+				{
+
+					public void onClick(ClickEvent event)
+					{
+						if (CommandTypes.insert == currentCommand)
+						{
+							History.newItem(PerformTradeoffAnalysisPilot
+									.generateNavigationId(PerformTradeoffAnalysisPilot.PageId.home));
+						}
+						else
+						{
+							currentCommand = CommandTypes.read;
+							PaneInitialization();
+						}
+					}
+				});
 		}
 		
 		public void loadRequirementForm()
@@ -332,17 +425,6 @@ public class RequirementsDetailPane extends BasePane implements Command
 			{
 				FlexTable bottonControlPanel = new FlexTable();
 				bottonControlPanel.setWidth("85%");
-			
-				if(currentRequirement.getStatus().equals("Request revision")){
-					bottonControlPanel.setWidget(0, 0, editRequirement);
-					bottonControlPanel.setWidget(1, 0, deleteRequirement);
-					bottonControlPanel.setWidget(0, 2, approveButton);
-				}
-				
-				if(currentRequirement.getStatus().equals("Pending")){
-					bottonControlPanel.setWidget(0, 1, requestRevisionButton);
-					bottonControlPanel.setWidget(0, 2, approveButton);
-				}
 				
 				bottonControlPanel.setWidget(2, 0, new Label(" "));
 				bottonControlPanel.setWidget(3, 0, gotToSummary);
@@ -365,13 +447,23 @@ public class RequirementsDetailPane extends BasePane implements Command
 					}
 				});
 
+			this.deleteRequirement.addClickHandler(new ClickHandler()
+				{
+
+					public void onClick(ClickEvent event)
+					{
+						removeRequirement(currentRequirementId);
+
+					}
+				});
 
 			this.gotToSummary.addClickHandler(new ClickHandler()
 				{
+
 					public void onClick(ClickEvent event)
 					{
-						//saveChangesConfirmation();
 						History.newItem(PerformTradeoffAnalysisPilot.generateNavigationId(PerformTradeoffAnalysisPilot.PageId.home));
+
 					}
 				});
 		}
@@ -551,6 +643,7 @@ public class RequirementsDetailPane extends BasePane implements Command
 					public void onClick(ClickEvent event)
 					{
 						//saveChangesConfirmation();
+					
 						History.newItem(PerformTradeoffAnalysisPilot.generateNavigationId(PerformTradeoffAnalysisPilot.PageId.home));
 					}
 				});
@@ -588,6 +681,55 @@ public class RequirementsDetailPane extends BasePane implements Command
 			return requirementNavigatorWidget;
 		}
 
+		public void saveRequirement(int requirementId)
+		{
+			if (validateRequiredFields())
+			{
+				GwtRequirement gwtRequirement = getFormRiskValues();
+				if (requirementId == -1)// Is an insert action
+				{
+					addRequirementToProject(gwtRequirement);
+				}
+				else
+				{
+
+					updateRequirement(requirementId, gwtRequirement);
+				}
+			}
+		}
+		public void addRequirementToProject(GwtRequirement gwtRequirement)
+		{
+
+			this.requirementService.addRequirementToProject(currentProject.getId(), gwtRequirement, new AsyncCallback<Integer>()
+				{
+
+					
+					public void onFailure(Throwable caught)
+					{
+						SquareException se = (SquareException) caught;
+						switch (se.getType())
+						{
+							case authorization :
+								Window.alert(messages.errorAuthorization());
+								break;
+
+							default :
+								Window.alert(messages.errorAddingRequirements());
+								break;
+						}
+					}
+
+					
+					public void onSuccess(Integer result)
+					{
+
+						currentRequirementId = result;
+						currentCommand = CommandTypes.read;
+						loadProjectRequirements();
+					}
+				});
+
+		}
 
 		// ------------------------------------------------------
 		// Field Validator Methods
@@ -665,7 +807,6 @@ public class RequirementsDetailPane extends BasePane implements Command
 				subGoalEmptyLabel.setStyleName("square-RequiredMessage");
 				return false;
 			}
-			
 			else if (listOfArtifactsMappedToRequirement.size() == 0)
 			{
 				disPanel.setOpen(true);
@@ -673,12 +814,43 @@ public class RequirementsDetailPane extends BasePane implements Command
 				return false;
 			}
 			
+			
+			//Check to make sure this requirement title is not already in the system
+			for (GwtRequirement requirement : lisOfRequirements)
+			{
+				if (requirement.getTitle().equals(requirementTitleTextBox.getText().trim()))
+				{
+					errorMessage.setText(messages.duplicateTitleError());
+					disPanel.setOpen(true);
+					return false;
+				}
+			}
+			
+			
 			disPanel.setOpen(false);
 			
 			return true;
 		}
 
-		
+		// ------------------------------------------------------
+		// Requirements Mapping to Sub Goals, Assets and Artifacts
+		// ------------------------------------------------------
+		String currentDialog = "";
+		public Widget getEditSubGoalsHyperLink(final RequirementsDetailPane riksPane)
+		{
+
+			SquareHyperlink associateLink = new SquareHyperlink(messages.editSubGoalsLink());
+			associateLink.addClickHandler(new ClickHandler()
+				{
+					public void onClick(ClickEvent event)
+					{
+					
+					}
+				});
+			return associateLink;
+
+		}
+
 		public Widget createHTMLSubGoalList()
 		{
 			if (listOfSubGoalsMappedToRequirement.size() > 0)
@@ -785,7 +957,41 @@ public class RequirementsDetailPane extends BasePane implements Command
 			}
 
 			return filterRisks;
+
 		}
+		// This handless the call back when the dialog boxes are closed.
+		public void execute()
+		{
+
+			if (currentDialog.equalsIgnoreCase("SubGoal"))
+			{
+				
+				//listSubGoalChanged(listOfSubGoalsMappedToRequirement,subGoalDialog.getNewSelectedSubGoals());
+			
+				//listOfSubGoalsMappedToRequirement = subGoalDialog.getNewSelectedSubGoals();
+				listOfRiksMapppedToRequirement.clear();
+			//	this.matrix.setWidget(3, 1, createHTMLRisksList());
+			//	listOfProjectFilteredRisks= filterRiskBaseOnGoals(listOfSubGoalsMappedToRequirement, listOfProjectRisks);
+				this.matrix.setWidget(2, 1, createHTMLSubGoalList());
+				
+			}
+//			else if (currentDialog.equalsIgnoreCase("Risk"))
+//			{
+//				listRiskChanged(listOfRiksMapppedToRequirement,  riskDialogBox.getNewSelectedRisks());
+//				
+//				listOfRiksMapppedToRequirement = riskDialogBox.getNewSelectedRisks();
+//				this.matrix.setWidget(3, 1, createHTMLRisksList());
+//			}
+			else if (currentDialog.equalsIgnoreCase("Artifact"))
+			{
+				listArtifactChanged(listOfArtifactsMappedToRequirement,artifactDialog.getNewSelectedArtifacts());
+				
+				listOfArtifactsMappedToRequirement = artifactDialog.getNewSelectedArtifacts();
+				this.matrix.setWidget(3, 1, createHTMLArtifactsList());
+			}
+
+		}
+
 
 
 
@@ -812,12 +1018,94 @@ public class RequirementsDetailPane extends BasePane implements Command
 			}
 			
 		}
-
-		@Override
-		public void execute()
+		public void listRiskChanged(List<GwtRisk> oldRisks, List<GwtRisk> newRisks)
 		{
-			// TODO Auto-generated method stub
+			for(GwtRisk old:oldRisks)
+			{
+				if(!newRisks.contains(old))
+				{
+					contetHasChanged= true;
+					return;
+				}
+			}
+		
 		}
-	
+		public void listSubGoalChanged(List<GwtSubGoal> oldSubGoals, List<GwtSubGoal> newSubGoals)
+		{
+			for(GwtSubGoal old:oldSubGoals)
+			{
+				if(!newSubGoals.contains(old))
+				{
+					contetHasChanged= true;
+					return;
+				}
+			}
+		
+		}
+		
+//Approve button
+		public void changeStatusToApproveRequirement(final GwtRequirement gwtRequirement)
+		{
+
+			this.showStatusBar("changing...");
+			ReviewAndFinalizeRequirementsServiceAsync service1 = GWT.create(ReviewAndFinalizeRequirementsService.class);
+			ServiceDefTarget endpoint = (ServiceDefTarget) service1;
+			endpoint.setServiceEntryPoint(GWT.getModuleBaseURL() + "reviewAndFinalizeRequirementsService.rpc");
+
+			GwtProject project = new GwtProject();
+			project.setId(this.getCurrentState().getProjectID());
+			
+			System.out.println("DetailPane"+gwtRequirement);
+			
+			service1.changeStatusToApproveRequirement(currentState.getProjectID(),  gwtRequirement, new AsyncCallback<Void>()
+				{
+
+					public void onFailure(Throwable caught)
+					{
+						ExceptionHelper.SquareRootRPCExceptionHandler(caught, "Changing Status to 'Appproved'");
+
+					}
+
+					@Override
+					public void onSuccess(Void result)
+					{
+						System.out.println("success on chaning status to approved");
+						History.newItem(PerformTradeoffAnalysisPilot.generateNavigationId(PerformTradeoffAnalysisPilot.PageId.home));
+					}
+
+				});
+
+		}
+		
+		public void changeStatusToRequestRevisionRequirement(final GwtRequirement gwtRequirement)
+		{
+
+			this.showStatusBar("changing...");
+			ReviewAndFinalizeRequirementsServiceAsync service1 = GWT.create(ReviewAndFinalizeRequirementsService.class);
+			ServiceDefTarget endpoint = (ServiceDefTarget) service1;
+			endpoint.setServiceEntryPoint(GWT.getModuleBaseURL() + "reviewAndFinalizeRequirementsService.rpc");
+
+			GwtProject project = new GwtProject();
+			project.setId(this.getCurrentState().getProjectID());
+
+			service1.changeStatusToRequestRevisionRequirement(currentState.getProjectID(), gwtRequirement, new AsyncCallback<Void>()
+				{
+
+					public void onFailure(Throwable caught)
+					{
+						ExceptionHelper.SquareRootRPCExceptionHandler(caught, "Changing Requirements to 'Request revision'");
+
+					}
+
+					@Override
+					public void onSuccess(Void result)
+					{
+						System.out.println("success on chaning status to request");
+						History.newItem(PerformTradeoffAnalysisPilot.generateNavigationId(PerformTradeoffAnalysisPilot.PageId.home));
+					}
+
+				});
+
+		}
 }
 
