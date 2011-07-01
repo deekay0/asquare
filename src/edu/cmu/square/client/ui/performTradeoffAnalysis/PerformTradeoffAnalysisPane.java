@@ -17,6 +17,7 @@ import com.google.gwt.event.dom.client.MouseOutEvent;
 import com.google.gwt.event.dom.client.MouseOutHandler;
 import com.google.gwt.event.dom.client.MouseOverEvent;
 import com.google.gwt.event.dom.client.MouseOverHandler;
+import com.google.gwt.user.client.History;
 import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.google.gwt.user.client.rpc.ServiceDefTarget;
@@ -201,21 +202,15 @@ public class PerformTradeoffAnalysisPane extends BasePane
 			links.add(viewDetailLink);
 			rowTable.setWidget(0, 3, links);
 		}
-		else
-		{
-			rowTable.setWidget(0, 2, new Label(" "));
-		}
-
+		
 		//view detail hyperlink
 		viewDetailLink.addClickHandler(new ClickHandler()
 			{
-
 				@Override
 				public void onClick(ClickEvent event)
 				{
-					currentState.setCurrentRisk(viewDetailLink.getRequirementId());
-					currentState.setRiskCommand(1);
-					//History.newItem(ReviewAndFinalizeRequirementsPilot.generateNavigationId(ReviewAndFinalizeRequirementsPilot.PageId.requirementDetail));
+					System.out.println("detail......");
+					History.newItem(PerformTradeoffAnalysisPilot.generateNavigationId(PerformTradeoffAnalysisPilot.PageId.requirementDetail));
 				}
 			});
 
@@ -743,8 +738,8 @@ public class PerformTradeoffAnalysisPane extends BasePane
 						valueSelected =-1;
 					}
 					System.out.println("here2....."+"  "+index+"   "+valueSelected);
-					//setPackagePriority(index,valueSelected);
-					//tradeoffReasons.get(index).setPriority(valueSelected);
+					setPackagePriority(index+1,valueSelected);
+					tradeoffReasons.get(index).setPriority(valueSelected);
 					System.out.println("here3.....");
 				}
 			});

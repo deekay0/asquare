@@ -20,6 +20,7 @@ public class PerformTradeoffAnalysisPilot extends Pilot
 		public static final String home = "teach";
 		public static final String matrix = "matrix-tecniques"; 
 		public static final String performTradeoffAnalysis = "perform-tradeoff-analysis";
+		public static final String requirementDetail = "requirementDetail";
 	}
 
 
@@ -44,7 +45,11 @@ public class PerformTradeoffAnalysisPilot extends Pilot
 		else if (pageId.equals(PageId.matrix))
 		{
 			return new PerformTradeoffAnalysisPane(currentStateInformation); //new Label("Summary Page!");
-		}		
+		}	
+		else if(pageId.equals(PageId.requirementDetail))
+		{
+			return  new RequirementsDetailPane(currentStateInformation);
+		}
 		return null;
 	}
 
