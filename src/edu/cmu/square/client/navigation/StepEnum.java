@@ -1,5 +1,6 @@
 package edu.cmu.square.client.navigation;
 
+import edu.cmu.square.client.ui.FinalProductSelection.FinalProductSelectionPilot;
 import edu.cmu.square.client.ui.SelectSecurityTechnique.SelectSecurityElicitationTechniquePilot;
 import edu.cmu.square.client.ui.agreeOnDefinitions.AgreeOnDefinitionsPilot;
 import edu.cmu.square.client.ui.assetsAndGoals.AssetsAndGoalsPilot;
@@ -41,7 +42,11 @@ public enum StepEnum
 	Perform_Tradeoff_Analysis("Case 3 - Step 6: Perform tradeoff analysis", 
 			ReviewPackagesPilot.generateNavigationId(PerformTradeoffAnalysisPilot.PageId.home)),
 	Review_And_Finalize_Security_Requirements("Case 3 - Step 5: Review and Finalize Security Requirements", 
-			ReviewAndFinalizeRequirementsPilot.generateNavigationId(ReviewAndFinalizeRequirementsPilot.PageId.home));
+			ReviewAndFinalizeRequirementsPilot.generateNavigationId(ReviewAndFinalizeRequirementsPilot.PageId.home)),
+	Final_product_selection("Case 3 - Step 7: Final product selection", 
+			ReviewAndFinalizeRequirementsPilot.generateNavigationId(FinalProductSelectionPilot.PageId.home));
+	
+	
 	
 	private String description;
 	private String link;

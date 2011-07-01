@@ -13,6 +13,7 @@ import com.google.gwt.user.client.ui.VerticalPanel;
 import com.google.gwt.user.client.ui.Widget;
 
 import edu.cmu.square.client.navigation.HistoryManager;
+import edu.cmu.square.client.ui.FinalProductSelection.FinalProductSelectionMessages;
 import edu.cmu.square.client.ui.SelectSecurityTechnique.SelectSecurityTechniqueMessages;
 import edu.cmu.square.client.ui.agreeOnDefinitions.AgreeOnDefinitionsMessages;
 import edu.cmu.square.client.ui.assetsAndGoals.IdentifyAssetsAndGoalsMessages;
@@ -22,6 +23,7 @@ import edu.cmu.square.client.ui.core.content.teachStep.TeachMessages;
 import edu.cmu.square.client.ui.core.content.teachStep.TeachStepMessages;
 import edu.cmu.square.client.ui.elicitSecurityRequirements.ElicitSecurityRequirementsMessages;
 import edu.cmu.square.client.ui.inspectRequirements.InspectRequirementsMessages;
+import edu.cmu.square.client.ui.performTradeoffAnalysis.PerformTradeoffAnalysisMessages;
 import edu.cmu.square.client.ui.prioritizeRequirements.PrioritizeMessages;
 import edu.cmu.square.client.ui.reviewAndFinalizeRequirements.ReviewAndFinalizeRequirementsMessages;
 import edu.cmu.square.client.ui.reviewOfRequirementsByAcquisitionOrganization.ReviewOfRequirementsByAcquisitionMessages;
@@ -97,7 +99,14 @@ public class TeachStepPane extends Composite
 		{
 			messages = (ReviewAndFinalizeRequirementsMessages)GWT.create(ReviewAndFinalizeRequirementsMessages.class);
 		}
-		
+		else if (stepToTeach.equals(HistoryManager.ViewId.performTradeoffAnalysis))
+		{
+			messages = (PerformTradeoffAnalysisMessages)GWT.create(PerformTradeoffAnalysisMessages.class);
+		}
+		else if (stepToTeach.equals(HistoryManager.ViewId.finalProductSelection))
+		{
+			messages = (FinalProductSelectionMessages)GWT.create(FinalProductSelectionMessages.class);
+		}		
 		else
 		{
 			History.newItem(nextPage); //this should be a 404 page maybe?

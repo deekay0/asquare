@@ -24,6 +24,7 @@ import edu.cmu.square.client.model.StepStatus;
 import edu.cmu.square.client.navigation.State;
 import edu.cmu.square.client.remoteService.interfaces.ManageProjectService;
 import edu.cmu.square.client.remoteService.interfaces.ManageProjectServiceAsync;
+import edu.cmu.square.client.ui.FinalProductSelection.FinalProductSelectionPilot;
 import edu.cmu.square.client.ui.ManageProject.ManageProjectPilot;
 import edu.cmu.square.client.ui.agreeOnDefinitions.AgreeOnDefinitionsPilot;
 import edu.cmu.square.client.ui.assetsAndGoals.AssetsAndGoalsPilot;
@@ -365,8 +366,8 @@ public class ChooseStepCase3Pane extends BasePane
 				}
 				else
 				{
-					this.projectStepTable.setWidget(8, 0, new Hyperlink(s.getDescription(), CategorizeRequirementsPilot
-							.generateNavigationId(CategorizeRequirementsPilot.PageId.home)));
+					this.projectStepTable.setWidget(8, 0, new Hyperlink(s.getDescription(), FinalProductSelectionPilot
+							.generateNavigationId(FinalProductSelectionPilot.PageId.home)));
 				}
 
 				this.projectStepTable.setWidget(8, 1, new Label(s.getStatus().getLabel()));
