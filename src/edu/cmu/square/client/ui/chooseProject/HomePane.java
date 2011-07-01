@@ -19,6 +19,7 @@ import com.google.gwt.user.client.ui.FlexTable.FlexCellFormatter;
 import com.google.gwt.user.client.ui.HTMLTable.RowFormatter;
 
 import edu.cmu.square.client.exceptions.ExceptionHelper;
+import edu.cmu.square.client.model.AsquareCase;
 import edu.cmu.square.client.model.GwtProject;
 import edu.cmu.square.client.model.ProjectRole;
 import edu.cmu.square.client.navigation.State;
@@ -232,9 +233,18 @@ public class HomePane extends BasePane
 	{
 		this.showLoadingStatusBar();
 
+		
 		currentState.setProjectName(project.getName());
-		currentState.setCaseName(project.getCases().getName());
+		
+		for(AsquareCase ac: AsquareCase.values()){
+			if(ac.getLabel().equals(project.getClass().getName()))
+			{
+				currentState.setCaseName(ac);
+			}
+		}
+		
 		currentState.setProjectInspectionStatus(null);
+		
 		
 		if (project.getInspectionStatus() != null)
 		{

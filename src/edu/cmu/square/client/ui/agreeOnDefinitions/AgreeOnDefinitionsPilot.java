@@ -3,6 +3,8 @@ package edu.cmu.square.client.ui.agreeOnDefinitions;
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.user.client.ui.Widget;
 
+import edu.cmu.square.client.model.AsquareCase;
+import edu.cmu.square.client.model.GwtAsquareCase;
 import edu.cmu.square.client.model.GwtModesType;
 import edu.cmu.square.client.model.ProjectRole;
 import edu.cmu.square.client.navigation.HistoryManager;
@@ -57,6 +59,7 @@ public class AgreeOnDefinitionsPilot extends Pilot
 
 	public void determineAccessRights(String page, State currentState)
 	{
+		//case1
 		if (currentState.getUserProjectRole() == ProjectRole.Acquisition_Organization_Engineer)
 		{
 			currentState.setMode(GwtModesType.ReadWrite);
@@ -76,7 +79,14 @@ public class AgreeOnDefinitionsPilot extends Pilot
 		else if (currentState.getUserProjectRole() == ProjectRole.None)
 		{
 			currentState.setMode(GwtModesType.NoAccess);
-		}	
+		}
+		//case3
+		else if (currentState.getCaseName() == AsquareCase.Case3 || currentState.getUserProjectRole() == ProjectRole.Acquisition_Organization_Engineer )
+		{
+			currentState.setMode(GwtModesType.ReadOnly);
+		}
+		
+		
 		else 
 		{
 			currentState.setMode(GwtModesType.ReadOnly);

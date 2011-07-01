@@ -5,6 +5,7 @@ import java.util.List;
 
 import com.google.gwt.user.client.Cookies;
 
+import edu.cmu.square.client.model.AsquareCase;
 import edu.cmu.square.client.model.GWTAppProperties;
 import edu.cmu.square.client.model.GwtModesType;
 import edu.cmu.square.client.model.GwtPackage;
@@ -45,7 +46,7 @@ public class State extends StateHandler
 	private int projectID;
 	private int caseID;
 	private int totalPrioritizations;
-	private String caseName = "";
+	private AsquareCase caseName = AsquareCase.None;
 	private String projectName = "";
 	private String projectInspectionStatus = null;
 	private GWTAppProperties appProperties;
@@ -59,7 +60,7 @@ public class State extends StateHandler
 		setSessionID("");
 		setUserName("anonymous");
 		setProjectName("");
-		setCaseName("");
+		setCaseName(null);
 		setCurrentView("LogInPane");
 		setAuthenticated(null);
 		setSiteAdministrator(false);
@@ -314,18 +315,17 @@ public class State extends StateHandler
 		return projectName;
 	}
 	
-	public void setCaseName(String caseName)
+	public void setCaseName(AsquareCase caseName)
 	{
 		this.caseName = caseName;
-		Cookies.setCookie("caseName", caseName);
-		if (caseName.trim().length() > 0)
+		Cookies.setCookie("caseName", caseName.name());
+		if (caseName !=null)
 		{
 			super.fireEvent("caseName", caseName);
 		}
-
 	}
 
-	public String getCaseName()
+	public AsquareCase getCaseName()
 	{
 		return caseName;
 	}
