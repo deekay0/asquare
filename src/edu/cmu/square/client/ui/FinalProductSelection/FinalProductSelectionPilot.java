@@ -19,14 +19,14 @@ public class FinalProductSelectionPilot extends Pilot
 	{
 		public static final String home = "teach";
 		public static final String matrix = "matrix-tecniques"; 
-		public static final String performTradeoffAnalysis = "perform-tradeoff-analysis";
+		public static final String performTradeoffAnalysis = "final-product-selection";
 	}
 
 
 	public FinalProductSelectionPilot()
 	{
 		this.isStep=true;
-		this.STEP_DESCRIPTION="Step 6: Perform Tradeoff Analysis";
+		this.STEP_DESCRIPTION="Step 7: Final product selection";
 	}
 	
 	
@@ -39,7 +39,7 @@ public class FinalProductSelectionPilot extends Pilot
 		 }		
 		if (pageId.equals(PageId.home))
 		{
-			return new TeachStepPane(HistoryManager.ViewId.performTradeoffAnalysis, generateNavigationId(PageId.matrix));
+			return new TeachStepPane(HistoryManager.ViewId.finalProductSelection, generateNavigationId(PageId.matrix));
 		}
 		else if (pageId.equals(PageId.matrix))
 		{
@@ -73,13 +73,13 @@ public class FinalProductSelectionPilot extends Pilot
 	public String getBreadCrumb()
 	{
 		final BreadCrumbMessages messages = (BreadCrumbMessages) GWT.create(BreadCrumbMessages.class);
-		return messages.performTradeoffAnalysis();
+		return messages.finalProductSelection();
 	}
 	
 
 	public static String generateNavigationId(String pageId)
 	{
-		return HistoryManager.ViewId.performTradeoffAnalysis + "/" + pageId;
+		return HistoryManager.ViewId.finalProductSelection + "/" + pageId;
 	}
 	
 }

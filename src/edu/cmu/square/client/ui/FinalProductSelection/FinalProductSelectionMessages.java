@@ -9,4 +9,5 @@ public interface FinalProductSelectionMessages extends TeachMessages
 	String editTradeoffReasonDialogBoxName();
 	String editTradeoffReasonDialogBoxSave();
 	String editTradeoffReasonDialogBoxCancel();
+	String whatareyoudoing();
 }

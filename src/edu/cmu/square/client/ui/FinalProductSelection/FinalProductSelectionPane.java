@@ -17,26 +17,29 @@ import com.google.gwt.event.dom.client.MouseOutEvent;
 import com.google.gwt.event.dom.client.MouseOutHandler;
 import com.google.gwt.event.dom.client.MouseOverEvent;
 import com.google.gwt.event.dom.client.MouseOverHandler;
+import com.google.gwt.event.logical.shared.ValueChangeEvent;
+import com.google.gwt.event.logical.shared.ValueChangeHandler;
 import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.google.gwt.user.client.rpc.ServiceDefTarget;
+import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.DecoratedPopupPanel;
+import com.google.gwt.user.client.ui.DisclosurePanel;
 import com.google.gwt.user.client.ui.FlexTable;
 import com.google.gwt.user.client.ui.FlexTable.FlexCellFormatter;
-import com.google.gwt.user.client.ui.Button;
-import com.google.gwt.user.client.ui.DisclosurePanel;
 import com.google.gwt.user.client.ui.HTML;
 import com.google.gwt.user.client.ui.HasHorizontalAlignment;
 import com.google.gwt.user.client.ui.HasVerticalAlignment;
 import com.google.gwt.user.client.ui.HorizontalPanel;
 import com.google.gwt.user.client.ui.Label;
-import com.google.gwt.user.client.ui.ListBox;
+import com.google.gwt.user.client.ui.RadioButton;
 import com.google.gwt.user.client.ui.TextBox;
 import com.google.gwt.user.client.ui.VerticalPanel;
 import com.google.gwt.user.client.ui.Widget;
 
 import edu.cmu.square.client.exceptions.ExceptionHelper;
 import edu.cmu.square.client.exceptions.SquareException;
+import edu.cmu.square.client.model.GwtFinalChoiceRationale;
 import edu.cmu.square.client.model.GwtModesType;
 import edu.cmu.square.client.model.GwtProject;
 import edu.cmu.square.client.model.GwtQualityAttribute;
@@ -49,8 +52,6 @@ import edu.cmu.square.client.model.StepStatus;
 import edu.cmu.square.client.navigation.State;
 import edu.cmu.square.client.remoteService.step.interfaces.PerformTradeoffAnalysisService;
 import edu.cmu.square.client.remoteService.step.interfaces.PerformTradeoffAnalysisServiceAsync;
-import edu.cmu.square.client.remoteService.step.interfaces.ReviewOfRequirementsByAcquisitionService;
-import edu.cmu.square.client.remoteService.step.interfaces.ReviewOfRequirementsByAcquisitionServiceAsync;
 import edu.cmu.square.client.remoteService.step.interfaces.ReviewPackagesService;
 import edu.cmu.square.client.remoteService.step.interfaces.ReviewPackagesServiceAsync;
 import edu.cmu.square.client.ui.core.BasePane;
@@ -59,14 +60,12 @@ import edu.cmu.square.client.ui.core.SquareHyperlink;
 public class FinalProductSelectionPane extends BasePane
 {
 	final private FinalProductSelectionPaneMessages messages = (FinalProductSelectionPaneMessages)GWT.create(FinalProductSelectionPaneMessages.class);
-	
-	private VerticalPanel vPane = new VerticalPanel();
-	private VerticalPanel vPaneData = new VerticalPanel();
-	
+
 	private ReviewPackagesServiceAsync service = GWT.create(ReviewPackagesService.class);
 	private PerformTradeoffAnalysisServiceAsync performTradeoffService = GWT.create(PerformTradeoffAnalysisService.class);
 	
-	
+	private Label rationaleHeaderLabel = null;
+	private Label rationaleLabel = null;
 	private List<GwtSoftwarePackage> softwarePackages;
 	private List<GwtRequirement> listOfRequirements = new ArrayList<GwtRequirement>();
 	private List<GwtQualityAttribute> attributes;
@@ -74,7 +73,8 @@ public class FinalProductSelectionPane extends BasePane
 	private List<GwtRequirementRating> requirementRatings;
 	private List<GwtTradeoffReason> tradeoffReasons;
 	
-	protected EditTradeoffReasonDialog editTradeoffReasonDialog;
+	private EditTradeoffReasonDialog editTradeoffReasonDialog;
+	private AddRationaleDialog addRationaleDialog;
 	
 	GwtProject currentProject;
 	
@@ -100,60 +100,38 @@ public class FinalProductSelectionPane extends BasePane
 		endpoint.setServiceEntryPoint(GWT.getModuleBaseURL() + "reviewPackages.rpc");
 		
 		ServiceDefTarget endpoint2 = (ServiceDefTarget) service;
-		endpoint2.setServiceEntryPoint(GWT.getModuleBaseURL() + "performTradeoffAnalysis.rpc");
+		endpoint2.setServiceEntryPoint(GWT.getModuleBaseURL() + "finalProductSelection.rpc");
 		
 		currentProject = new GwtProject();
 		currentProject.setId(this.getCurrentState().getProjectID());
 		
 	
 		isReadOnly = true;
-		loadRequirements();
 		loadAttributes();
+//		initializePane();
 		loadTradeoffReasons();
 	}
 	
-	public void loadRequirements()
-	{
-		ReviewOfRequirementsByAcquisitionServiceAsync service1 = GWT.create(ReviewOfRequirementsByAcquisitionService.class);
-		ServiceDefTarget endpoint = (ServiceDefTarget) service1;
-		endpoint.setServiceEntryPoint(GWT.getModuleBaseURL() + "reviewOfRequirementsByAcquisitionService.rpc");
-
-		GwtProject project = new GwtProject();
-		project.setId(this.getCurrentState().getProjectID());
-
-		service1.getRequirements(project, new AsyncCallback<List<GwtRequirement>>()
-		{
-				public void onFailure(Throwable caught)
-				{
-					ExceptionHelper.SquareRootRPCExceptionHandler(caught, "Retriving Requirements");
-				}
-				public void onSuccess(List<GwtRequirement> result)
-				{
-					listOfRequirements = result;
-					initializePane();
-				}
-			});
-	}
-	
-	public void initializePane()
+	public void PaneInitialization()
 	{
 		this.hideStatusBar();
-		loadRequirementsTable();
-		this.getContent().add(vPane);	
-	}
+		VerticalPanel layout = new VerticalPanel();
+		
+		drawMatrixPage();
 	
-	public void loadRequirementsTable()
-	{	
-		vPane.clear();
-		vPane.setSpacing(0);
-		vPane.setWidth("90%");
-		vPane.setHeight("5%");
-
-		vPane.add(getHeaderRow());
-		vPane.add(vPaneData);
-		loadRequirementTableData();
-		//addDoneButton();
-	}
+		//this.getContent().clear();
+		//layout.add(comparisonMatrixLabel);
+		layout.add(matrixHeader);
+		this.getContent().add(layout);
+		
+		rationaleHeaderLabel = new Label("Selection Rationale: ");
+		rationaleLabel = new Label("No final product selection has been made yet.");
+		rationaleLabel.setWidth("500px");
+		rationaleLabel.setSize("500px", "80px");
+		layout.add(rationaleHeaderLabel);
+		layout.add(rationaleLabel);
+		//initWidget(layout);
+	}	
 	
 	public Widget getHeaderRow()
 	{
@@ -240,70 +218,9 @@ public class FinalProductSelectionPane extends BasePane
 		rowTable.getCellFormatter().setVerticalAlignment(0, 2, HasVerticalAlignment.ALIGN_TOP);
 
 		return rowTable;
-	}
-
-	public void loadRequirementTableData()
-	{
-		vPaneData.clear();
-		vPaneData.setWidth("100%");
-
-		vPaneData.setSpacing(5);
-		int rowCount = 1;
-		for (GwtRequirement requirement : listOfRequirements)
-		{
-			vPaneData.add(getDataRow(rowCount, requirement));
-			rowCount++;
-		}
-		
-		if (rowCount == 1)
-		{
-			DisclosurePanel diclosure = new DisclosurePanel();
-
-			Label noRequirement = new Label(messages.noelementsFound());
-			noRequirement.setHorizontalAlignment(HasHorizontalAlignment.ALIGN_LEFT);
-			diclosure.add(noRequirement);
-			vPaneData.add(diclosure);
-			diclosure.setAnimationEnabled(true);
-			diclosure.setOpen(true);
-		}
-	}
-	
-	
-	
-	public void PaneInitialization()
-	{
-		this.hideStatusBar();
-		VerticalPanel layout = new VerticalPanel();
-		
-		editRatingsLink.addClickHandler(new ClickHandler(){		
-			public void onClick(ClickEvent event) {
-				isReadOnly=false;
-				//loadEvaluationsCriteria();
-				drawRateMatrix();
-				getTotalsFromMatrix();
-				PaneInitialization();
-				changeLink();		
-		}});
-		finishRatingsLink.addClickHandler(new ClickHandler(){	
-			public void onClick(ClickEvent event) {
-				isReadOnly=true;
-				//loadEvaluationsCriteria();
-				drawRateMatrix();
-				getTotalsFromMatrix();
-				PaneInitialization();
-				changeLink();		
-			}});
-		drawMatrixPage();
-	
-		//this.getContent().clear();
-		//layout.add(comparisonMatrixLabel);
-		layout.add(matrixHeader);
-		this.getContent().add(layout);
-		
-		//initWidget(layout);
 	}	
 	
-	protected void updateTradeoffReasoninDB(GwtTradeoffReason localTradeoffReason)
+	protected void updateFinalChoiceRationaleinDB(GwtTradeoffReason localTradeoffReason)
 	{
 		this.performTradeoffService.setTradeoffReason(currentProject.getId(), localTradeoffReason.getPackageId(), localTradeoffReason.getTradeoffreason(), new AsyncCallback<Void>()
 				{
@@ -332,20 +249,6 @@ public class FinalProductSelectionPane extends BasePane
 						
 					}
 				});	
-	}
-	
-	private void changeLink()
-	{
-		if(isReadOnly)
-		{
-			this.matrixHeader.setWidget(2, 1, editRatingsLink);
-			this.matrixHeader.setWidget(3, 1, matrix);		
-		}
-		else
-		{
-			this.matrixHeader.setWidget(2, 1, finishRatingsLink);
-			this.matrixHeader.setWidget(3, 1, matrix);
-		}		
 	}
 	
 	private void drawMatrixPage()
@@ -500,86 +403,9 @@ public class FinalProductSelectionPane extends BasePane
 				});		
 	}
 
-	private void setRateValue(final int packageID, final int attributeID, final int value)
-	{
-		System.out.println("set quality attribute rate......."+packageID+"  "+attributeID+"  "+ value);
-		
-		this.service.setRateValue(currentProject.getId(), packageID, attributeID, value, new AsyncCallback<Void>(){	
-			public void onFailure(Throwable caught) {
-				if (caught instanceof SquareException) {
-					SquareException se = (SquareException) caught;
-					switch (se.getType()) {
-					case authorization:
-						Window.alert(messages.rateAuthorization());
-						break;
-				
-					default:
-						Window.alert(messages.error());
-						break;
-					}
-				} else {
-					Window.alert(messages.error());
-				}		
-			}
-			
-			public void onSuccess(Void result) {
-				setValueFromlistOfRateValues(packageID, attributeID, value);			
-			}});
-	}
 	
 	
-	private void setRequirementRateValue(final int packageID, final int requirementID, final int value)
-	{	
-		//the sequence of requirementID and packageID has problems 
-		this.performTradeoffService.setRequirementRateValue(currentProject.getId(), requirementID, packageID, value, new AsyncCallback<Void>(){
-		
-			public void onFailure(Throwable caught) {
-				if (caught instanceof SquareException) {
-					SquareException se = (SquareException) caught;
-					switch (se.getType()) {
-					case authorization:
-						Window.alert(messages.rateAuthorization());
-						break;				
-					default:
-						Window.alert(messages.error());
-						break;
-					}
-
-				} else {
-					Window.alert(messages.error());
-				}				
-			}		
-			public void onSuccess(Void result) {
-				setValueFromlistOfRequirementRateValues(requirementID, packageID, value);			
-			}});
-	}
 	
-	
-	private void setPackagePriority(final int packageID, final int priority)
-	{	
-		//the sequence of requirementID and packageID has problems 
-		System.out.println("priority in pane...."+currentProject.getId());
-		
-		this.performTradeoffService.setPriority(currentProject.getId(), packageID, priority, new AsyncCallback<Void>(){
-		
-			public void onFailure(Throwable caught) {
-				if (caught instanceof SquareException) {
-					SquareException se = (SquareException) caught;
-					switch (se.getType()) {
-					case authorization:
-						Window.alert(messages.rateAuthorization());
-						break;				
-					default:
-						Window.alert(messages.error());
-						break;
-					}
-				} else {
-					Window.alert(messages.error());
-				}				
-			}		
-			public void onSuccess(Void result) {			
-			}});
-	}
 	
 	
 	public void drawRateMatrix()
@@ -672,7 +498,7 @@ public class FinalProductSelectionPane extends BasePane
 		
 		matrix.setWidget(0, attributes.size()+listOfRequirements.size()+1, new Label("Total"));
 		matrix.setWidget(0, attributes.size()+listOfRequirements.size()+2, new Label("Tradeoff Reason"));
-		matrix.setWidget(0, attributes.size()+listOfRequirements.size()+3, new Label("Prioritize"));
+		matrix.setWidget(0, attributes.size()+listOfRequirements.size()+3, new Label("Final Selection"));
 		formatter.setHorizontalAlignment(0, attributes.size()+listOfRequirements.size()+1, HasHorizontalAlignment.ALIGN_RIGHT);
 		formatter.setStyleName(0, attributes.size()+listOfRequirements.size()+1,"square-Matrix");	
 		formatter.setHorizontalAlignment(0, attributes.size()+listOfRequirements.size()+2, HasHorizontalAlignment.ALIGN_RIGHT);
@@ -719,39 +545,22 @@ public class FinalProductSelectionPane extends BasePane
 					
 				}});
 			
-			final ListBox priorityListBox = new ListBox();
-			for(int k=0; k<softwarePackages.size(); k++)
-				priorityListBox.addItem(k+"", k+1+"");
-			
-			if(tradeoffReasons.get(j).getPriority().intValue()!=-1)
-			{
-				priorityListBox.setSelectedIndex(tradeoffReasons.get(j).getPriority().intValue());
-			}
-			else
-			{
-				System.out.println("here1.....");
-				priorityListBox.setSelectedIndex(0);
-			}
-			
-			priorityListBox.addChangeHandler(new ChangeHandler()
-			{
-				public void onChange(ChangeEvent event)
+
+			RadioButton rButton = new RadioButton("group");
+			rButton.addClickHandler(new ClickHandler()
 				{
-					int valueSelected = priorityListBox.getSelectedIndex();
-					if(valueSelected == 0)
+					
+					
+
+					@Override
+					public void onClick(ClickEvent event)
 					{
-						valueSelected =-1;
-					}
-					System.out.println("here2....."+"  "+index+"   "+valueSelected);
-					//setPackagePriority(index,valueSelected);
-					//tradeoffReasons.get(index).setPriority(valueSelected);
-					System.out.println("here3.....");
-				}
-			});
-			
-			
-			
-			
+						addRationaleDialog = new AddRationaleDialog( FinalProductSelectionPane.this, currentProject, softwarePackages.get(index));
+						addRationaleDialog.center();
+						addRationaleDialog.setModal(true);
+						addRationaleDialog.show();
+						
+					}});
 			
 			
 			if(j>=1)
@@ -760,8 +569,8 @@ public class FinalProductSelectionPane extends BasePane
 				formatter.setHorizontalAlignment(j+1, attributes.size()+listOfRequirements.size()+2, HasHorizontalAlignment.ALIGN_RIGHT);
 				formatter.setStyleName(j+1, attributes.size()+listOfRequirements.size()+2,  "square-Matrix");
 				
-				matrix.setWidget(j+1,attributes.size()+listOfRequirements.size()+3, priorityListBox);
-				formatter.setHorizontalAlignment(j+1, attributes.size()+listOfRequirements.size()+3, HasHorizontalAlignment.ALIGN_RIGHT);
+				matrix.setWidget(j+1,attributes.size()+listOfRequirements.size()+3, rButton);
+				formatter.setHorizontalAlignment(j+1, attributes.size()+listOfRequirements.size()+3, HasHorizontalAlignment.ALIGN_CENTER);
 				formatter.setStyleName(j+1, attributes.size()+listOfRequirements.size()+3,  "square-Matrix");
 			}
 			formatter.setHorizontalAlignment(j+1,0 , HasHorizontalAlignment.ALIGN_RIGHT);
@@ -783,76 +592,13 @@ public class FinalProductSelectionPane extends BasePane
 					int pID=softwarePackages.get(j).getId();			
 					int value = getValueFromlistOfRequirementRateValues(pID,rID);
 					
-					if(isReadOnly)
-					{
+					
 						Label valueLabel = new Label(String.valueOf(value));
 						valueLabel.setHorizontalAlignment(HasHorizontalAlignment.ALIGN_CENTER);
 						matrix.setWidget(j+1, i+1, valueLabel);
 						formatter.setHorizontalAlignment(j+1, i+1, HasHorizontalAlignment.ALIGN_CENTER);
 						formatter.setStyleName(j+1, i+1,"square-Matrix");
-					}
-					else
-					{
-						//Allow only the digits 1,2 and 3 to be inputed in the rateValueTextBox
-						final RateValueTextbox rateValueTextbox =new RateValueTextbox(rID,pID, value);
-						rateValueTextbox.setTextAlignment(TextBox.ALIGN_CENTER);
-						rateValueTextbox.addKeyPressHandler(new KeyPressHandler(){	
-							public void onKeyPress(KeyPressEvent event) {
-								char keyCode= event.getCharCode();
-								 if (
-										 ( (keyCode< '0' || keyCode>'3')) && (keyCode != (char) KeyCodes.KEY_TAB)
-								            && (keyCode != (char) KeyCodes.KEY_BACKSPACE)
-								            && (keyCode != (char) KeyCodes.KEY_DELETE) && (keyCode != (char) KeyCodes.KEY_ENTER) 
-								            && (keyCode != (char) KeyCodes.KEY_HOME) && (keyCode != (char) KeyCodes.KEY_END)
-								            && (keyCode != (char) KeyCodes.KEY_LEFT) && (keyCode != (char) KeyCodes.KEY_UP)
-								            && (keyCode != (char) KeyCodes.KEY_RIGHT) && (keyCode != (char) KeyCodes.KEY_DOWN)) {	 	
-									 	// rateValueTextbox.cancelKey() suppresses the current keyboard event.
-									 	rateValueTextbox.cancelKey();
-								 }
-							}
-							});
-						rateValueTextbox.addFocusHandler(new FocusHandler(){
-							public void onFocus(FocusEvent event)
-							{
-								rateValueTextbox.setSelectionRange(0, rateValueTextbox.getText().length());			
-						}});
-						
-						rateValueTextbox.addChangeHandler(new ChangeHandler(){
-							public void onChange(ChangeEvent event) {
-							//	Window.alert("a changed happened");
 								
-								if(rateValueTextbox.getText().trim().length()==0)
-								 {
-									 rateValueTextbox.setText("0");
-								 }
-								char keyCode;
-								
-								// Validation of the textbox from Copy and Paste
-								if(rateValueTextbox.getText().trim().length()==1)
-								{
-									keyCode=rateValueTextbox.getText().trim().charAt(0);
-								   if(keyCode>= '0' && keyCode<='3')
-								   {
-									   getTotalsFromMatrix();
-									   setRequirementRateValue(rateValueTextbox.getTecniqueID(),rateValueTextbox.getEvaluationID(),Integer.parseInt(rateValueTextbox.getText()));
-										rateValueTextbox.setOldValue(rateValueTextbox.getText());
-								   }
-								   else
-								   {
-									   rateValueTextbox.setText(rateValueTextbox.getOldValue());
-								   }
-								}
-								else
-								{
-									rateValueTextbox.setText(rateValueTextbox.getOldValue());
-								}			
-						}});
-
-						matrix.setWidget(j+1, i+1, rateValueTextbox);
-						formatter.setHorizontalAlignment(j+1, i+1, HasHorizontalAlignment.ALIGN_CENTER);
-						formatter.setStyleName(j+1, i+1,"square-Matrix");
-					}
-									
 					RateValueLabel totalLabel= new RateValueLabel(listOfRequirements.get(i).getId());
 					totalLabel.setText("0");
 	
@@ -946,50 +692,8 @@ public class FinalProductSelectionPane extends BasePane
 	 * including ties
 	 * @return List<GwtTechnique> top 1 rated technique(s) remember it could be ties in 1st place
 	 */
-	private List<GwtSoftwarePackage> getTopValues()
-	{
-		List<GwtSoftwarePackage> topPackages = new ArrayList<GwtSoftwarePackage>();
-		
-		int max=-1;
-		for(int i=1; i<=softwarePackages.size();i++)
-		{
-				Widget widget =  matrix.getWidget(attributes.size()+1, i);	
-				RateValueLabel totalLabel = (RateValueLabel) widget;
-			
-				if(max<Integer.parseInt(totalLabel.getText()) )
-					{
-						max=Integer.parseInt(totalLabel.getText());
-					}		
-		}
-		for(int i=1; i<=softwarePackages.size();i++)
-		{
-				Widget widget =  matrix.getWidget(attributes.size()+1, i);	
-				RateValueLabel totalLabel = (RateValueLabel) widget;
-			
-				if(max==Integer.parseInt(totalLabel.getText()) )
-					{
-						topPackages.add(getPackageFromListOfPackages(totalLabel.getTecniqueID()));
-					}		
-		}
-		
-		return topPackages;	
-	}
-	/**
-	 * This method search the techniques in the listloaded by RCP initially
-	 * @param tecniqueID
-	 * @return GwtTechnique for that ID
-	 */
-	private GwtSoftwarePackage getPackageFromListOfPackages(int tecniqueID)
-	{
-		for(int i=0; i<softwarePackages.size();i++)
-		{
-				if(softwarePackages.get(i).getId()==tecniqueID)
-				{
-					return 	softwarePackages.get(i);
-				}
-		}
-		return null;
-	}
+
+
 	/**
 	 * This method search the rate values in the loaded by RCP initially
 	 * @param techniqueID
@@ -1026,19 +730,7 @@ public class FinalProductSelectionPane extends BasePane
 		return 0;
 	}
 	
-	private void setValueFromlistOfRateValues(int attributeID, int packageID, int value)
-	{
-		for(int j=0; j<ratings.size();j++)
-		{
-			int aID=ratings.get(j).getAttributeId();
-			int pID =ratings.get(j).getPackageId();
-			
-			if(attributeID==aID && packageID==pID)
-			{
-				ratings.get(j).setValue(value);
-			}	
-		}
-	}
+	
 	
 	private void setValueFromlistOfRequirementRateValues(int requirementID, int packageID, int value)
 	{
@@ -1129,9 +821,21 @@ public class FinalProductSelectionPane extends BasePane
 
 	
 	
+	public void updateCommand(GwtFinalChoiceRationale localTradeoffReason)
+	{
+		updateFinalChoiceRationaleinDB(localTradeoffReason);
+	}
+
+	private void updateFinalChoiceRationaleinDB(GwtFinalChoiceRationale localTradeoffReason)
+	{
+		// TODO Auto-generated method stub
+		
+	}
+
 	public void updateCommand(GwtTradeoffReason localTradeoffReason)
 	{
-		updateTradeoffReasoninDB(localTradeoffReason);
+		// TODO Auto-generated method stub
+		
 	}
 	
 }

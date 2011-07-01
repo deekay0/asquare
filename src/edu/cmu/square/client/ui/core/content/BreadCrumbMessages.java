@@ -31,4 +31,5 @@ public interface BreadCrumbMessages extends Messages
 	String reviewPackages();
 	String performTradeoffAnalysis();
 	String reviewAndFinalizeRequirements();
+	String finalProductSelection();
 }
