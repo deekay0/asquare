@@ -59,6 +59,7 @@ public class ReviewPackagesPilot extends Pilot
 	
 	public void determineAccessRights(String page, State currentState)
 	{
+		/*		
 		if (currentState.getUserProjectRole() == ProjectRole.Lead_Requirements_Engineer)
 		{
 			currentState.setMode(GwtModesType.ReadWrite);
@@ -71,8 +72,28 @@ public class ReviewPackagesPilot extends Pilot
 		{
 			currentState.setMode(GwtModesType.NoAccess);
 		}
-		else{
-		currentState.setMode(GwtModesType.ReadOnly);
+		
+		*/
+		//ASQUARE
+		if (currentState.getUserProjectRole() == ProjectRole.Acquisition_Organization_Engineer)
+		{
+			currentState.setMode(GwtModesType.NoAccess);
+		}
+		else if (currentState.getUserProjectRole() == ProjectRole.Contractor)
+		{
+			currentState.setMode(GwtModesType.NoAccess);
+		}
+		else if (currentState.getUserProjectRole() == ProjectRole.Security_Specialist)
+		{
+			currentState.setMode(GwtModesType.ReadWrite);
+		}
+		else if (currentState.getUserProjectRole() == ProjectRole.COTS_Vendor)
+		{
+			currentState.setMode(GwtModesType.ReadWrite);//but he can't change feature/package name
+		}	
+		else
+		{
+			currentState.setMode(GwtModesType.ReadOnly);
 		}
 
 	}

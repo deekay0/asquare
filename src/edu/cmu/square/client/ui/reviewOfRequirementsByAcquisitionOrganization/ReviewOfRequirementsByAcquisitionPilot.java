@@ -66,11 +66,13 @@ public class ReviewOfRequirementsByAcquisitionPilot extends Pilot
 
 	public void determineAccessRights(String page, State currentState)
 	{
+		
 		//SQUARE
 		if (currentState.getUserProjectRole() == ProjectRole.Lead_Requirements_Engineer)
 		{
 			currentState.setMode(GwtModesType.ReadWrite);
 		}
+		/*
 		else if (currentState.getUserProjectRole() == ProjectRole.Requirements_Engineer)
 		{
 			currentState.setMode(GwtModesType.ReadWrite);
@@ -79,6 +81,7 @@ public class ReviewOfRequirementsByAcquisitionPilot extends Pilot
 		{
 			currentState.setMode(GwtModesType.ReadWrite);
 		}
+		*/
 		//ASQUARE
 		else if (currentState.getUserProjectRole() == ProjectRole.Acquisition_Organization_Engineer)
 		{
@@ -86,13 +89,19 @@ public class ReviewOfRequirementsByAcquisitionPilot extends Pilot
 		}
 		else if (currentState.getUserProjectRole() == ProjectRole.Contractor)
 		{
-			currentState.setMode(GwtModesType.ReadWrite);
+			currentState.setMode(GwtModesType.ReadOnly);
+		}
+		else if (currentState.getUserProjectRole() == ProjectRole.Security_Specialist)
+		{
+			currentState.setMode(GwtModesType.NoAccess);
+		}
+		else if (currentState.getUserProjectRole() == ProjectRole.COTS_Vendor)
+		{
+			currentState.setMode(GwtModesType.NoAccess);
 		}
 		else if (currentState.getUserProjectRole() == ProjectRole.None)
-		{
-			
-			currentState.setMode(GwtModesType.ReadWrite);
-			//currentState.setMode(GwtModesType.NoAccess);
+		{			
+			currentState.setMode(GwtModesType.NoAccess);
 		}
 		else 
 		{
