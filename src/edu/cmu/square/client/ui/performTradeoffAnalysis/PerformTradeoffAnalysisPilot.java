@@ -57,6 +57,24 @@ public class PerformTradeoffAnalysisPilot extends Pilot
 	
 	public void determineAccessRights(String page, State currentState)
 	{
+		if (currentState.getUserProjectRole() == ProjectRole.Acquisition_Organization_Engineer)
+		{
+			currentState.setMode(GwtModesType.NoAccess);
+		}
+		else if (currentState.getUserProjectRole() == ProjectRole.Contractor)
+		{
+			currentState.setMode(GwtModesType.NoAccess);
+		}
+		else if (currentState.getUserProjectRole() == ProjectRole.Security_Specialist)
+		{
+			currentState.setMode(GwtModesType.ReadWrite);
+		}
+		else if (currentState.getUserProjectRole() == ProjectRole.COTS_Vendor)
+		{
+			currentState.setMode(GwtModesType.ReadOnly);
+		}
+		
+		/*
 		if (currentState.getUserProjectRole() == ProjectRole.Lead_Requirements_Engineer)
 		{
 			currentState.setMode(GwtModesType.ReadWrite);
@@ -69,6 +87,7 @@ public class PerformTradeoffAnalysisPilot extends Pilot
 		{
 			currentState.setMode(GwtModesType.NoAccess);
 		}
+		*/
 		else{
 		currentState.setMode(GwtModesType.ReadOnly);
 		}
