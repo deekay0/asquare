@@ -210,6 +210,8 @@ public class PerformTradeoffAnalysisPane extends BasePane
 				public void onClick(ClickEvent event)
 				{
 					System.out.println("detail......");
+					currentState.setCurrentRisk(viewDetailLink.getRequirementId());
+					currentState.setRiskCommand(1);
 					History.newItem(PerformTradeoffAnalysisPilot.generateNavigationId(PerformTradeoffAnalysisPilot.PageId.requirementDetail));
 				}
 			});
@@ -642,9 +644,7 @@ public class PerformTradeoffAnalysisPane extends BasePane
 			techniqueLabel = new Label(attributes.get(j-1).getName());
 			simplePopup.setWidget(new HTML(attributes.get(j-1).getDescription()));
 			
-				//techniqueLabel = new Label(listOfRequirements.get(i-1).getTitle());
-				//simplePopup.setWidget(new HTML(listOfRequirements.get(i-1).getDescription()));
-					
+			
 			techniqueLabel.addMouseOverHandler(new MouseOverHandler(){
 					public void onMouseOver(MouseOverEvent event) 
 					{
