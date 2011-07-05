@@ -52,22 +52,27 @@ public class FinalProductSelectionPilot extends Pilot
 	
 	public void determineAccessRights(String page, State currentState)
 	{
-		if (currentState.getUserProjectRole() == ProjectRole.Lead_Requirements_Engineer)
+		
+		if (currentState.getUserProjectRole() == ProjectRole.Acquisition_Organization_Engineer)
 		{
 			currentState.setMode(GwtModesType.ReadWrite);
 		}
-		else if (currentState.getUserProjectRole() == ProjectRole.Requirements_Engineer)
-		{
-			currentState.setMode(GwtModesType.ReadWrite);
-		}
-		else if (currentState.getUserProjectRole() == ProjectRole.None)
+		else if (currentState.getUserProjectRole() == ProjectRole.Contractor)
 		{
 			currentState.setMode(GwtModesType.NoAccess);
 		}
-		else{
-		currentState.setMode(GwtModesType.ReadOnly);
+		else if (currentState.getUserProjectRole() == ProjectRole.Security_Specialist)
+		{
+			currentState.setMode(GwtModesType.NoAccess);
 		}
-
+		else if (currentState.getUserProjectRole() == ProjectRole.COTS_Vendor)
+		{
+			currentState.setMode(GwtModesType.ReadOnly);
+		}
+		else
+		{
+			currentState.setMode(GwtModesType.ReadOnly);
+		}		
 	}
 
 	public String getBreadCrumb()
