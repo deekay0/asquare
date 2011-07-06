@@ -24,14 +24,13 @@ public class ChooseStepPilot extends Pilot
 	
 	public void determineAccessRights(String page, State currentState)
 	{
-		/*if (currentState.getUserProjectRole() == ProjectRole.Lead_Requirements_Engineer)
-		{
-			currentState.setMode(GwtModesType.ReadWrite);
-		}
-		*/
 		if (currentState.getUserProjectRole() == ProjectRole.Acquisition_Organization_Engineer)
 		{
 			currentState.setMode(GwtModesType.ReadOnly);
+		}
+		else if (currentState.getUserProjectRole() == ProjectRole.Lead_Requirements_Engineer)
+		{
+			currentState.setMode(GwtModesType.ReadWrite);
 		}
 		else if (currentState.getUserProjectRole() == ProjectRole.Contractor)
 		{
@@ -45,7 +44,6 @@ public class ChooseStepPilot extends Pilot
 		{
 			currentState.setMode(GwtModesType.ReadOnly);
 		}
-		
 		else if (currentState.getUserProjectRole() == ProjectRole.None)
 		{
 			currentState.setMode(GwtModesType.NoAccess);

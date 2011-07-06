@@ -24,13 +24,13 @@ public class ChooseStepCase3Pilot extends Pilot
 	
 	public void determineAccessRights(String page, State currentState)
 	{
-		if (currentState.getUserProjectRole() == ProjectRole.Lead_Requirements_Engineer)
-		{
-			currentState.setMode(GwtModesType.ReadWrite);
-		}
 		if (currentState.getUserProjectRole() == ProjectRole.Acquisition_Organization_Engineer)
 		{
 			currentState.setMode(GwtModesType.ReadOnly);
+		}
+		else if (currentState.getUserProjectRole() == ProjectRole.Lead_Requirements_Engineer)
+		{
+			currentState.setMode(GwtModesType.ReadWrite);
 		}
 		else if (currentState.getUserProjectRole() == ProjectRole.Contractor)
 		{
@@ -51,7 +51,6 @@ public class ChooseStepCase3Pilot extends Pilot
 		else{
 			currentState.setMode(GwtModesType.ReadOnly);
 		}
-				
 	}
 
 
