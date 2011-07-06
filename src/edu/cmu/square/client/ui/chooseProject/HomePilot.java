@@ -37,7 +37,6 @@ public class HomePilot extends Pilot
 	
 	public Widget navigateTo(String pageId, State currentStateInformation)
 	{
-		
 		if (pageId.equals(PageId.home)) 
 		{
 			return new HomePane(currentStateInformation);
@@ -45,13 +44,6 @@ public class HomePilot extends Pilot
 		
 		return null;
 	}
-
-	
-	
-	
-
-	
-
 	public static String generateNavigationId(String pageId)
 	{
 		return HistoryManager.ViewId.home + "/" + pageId;
