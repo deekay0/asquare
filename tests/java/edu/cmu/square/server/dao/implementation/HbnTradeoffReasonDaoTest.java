@@ -1,5 +1,7 @@
 package edu.cmu.square.server.dao.implementation;
 
+import java.util.List;
+
 import javax.annotation.Resource;
 
 import junit.framework.Assert;
@@ -23,7 +25,7 @@ public class HbnTradeoffReasonDaoTest extends AbstractSpringBase
 	@Transactional
 	public void testAddTradeoffReason()
 	{
-		ProjectPackageTradeoffreasonId id = new ProjectPackageTradeoffreasonId(1047,2);
+		ProjectPackageTradeoffreasonId id = new ProjectPackageTradeoffreasonId(38,2);
 		
 		Project  newProject = new Project();
 		SoftwarePackage softwarePackage = new SoftwarePackage();
@@ -31,7 +33,16 @@ public class HbnTradeoffReasonDaoTest extends AbstractSpringBase
 		ProjectPackageTradeoffreason tradeoffReason = new ProjectPackageTradeoffreason(id, newProject, softwarePackage,"test reason", 1);
 		tradeoffReasonDao.create(tradeoffReason);
 		
-		//ProjectPackageTradeoffreason result = tradeoffReasonDao.fetchAll();
-		//Assert.assertEquals(tradeoffReason.getTradeoffreason(), result.getTradeoffreason());
+		List<ProjectPackageTradeoffreason> result = tradeoffReasonDao.fetchAll();
+		Assert.assertTrue(result.size()>0);
+	}
+	
+	@Test
+	@Transactional
+	public void testGetTradeoffReason()
+	{
+		List<ProjectPackageTradeoffreason> result = tradeoffReasonDao.fetchAll();
+		Assert.assertNotNull(result);
+		Assert.assertTrue(result.size()>0);
 	}
 }
