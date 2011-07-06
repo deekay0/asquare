@@ -67,13 +67,7 @@ public class ElicitSecurityRequirementsPilot extends Pilot
 		if (currentState.getUserProjectRole() == ProjectRole.Lead_Requirements_Engineer)
 		{
 			currentState.setMode(GwtModesType.ReadWrite);
-		}
-		/*
-		if (currentState.getUserProjectRole() == ProjectRole.Lead_Requirements_Engineer)
-		{
-			currentState.setMode(GwtModesType.ReadWrite);
-		}
-		
+		}			
 		else if (currentState.getUserProjectRole() == ProjectRole.Requirements_Engineer)
 		{
 			currentState.setMode(GwtModesType.ReadWrite);
@@ -82,14 +76,10 @@ public class ElicitSecurityRequirementsPilot extends Pilot
 		{
 			currentState.setMode(GwtModesType.NoAccess);
 		}
-		else if (currentState.getUserProjectRole() == ProjectRole.Contractor)
-		{
-			currentState.setMode(GwtModesType.ReadWrite);
-		}
 		else{
-		currentState.setMode(GwtModesType.ReadOnly);
+			currentState.setMode(GwtModesType.ReadOnly);
 		}
-		*/
+		
 		//case1
 		if(currentState.getCaseName() == AsquareCase.Case1)
 		{
