@@ -74,8 +74,8 @@ public class PerformTradeoffAnalysisPilot extends Pilot
 			currentState.setMode(GwtModesType.ReadOnly);
 		}
 		
-		/*
-		if (currentState.getUserProjectRole() == ProjectRole.Lead_Requirements_Engineer)
+//SQUARE delete this later!!
+		else if (currentState.getUserProjectRole() == ProjectRole.Lead_Requirements_Engineer)
 		{
 			currentState.setMode(GwtModesType.ReadWrite);
 		}
@@ -87,7 +87,9 @@ public class PerformTradeoffAnalysisPilot extends Pilot
 		{
 			currentState.setMode(GwtModesType.NoAccess);
 		}
-		*/
+		
+		
+		
 		else{
 		currentState.setMode(GwtModesType.ReadOnly);
 		}
