@@ -28,6 +28,7 @@ public class ChooseStepPilot extends Pilot
 		{
 			currentState.setMode(GwtModesType.ReadOnly);
 		}
+//Delete this role, I just give him RW access right.
 		else if (currentState.getUserProjectRole() == ProjectRole.Lead_Requirements_Engineer)
 		{
 			currentState.setMode(GwtModesType.ReadWrite);
