@@ -4,25 +4,16 @@ import java.util.List;
 
 import com.google.gwt.user.client.rpc.AsyncCallback;
 
-import edu.cmu.square.client.exceptions.SquareException;
 import edu.cmu.square.client.model.GwtProject;
+import edu.cmu.square.client.model.GwtRationale;
 import edu.cmu.square.client.model.GwtRequirementRating;
 import edu.cmu.square.client.model.GwtTradeoffReason;
-import edu.cmu.square.client.model.StepStatus;
 
-public interface FinalProductSelectionServiceAsync {
-	
-
-	void setRequirementRateValue(int projectID, int packageID, int requirementID, int value,  AsyncCallback<Void> callback) ;
-	
+public interface FinalProductSelectionServiceAsync 
+{	
 	void getRequirementRateValues(int projectID, AsyncCallback<List<GwtRequirementRating>> callback) ;
-	
 	void getTradeoffReasons(int projectID, AsyncCallback<List<GwtTradeoffReason>> callback);
-	
-	void setTradeoffReason(int projectID,int packageID, String tradeoffreason, AsyncCallback<Void> callback);
-	
-	void setPriority(int projectID, int packageID, int priority, AsyncCallback<Void> callback);
-
-
-
+	void setRationale(GwtRationale rationale, AsyncCallback<Void> callback);
+	void getRationale(GwtProject projectID, AsyncCallback<GwtRationale> callback);
+//	void updateRationale(int projectID, int packageId, String tradeoffreason, AsyncCallback<Void> callback);
 }

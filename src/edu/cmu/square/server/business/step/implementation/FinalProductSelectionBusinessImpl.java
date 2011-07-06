@@ -8,7 +8,10 @@ import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Service;
 
 import edu.cmu.square.client.exceptions.SquareException;
+import edu.cmu.square.client.model.GwtProject;
+import edu.cmu.square.client.model.GwtRationale;
 import edu.cmu.square.client.model.GwtRequirementRating;
+import edu.cmu.square.client.model.GwtSoftwarePackage;
 import edu.cmu.square.client.model.GwtStepVerficationResult;
 import edu.cmu.square.client.model.GwtTradeoffReason;
 import edu.cmu.square.client.navigation.StepEnum;
@@ -18,58 +21,32 @@ import edu.cmu.square.server.business.implementation.BaseBusinessImpl;
 import edu.cmu.square.server.business.step.interfaces.FinalProductSelectionBusiness;
 import edu.cmu.square.server.dao.interfaces.ProjectDao;
 import edu.cmu.square.server.dao.interfaces.ProjectPackageRequirementRatingDao;
+import edu.cmu.square.server.dao.interfaces.RationaleDao;
 import edu.cmu.square.server.dao.interfaces.TradeoffReasonDao;
 import edu.cmu.square.server.dao.model.Project;
+import edu.cmu.square.server.dao.model.ProjectPackageRationale;
+import edu.cmu.square.server.dao.model.ProjectPackageRationaleId;
 
 
 @Service
 @Scope("prototype")
 public class FinalProductSelectionBusinessImpl extends BaseBusinessImpl implements FinalProductSelectionBusiness
 {
-
 	@Resource
 	private ProjectDao projectDao;
 	@Resource
 	private TradeoffReasonDao tradeoffReasonDao;
 	@Resource
 	private ProjectPackageRequirementRatingDao projectRequirementRatingDao;
+	@Resource
+	private RationaleDao rationaleDao;
 
-	@AllowedRoles(roles = {Roles.All})
-	public void setRequirementRateValue(int projectID, int packageID, int requirementID, int value) throws SquareException
-	{
-		//System.out.println("here.............."+projectID+"  "+packageID+"  "+requirementID+"  "+value);
-		if( -1 == projectRequirementRatingDao.getRating(projectID, packageID,requirementID))
-			projectRequirementRatingDao.setRating(projectID,packageID, requirementID, value);
-		else
-		{
-			projectRequirementRatingDao.updateRating(projectID,packageID,requirementID, value);
-		}
-
-	}
-
-	@Override
-	@AllowedRoles(roles = {Roles.All})
-	public List<GwtRequirementRating> getRequirementRateValues(int projectID) throws SquareException
-	{
-		Project project = new Project();
-		project.setId(projectID);
-		return projectRequirementRatingDao.getAllRatings(project);
-	}
-
-	@Override
-	@AllowedRoles(roles = {Roles.All})
-	public int getRequirementRateValue(int projectID,int packageID, int requirementID) throws SquareException
-	{
-		return projectRequirementRatingDao.getRating(projectID,packageID, requirementID);
-	}
 	
-
 	@Override
 	public StepEnum getStepDescription() throws SquareException
 	{
 		return StepEnum.Perform_Tradeoff_Analysis;
 	}
-
 
 	@Override
 	public GwtStepVerficationResult verifyStep(Project project) throws SquareException
@@ -88,18 +65,38 @@ public class FinalProductSelectionBusinessImpl extends BaseBusinessImpl implemen
 	}
 
 	@Override
-	public List<GwtTradeoffReason> getTradeoffReasons(int projectID) throws SquareException
+	public GwtRationale getRationale(GwtProject project) throws SquareException
 	{
-		Project project = new Project();
-		project.setId(projectID);
-		return tradeoffReasonDao.getAllTradeoffReasons(project);
+		ProjectPackageRationale rationale = rationaleDao.getRationale(new Project(project));
+		if(rationale == null)
+			return null;
+		GwtRationale gwtRationale = new GwtRationale();
+		
+		GwtSoftwarePackage spackage = new GwtSoftwarePackage();
+		spackage.setDescription(rationale.getSoftwarePackage().getDescription());
+		spackage.setName(rationale.getSoftwarePackage().getName());
+		spackage.setId(rationale.getSoftwarePackage().getId());
+		
+		gwtRationale.setPackage(spackage);
+		gwtRationale.setProject(project);
+		gwtRationale.setRationale(rationale.getRationale());
+		return gwtRationale;
 	}
 
 	@Override
-	public void addTradeoffReason(int projectID, int packageID, String tradeoffReason) throws SquareException
+	public void setRationale(GwtRationale gwtRationale) throws SquareException
 	{
-		// TODO Auto-generated method stub
-		tradeoffReasonDao.setTradeoffReason(projectID, packageID, tradeoffReason);
+		ProjectPackageRationale currentRationale = rationaleDao.getRationale(new Project(gwtRationale.getProject()));
+		if(currentRationale != null)
+		{
+			System.out.println("deleting!");
+			System.out.println("This is what we're deleting: "+currentRationale.getId().getPackageId()+" "+currentRationale.getId().getProjectId());
+			rationaleDao.deleteEntity(currentRationale);
+		}
+		
+		System.out.println("This is what we're inserting values("+gwtRationale.getRationale()+","+gwtRationale.getProject().getId()+","+gwtRationale.getPackage().getId()+")");
+		ProjectPackageRationale newRationale = new ProjectPackageRationale(gwtRationale);
+		rationaleDao.create(newRationale);
 	}
 
 	@Override
@@ -113,15 +110,28 @@ public class FinalProductSelectionBusinessImpl extends BaseBusinessImpl implemen
 			tradeoffReasonDao.updateTradeoffReason(projectID, packageId, tradeoffReason);
 		}
 	}
-
+	
 	@Override
-	public void updatePriority(int projectID, int packageID, int priority) throws SquareException
+	public List<GwtTradeoffReason> getTradeoffReasons(int projectID) throws SquareException
 	{
-		tradeoffReasonDao.setPriority(projectID, packageID, priority);
+		Project project = new Project();
+		project.setId(projectID);
+		return tradeoffReasonDao.getAllTradeoffReasons(project);
+	}
+	
+	@Override
+	@AllowedRoles(roles = {Roles.All})
+	public List<GwtRequirementRating> getRequirementRateValues(int projectID) throws SquareException
+	{
+		Project project = new Project();
+		project.setId(projectID);
+		return projectRequirementRatingDao.getAllRatings(project);
 	}
 
-
-
-	
-
+	@Override
+	@AllowedRoles(roles = {Roles.All})
+	public int getRequirementRateValue(int projectID,int packageID, int requirementID) throws SquareException
+	{
+		return projectRequirementRatingDao.getRating(projectID,packageID, requirementID);
+	}
 }

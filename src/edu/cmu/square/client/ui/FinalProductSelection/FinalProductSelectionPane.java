@@ -4,27 +4,17 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.google.gwt.core.client.GWT;
-import com.google.gwt.event.dom.client.ChangeEvent;
-import com.google.gwt.event.dom.client.ChangeHandler;
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.ClickHandler;
-import com.google.gwt.event.dom.client.FocusEvent;
-import com.google.gwt.event.dom.client.FocusHandler;
-import com.google.gwt.event.dom.client.KeyCodes;
-import com.google.gwt.event.dom.client.KeyPressEvent;
-import com.google.gwt.event.dom.client.KeyPressHandler;
 import com.google.gwt.event.dom.client.MouseOutEvent;
 import com.google.gwt.event.dom.client.MouseOutHandler;
 import com.google.gwt.event.dom.client.MouseOverEvent;
 import com.google.gwt.event.dom.client.MouseOverHandler;
-import com.google.gwt.event.logical.shared.ValueChangeEvent;
-import com.google.gwt.event.logical.shared.ValueChangeHandler;
 import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.google.gwt.user.client.rpc.ServiceDefTarget;
 import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.DecoratedPopupPanel;
-import com.google.gwt.user.client.ui.DisclosurePanel;
 import com.google.gwt.user.client.ui.FlexTable;
 import com.google.gwt.user.client.ui.FlexTable.FlexCellFormatter;
 import com.google.gwt.user.client.ui.HTML;
@@ -38,31 +28,31 @@ import com.google.gwt.user.client.ui.VerticalPanel;
 import com.google.gwt.user.client.ui.Widget;
 
 import edu.cmu.square.client.exceptions.ExceptionHelper;
-import edu.cmu.square.client.exceptions.SquareException;
-import edu.cmu.square.client.model.GwtFinalChoiceRationale;
 import edu.cmu.square.client.model.GwtModesType;
 import edu.cmu.square.client.model.GwtProject;
 import edu.cmu.square.client.model.GwtQualityAttribute;
 import edu.cmu.square.client.model.GwtRating;
+import edu.cmu.square.client.model.GwtRationale;
 import edu.cmu.square.client.model.GwtRequirement;
 import edu.cmu.square.client.model.GwtRequirementRating;
 import edu.cmu.square.client.model.GwtSoftwarePackage;
 import edu.cmu.square.client.model.GwtTradeoffReason;
 import edu.cmu.square.client.model.StepStatus;
 import edu.cmu.square.client.navigation.State;
-import edu.cmu.square.client.remoteService.step.interfaces.PerformTradeoffAnalysisService;
-import edu.cmu.square.client.remoteService.step.interfaces.PerformTradeoffAnalysisServiceAsync;
+import edu.cmu.square.client.remoteService.step.interfaces.FinalProductSelectionService;
+import edu.cmu.square.client.remoteService.step.interfaces.FinalProductSelectionServiceAsync;
 import edu.cmu.square.client.remoteService.step.interfaces.ReviewPackagesService;
 import edu.cmu.square.client.remoteService.step.interfaces.ReviewPackagesServiceAsync;
 import edu.cmu.square.client.ui.core.BasePane;
 import edu.cmu.square.client.ui.core.SquareHyperlink;
+import edu.cmu.square.server.dao.model.ProjectPackageRationale;
 
 public class FinalProductSelectionPane extends BasePane
 {
 	final private FinalProductSelectionPaneMessages messages = (FinalProductSelectionPaneMessages)GWT.create(FinalProductSelectionPaneMessages.class);
 
 	private ReviewPackagesServiceAsync service = GWT.create(ReviewPackagesService.class);
-	private PerformTradeoffAnalysisServiceAsync performTradeoffService = GWT.create(PerformTradeoffAnalysisService.class);
+	private FinalProductSelectionServiceAsync finalProductSelectionService = GWT.create(FinalProductSelectionService.class);
 	
 	private Label rationaleHeaderLabel = null;
 	private Label rationaleLabel = null;
@@ -72,6 +62,8 @@ public class FinalProductSelectionPane extends BasePane
 	private List<GwtRating> ratings;
 	private List<GwtRequirementRating> requirementRatings;
 	private List<GwtTradeoffReason> tradeoffReasons;
+	
+	private GwtRationale rationale;
 	
 	private EditTradeoffReasonDialog editTradeoffReasonDialog;
 	private AddRationaleDialog addRationaleDialog;
@@ -99,7 +91,7 @@ public class FinalProductSelectionPane extends BasePane
 		ServiceDefTarget endpoint = (ServiceDefTarget) service;
 		endpoint.setServiceEntryPoint(GWT.getModuleBaseURL() + "reviewPackages.rpc");
 		
-		ServiceDefTarget endpoint2 = (ServiceDefTarget) service;
+		ServiceDefTarget endpoint2 = (ServiceDefTarget) finalProductSelectionService;
 		endpoint2.setServiceEntryPoint(GWT.getModuleBaseURL() + "finalProductSelection.rpc");
 		
 		currentProject = new GwtProject();
@@ -108,7 +100,7 @@ public class FinalProductSelectionPane extends BasePane
 	
 		isReadOnly = true;
 		loadAttributes();
-//		initializePane();
+		loadRationale();
 		loadTradeoffReasons();
 	}
 	
@@ -125,13 +117,40 @@ public class FinalProductSelectionPane extends BasePane
 		this.getContent().add(layout);
 		
 		rationaleHeaderLabel = new Label("Selection Rationale: ");
-		rationaleLabel = new Label("No final product selection has been made yet.");
-		rationaleLabel.setWidth("500px");
-		rationaleLabel.setSize("500px", "80px");
 		layout.add(rationaleHeaderLabel);
 		layout.add(rationaleLabel);
 		//initWidget(layout);
-	}	
+	}
+	
+	public void loadRationale()
+	{
+		System.out.println("loading rationale");
+		finalProductSelectionService.getRationale(currentProject, new AsyncCallback<GwtRationale >()
+				{		
+					@Override
+					public void onSuccess(GwtRationale  result)
+					{
+						rationale = result;
+						if(result == null)
+						{
+							rationaleLabel = new Label("No final product selection has been made yet.");
+						}
+						else
+						{
+							
+							rationaleLabel = new Label(result.getRationale());
+						}
+						rationaleLabel.setWidth("500px");
+						rationaleLabel.setSize("500px", "80px");
+					}			
+					@Override
+					public void onFailure(Throwable caught)
+					{
+						Window.alert(messages.rationaleRetrievalError());
+						ExceptionHelper.SquareRootRPCExceptionHandler(caught, "Retrieving Rationale");
+					}
+				});		
+	}
 	
 	public Widget getHeaderRow()
 	{
@@ -220,37 +239,6 @@ public class FinalProductSelectionPane extends BasePane
 		return rowTable;
 	}	
 	
-	protected void updateFinalChoiceRationaleinDB(GwtTradeoffReason localTradeoffReason)
-	{
-		this.performTradeoffService.setTradeoffReason(currentProject.getId(), localTradeoffReason.getPackageId(), localTradeoffReason.getTradeoffreason(), new AsyncCallback<Void>()
-				{
-					public void onFailure(Throwable caught) 
-					{
-						if (caught instanceof SquareException) 
-						{
-							SquareException se = (SquareException) caught;
-							switch (se.getType()) {
-							case authorization:
-								Window.alert(messages.rateAuthorization());
-								break;
-						
-							default:
-								Window.alert(messages.error());
-								break;
-							}
-
-						} else {
-							Window.alert(messages.error());
-						}
-					}
-					
-					public void onSuccess(Void result) 
-					{
-						
-					}
-				});	
-	}
-	
 	private void drawMatrixPage()
 	{
 		FlexCellFormatter formatter1 = this.matrixHeader.getFlexCellFormatter();
@@ -336,7 +324,7 @@ public class FinalProductSelectionPane extends BasePane
 	
 	private void loadTradeoffReasons()
 	{
-		performTradeoffService.getTradeoffReasons(currentProject.getId(), new AsyncCallback<List<GwtTradeoffReason>>()		
+		finalProductSelectionService.getTradeoffReasons(currentProject.getId(), new AsyncCallback<List<GwtTradeoffReason>>()		
 				{		
 					@Override
 					public void onSuccess(List<GwtTradeoffReason> result)
@@ -382,7 +370,7 @@ public class FinalProductSelectionPane extends BasePane
 	
 	private void loadRequirementRatings()
 	{
-		performTradeoffService.getRequirementRateValues(currentProject.getId(), new AsyncCallback<List<GwtRequirementRating > >()
+		finalProductSelectionService.getRequirementRateValues(currentProject.getId(), new AsyncCallback<List<GwtRequirementRating > >()
 				{		
 					@Override
 					public void onSuccess(List<GwtRequirementRating> result)
@@ -460,8 +448,6 @@ public class FinalProductSelectionPane extends BasePane
 			formatter.setHorizontalAlignment(0, i, HasHorizontalAlignment.ALIGN_CENTER);
 			formatter.setStyleName(0, i, "square-Matrix");
 		}
-		
-		
 		// Set the header rows  with attributes
 		for(j=1; j<=attributes.size();j++)
 		{
@@ -545,7 +531,6 @@ public class FinalProductSelectionPane extends BasePane
 					
 				}});
 			
-
 			RadioButton rButton = new RadioButton("group");
 			rButton.addClickHandler(new ClickHandler()
 				{
@@ -561,7 +546,13 @@ public class FinalProductSelectionPane extends BasePane
 						addRationaleDialog.show();
 						
 					}});
-			
+
+			if(rationale != null && softwarePackages.get(j).getId() == rationale.getPackage().getId())
+				rButton.setValue(true);
+			else
+			{
+				System.out.println("NOT THE SAME");
+			}
 			
 			if(j>=1)
 			{
@@ -730,21 +721,6 @@ public class FinalProductSelectionPane extends BasePane
 		return 0;
 	}
 	
-	
-	
-	private void setValueFromlistOfRequirementRateValues(int requirementID, int packageID, int value)
-	{
-		for(int j=0; j<requirementRatings.size();j++)
-		{
-			int rID=requirementRatings.get(j).getRequirementId();
-			int pID =requirementRatings.get(j).getPackageId();
-			
-			if(requirementID==rID && packageID==pID)
-			{
-				requirementRatings.get(j).setValue(value);
-			}	
-		}
-	}
 	/**
 	 * This class extend the texbox to add 
 	 * the techniqueID and evaluationID as properties
@@ -821,15 +797,29 @@ public class FinalProductSelectionPane extends BasePane
 
 	
 	
-	public void updateCommand(GwtFinalChoiceRationale localTradeoffReason)
+	public void updateCommand(GwtRationale localTradeoffReason)
 	{
 		updateFinalChoiceRationaleinDB(localTradeoffReason);
 	}
 
-	private void updateFinalChoiceRationaleinDB(GwtFinalChoiceRationale localTradeoffReason)
+	private void updateFinalChoiceRationaleinDB(GwtRationale localTradeoffReason)
 	{
-		// TODO Auto-generated method stub
 		
+		rationaleLabel.setText(localTradeoffReason.getRationale());
+		finalProductSelectionService.setRationale(localTradeoffReason, new AsyncCallback<Void>()
+				{
+			@Override
+			public void onSuccess(Void result)
+			{
+			}
+			
+			@Override
+			public void onFailure(Throwable caught)
+			{
+				Window.alert(messages.rationaleUpdateError());
+				ExceptionHelper.SquareRootRPCExceptionHandler(caught, "Updating Rationale");		
+			}
+		});
 	}
 
 	public void updateCommand(GwtTradeoffReason localTradeoffReason)

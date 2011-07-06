@@ -7,6 +7,8 @@ import javax.annotation.Resource;
 import org.springframework.stereotype.Service;
 
 import edu.cmu.square.client.exceptions.SquareException;
+import edu.cmu.square.client.model.GwtProject;
+import edu.cmu.square.client.model.GwtRationale;
 import edu.cmu.square.client.model.GwtRequirementRating;
 import edu.cmu.square.client.model.GwtTradeoffReason;
 import edu.cmu.square.client.remoteService.step.interfaces.FinalProductSelectionService;
@@ -29,13 +31,6 @@ public class FinalProductSelectionServiceImpl extends SquareRemoteServiceServlet
 	}
 
 	@Override
-	public void setRequirementRateValue(int projectID, int packageID, int requirementID, int value) throws SquareException
-	{
-		// TODO Auto-generated method stub
-		performTradeoffBusiness.setRequirementRateValue(projectID, packageID, requirementID, value);
-	}
-
-	@Override
 	public void setValuesForAuthorization()
 	{
 		// TODO Auto-generated method stub
@@ -48,19 +43,14 @@ public class FinalProductSelectionServiceImpl extends SquareRemoteServiceServlet
 		// TODO Auto-generated method stub
 		return performTradeoffBusiness.getTradeoffReasons(projectID);
 	}
-
-	@Override
-	public void setTradeoffReason(int projectID, int packageID, String tradeoffreason) throws SquareException
+	
+	public void setRationale(GwtRationale rationale) throws SquareException
 	{
-		// TODO Auto-generated method stub
-		performTradeoffBusiness.updateTradeoffReason(projectID, packageID, tradeoffreason);
+		performTradeoffBusiness.setRationale(rationale);
 	}
-
-	@Override
-	public void setPriority(int projectID, int packageID, int priority) throws SquareException
+	
+	public GwtRationale getRationale(GwtProject projectID) throws SquareException
 	{
-		// TODO Auto-generated method stub
-		performTradeoffBusiness.updatePriority(projectID, packageID, priority);
+		return performTradeoffBusiness.getRationale(projectID);
 	}
-
 }

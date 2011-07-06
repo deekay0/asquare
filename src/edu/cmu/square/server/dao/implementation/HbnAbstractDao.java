@@ -109,6 +109,7 @@ public abstract class HbnAbstractDao<T, ID extends Serializable> implements
 			Object entity = getSession().get(persistentClass, id);
 			if (entity != null) {
 				getSession().delete(entity);
+				getSession().flush();
 				return true;
 			}
 		}
