@@ -38,7 +38,6 @@ public class ManageSitePilot extends Pilot
 	public void determineAccessRights(String page, State currentState)
 	{
 		if (currentState.isSiteAdministrator())
-			
 		{
 			currentState.setMode(GwtModesType.ReadWrite);
 		}

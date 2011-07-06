@@ -359,7 +359,16 @@ public class ReviewAndFinalizeRequirementsPane extends BasePane
 		this.getContent().add(vPaneCotsData);
 		loadCotsTable();
 		
+//make a new loadCotTable for only reading
+//for example, loadReadOnlyCotsTable()
 		
+		if(currentState.getMode() == GwtModesType.ReadWrite){
+//add initial pane for both reading and writing.
+		}
+		
+		else if(currentState.getMode() == GwtModesType.ReadOnly){
+//add 
+		}
 		//layout.add(comparisonMatrixLabel);
 		//layout.add(matrixHeader);
 		//this.getContent().add(layout);
@@ -378,6 +387,20 @@ public class ReviewAndFinalizeRequirementsPane extends BasePane
 		//vPaneCots.add(vPaneCotsData);
 		addDoneButton();
 	}
+
+	public void loadReadOnlyCotsTable()
+	{
+		
+		//vPane.clear();
+		vPaneCots.setSpacing(0);
+		vPaneCots.setWidth("90%");
+		vPaneCots.setHeight("5%");
+
+		vPaneCots.add(getCotsTableHeaderRow());
+		//vPaneCots.add(vPaneCotsData);
+		//addDoneButton();
+	}
+
 	
 	public void drawRateMatrix()
 	{

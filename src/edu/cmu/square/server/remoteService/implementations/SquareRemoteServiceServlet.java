@@ -317,6 +317,9 @@ public abstract class SquareRemoteServiceServlet extends RemoteServiceServlet
 		logger.info("Setting project name: " + getProjectName());
 		baseBusinessImpl.setUserName(getUserName());
 		logger.info("Setting user name: " + getUserName());
+		baseBusinessImpl.setUserName(getUserName());
+		logger.info("Setting user name: " + getUserName());
+		
 	}
 	
 	@SuppressWarnings("unchecked")

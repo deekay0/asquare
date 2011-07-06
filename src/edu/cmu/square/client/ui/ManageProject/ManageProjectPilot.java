@@ -41,8 +41,12 @@ public class ManageProjectPilot extends Pilot
 	
 	public void determineAccessRights(String page, State currentState)
 	{
-		// It must be "Site Administrator in ASQUARE
+		
 		if (currentState.getUserProjectRole() == ProjectRole.Lead_Requirements_Engineer)
+		{
+			currentState.setMode(GwtModesType.ReadWrite);
+		}
+		else if (currentState.getUserProjectRole() == ProjectRole.Acquisition_Organization_Engineer)
 		{
 			currentState.setMode(GwtModesType.ReadWrite);
 		}

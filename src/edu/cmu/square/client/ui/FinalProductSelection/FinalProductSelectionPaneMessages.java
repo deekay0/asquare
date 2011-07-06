@@ -22,5 +22,7 @@ public interface FinalProductSelectionPaneMessages extends CommonMessages
 	String rateLegend();
 	String buttonGotoSelect();
 	String noelementsFound();
+	String rationaleRetrievalError();
+	String rationaleUpdateError();
 	
 }

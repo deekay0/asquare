@@ -17,8 +17,8 @@ import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.TextArea;
 import com.google.gwt.user.client.ui.VerticalPanel;
 
-import edu.cmu.square.client.model.GwtFinalChoiceRationale;
 import edu.cmu.square.client.model.GwtProject;
+import edu.cmu.square.client.model.GwtRationale;
 import edu.cmu.square.client.model.GwtSoftwarePackage;
 import edu.cmu.square.client.utils.SquareUtil;
 
@@ -125,16 +125,16 @@ public class AddRationaleDialog extends DialogBox
 	private class SaveHandler implements ClickHandler
 	{
 		private AddRationaleDialog dialog = null;
-		private GwtFinalChoiceRationale localRationale = null;
+		private GwtRationale localRationale = null;
 		
 		public SaveHandler(AddRationaleDialog dialogPointer, GwtProject project, GwtSoftwarePackage spackage)
 			{
 				super();
 				
 				this.dialog = dialogPointer;
-				this.localRationale = new GwtFinalChoiceRationale();
-				this.localRationale.setProjectId(project.getId());
-				this.localRationale.setPackageId(spackage.getId());
+				this.localRationale = new GwtRationale();
+				this.localRationale.setProject(project);
+				this.localRationale.setPackage(spackage);
 			}
 
 		public void onClick(ClickEvent event)

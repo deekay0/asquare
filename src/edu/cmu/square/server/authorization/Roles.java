@@ -4,19 +4,19 @@ package edu.cmu.square.server.authorization;
 
 public enum Roles
 {
+	//ASQUARE
+	Acquisition_Organization_Engineer("Acquisition Organization Engineer"),
+	Contractor("Contractor"),
+	COTS_Vendor("COTS Vendor"),
+	Security_Specialist("Security Specialist"),
+	
 	//SQUARE
 	Administrator("Administrator"),
 	Lead_Requirements_Engineer("Lead Requirements Engineer"),
 	Stakeholder("Stakeholder"),
 	Requirements_Engineer("Requirements Engineer"),
 	
-	//ASQUARE
-	Acquisition_Organization_Engineer("Acquisition Organization Engineer"),
-	
-	Contractor("Contractor"),
-	COTS_Vendor("COTS Vendor"),
-	Security_Specialist("Security Specialist"),
-	
+	None("None"),
 	All("All");
 	
 	private String roleName;
