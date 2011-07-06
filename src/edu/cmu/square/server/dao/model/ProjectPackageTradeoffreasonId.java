@@ -15,7 +15,7 @@ public class ProjectPackageTradeoffreasonId implements java.io.Serializable {
 	public ProjectPackageTradeoffreasonId() {
 	}
 
-	public ProjectPackageTradeoffreasonId(int projectId, int packageId, int attributeId) {
+	public ProjectPackageTradeoffreasonId(int projectId, int packageId) {
 		this.projectId = projectId;
 		this.packageId = packageId;
 	}
