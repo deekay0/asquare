@@ -90,13 +90,13 @@ public interface ReviewPackagesServiceAsync {
 	 * @param gwtElicitTechnique The technique that wanted to be removed.
 	 * @throws SquareException
 	 */
-	void removeSoftwarePackage(GwtSoftwarePackage gwtElicitTechnique, Integer projectId, AsyncCallback<Void> callback);
+	void removeSoftwarePackage(GwtSoftwarePackage gwtElicitTechnique, GwtProject project, AsyncCallback<Void> callback);
 	/**
 	 * This remove a selected evaluation criteria from the selected project.
 	 * @param gwtElicitEvaluation  The evaluation that wanted to be removed.
 	 * @throws SquareException
 	 */
-	void removeQualityAttribute(GwtQualityAttribute gwtElicitEvaluation, AsyncCallback<Void> callback);
+	void removeQualityAttribute(GwtQualityAttribute gwtElicitEvaluation, GwtProject project, AsyncCallback<Void> callback);
 	
 
 }

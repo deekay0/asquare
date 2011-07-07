@@ -33,9 +33,9 @@ public interface ReviewPackagesBusiness extends StepBusinessInterface
 
 
 	
-	void removeSoftwarePackage(GwtSoftwarePackage gwtElicitTechnique, Integer projectId) throws SquareException;
+	void removeSoftwarePackage(GwtSoftwarePackage gwtElicitTechnique, GwtProject project) throws SquareException;
 
-	void removeQualityAttribute(GwtQualityAttribute gwtElicitEvaluation) throws SquareException;
+	void removeQualityAttribute(GwtQualityAttribute gwtElicitEvaluation, GwtProject project) throws SquareException;
 
 	
 	void setRateValue(int projectID,int techniqueID, int evaluationCriteriaID, int value) throws SquareException;

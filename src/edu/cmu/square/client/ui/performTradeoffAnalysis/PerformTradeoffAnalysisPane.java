@@ -414,7 +414,7 @@ public class PerformTradeoffAnalysisPane extends BasePane
 			public void onSuccess(List<GwtSoftwarePackage> result)
 			{
 				softwarePackages = result;
-				System.out.println("We got software packages: "+result.size());
+				
 				loadRatings();		
 				
 				loadRequirementRatings();
@@ -435,8 +435,6 @@ public class PerformTradeoffAnalysisPane extends BasePane
 					@Override
 					public void onSuccess(List<GwtTradeoffReason> result)
 					{
-						System.out.println("tradeoff reason: "+result.size());
-						System.out.println("tradeoff reason:........"+result.get(0).getTradeoffreason());
 						tradeoffReasons = result;
 						drawRateMatrix();
 						getTotalsFromMatrix();
@@ -458,8 +456,7 @@ public class PerformTradeoffAnalysisPane extends BasePane
 					@Override
 					public void onSuccess(List<GwtRating >  result)
 					{
-						System.out.println("We got ratings: "+result.size());
-						System.out.println("We got ratings:    ... 0"+result.get(0).getPackageId());
+	
 						ratings = result;
 						drawRateMatrix();
 						getTotalsFromMatrix();
@@ -481,8 +478,7 @@ public class PerformTradeoffAnalysisPane extends BasePane
 					@Override
 					public void onSuccess(List<GwtRequirementRating> result)
 					{
-						System.out.println("We got requirement ratings: "+result.size());
-						System.out.println("We got requirement ratings:    ... 0"+result.get(0).getPackageId());
+						
 						requirementRatings = result;
 						drawRateMatrix();
 						getTotalsFromMatrix();
@@ -499,7 +495,7 @@ public class PerformTradeoffAnalysisPane extends BasePane
 
 	private void setRateValue(final int packageID, final int attributeID, final int value)
 	{
-		System.out.println("set quality attribute rate......."+packageID+"  "+attributeID+"  "+ value);
+		
 		
 		this.service.setRateValue(currentProject.getId(), packageID, attributeID, value, new AsyncCallback<Void>(){	
 			public void onFailure(Throwable caught) {
@@ -555,7 +551,7 @@ public class PerformTradeoffAnalysisPane extends BasePane
 	private void setPackagePriority(final int packageID, final int priority)
 	{	
 		//the sequence of requirementID and packageID has problems 
-		System.out.println("priority in pane...."+currentProject.getId());
+		
 		
 		this.performTradeoffService.setPriority(currentProject.getId(), packageID, priority, new AsyncCallback<Void>(){
 		
@@ -586,12 +582,12 @@ public class PerformTradeoffAnalysisPane extends BasePane
 		matrix.setWidth("100%");
 		matrix.setStyleName("square-Matrix");
 		matrix.setCellSpacing(0);
-		drawRateMatrixHeaderTechniques();
-		drawRateMatrixEvaluationCriteriaColum();
+		drawAttributesAndRequirements();
+		drawSoftwarePackages();
 		drawRateMatrixValues();
 	}
 	
-	public void drawRateMatrixHeaderTechniques()
+	public void drawAttributesAndRequirements()
 	{
 		FlexCellFormatter formatter = this.matrix.getFlexCellFormatter();
 		matrix.setWidget(0, 0, new Label(" "));
@@ -676,7 +672,7 @@ public class PerformTradeoffAnalysisPane extends BasePane
 		formatter.setStyleName(0, attributes.size()+listOfRequirements.size()+3,"square-Matrix");	
 	}
 	
-	public void drawRateMatrixEvaluationCriteriaColum()
+	public void drawSoftwarePackages()
 	{
 		FlexCellFormatter formatter = this.matrix.getFlexCellFormatter();
 		// Set the left columns with the package names 

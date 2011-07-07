@@ -255,6 +255,7 @@ current = currentSoftwarePackage;
 					boolean response = Window.confirm(messages.confirmDelete() + "?");
 					if (response)
 						updateSoftwarePackageCommand.removeSoftwarePackage(current);
+					this.dialog.hide(true);
 		}
 	}
 }

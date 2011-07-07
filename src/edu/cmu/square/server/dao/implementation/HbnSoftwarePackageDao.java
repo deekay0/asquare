@@ -44,7 +44,7 @@ public class HbnSoftwarePackageDao extends HbnAbstractDao<SoftwarePackage, Integ
 
 	public List<SoftwarePackage> getSoftwarePackagesByNameAndProject(String name, Integer projectId) {
 		Session session = getSession();
-		String query = "Select s from SoftwarePackage s, ProjectPackageAttributeRating  where ps.softwarePackage.id = s.id and ps.project.id=:projectId and s.name=:evaluationName";
+		String query = "Select s from SoftwarePackage s, ProjectPackageAttributeRating ps where ps.softwarePackage.id = s.id and ps.project.id=:projectId and s.name=:evaluationName";
 		Query q = session.createQuery(query);
 		q.setParameter("evaluationName", name);
 		q.setParameter("projectId", projectId);
