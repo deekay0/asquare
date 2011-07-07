@@ -81,8 +81,9 @@ public class ElicitSecurityRequirementsPilot extends Pilot
 		}
 		
 		//case1
-		if(currentState.getCaseName() == AsquareCase.Case1)
+		if(currentState.getCaseID()==1)
 		{
+			System.out.println("case1.........");
 			if (currentState.getUserProjectRole() == ProjectRole.Acquisition_Organization_Engineer)
 			{
 				currentState.setMode(GwtModesType.ReadOnly);
@@ -108,8 +109,9 @@ public class ElicitSecurityRequirementsPilot extends Pilot
 				currentState.setMode(GwtModesType.ReadOnly);
 			}
 		}
-		else if(currentState.getCaseName() == AsquareCase.Case3)
+		else if(currentState.getCaseID()==3)
 		{
+			System.out.println("case3.........");
 			if (currentState.getUserProjectRole() == ProjectRole.Acquisition_Organization_Engineer)
 			{
 				currentState.setMode(GwtModesType.ReadOnly);
@@ -120,6 +122,7 @@ public class ElicitSecurityRequirementsPilot extends Pilot
 			}
 			else if (currentState.getUserProjectRole() == ProjectRole.Security_Specialist)
 			{
+				System.out.println("security specialist................");
 				currentState.setMode(GwtModesType.ReadWrite);
 			}
 			else if (currentState.getUserProjectRole() == ProjectRole.COTS_Vendor)
