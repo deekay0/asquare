@@ -12,6 +12,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import edu.cmu.square.client.model.GwtProjectPackageAttributeRating;
+
 
 @Entity
 @Table(name = "project_package_attribute_rating")
@@ -35,7 +37,16 @@ public class ProjectPackageAttributeRating implements java.io.Serializable {
 		this.qualityAttribute = role;
 		this.rating = rating;
 	}
-
+	
+	public ProjectPackageAttributeRating(GwtProjectPackageAttributeRating ppar) {
+		this.softwarePackage = new SoftwarePackage(ppar.getPackage());
+		this.project = new Project(ppar.getProject());
+		this.qualityAttribute = new QualityAttribute(ppar.getAttribute());
+		this.rating = ppar.getValue();
+		
+		this.id = new ProjectPackageAttributeRatingId(project.getId(), softwarePackage.getId(), qualityAttribute.getId());
+	}
+	
 	@EmbeddedId
 	@AttributeOverrides( {
 			@AttributeOverride(name = "projectId", column = @Column(name = "project_id", nullable = false)),

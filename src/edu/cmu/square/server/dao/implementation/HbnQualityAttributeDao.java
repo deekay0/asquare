@@ -111,15 +111,14 @@ public class HbnQualityAttributeDao extends HbnAbstractDao<QualityAttribute, Int
 	
 	public List<QualityAttribute> getQualityAttributesByNameAndProject(String name, Integer projectId) {
 		Session session = getSession();
-		String query = "Select e from QualityAttribute e where e.name=:evaluationName and e.project.id=:projectId";
+		String query = "Select s from QualityAttribute s, ProjectPackageAttributeRating ps where ps.qualityAttribute.id = s.id and ps.project.id=:projectId and s.name=:evaluationName";
 		Query q = session.createQuery(query);
 		q.setParameter("evaluationName", name);
 		q.setParameter("projectId", projectId);
 		
 		System.out.println("HBN2: quality attributes: "+q.list().size());
 		
-		return q.list();
-		
+		return q.list();	
 	}
 	
 	public int getRating(int projectID, int packageId, int attributeId)

@@ -253,6 +253,7 @@ public class EditQualityAttributeDialog extends DialogBox
 					boolean response = Window.confirm(messages.confirmDelete() + "?");
 					if (response)
 						updateQualityAttributeCommand.removeQualityAttribute(current);
+					this.dialog.hide(true);
 		}
 	}
 }

@@ -96,13 +96,13 @@ public interface ReviewPackagesService extends RemoteService {
 	 * @param projectId TODO
 	 * @throws SquareException
 	 */
-	void removeSoftwarePackage(GwtSoftwarePackage gwtSoftwarePackage, Integer projectId) throws SquareException;
+	void removeSoftwarePackage(GwtSoftwarePackage gwtSoftwarePackage, GwtProject project) throws SquareException;
 	/**
 	 * This remove a selected evaluation criteria from the selected project.
 	 * @param gwtElicitEvaluation  The evaluation that wanted to be removed.
 	 * @throws SquareException
 	 */
-	void removeQualityAttribute(GwtQualityAttribute gwtQualityAttribute) throws SquareException;
+	void removeQualityAttribute(GwtQualityAttribute gwtQualityAttribute, GwtProject project) throws SquareException;
 	
 	
 	

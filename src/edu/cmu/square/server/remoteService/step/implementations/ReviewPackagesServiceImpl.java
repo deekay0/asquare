@@ -110,12 +110,12 @@ public class ReviewPackagesServiceImpl extends SquareRemoteServiceServlet implem
 	}
 
 	
-	public void removeQualityAttribute(GwtQualityAttribute evaluation) throws SquareException
+	public void removeQualityAttribute(GwtQualityAttribute evaluation, GwtProject project) throws SquareException
 	{
 		try
 		{
 			this.setValuesForAuthorization();
-			this.reviewPackagesBusiness.removeQualityAttribute(evaluation);
+			this.reviewPackagesBusiness.removeQualityAttribute(evaluation, project);
 		}
 		catch (SquareException ex)
 		{
@@ -128,12 +128,12 @@ public class ReviewPackagesServiceImpl extends SquareRemoteServiceServlet implem
 	}
 
 	
-	public void removeSoftwarePackage(GwtSoftwarePackage technique, Integer projectId) throws SquareException
+	public void removeSoftwarePackage(GwtSoftwarePackage technique, GwtProject project) throws SquareException
 	{
 		try
 		{
 			this.setValuesForAuthorization();
-			this.reviewPackagesBusiness.removeSoftwarePackage(technique, projectId);
+			this.reviewPackagesBusiness.removeSoftwarePackage(technique, project);
 		}
 		catch (SquareException ex)
 		{

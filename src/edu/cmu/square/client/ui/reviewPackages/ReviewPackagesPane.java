@@ -68,10 +68,6 @@ public class ReviewPackagesPane extends BasePane
 	
 	SquareHyperlink editRatingsLink = new SquareHyperlink(messages.editRatingsLink());		
 	SquareHyperlink finishRatingsLink = new SquareHyperlink(messages.finishRatingsLink());
-	SquareHyperlink editPackagesLink = new SquareHyperlink(messages.editPackagesLink());
-	SquareHyperlink finishPackagesLink = new SquareHyperlink(messages.finishPackagesLink());
-	SquareHyperlink editAttributesLink = new SquareHyperlink(messages.editAttributesLink());		
-	SquareHyperlink finishAttributesLink = new SquareHyperlink(messages.finishAttributesLink());
 	
 	ArrayList<SquareHyperlink> editQAsLinks = new ArrayList<SquareHyperlink>();
 	ArrayList<SquareHyperlink> editSPsLinks = new ArrayList<SquareHyperlink>();
@@ -155,10 +151,7 @@ public class ReviewPackagesPane extends BasePane
 				addQualityAttribute.setVisible(true);
 				
 				drawRateMatrix();
-				getTotalsFromMatrix();
-				drawQualityAttributes();
-				drawSoftwarePackages();
-				PaneInitialization();
+				
 				changeLink();
 				
 			}});
@@ -174,61 +167,12 @@ public class ReviewPackagesPane extends BasePane
 				
 				
 				drawRateMatrix();
-				getTotalsFromMatrix();
-				PaneInitialization();
+				
+				
 				changeLink();
 				
 			}});
 		
-editPackagesLink.addClickHandler(new ClickHandler(){
-
-			
-			public void onClick(ClickEvent event) {
-				isReadOnly=false;
-				//loadEvaluationsCriteria();
-				drawRateMatrix();
-				getTotalsFromMatrix();
-				PaneInitialization();
-				changeLink();
-				
-			}});
-		finishPackagesLink.addClickHandler(new ClickHandler(){
-
-		
-			public void onClick(ClickEvent event) {
-				isReadOnly=true;
-				//loadEvaluationsCriteria();
-				drawRateMatrix();
-				getTotalsFromMatrix();
-				PaneInitialization();
-				changeLink();
-				
-			}});
-		
-		editAttributesLink.addClickHandler(new ClickHandler(){
-
-			
-			public void onClick(ClickEvent event) {
-				isReadOnly=false;
-				//loadEvaluationsCriteria();
-				drawRateMatrix();
-				getTotalsFromMatrix();
-				PaneInitialization();
-				changeLink();
-				
-			}});
-		finishAttributesLink.addClickHandler(new ClickHandler(){
-
-		
-			public void onClick(ClickEvent event) {
-				isReadOnly=true;
-				//loadEvaluationsCriteria();
-				drawRateMatrix();
-				getTotalsFromMatrix();
-				PaneInitialization();
-				changeLink();
-				
-			}});
 		
 		drawMatrixPage();
 
@@ -279,7 +223,7 @@ editPackagesLink.addClickHandler(new ClickHandler(){
 			
 			public void onSuccess(GwtQualityAttribute result) 
 			{
-				
+				loadAttributes();
 			}
 		});		
 	}
@@ -310,7 +254,7 @@ editPackagesLink.addClickHandler(new ClickHandler(){
 			
 			public void onSuccess(GwtSoftwarePackage result) 
 			{
-				
+				loadAttributes();
 			}
 		});		
 	}
@@ -341,7 +285,7 @@ editPackagesLink.addClickHandler(new ClickHandler(){
 					
 					public void onSuccess(Void result) 
 					{
-						
+						loadAttributes();
 					}
 				});	
 	}
@@ -372,7 +316,7 @@ editPackagesLink.addClickHandler(new ClickHandler(){
 					
 					public void onSuccess(Void result) 
 					{
-						
+						loadAttributes();
 					}
 				});	
 	}
@@ -569,6 +513,7 @@ editPackagesLink.addClickHandler(new ClickHandler(){
 		drawQualityAttributes();
 		drawSoftwarePackages();
 		drawRateMatrixValues();
+		getTotalsFromMatrix();
 
 	}
 	
@@ -1084,14 +1029,62 @@ editPackagesLink.addClickHandler(new ClickHandler(){
 
 	public void removeSoftwarePackage(GwtSoftwarePackage current)
 	{
-		// TODO Auto-generated method stub
-		
+		this.service.removeSoftwarePackage(current, currentProject, new AsyncCallback<Void>(){
+
+			
+			public void onFailure(Throwable caught) {
+				if (caught instanceof SquareException) {
+					SquareException se = (SquareException) caught;
+					switch (se.getType()) {
+					case authorization:
+						Window.alert(messages.rateAuthorization());
+						break;
+				
+					default:
+						Window.alert(messages.error());
+						break;
+					}
+
+				} else {
+					Window.alert(messages.error());
+				}
+				
+			}
+
+			
+			public void onSuccess(Void result) {
+				loadAttributes();
+			}});
 	}
 
 	public void removeQualityAttribute(GwtQualityAttribute current)
 	{
-		// TODO Auto-generated method stub
-		
+		this.service.removeQualityAttribute(current, currentProject, new AsyncCallback<Void>(){
+
+			
+			public void onFailure(Throwable caught) {
+				if (caught instanceof SquareException) {
+					SquareException se = (SquareException) caught;
+					switch (se.getType()) {
+					case authorization:
+						Window.alert(messages.rateAuthorization());
+						break;
+				
+					default:
+						Window.alert(messages.error());
+						break;
+					}
+
+				} else {
+					Window.alert(messages.error());
+				}
+				
+			}
+
+			
+			public void onSuccess(Void result) {
+				loadAttributes();
+			}});
 	}
 
 

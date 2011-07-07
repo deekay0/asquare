@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 import edu.cmu.square.client.exceptions.ExceptionType;
 import edu.cmu.square.client.exceptions.SquareException;
 import edu.cmu.square.client.model.GwtProject;
+import edu.cmu.square.client.model.GwtProjectPackageAttributeRating;
 import edu.cmu.square.client.model.GwtQualityAttribute;
 import edu.cmu.square.client.model.GwtRating;
 import edu.cmu.square.client.model.GwtSoftwarePackage;
@@ -22,6 +23,7 @@ import edu.cmu.square.server.authorization.Roles;
 import edu.cmu.square.server.business.implementation.BaseBusinessImpl;
 import edu.cmu.square.server.business.step.interfaces.ReviewPackagesBusiness;
 import edu.cmu.square.server.dao.interfaces.ProjectDao;
+import edu.cmu.square.server.dao.interfaces.ProjectPackageAttributeRatingDao;
 import edu.cmu.square.server.dao.interfaces.QualityAttributeDao;
 import edu.cmu.square.server.dao.interfaces.SoftwarePackageDao;
 import edu.cmu.square.server.dao.model.Project;
@@ -40,49 +42,141 @@ public class ReviewPackagesBusinessImpl extends BaseBusinessImpl implements Revi
 	private ProjectDao projectDao;
 	@Resource
 	private QualityAttributeDao qualityAttributeDao;
+	@Resource
+	private ProjectPackageAttributeRatingDao projectPackageAttributeRatingDao;
 
 	
+//	@AllowedRoles(roles = {Roles.Lead_Requirements_Engineer,Roles.Administrator})
+//	public void addQualityAttribute(GwtProject gwtProject, GwtQualityAttribute gwtEvaluation) throws SquareException
+//	{
+//		ProjectPackageAttributeRating ppar = new ProjectPackageAttributeRating();
+//		ppar.setProject(new Project(gwtProject));
+//		ppar.set
+//		Project currentProject = new Project(gwtProject);
+//		QualityAttribute evaluationToAdd = new QualityAttribute(gwtEvaluation);
+//		//TODO: see if this works
+////		evaluationToAdd.setProject(currentProject);
+//
+//		// get the evaluation by name and check for duplicates
+//		List<QualityAttribute> evaluations = this.qualityAttributeDao.getQualityAttributesByNameAndProject(evaluationToAdd.getName(), gwtProject.getId());
+//		if (!evaluations.isEmpty())
+//		{
+//			SquareException se = new SquareException("Already exists");
+//			se.setType(ExceptionType.duplicateName);
+//			throw se;
+//		}
+//		this.qualityAttributeDao.create(evaluationToAdd);
+//		gwtEvaluation.setId(evaluationToAdd.getId());
+//
+//	}
+	
 	@AllowedRoles(roles = {Roles.Lead_Requirements_Engineer,Roles.Administrator})
-	public void addQualityAttribute(GwtProject gwtProject, GwtQualityAttribute gwtEvaluation) throws SquareException
+	public void addQualityAttribute(GwtProject gwtProject, GwtQualityAttribute gwtQualityAttribute) throws SquareException
 	{
 		Project currentProject = new Project(gwtProject);
-		QualityAttribute evaluationToAdd = new QualityAttribute(gwtEvaluation);
-		//TODO: see if this works
-//		evaluationToAdd.setProject(currentProject);
+		QualityAttribute qualityAttribute = new QualityAttribute(gwtQualityAttribute);
 
-		// get the evaluation by name and check for duplicates
-		List<QualityAttribute> evaluations = this.qualityAttributeDao.getQualityAttributesByNameAndProject(evaluationToAdd.getName(), gwtProject.getId());
-		if (!evaluations.isEmpty())
+		// get the technique by name and check for duplicates
+		List<QualityAttribute> qas = this.qualityAttributeDao.getQualityAttributesByNameAndProject(qualityAttribute.getName(), gwtProject.getId());
+		if (!qas.isEmpty())
 		{
 			SquareException se = new SquareException("Already exists");
 			se.setType(ExceptionType.duplicateName);
 			throw se;
 		}
-		this.qualityAttributeDao.create(evaluationToAdd);
-		gwtEvaluation.setId(evaluationToAdd.getId());
-
+		
+		this.qualityAttributeDao.create(qualityAttribute);
+		gwtQualityAttribute.setId(qualityAttribute.getId());
+		
+		List<SoftwarePackage> SPs = softwarePackageDao.getSoftwarePackagesByProject(currentProject);
+		
+		if(SPs.isEmpty())
+		{
+			System.out.println("We're here");
+			SoftwarePackage sp = new SoftwarePackage();
+			sp.setName("Unnamed");
+			sp.setDescription("No description");
+			sp.setId(0);
+			
+			this.softwarePackageDao.create(sp);
+			this.projectPackageAttributeRatingDao.create(new ProjectPackageAttributeRating(new ProjectPackageAttributeRatingId(currentProject.getId(), sp.getId(), qualityAttribute.getId()), sp, currentProject, qualityAttribute, 0));
+			System.out.println("Done");
+		}
+		else
+		{
+			for(SoftwarePackage sp : SPs)
+			{
+				this.projectPackageAttributeRatingDao.create(new ProjectPackageAttributeRating(new ProjectPackageAttributeRatingId(currentProject.getId(), sp.getId(), qualityAttribute.getId()), sp, currentProject, qualityAttribute, 0));
+			}
+		}
 	}
 
 	
+//	@AllowedRoles(roles = {Roles.Lead_Requirements_Engineer,Roles.Administrator})
+//	public void addSoftwarePackage(GwtProject gwtProject, GwtSoftwarePackage gwtElicitationTechnique) throws SquareException
+//	{
+//		Project currentProject = new Project(gwtProject);
+//		SoftwarePackage techniqueToAdd = new SoftwarePackage(gwtElicitationTechnique);
+//
+//		System.out.println("before");
+//		// get the technique by name and check for duplicates
+//		List<SoftwarePackage> techniques = this.softwarePackageDao.getSoftwarePackagesByNameAndProject(techniqueToAdd.getName(), gwtProject.getId());
+//		System.out.println("after");
+//		if (!techniques.isEmpty())
+//		{
+//			SquareException se = new SquareException("Already exists");
+//			se.setType(ExceptionType.duplicateName);
+//			throw se;
+//		}
+//
+//		
+//		this.softwarePackageDao.addSoftwarePackageToProject(currentProject, techniqueToAdd);
+//		gwtElicitationTechnique.setId(techniqueToAdd.getId());
+//	}
+
 	@AllowedRoles(roles = {Roles.Lead_Requirements_Engineer,Roles.Administrator})
-	public void addSoftwarePackage(GwtProject gwtProject, GwtSoftwarePackage gwtElicitationTechnique) throws SquareException
+	public void addSoftwarePackage(GwtProject gwtProject, GwtSoftwarePackage gwtSoftwarePackage) throws SquareException
 	{
 		Project currentProject = new Project(gwtProject);
-		SoftwarePackage techniqueToAdd = new SoftwarePackage(gwtElicitationTechnique);
+		SoftwarePackage softwarePackage = new SoftwarePackage(gwtSoftwarePackage);
 
 		// get the technique by name and check for duplicates
-		List<SoftwarePackage> techniques = this.softwarePackageDao.getSoftwarePackagesByNameAndProject(techniqueToAdd.getName(), gwtProject.getId());
+		List<SoftwarePackage> techniques = this.softwarePackageDao.getSoftwarePackagesByNameAndProject(softwarePackage.getName(), gwtProject.getId());
 		if (!techniques.isEmpty())
 		{
 			SquareException se = new SquareException("Already exists");
 			se.setType(ExceptionType.duplicateName);
 			throw se;
 		}
+		
+		this.softwarePackageDao.create(softwarePackage);
+		gwtSoftwarePackage.setId(softwarePackage.getId());
+		
+		List<QualityAttribute> QAs = qualityAttributeDao.getQualityAttributesByProject(currentProject);
+		 
+		
 
-		this.softwarePackageDao.addSoftwarePackageToProject(currentProject, techniqueToAdd);
-		gwtElicitationTechnique.setId(techniqueToAdd.getId());
+		if(QAs.isEmpty())
+		{
+			System.out.println("We're here");
+			QualityAttribute qa = new QualityAttribute();
+			qa.setName("Unnamed");
+			qa.setDescription("No description");
+			qa.setId(0);
+			
+			this.qualityAttributeDao.create(qa);
+			this.projectPackageAttributeRatingDao.create(new ProjectPackageAttributeRating(new ProjectPackageAttributeRatingId(currentProject.getId(), gwtSoftwarePackage.getId(), qa.getId()), softwarePackage, currentProject, qa, 0));
+			System.out.println("Done");
+		}
+		else
+		{
+			for(QualityAttribute qa : QAs)
+			{
+				this.projectPackageAttributeRatingDao.create(new ProjectPackageAttributeRating(new ProjectPackageAttributeRatingId(currentProject.getId(), gwtSoftwarePackage.getId(), qa.getId()), softwarePackage, currentProject, qa, 0));
+			}
+		}
 	}
-
+	
 	@AllowedRoles(roles = {Roles.All})
 	public List<GwtQualityAttribute> getQualityAttributes(GwtProject gwtProject, StepStatus stepStatus) throws SquareException
 	{
@@ -123,45 +217,98 @@ public class ReviewPackagesBusinessImpl extends BaseBusinessImpl implements Revi
 		return softwarePackageList;
 	}
 
+
 	
-	@AllowedRoles(roles = {Roles.Lead_Requirements_Engineer})
-	public void removeQualityAttribute(GwtQualityAttribute gwtElicitEvaluation) throws SquareException
+//	@AllowedRoles(roles = {Roles.Lead_Requirements_Engineer})
+//	public void removeSoftwarePackage(GwtSoftwarePackage gwtElicitTechnique, GwtProject project) throws SquareException
+//	{
+//
+//		Project p = projectDao.fetch(project.getId());
+//		if (p.getSecurityTechnique() != null && p.getSecurityTechnique().getId().equals(gwtElicitTechnique.getId()))
+//		{
+//			SquareException se = new SquareException();
+//			se.setType(ExceptionType.constraintViolated);
+//			throw se;
+//		}
+//		
+//
+////		if (p.getTechniques().size() == 1)
+////		{
+////			SquareException se = new SquareException();
+////			se.setType(ExceptionType.onlyOneTechnique);
+////			throw se;
+////		}
+////		
+//
+//		try
+//		{
+//			projectPackageAttributeRatingDao.get
+//			softwarePackageDao.deleteEntity(gwtElicitTechnique.getId());
+//		}
+//		catch (Throwable t)
+//		{
+//			throw new SquareException(t);
+//		}
+//	}
+
+	
+	@AllowedRoles(roles = {Roles.Security_Specialist})
+	public void removeSoftwarePackage(GwtSoftwarePackage gwtSoftwarePackage, GwtProject project) throws SquareException
 	{
-		qualityAttributeDao.deleteById(gwtElicitEvaluation.getId());
+
+		
+		List<GwtProjectPackageAttributeRating> pparlist = projectPackageAttributeRatingDao.getAllRatingsForProject(new Project(project));
+		for(GwtProjectPackageAttributeRating it : pparlist)
+			if(it.getPackage().getId() == gwtSoftwarePackage.getId())
+				projectPackageAttributeRatingDao.deleteEntity(new ProjectPackageAttributeRating(it));
+		
+		int noOfSPs = 0;
+		//Make sure to take the package out of the SP DB if necessary
+		pparlist = projectPackageAttributeRatingDao.getAllRatings(new Project(project));
+		for(GwtProjectPackageAttributeRating it : pparlist)
+			if(it.getPackage().getId() == gwtSoftwarePackage.getId())
+				++noOfSPs;
+		
+		if(noOfSPs == 0)
+			softwarePackageDao.deleteEntity(softwarePackageDao.fetch(gwtSoftwarePackage.getId())); 
+
+	}
+	
+	@AllowedRoles(roles = {Roles.Security_Specialist})
+	public void removeQualityAttribute(GwtQualityAttribute gwtQualityAttribute, GwtProject project) throws SquareException
+	{
+		List<GwtProjectPackageAttributeRating> pparlist = projectPackageAttributeRatingDao.getAllRatingsForProject(new Project(project));
+		for(GwtProjectPackageAttributeRating it : pparlist)
+			if(it.getAttribute().getId() == gwtQualityAttribute.getId())
+				projectPackageAttributeRatingDao.deleteEntity(new ProjectPackageAttributeRating(it));
+		
+		int noOfSPs = 0;
+		//Make sure to take the package out of the SP DB if necessary
+		pparlist = projectPackageAttributeRatingDao.getAllRatings(new Project(project));
+		for(GwtProjectPackageAttributeRating it : pparlist)
+			if(it.getPackage().getId() == gwtQualityAttribute.getId())
+				++noOfSPs;
+		
+		if(noOfSPs == 0)
+		{
+			qualityAttributeDao.deleteEntity(qualityAttributeDao.fetch(gwtQualityAttribute.getId())); 
+			
+			SoftwarePackage sp = softwarePackageDao.fetch(1);
+			QualityAttribute qa = new QualityAttribute();
+			
+			qa.setName("Unnamed");
+			qa.setDescription("No description");
+			qa.setId(0);
+			qualityAttributeDao.create(qa);
+			
+			ProjectPackageAttributeRating ppar = new ProjectPackageAttributeRating(new ProjectPackageAttributeRatingId(project.getId(), sp.getId(), qa.getId()), sp, new Project(project), qa, 0);
+			projectPackageAttributeRatingDao.create(ppar);
+		}
+
 	}
 
 	
-	@AllowedRoles(roles = {Roles.Lead_Requirements_Engineer})
-	public void removeSoftwarePackage(GwtSoftwarePackage gwtElicitTechnique, Integer projectId) throws SquareException
-	{
-
-		Project p = projectDao.fetch(projectId);
-		if (p.getSecurityTechnique() != null && p.getSecurityTechnique().getId().equals(gwtElicitTechnique.getId()))
-		{
-			SquareException se = new SquareException();
-			se.setType(ExceptionType.constraintViolated);
-			throw se;
-		}
-		
-		if (p.getTechniques().size() == 1)
-		{
-			SquareException se = new SquareException();
-			se.setType(ExceptionType.onlyOneTechnique);
-			throw se;
-		}
-		
-		try
-		{
-			softwarePackageDao.deleteById(gwtElicitTechnique.getId());
-		}
-		catch (Throwable t)
-		{
-			throw new SquareException(t);
-		}
-	}
-
-	
-	@AllowedRoles(roles = {Roles.Lead_Requirements_Engineer})
+	@AllowedRoles(roles = {Roles.Security_Specialist})
 	public void updateQualityAttribute(GwtQualityAttribute gwtEvaluation, GwtProject gwtProject) throws SquareException
 	{
 		if (gwtEvaluation == null)
@@ -174,77 +321,69 @@ public class ReviewPackagesBusinessImpl extends BaseBusinessImpl implements Revi
 			throw new SquareException("gwtEvaluation must have an id.");
 		}
 
-		try
+		//try
 		{
 
-			// get the evaluation by name and check for duplicates
-			List<QualityAttribute> evaluations = this.qualityAttributeDao.getQualityAttributesByNameAndProject(gwtEvaluation.getName(), gwtProject.getId());
-			if (evaluations.size() > 0)
-			{
-				if (!evaluations.get(0).getId().equals(gwtEvaluation.getId()))
-				{
-					SquareException se = new SquareException("Already exists");
-					se.setType(ExceptionType.duplicateName);
-					throw se;
-				}
-			}
+//			// get the evaluation by name and check for duplicates
+//			List<QualityAttribute> evaluations = this.qualityAttributeDao.getQualityAttributesByNameAndProject(gwtEvaluation.getName(), gwtProject.getId());
+//			if (evaluations.size() > 0)
+//			{
+//				if (!evaluations.get(0).getId().equals(gwtEvaluation.getId()))
+//				{
+//					SquareException se = new SquareException("Already exists");
+//					se.setType(ExceptionType.duplicateName);
+//					throw se;
+//				}
+//			}
 			QualityAttribute currentEvaluation = new QualityAttribute(gwtEvaluation);
 			//TODO: see if this works
 //			currentEvaluation.setProject(new Project(gwtProject));
 			qualityAttributeDao.update(currentEvaluation);
 		}
-		catch (SquareException ex)
-		{
-			throw ex;
-		}
-		catch (Throwable t)
-		{
-			throw new SquareException("update failed", t);
-		}
 	}
 
 	
-	@AllowedRoles(roles = {Roles.Lead_Requirements_Engineer})
+	@AllowedRoles(roles = {Roles.Security_Specialist})
 	public void updateSoftwarePackage(GwtSoftwarePackage gwtElicitationTechnique, GwtProject gwtProject) throws SquareException
 	{
 		if (gwtElicitationTechnique == null)
 		{
-			throw new SquareException("gwtElicitation technique should not be null.");
+			throw new SquareException("should not be null.");
 		}
 
 		if (gwtElicitationTechnique.getId() <= 0)
 		{
-			throw new SquareException("gwtElicitaiton technique must have an id.");
+			throw new SquareException("must have an id.");
 		}
 
-		try
-		{
-			// get the technique by name and check for duplicates
-			List<SoftwarePackage> techniques = this.softwarePackageDao.getSoftwarePackagesByNameAndProject(gwtElicitationTechnique.getName(), gwtProject.getId());
-			if (techniques.size() > 0)
-			{
-				if (!techniques.get(0).getId().equals(gwtElicitationTechnique.getId()))
-				{
-					SquareException se = new SquareException("Already exists");
-					se.setType(ExceptionType.duplicateName);
-					throw se;
-				}
-			}
+//		try
+//		{
+//			// get the technique by name and check for duplicates
+//			List<SoftwarePackage> techniques = this.softwarePackageDao.getSoftwarePackagesByNameAndProject(gwtElicitationTechnique.getName(), gwtProject.getId());
+//			if (techniques.size() > 0)
+//			{
+//				if (!techniques.get(0).getId().equals(gwtElicitationTechnique.getId()))
+//				{
+//					SquareException se = new SquareException("Already exists");
+//					se.setType(ExceptionType.duplicateName);
+//					throw se;
+//				}
+//			}
 
 			SoftwarePackage currentTechnique = new SoftwarePackage(gwtElicitationTechnique);
 			
 			//TODO:...
 //			currentTechnique.setProject(new Project(gwtProject));
 			softwarePackageDao.update(currentTechnique);
-		}
-		catch (SquareException ex)
-		{
-			throw ex;
-		}
-		catch (Throwable t)
-		{
-			throw new SquareException("updating technique failed", t);
-		}
+//		}
+//		catch (SquareException ex)
+//		{
+//			throw ex;
+//		}
+//		catch (Throwable t)
+//		{
+//			throw new SquareException("updating technique failed", t);
+//		}
 
 	}
 
@@ -274,7 +413,8 @@ public class ReviewPackagesBusinessImpl extends BaseBusinessImpl implements Revi
 	public void setRateValue(int projectID, int techniqueID, int evaluationCriteriaID, int value) throws SquareException
 	{
 		
-		if( -1 == qualityAttributeDao.getRating(projectID, techniqueID, evaluationCriteriaID))
+		
+		if( qualityAttributeDao.getRating(projectID, techniqueID, evaluationCriteriaID) == -1)
 			qualityAttributeDao.setRating(projectID, techniqueID, evaluationCriteriaID, value);
 		else
 		{
