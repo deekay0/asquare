@@ -120,6 +120,7 @@ public class ManageProjectServiceImpl extends SquareRemoteServiceServlet impleme
 			gwtRole.setName(r.getName());
 			gwtRole.setDescription(r.getDescription());
 			gwtRoles.add(gwtRole);
+			System.out.println("getAllRoles"+gwtRole.toString());
 
 		}
 

@@ -48,7 +48,7 @@ public class ChooseProjectBusinessImpl extends BaseBusinessImpl implements Choos
 		
 		
 		List<AsquareCase> temptemp = caseDao.getAllCases();
-		System.out.println("tttttttttt   "+temptemp.size());
+		//System.out.println("tttttttttt   "+temptemp.size());
 		
 		
 		

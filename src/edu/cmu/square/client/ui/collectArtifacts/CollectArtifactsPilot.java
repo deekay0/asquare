@@ -62,17 +62,17 @@ public class CollectArtifactsPilot extends Pilot
 		{
 			currentState.setMode(GwtModesType.ReadOnly);
 		}
-		else if (currentState.getUserProjectRole() == ProjectRole.None)
+		else if(currentState.getUserProjectRole() == ProjectRole.None)
 		{
 			currentState.setMode(GwtModesType.NoAccess);
 		}
-		else{
+		else
+		{
 			currentState.setMode (GwtModesType.ReadWrite);
 		}
 		
 	}
-	
-	
+		
 	public String getBreadCrumb()
 	{
 		final BreadCrumbMessages messages = (BreadCrumbMessages) GWT.create(BreadCrumbMessages.class);

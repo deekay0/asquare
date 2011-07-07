@@ -35,14 +35,14 @@ public class ChooseCaseBusinessImpl extends BaseBusinessImpl implements ChooseCa
 		
 		
 		List<AsquareCase> cases = caseDao.getAllCases();
-		System.out.println("ttttttttttasdfasdf   "+cases.size());
+		System.out.println("case size   "+cases.size());
 		
 		for (AsquareCase a: cases)
 		{
 			casesGwt.add (a.createGwtCase());
 		}
 		
-		System.out.println("gwtgwt   "+cases.size());
+		System.out.println("case size   "+cases.size());
 		
 		// TODO Auto-generated method stub
 		return casesGwt;

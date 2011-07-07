@@ -66,21 +66,7 @@ public class ReviewAndFinalizeRequirementsPilot extends Pilot
 
 	public void determineAccessRights(String page, State currentState)
 	{
-		/*
-		//SQUARE
-		if (currentState.getUserProjectRole() == ProjectRole.Lead_Requirements_Engineer)
-		{
-			currentState.setMode(GwtModesType.ReadWrite);
-		}
-		else if (currentState.getUserProjectRole() == ProjectRole.Requirements_Engineer)
-		{
-			currentState.setMode(GwtModesType.ReadWrite);
-		}
-		else if (currentState.getUserProjectRole() == ProjectRole.Stakeholder)
-		{
-			currentState.setMode(GwtModesType.ReadWrite);
-		}
-		*/
+					
 		//ASQUARE
 		if (currentState.getUserProjectRole() == ProjectRole.Acquisition_Organization_Engineer)
 		{
@@ -102,6 +88,21 @@ public class ReviewAndFinalizeRequirementsPilot extends Pilot
 		{			
 			currentState.setMode(GwtModesType.NoAccess);
 		}
+		//SQUARE
+		else if (currentState.getUserProjectRole() == ProjectRole.Lead_Requirements_Engineer)
+		{
+			currentState.setMode(GwtModesType.ReadWrite);
+		}
+		else if (currentState.getUserProjectRole() == ProjectRole.Requirements_Engineer)
+		{
+			currentState.setMode(GwtModesType.ReadWrite);
+		}
+		else if (currentState.getUserProjectRole() == ProjectRole.Stakeholder)
+		{
+			currentState.setMode(GwtModesType.ReadWrite);
+		}
+		
+		
 		else 
 		{
 			currentState.setMode(GwtModesType.ReadOnly);
