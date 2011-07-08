@@ -60,7 +60,7 @@ public class AgreeOnDefinitionsPilot extends Pilot
 	public void determineAccessRights(String page, State currentState)
 	{
 		//case1
-		if(currentState.getCaseName() == AsquareCase.Case1)
+		if(currentState.getCaseID() == 1)
 		{
 			if (currentState.getUserProjectRole() == ProjectRole.Acquisition_Organization_Engineer)
 			{
@@ -94,7 +94,7 @@ public class AgreeOnDefinitionsPilot extends Pilot
 				currentState.setMode(GwtModesType.ReadOnly);
 			}
 		}
-		else if(currentState.getCaseName() == AsquareCase.Case3)
+		else if(currentState.getCaseID() == 3)
 		{
 			if (currentState.getUserProjectRole() == ProjectRole.Acquisition_Organization_Engineer)
 			{
