@@ -67,10 +67,12 @@ public class AgreeOnDefinitionsPilot extends Pilot
 				currentState.setMode(GwtModesType.ReadWrite);
 			}
 //Delete this!! SQUARE user
+			/*
 			else if (currentState.getUserProjectRole() == ProjectRole.Lead_Requirements_Engineer) 
 			{
 				currentState.setMode(GwtModesType.ReadWrite);
 			}
+			*/
 			else if (currentState.getUserProjectRole() == ProjectRole.Contractor)
 			{
 				currentState.setMode(GwtModesType.ReadOnly);
@@ -99,10 +101,12 @@ public class AgreeOnDefinitionsPilot extends Pilot
 				currentState.setMode(GwtModesType.ReadOnly);
 			}
 //Delete this!! SQUARE user
+			/*
 			else if (currentState.getUserProjectRole() == ProjectRole.Lead_Requirements_Engineer) 
 			{
 				currentState.setMode(GwtModesType.ReadOnly);
 			}
+			*/
 			else if (currentState.getUserProjectRole() == ProjectRole.Contractor)
 			{
 				currentState.setMode(GwtModesType.NoAccess);
