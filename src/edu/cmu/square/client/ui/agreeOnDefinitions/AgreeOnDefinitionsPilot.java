@@ -98,7 +98,7 @@ public class AgreeOnDefinitionsPilot extends Pilot
 		{
 			if (currentState.getUserProjectRole() == ProjectRole.Acquisition_Organization_Engineer)
 			{
-				currentState.setMode(GwtModesType.ReadOnly);
+				currentState.setMode(GwtModesType.ReadWrite);
 			}
 //Delete this!! SQUARE user
 			/*

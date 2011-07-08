@@ -68,11 +68,12 @@ public class ReviewOfRequirementsByAcquisitionPilot extends Pilot
 	{
 		
 		//SQUARE
+		/*
 		if (currentState.getUserProjectRole() == ProjectRole.Lead_Requirements_Engineer)
 		{
 			currentState.setMode(GwtModesType.ReadWrite);
 		}
-		/*
+		
 		else if (currentState.getUserProjectRole() == ProjectRole.Requirements_Engineer)
 		{
 			currentState.setMode(GwtModesType.ReadWrite);
@@ -83,7 +84,7 @@ public class ReviewOfRequirementsByAcquisitionPilot extends Pilot
 		}
 		*/
 		//ASQUARE
-		else if (currentState.getUserProjectRole() == ProjectRole.Acquisition_Organization_Engineer)
+		if (currentState.getUserProjectRole() == ProjectRole.Acquisition_Organization_Engineer)
 		{
 			currentState.setMode(GwtModesType.ReadWrite);
 		}
