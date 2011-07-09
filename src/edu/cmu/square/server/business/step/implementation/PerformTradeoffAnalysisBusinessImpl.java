@@ -42,7 +42,7 @@ public class PerformTradeoffAnalysisBusinessImpl extends BaseBusinessImpl implem
 	@Resource
 	private ProjectPackageRequirementRatingDao projectRequirementRatingDao;
 
-	@AllowedRoles(roles = {Roles.All})
+	@AllowedRoles(roles = {Roles.Security_Specialist, Roles.Administrator})
 	public void setRequirementRateValue(int projectID, int packageID, int requirementID, int value) throws SquareException
 	{
 		//System.out.println("here.............."+projectID+"  "+packageID+"  "+requirementID+"  "+value);
@@ -96,6 +96,7 @@ public class PerformTradeoffAnalysisBusinessImpl extends BaseBusinessImpl implem
 	}
 
 	@Override
+	@AllowedRoles(roles = {Roles.All})
 	public List<GwtTradeoffReason> getTradeoffReasons(int projectID) throws SquareException
 	{
 		Project project = new Project();
@@ -104,6 +105,7 @@ public class PerformTradeoffAnalysisBusinessImpl extends BaseBusinessImpl implem
 	}
 
 	@Override
+	@AllowedRoles(roles = {Roles.Security_Specialist, Roles.Administrator})
 	public void addTradeoffReason(int projectID, int packageID, String tradeoffReason) throws SquareException
 	{
 		// TODO Auto-generated method stub
@@ -111,6 +113,7 @@ public class PerformTradeoffAnalysisBusinessImpl extends BaseBusinessImpl implem
 	}
 
 	@Override
+	@AllowedRoles(roles = {Roles.Security_Specialist, Roles.Administrator})
 	public void updateTradeoffReason(int projectID, int packageId, String tradeoffReason) throws SquareException
 	{
 		// TODO Auto-generated method stub
@@ -123,6 +126,7 @@ public class PerformTradeoffAnalysisBusinessImpl extends BaseBusinessImpl implem
 	}
 
 	@Override
+	@AllowedRoles(roles = {Roles.Security_Specialist, Roles.Administrator})
 	public void updatePriority(int projectID, int packageID, int priority) throws SquareException
 	{
 		tradeoffReasonDao.setPriority(projectID, packageID, priority);
