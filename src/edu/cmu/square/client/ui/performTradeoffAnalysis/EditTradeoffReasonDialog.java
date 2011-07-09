@@ -74,7 +74,7 @@ public class EditTradeoffReasonDialog extends DialogBox
 		VerticalPanel nameLayout = new VerticalPanel();
 		VerticalPanel descriptionLayout = new VerticalPanel(); 
 		HorizontalPanel buttonsLayout = new HorizontalPanel();
-		this.setText(messages.editTradeoffReasonDialogBoxTitle());
+		this.setText(messages.editTradeoffReasonDialogBoxTitleReadOnly());
 		nameLayout.add(new Label(messages.editTradeoffReasonDialogBoxName()));
 		nameLayout.add(this.tradeoffReasonTextBox);
 
