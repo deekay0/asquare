@@ -152,11 +152,11 @@ public class AssetsAndGoalsPilot extends Pilot
 			}
 			else if (currentState.getUserProjectRole() == ProjectRole.Security_Specialist)
 			{
-				currentState.setMode(GwtModesType.NoAccess);
+				currentState.setMode(GwtModesType.ReadOnly);
 			}
 			else if (currentState.getUserProjectRole() == ProjectRole.COTS_Vendor)
 			{
-				currentState.setMode(GwtModesType.NoAccess);
+				currentState.setMode(GwtModesType.ReadOnly);
 			}
 			else if (currentState.getUserProjectRole() == ProjectRole.None)
 			{
