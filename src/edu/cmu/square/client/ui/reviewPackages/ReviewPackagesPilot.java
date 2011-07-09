@@ -82,6 +82,7 @@ public class ReviewPackagesPilot extends Pilot
 		}
 		
 //SQAURE
+		/*
 		else if (currentState.getUserProjectRole() == ProjectRole.Lead_Requirements_Engineer)
 		{
 			currentState.setMode(GwtModesType.ReadWrite);
@@ -90,12 +91,11 @@ public class ReviewPackagesPilot extends Pilot
 		{
 			currentState.setMode(GwtModesType.ReadWrite);
 		}
+		*/
 		else if (currentState.getUserProjectRole() == ProjectRole.None)
 		{
 			currentState.setMode(GwtModesType.NoAccess);
 		}
-		
-		
 		else
 		{
 			currentState.setMode(GwtModesType.ReadOnly);
