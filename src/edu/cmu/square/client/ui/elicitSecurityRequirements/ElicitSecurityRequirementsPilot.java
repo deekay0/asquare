@@ -84,6 +84,7 @@ public class ElicitSecurityRequirementsPilot extends Pilot
 		if(currentState.getCaseID()==1)
 		{
 			System.out.println("case1.........");
+			System.out.println("your role is"+currentState.getUserProjectRole());
 			if (currentState.getUserProjectRole() == ProjectRole.Acquisition_Organization_Engineer)
 			{
 				currentState.setMode(GwtModesType.ReadOnly);
@@ -107,6 +108,7 @@ public class ElicitSecurityRequirementsPilot extends Pilot
 			else 
 			{
 				currentState.setMode(GwtModesType.ReadOnly);
+				System.out.println("your role is"+currentState.getUserProjectRole());
 			}
 		}
 		else if(currentState.getCaseID()==3)
@@ -114,6 +116,7 @@ public class ElicitSecurityRequirementsPilot extends Pilot
 			System.out.println(currentState.getCaseName());
 			System.out.println(currentState.getCaseName() == AsquareCase.Case3);
 			System.out.println("case3.........");
+			
 			if (currentState.getUserProjectRole() == ProjectRole.Acquisition_Organization_Engineer)
 			{
 				currentState.setMode(GwtModesType.ReadOnly);
