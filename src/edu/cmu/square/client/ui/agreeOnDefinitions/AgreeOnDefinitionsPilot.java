@@ -60,17 +60,19 @@ public class AgreeOnDefinitionsPilot extends Pilot
 	public void determineAccessRights(String page, State currentState)
 	{
 		//case1
-		if(currentState.getCaseName() == AsquareCase.Case1)
+		if(currentState.getCaseID() == 1)
 		{
 			if (currentState.getUserProjectRole() == ProjectRole.Acquisition_Organization_Engineer)
 			{
 				currentState.setMode(GwtModesType.ReadWrite);
 			}
 //Delete this!! SQUARE user
+			/*
 			else if (currentState.getUserProjectRole() == ProjectRole.Lead_Requirements_Engineer) 
 			{
 				currentState.setMode(GwtModesType.ReadWrite);
 			}
+			*/
 			else if (currentState.getUserProjectRole() == ProjectRole.Contractor)
 			{
 				currentState.setMode(GwtModesType.ReadOnly);
@@ -92,28 +94,32 @@ public class AgreeOnDefinitionsPilot extends Pilot
 				currentState.setMode(GwtModesType.ReadOnly);
 			}
 		}
-		else if(currentState.getCaseName() == AsquareCase.Case3)
+		else if(currentState.getCaseID() == 3)
 		{
+			System.out.println("case is"+currentState.getCaseID());
+			
 			if (currentState.getUserProjectRole() == ProjectRole.Acquisition_Organization_Engineer)
 			{
-				currentState.setMode(GwtModesType.ReadOnly);
+				currentState.setMode(GwtModesType.ReadWrite);
 			}
 //Delete this!! SQUARE user
+			/*
 			else if (currentState.getUserProjectRole() == ProjectRole.Lead_Requirements_Engineer) 
 			{
 				currentState.setMode(GwtModesType.ReadOnly);
 			}
+			*/
 			else if (currentState.getUserProjectRole() == ProjectRole.Contractor)
 			{
 				currentState.setMode(GwtModesType.NoAccess);
 			}
 			else if (currentState.getUserProjectRole() == ProjectRole.Security_Specialist)
 			{
-				currentState.setMode(GwtModesType.NoAccess);
+				currentState.setMode(GwtModesType.ReadOnly);
 			}
 			else if (currentState.getUserProjectRole() == ProjectRole.COTS_Vendor)
 			{
-				currentState.setMode(GwtModesType.NoAccess);
+				currentState.setMode(GwtModesType.ReadOnly);
 			}
 			else if (currentState.getUserProjectRole() == ProjectRole.None)
 			{

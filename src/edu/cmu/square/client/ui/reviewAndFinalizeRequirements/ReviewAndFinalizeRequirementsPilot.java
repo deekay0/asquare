@@ -88,6 +88,7 @@ public class ReviewAndFinalizeRequirementsPilot extends Pilot
 		{			
 			currentState.setMode(GwtModesType.NoAccess);
 		}
+		/*
 		//SQUARE
 		else if (currentState.getUserProjectRole() == ProjectRole.Lead_Requirements_Engineer)
 		{
@@ -101,8 +102,7 @@ public class ReviewAndFinalizeRequirementsPilot extends Pilot
 		{
 			currentState.setMode(GwtModesType.ReadWrite);
 		}
-		
-		
+		*/		
 		else 
 		{
 			currentState.setMode(GwtModesType.ReadOnly);

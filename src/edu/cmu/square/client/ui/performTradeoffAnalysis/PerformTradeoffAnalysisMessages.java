@@ -9,4 +9,8 @@ public interface PerformTradeoffAnalysisMessages extends TeachMessages
 	String editTradeoffReasonDialogBoxName();
 	String editTradeoffReasonDialogBoxSave();
 	String editTradeoffReasonDialogBoxCancel();
+	
+	String editTradeoffReasonDialogBoxOkay();
+	String editTradeoffReasonDialogBoxTitleReadOnly();
+	
 }

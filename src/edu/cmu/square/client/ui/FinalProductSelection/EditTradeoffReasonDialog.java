@@ -22,6 +22,7 @@ import com.google.gwt.user.client.ui.TextArea;
 import com.google.gwt.user.client.ui.TextBox;
 import com.google.gwt.user.client.ui.VerticalPanel;
 
+import edu.cmu.square.client.model.GwtModesType;
 import edu.cmu.square.client.model.GwtTradeoffReason;
 import edu.cmu.square.client.model.GwtTerm;
 
@@ -47,7 +48,16 @@ public class EditTradeoffReasonDialog extends DialogBox
 			this.listOfTradeoffReasons = tradeoffReasons;
 			this.updateTradeoffReasonCommand = command;
 
-			this.initializeDialog(currentTradeoffReason);
+			
+			if(command.getCurrentState().getMode() == GwtModesType.ReadWrite){
+				//System.out.println("****my access right is RW"+command.getCurrentState().getMode());
+				this.initializeDialogReadWrite(currentTradeoffReason);
+			}
+			else if (command.getCurrentState().getMode() == GwtModesType.ReadOnly){
+				//System.out.println("****my access right is RO"+command.getCurrentState().getMode());
+				this.initializeDialogReadOnly(currentTradeoffReason);
+			}
+			
 		}
 
 	/**
@@ -56,7 +66,7 @@ public class EditTradeoffReasonDialog extends DialogBox
 	 * @param SoftwarePackage
 	 *            The category to be updated in this dialog.
 	 */
-	private void initializeDialog(GwtTradeoffReason tradeoffReason)
+	private void initializeDialogReadWrite(GwtTradeoffReason tradeoffReason)
 	{
 
 		VerticalPanel baseLayout = new VerticalPanel();
@@ -111,6 +121,77 @@ public class EditTradeoffReasonDialog extends DialogBox
 		buttonsLayout.setSpacing(10);
 		buttonsLayout.add(saveButton);
 		buttonsLayout.add(cancelButton);
+
+		// set the base layout
+		baseLayout.setHorizontalAlignment(HasHorizontalAlignment.ALIGN_CENTER);
+		baseLayout.add(nameLayout);
+		baseLayout.add(descriptionLayout);
+		baseLayout.add(buttonsLayout);
+		baseLayout.setSpacing(5);
+
+		this.setWidget(baseLayout);
+	}
+	/**
+	 * Sets up the controls in the dialog
+	 * 
+	 * @param SoftwarePackage
+	 *            The category to be updated in this dialog.
+	 */
+	private void initializeDialogReadOnly(GwtTradeoffReason tradeoffReason)
+	{
+
+		VerticalPanel baseLayout = new VerticalPanel();
+		VerticalPanel nameLayout = new VerticalPanel();
+		VerticalPanel descriptionLayout = new VerticalPanel();
+		HorizontalPanel buttonsLayout = new HorizontalPanel();
+		this.setText(messages.editTradeoffReasonDialogBoxTitleReadOnly());
+		nameLayout.add(new Label(messages.editTradeoffReasonDialogBoxName()));
+		nameLayout.add(this.tradeoffReasonTextBox);
+
+		this.tradeoffReasonTextBox.setWidth("500px");
+		this.tradeoffReasonTextBox.setSize("500px", "80px");
+		this.tradeoffReasonTextBox.setText(tradeoffReason.getTradeoffreason());
+
+		// Set up the buttons
+		//saveButton = new Button(messages.editTradeoffReasonDialogBoxSave(), new SaveHandler(this, tradeoffReason));
+		Button okayButton = new Button(messages.editTradeoffReasonDialogBoxOkay(), new CancelHandler(this));
+		
+		this.tradeoffReasonTextBox.addKeyUpHandler(new KeyUpHandler()
+		{
+			public void onKeyUp(KeyUpEvent event)
+			{
+				 configureButton();
+			}
+			
+		});
+		
+		this.tradeoffReasonTextBox.addChangeHandler(new ChangeHandler()
+		{
+			public void onChange(ChangeEvent event)
+			{
+				 configureButton();
+				
+			}
+			
+		});
+		
+		this.tradeoffReasonTextBox.addKeyDownHandler(new KeyDownHandler()
+		{
+			public void onKeyDown(KeyDownEvent event)
+			{
+				 configureButton();
+				
+			}
+			
+		});
+		
+		
+		//saveButton.setWidth("100px");
+		okayButton.setWidth("100px");
+		
+		buttonsLayout.setSpacing(10);
+		//buttonsLayout.add(saveButton);
+		buttonsLayout.add(okayButton);
 
 		// set the base layout
 		baseLayout.setHorizontalAlignment(HasHorizontalAlignment.ALIGN_CENTER);

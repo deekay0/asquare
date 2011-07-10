@@ -532,21 +532,21 @@ public class FinalProductSelectionPane extends BasePane
 				}});
 			
 			RadioButton rButton = new RadioButton("group");
-			rButton.addClickHandler(new ClickHandler()
-				{
-					
-					
-
-					@Override
-					public void onClick(ClickEvent event)
-					{
-						addRationaleDialog = new AddRationaleDialog( FinalProductSelectionPane.this, currentProject, softwarePackages.get(index));
-						addRationaleDialog.center();
-						addRationaleDialog.setModal(true);
-						addRationaleDialog.show();
-						
-					}});
-
+			
+			if (this.getCurrentState().getMode().equals(GwtModesType.ReadWrite)){
+				rButton.addClickHandler(new ClickHandler()
+					{	
+						@Override
+						public void onClick(ClickEvent event)
+						{
+							addRationaleDialog = new AddRationaleDialog( FinalProductSelectionPane.this, currentProject, softwarePackages.get(index));
+							addRationaleDialog.center();
+							addRationaleDialog.setModal(true);
+							addRationaleDialog.show();
+							
+						}}
+				);
+			}
 			if(rationale != null && softwarePackages.get(j).getId() == rationale.getPackage().getId())
 				rButton.setValue(true);
 			else
