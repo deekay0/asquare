@@ -462,7 +462,7 @@ public class RequirementsDetailPane extends BasePane implements Command
 
 					public void onClick(ClickEvent event)
 					{
-						History.newItem(PerformTradeoffAnalysisPilot.generateNavigationId(PerformTradeoffAnalysisPilot.PageId.home));
+						History.newItem(PerformTradeoffAnalysisPilot.generateNavigationId(PerformTradeoffAnalysisPilot.PageId.matrix));
 
 					}
 				});
@@ -644,7 +644,7 @@ public class RequirementsDetailPane extends BasePane implements Command
 					{
 						//saveChangesConfirmation();
 					
-						History.newItem(PerformTradeoffAnalysisPilot.generateNavigationId(PerformTradeoffAnalysisPilot.PageId.home));
+						History.newItem(PerformTradeoffAnalysisPilot.generateNavigationId(PerformTradeoffAnalysisPilot.PageId.matrix));
 					}
 				});
 

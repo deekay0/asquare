@@ -247,6 +247,7 @@ public class EditTradeoffReasonDialog extends DialogBox
 
 			localTradeoffReason.setTradeoffreason(SquareUtil.firstCharacterToUpperCase(tradeoffReasonTextBox.getText().trim()));
 			updateTradeoffReasonCommand.updateCommand(this.localTradeoffReason);
+			//updateTradeoffReasonCommand.loadTradeoffReasons();
 		}
 	}
 
