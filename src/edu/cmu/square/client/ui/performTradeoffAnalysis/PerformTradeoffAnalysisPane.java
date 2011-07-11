@@ -159,24 +159,41 @@ public class PerformTradeoffAnalysisPane extends BasePane
 	public Widget getHeaderRow()
 	{
 
+		//FlexTable requirementTitleTable = new FlexTable();
 		FlexTable searchTable = new FlexTable();
+		
+		//requirementTitleTable.setWidth("100%");
+		//requirementTitleTable.setCellSpacing(0);
 		searchTable.setWidth("100%");
 		searchTable.setCellSpacing(0);
-		HorizontalPanel searchBox = new HorizontalPanel();
-		searchBox.setSpacing(0);
-		Button clearButton = new Button("X");
-		// clearButton.setStyleName("square-clear-label");
-		clearButton.setSize("25px", "26px");
+	
+		//requirementTitleTable.setWidget(0, 0, new Label(messages.requirementTableTitle()));
+		
+		//requirementTitleTable.getCellFormatter().setHorizontalAlignment(0, 0, HasHorizontalAlignment.ALIGN_CENTER);
+		//requirementTitleTable.getCellFormatter().setStyleName(0, 0, "square-Categorize-TableHeader");
+		
+		searchTable.setWidget(0, 0, new Label(messages.requirementTableTitle()));
+		
+		searchTable.setWidget(1, 0, new Label(messages.requirementTableBarTitle()));
+		searchTable.setWidget(1, 1, new Label(messages.requirementTableBarDescription()));
+		searchTable.setWidget(1, 2, new Label(messages.requirementTableBarStatus()));
+		searchTable.setWidget(1, 3, new Label("      "));
+		
+		searchTable.getCellFormatter().setWidth(0, 0, "20%");
+		searchTable.getCellFormatter().setWidth(0, 1, "55%");
+		searchTable.getCellFormatter().setWidth(0, 2, "15%");
+		searchTable.getCellFormatter().setWidth(0, 3, "10%");
+		
+		searchTable.getCellFormatter().setHorizontalAlignment(1, 0, HasHorizontalAlignment.ALIGN_CENTER);
+		searchTable.getCellFormatter().setHorizontalAlignment(1, 1, HasHorizontalAlignment.ALIGN_CENTER);
+		searchTable.getCellFormatter().setHorizontalAlignment(1, 2, HasHorizontalAlignment.ALIGN_CENTER);
+		searchTable.getCellFormatter().setHorizontalAlignment(1, 3, HasHorizontalAlignment.ALIGN_CENTER);
 
-		searchTable.setWidget(0, 1, new Label(" "));
-		searchTable.setWidget(0, 2, searchBox);
-
-		searchTable.getCellFormatter().setHorizontalAlignment(0, 0, HasHorizontalAlignment.ALIGN_LEFT);
-		searchTable.getCellFormatter().setHorizontalAlignment(0, 2, HasHorizontalAlignment.ALIGN_RIGHT);
-
-		searchTable.getCellFormatter().setStyleName(0, 0, "square-Categorize-TableHeader");
-		searchTable.getCellFormatter().setStyleName(0, 1, "square-Categorize-TableHeader");
-		searchTable.getCellFormatter().setStyleName(0, 2, "square-Categorize-TableHeader");
+		
+		searchTable.getCellFormatter().setStyleName(1, 0, "square-Categorize-TableHeader");
+		searchTable.getCellFormatter().setStyleName(1, 1, "square-Categorize-TableHeader");
+		searchTable.getCellFormatter().setStyleName(1, 2, "square-Categorize-TableHeader");
+		searchTable.getCellFormatter().setStyleName(1, 3, "square-Categorize-TableHeader");
 
 		return searchTable;
 	}
@@ -221,9 +238,9 @@ public class PerformTradeoffAnalysisPane extends BasePane
 		rowTable.setWidget(0, 2, reqStatusLabel);
 
 		rowTable.getCellFormatter().setWidth(0, 0, "20%");
-		rowTable.getCellFormatter().setWidth(0, 1, "60%");
+		rowTable.getCellFormatter().setWidth(0, 1, "55%");
 		rowTable.getCellFormatter().setWidth(0, 2, "15%");
-		rowTable.getCellFormatter().setWidth(0, 3, "20%");
+		rowTable.getCellFormatter().setWidth(0, 3, "10%");
 		
 		rowTable.getCellFormatter().setHorizontalAlignment(0, 2, HasHorizontalAlignment.ALIGN_CENTER);
 		rowTable.getCellFormatter().setVerticalAlignment(0, 0, HasVerticalAlignment.ALIGN_TOP);
