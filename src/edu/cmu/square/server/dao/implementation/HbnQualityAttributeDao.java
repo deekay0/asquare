@@ -101,8 +101,8 @@ public class HbnQualityAttributeDao extends HbnAbstractDao<QualityAttribute, Int
 		
 		Query q = getSession().createSQLQuery(query);
 		
-		q.setParameter("packageId", packageId);
 		q.setParameter("projectId", projectID);
+		q.setParameter("packageId", packageId);
 		q.setParameter("attributeId", attributeId);
 		q.setParameter("rating", value);
 			
