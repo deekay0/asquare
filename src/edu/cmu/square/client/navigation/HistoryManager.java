@@ -238,7 +238,7 @@ public class HistoryManager implements ValueChangeHandler<String>
 			chooseStep.setStyleName("square-crumb");
 			crumbBar.add(chooseCase);
 			
-			Hyperlink chooseProject = new Hyperlink(this.currentState.getCaseName().name(), HomePilot.generateNavigationId(HomePilot.PageId.home));
+			Hyperlink chooseProject = new Hyperlink(this.currentState.getCaseName(), HomePilot.generateNavigationId(HomePilot.PageId.home));
 			chooseProject.setStyleName("square-crumb");
 		
 			

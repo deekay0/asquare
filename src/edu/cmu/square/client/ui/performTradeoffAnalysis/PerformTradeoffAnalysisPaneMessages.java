@@ -23,4 +23,9 @@ public interface PerformTradeoffAnalysisPaneMessages extends CommonMessages
 	String buttonGotoSelect();
 	String noelementsFound();
 	
+	String requirementTableTitle();
+	String requirementTableBarTitle();
+	String requirementTableBarDescription();
+	String requirementTableBarStatus();
+	
 }
