@@ -343,7 +343,6 @@ public class PerformTradeoffAnalysisPane extends BasePane
 					
 					public void onSuccess(Void result) 
 					{
-						
 					}
 				});	
 	}
@@ -456,6 +455,7 @@ public class PerformTradeoffAnalysisPane extends BasePane
 						drawRateMatrix();
 						getTotalsFromMatrix();
 						PaneInitialization();
+						loadAttributes();
 					}
 					@Override
 					public void onFailure(Throwable caught)
@@ -473,7 +473,7 @@ public class PerformTradeoffAnalysisPane extends BasePane
 					@Override
 					public void onSuccess(List<GwtRating >  result)
 					{
-	
+						loadRequirementRatings();
 						ratings = result;
 						drawRateMatrix();
 						getTotalsFromMatrix();
@@ -533,7 +533,8 @@ public class PerformTradeoffAnalysisPane extends BasePane
 			}
 			
 			public void onSuccess(Void result) {
-				setValueFromlistOfRateValues(packageID, attributeID, value);			
+				setValueFromlistOfRateValues(packageID, attributeID, value);	
+				loadRequirementRatings();
 			}});
 	}
 	
@@ -560,7 +561,9 @@ public class PerformTradeoffAnalysisPane extends BasePane
 				}				
 			}		
 			public void onSuccess(Void result) {
-				setValueFromlistOfRequirementRateValues(requirementID, packageID, value);			
+				
+				setValueFromlistOfRequirementRateValues(requirementID, packageID, value);	
+				loadRequirementRatings();
 			}});
 	}
 	
