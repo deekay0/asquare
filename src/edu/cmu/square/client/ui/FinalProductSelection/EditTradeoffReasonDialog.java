@@ -82,7 +82,7 @@ public class EditTradeoffReasonDialog extends DialogBox
 		this.tradeoffReasonTextBox.setText(tradeoffReason.getTradeoffreason());
 
 		// Set up the buttons
-		saveButton = new Button(messages.editTradeoffReasonDialogBoxSave(), new SaveHandler(this, tradeoffReason));
+		saveButton = new Button(messages.editTradeoffReasonDialogBoxOkay(), new SaveHandler(this, tradeoffReason));
 		Button cancelButton = new Button(messages.editTradeoffReasonDialogBoxCancel(), new CancelHandler(this));
 		
 		this.tradeoffReasonTextBox.addKeyUpHandler(new KeyUpHandler()
@@ -223,8 +223,6 @@ public class EditTradeoffReasonDialog extends DialogBox
 			{
 				super();
 				
-				System.out.println("edit tradeoff dialog........."+newTradeoffReason.getPackageId());
-				
 				this.dialog = dialogPointer;
 				this.localTradeoffReason = new GwtTradeoffReason();
 				this.localTradeoffReason.setProjectId(newTradeoffReason.getProjectId());
@@ -235,11 +233,7 @@ public class EditTradeoffReasonDialog extends DialogBox
 
 		public void onClick(ClickEvent event)
 		{
-			List<GwtTradeoffReason> list = listOfTradeoffReasons;
 			this.dialog.hide();
-
-			localTradeoffReason.setTradeoffreason(SquareUtil.firstCharacterToUpperCase(tradeoffReasonTextBox.getText().trim()));
-			updateTradeoffReasonCommand.updateCommand(this.localTradeoffReason);
 		}
 	}
 
