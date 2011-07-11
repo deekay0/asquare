@@ -208,7 +208,7 @@ public class ReviewPackagesPane extends BasePane
 					SquareException se = (SquareException) caught;
 					switch (se.getType()) {
 					case authorization:
-						Window.alert(messages.rateAuthorization());
+						Window.alert(messages.QAAuthorization());
 						break;
 				
 					default:
@@ -239,7 +239,7 @@ public class ReviewPackagesPane extends BasePane
 					SquareException se = (SquareException) caught;
 					switch (se.getType()) {
 					case authorization:
-						Window.alert(messages.rateAuthorization());
+						Window.alert(messages.SPAuthorization());
 						break;
 				
 					default:
@@ -270,7 +270,7 @@ public class ReviewPackagesPane extends BasePane
 							SquareException se = (SquareException) caught;
 							switch (se.getType()) {
 							case authorization:
-								Window.alert(messages.rateAuthorization());
+								Window.alert(messages.SPAuthorization());
 								break;
 						
 							default:
@@ -301,7 +301,7 @@ public class ReviewPackagesPane extends BasePane
 							SquareException se = (SquareException) caught;
 							switch (se.getType()) {
 							case authorization:
-								Window.alert(messages.rateAuthorization());
+								Window.alert(messages.QAAuthorization());
 								break;
 						
 							default:
@@ -498,6 +498,7 @@ public class ReviewPackagesPane extends BasePane
 			
 			public void onSuccess(Void result) {
 				setValueFromlistOfRateValues(packageID, attributeID, value);
+				drawRateMatrix();
 				
 			}});
 	
@@ -756,7 +757,7 @@ public class ReviewPackagesPane extends BasePane
 							   if(keyCode>= '0' && keyCode<='3')
 							   {
 								   getTotalsFromMatrix();
-								   setRateValue(rateValueTextbox.getTecniqueID(),rateValueTextbox.getEvaluationID(),Integer.parseInt(rateValueTextbox.getText()));
+								   setRateValue(rateValueTextbox.getPackageID(), rateValueTextbox.getAttributeID(), Integer.parseInt(rateValueTextbox.getText()));
 									rateValueTextbox.setOldValue(rateValueTextbox.getText());
 							   }
 							   else
@@ -965,13 +966,13 @@ public class ReviewPackagesPane extends BasePane
 		public void setTecniqueID(int tecniqueID) {
 			this.tecniqueID = tecniqueID;
 		}
-		public int getTecniqueID() {
+		public int getAttributeID() {
 			return tecniqueID;
 		}
 		public void setEvaluationID(int evaluationID) {
 			this.evaluationID = evaluationID;
 		}
-		public int getEvaluationID() {
+		public int getPackageID() {
 			return evaluationID;
 		}
 		public void setOldValue(String oldValue) {
@@ -1037,7 +1038,7 @@ public class ReviewPackagesPane extends BasePane
 					SquareException se = (SquareException) caught;
 					switch (se.getType()) {
 					case authorization:
-						Window.alert(messages.rateAuthorization());
+						Window.alert(messages.SPAuthorization());
 						break;
 				
 					default:
@@ -1067,7 +1068,7 @@ public class ReviewPackagesPane extends BasePane
 					SquareException se = (SquareException) caught;
 					switch (se.getType()) {
 					case authorization:
-						Window.alert(messages.rateAuthorization());
+						Window.alert(messages.QAAuthorization());
 						break;
 				
 					default:

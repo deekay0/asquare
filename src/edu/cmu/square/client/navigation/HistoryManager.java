@@ -237,6 +237,9 @@ public class HistoryManager implements ValueChangeHandler<String>
 			
 			chooseStep.setStyleName("square-crumb");
 			crumbBar.add(chooseCase);
+			System.out.println("chooseCase"+chooseCase);
+			
+			//Hyperlink chooseProject = new Hyperlink(this.currentState.getCaseName(), HomePilot.generateNavigationId(HomePilot.PageId.home));
 			
 			Hyperlink chooseProject = new Hyperlink(this.currentState.getCaseName(), HomePilot.generateNavigationId(HomePilot.PageId.home));
 			chooseProject.setStyleName("square-crumb");
@@ -249,8 +252,9 @@ public class HistoryManager implements ValueChangeHandler<String>
 				crumbBar.add(new Label(" > "));
 				if(this.currentState.getCaseID()==1)
 					crumbBar.add(chooseStep);
-				if(this.currentState.getCaseID()==3)
+				else if(this.currentState.getCaseID()==3)
 					crumbBar.add(chooseStepCase3);
+				//else crumbBar.add("fuck you");
 			 }
 			
 			crumbBar.add(new Label(" > "));

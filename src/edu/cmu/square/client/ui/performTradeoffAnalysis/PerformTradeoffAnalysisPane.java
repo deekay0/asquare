@@ -1144,5 +1144,4 @@ public class PerformTradeoffAnalysisPane extends BasePane
 	{
 		updateTradeoffReasoninDB(localTradeoffReason);
 	}
-	
 }

@@ -27,6 +27,8 @@ public class HbnProjectPackageAttributeRatingDao extends HbnAbstractDao<ProjectP
 	@Override
 	public void setRating(int projectID, int packageID, int requirementID, int rating)
 	{
+		System.out.println("project: "+projectID+" package: "+packageID+" attribute: "+requirementID+" rating: "+rating);
+		
 		String query = "replace into project_package_attribute_rating values(:projectId, :packageId, :requirementId,:value)";
 		
 		Query q = getSession().createSQLQuery(query);
@@ -61,6 +63,8 @@ public class HbnProjectPackageAttributeRatingDao extends HbnAbstractDao<ProjectP
 	@Override
 	public void updateRating(int projectID, int packageID, int requirementID, int rating)
 	{
+		System.out.println("project: "+projectID+" package: "+packageID+" attribute: "+requirementID+" rating: "+rating);
+		
 		String query = "replace into project_package_attribute_rating values(:projectId,:packageId,:requirementId,:rating)";
 		
 		Query q = getSession().createSQLQuery(query);

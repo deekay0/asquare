@@ -70,7 +70,7 @@ public class ReviewPackagesBusinessImpl extends BaseBusinessImpl implements Revi
 //
 //	}
 	
-	@AllowedRoles(roles = {Roles.Lead_Requirements_Engineer,Roles.Administrator})
+	@AllowedRoles(roles = {Roles.Security_Specialist,Roles.Administrator})
 	public void addQualityAttribute(GwtProject gwtProject, GwtQualityAttribute gwtQualityAttribute) throws SquareException
 	{
 		Project currentProject = new Project(gwtProject);
@@ -112,29 +112,7 @@ public class ReviewPackagesBusinessImpl extends BaseBusinessImpl implements Revi
 	}
 
 	
-//	@AllowedRoles(roles = {Roles.Lead_Requirements_Engineer,Roles.Administrator})
-//	public void addSoftwarePackage(GwtProject gwtProject, GwtSoftwarePackage gwtElicitationTechnique) throws SquareException
-//	{
-//		Project currentProject = new Project(gwtProject);
-//		SoftwarePackage techniqueToAdd = new SoftwarePackage(gwtElicitationTechnique);
-//
-//		System.out.println("before");
-//		// get the technique by name and check for duplicates
-//		List<SoftwarePackage> techniques = this.softwarePackageDao.getSoftwarePackagesByNameAndProject(techniqueToAdd.getName(), gwtProject.getId());
-//		System.out.println("after");
-//		if (!techniques.isEmpty())
-//		{
-//			SquareException se = new SquareException("Already exists");
-//			se.setType(ExceptionType.duplicateName);
-//			throw se;
-//		}
-//
-//		
-//		this.softwarePackageDao.addSoftwarePackageToProject(currentProject, techniqueToAdd);
-//		gwtElicitationTechnique.setId(techniqueToAdd.getId());
-//	}
-
-	@AllowedRoles(roles = {Roles.Lead_Requirements_Engineer,Roles.Administrator})
+	@AllowedRoles(roles = {Roles.Security_Specialist,Roles.Administrator})
 	public void addSoftwarePackage(GwtProject gwtProject, GwtSoftwarePackage gwtSoftwarePackage) throws SquareException
 	{
 		Project currentProject = new Project(gwtProject);
@@ -252,7 +230,7 @@ public class ReviewPackagesBusinessImpl extends BaseBusinessImpl implements Revi
 //	}
 
 	
-	@AllowedRoles(roles = {Roles.Security_Specialist})
+	@AllowedRoles(roles = {Roles.Security_Specialist, Roles.Administrator})
 	public void removeSoftwarePackage(GwtSoftwarePackage gwtSoftwarePackage, GwtProject project) throws SquareException
 	{
 
@@ -274,41 +252,82 @@ public class ReviewPackagesBusinessImpl extends BaseBusinessImpl implements Revi
 
 	}
 	
-	@AllowedRoles(roles = {Roles.Security_Specialist})
+	@AllowedRoles(roles = {Roles.Security_Specialist, Roles.Administrator})
 	public void removeQualityAttribute(GwtQualityAttribute gwtQualityAttribute, GwtProject project) throws SquareException
 	{
+		boolean otherQAs = false;
 		List<GwtProjectPackageAttributeRating> pparlist = projectPackageAttributeRatingDao.getAllRatingsForProject(new Project(project));
+		for(GwtProjectPackageAttributeRating it : pparlist)
+		{
+			System.out.print("This is current comparison "+it.getAttribute().getId()+ " "+gwtQualityAttribute.getId());
+			if(it.getAttribute().getId().intValue() != gwtQualityAttribute.getId().intValue())
+		
+			{
+				
+				System.out.print("We at least one other QA ");
+				System.out.print("Of course "+ it.getAttribute().getId() + " != "+gwtQualityAttribute.getId());
+				otherQAs = true;
+				break;
+			}
+		}
+		
+//		if(!otherQAs)
+//		{	
+//			System.out.print("This is the last qa for this project");
+//			SoftwarePackage sp = softwarePackageDao.fetch(1);
+//			QualityAttribute qa = new QualityAttribute();
+//			
+//			qa.setName("Unnamed");
+//			qa.setDescription("No description");
+//			qa.setId(gwtQualityAttribute.getId());
+//			qualityAttributeDao.create(qa);
+//			
+//			ProjectPackageAttributeRating ppar = new ProjectPackageAttributeRating(new ProjectPackageAttributeRatingId(project.getId(), sp.getId(), qa.getId()), sp, new Project(project), qa, 0);
+//			projectPackageAttributeRatingDao.create(ppar);
+//		}
+		
+		if(!otherQAs)
+		{
+			QualityAttribute qa = qualityAttributeDao.fetch(gwtQualityAttribute.getId());
+				
+			qa.setName("Unnamed");
+			qa.setDescription("No description");
+			qualityAttributeDao.update(qa);
+			return;
+		}
+		else
+			System.out.print("\n\n\nThis is NOT the last qa for this project: "+projectPackageAttributeRatingDao.getAllRatingsForProject(new Project(project)).size());
+
+		
+		
+		System.out.println("here we go");
+		 pparlist = projectPackageAttributeRatingDao.getAllRatingsForProject(new Project(project));
 		for(GwtProjectPackageAttributeRating it : pparlist)
 			if(it.getAttribute().getId() == gwtQualityAttribute.getId())
 				projectPackageAttributeRatingDao.deleteEntity(new ProjectPackageAttributeRating(it));
 		
-		int noOfSPs = 0;
-		//Make sure to take the package out of the SP DB if necessary
+		int noOfQAs = 0;
+		//Make sure to take the package out of the QA DB if necessary
 		pparlist = projectPackageAttributeRatingDao.getAllRatings(new Project(project));
 		for(GwtProjectPackageAttributeRating it : pparlist)
-			if(it.getPackage().getId() == gwtQualityAttribute.getId())
-				++noOfSPs;
+			if(it.getAttribute().getId() == gwtQualityAttribute.getId())
+				++noOfQAs;
 		
-		if(noOfSPs == 0)
+		if(noOfQAs == 0)
 		{
+			System.out.print("This is the last element among all projects");
 			qualityAttributeDao.deleteEntity(qualityAttributeDao.fetch(gwtQualityAttribute.getId())); 
-			
-			SoftwarePackage sp = softwarePackageDao.fetch(1);
-			QualityAttribute qa = new QualityAttribute();
-			
-			qa.setName("Unnamed");
-			qa.setDescription("No description");
-			qa.setId(0);
-			qualityAttributeDao.create(qa);
-			
-			ProjectPackageAttributeRating ppar = new ProjectPackageAttributeRating(new ProjectPackageAttributeRatingId(project.getId(), sp.getId(), qa.getId()), sp, new Project(project), qa, 0);
-			projectPackageAttributeRatingDao.create(ppar);
 		}
-
+		
+		
+		
+		
+		
+		
 	}
 
 	
-	@AllowedRoles(roles = {Roles.Security_Specialist})
+	@AllowedRoles(roles = {Roles.Security_Specialist, Roles.Administrator})
 	public void updateQualityAttribute(GwtQualityAttribute gwtEvaluation, GwtProject gwtProject) throws SquareException
 	{
 		if (gwtEvaluation == null)
@@ -343,7 +362,7 @@ public class ReviewPackagesBusinessImpl extends BaseBusinessImpl implements Revi
 	}
 
 	
-	@AllowedRoles(roles = {Roles.Security_Specialist})
+	@AllowedRoles(roles ={Roles.Security_Specialist, Roles.Administrator})
 	public void updateSoftwarePackage(GwtSoftwarePackage gwtElicitationTechnique, GwtProject gwtProject) throws SquareException
 	{
 		if (gwtElicitationTechnique == null)
@@ -409,16 +428,16 @@ public class ReviewPackagesBusinessImpl extends BaseBusinessImpl implements Revi
 	}
 
 	
-	@AllowedRoles(roles = {Roles.Lead_Requirements_Engineer, Roles.Requirements_Engineer})
-	public void setRateValue(int projectID, int techniqueID, int evaluationCriteriaID, int value) throws SquareException
+	@AllowedRoles(roles = {Roles.Security_Specialist, Roles.COTS_Vendor, Roles.Administrator})
+	public void setRateValue(int projectID, int packageID, int attributeID, int value) throws SquareException
 	{
 		
-		
-		if( qualityAttributeDao.getRating(projectID, techniqueID, evaluationCriteriaID) == -1)
-			qualityAttributeDao.setRating(projectID, techniqueID, evaluationCriteriaID, value);
+		System.out.println("\n\n\n\n\nproject: "+projectID+" package: "+packageID+" attribute: "+attributeID+" rating: "+value);
+		if( qualityAttributeDao.getRating(projectID, packageID, attributeID) == -1)
+			qualityAttributeDao.setRating(projectID, packageID, attributeID, value);
 		else
 		{
-			qualityAttributeDao.updateRating(projectID, techniqueID, evaluationCriteriaID, value);
+			qualityAttributeDao.updateRating(projectID, packageID, attributeID, value);
 		}
 
 	}
