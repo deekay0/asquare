@@ -75,9 +75,7 @@ public class ChooseCasePilot extends Pilot
 	
 	public void determineAccessRights(String page, State currentState)
 	{
-
-	//	currentState.setMode(GwtModesType.ReadWrite); // no matter what, the home pages are always read only./??????
-		currentState.setMode(GwtModesType.ReadOnly);
+		currentState.setMode(GwtModesType.ReadWrite); // no matter what, the home pages are always read only.
 	}
 	
 	
