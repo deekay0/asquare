@@ -119,7 +119,7 @@ public class ElicitSecurityRequirementsPilot extends Pilot
 		else if(currentState.getCaseID()==3)
 		{
 			System.out.println(currentState.getCaseName());
-			System.out.println(currentState.getCaseName() == AsquareCase.Case3);
+			//System.out.println(currentState.getCaseName() == AsquareCase.Case3);
 			System.out.println("case3.........");
 			
 			if (currentState.getUserProjectRole() == ProjectRole.Acquisition_Organization_Engineer)

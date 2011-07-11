@@ -56,4 +56,6 @@ public interface ReviewPackagesPaneMessages extends CommonMessages
 	String createQualityAttributeDialogBoxDelete();
 	String confirmDelete();
 	String createSoftwarePackageDialogBoxDelete();
+	String QAAuthorization();
+	String SPAuthorization();
 }

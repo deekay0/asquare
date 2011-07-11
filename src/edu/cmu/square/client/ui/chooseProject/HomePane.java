@@ -236,12 +236,7 @@ public class HomePane extends BasePane
 		
 		currentState.setProjectName(project.getName());
 		
-		for(AsquareCase ac: AsquareCase.values()){
-			if(ac.getLabel().equals(project.getClass().getName()))
-			{
-				currentState.setCaseName(ac);
-			}
-		}
+		currentState.setCaseName(project.getCases().getName());
 		
 		currentState.setProjectInspectionStatus(null);
 		

@@ -74,13 +74,6 @@ public class FinalProductSelectionPane extends BasePane
 	private FlexTable matrix = new FlexTable();
 	private FlexTable matrixHeader = new FlexTable();
 	
-	SquareHyperlink editRatingsLink = new SquareHyperlink(messages.editRatingsLink());		
-	SquareHyperlink finishRatingsLink = new SquareHyperlink(messages.finishRatingsLink());
-	SquareHyperlink editPackagesLink = new SquareHyperlink(messages.editPackagesLink());
-	SquareHyperlink finishPackagesLink = new SquareHyperlink(messages.finishPackagesLink());
-	SquareHyperlink editAttributesLink = new SquareHyperlink(messages.editAttributesLink());		
-	SquareHyperlink finishAttributesLink = new SquareHyperlink(messages.finishAttributesLink());
-	
 	boolean isReadOnly=false;
 
 	public FinalProductSelectionPane(final State stateInfo)
@@ -100,8 +93,8 @@ public class FinalProductSelectionPane extends BasePane
 	
 		isReadOnly = true;
 		loadAttributes();
-		loadRationale();
-		loadTradeoffReasons();
+//		loadRationale();
+//		loadTradeoffReasons();
 	}
 	
 	public void PaneInitialization()
@@ -142,6 +135,7 @@ public class FinalProductSelectionPane extends BasePane
 						}
 						rationaleLabel.setWidth("500px");
 						rationaleLabel.setSize("500px", "80px");
+						loadTradeoffReasons();
 					}			
 					@Override
 					public void onFailure(Throwable caught)
@@ -257,19 +251,7 @@ public class FinalProductSelectionPane extends BasePane
 		formatter1.setHorizontalAlignment(4, 1, HasHorizontalAlignment.ALIGN_LEFT);
 		formatter1.setHorizontalAlignment(5, 1, HasHorizontalAlignment.ALIGN_RIGHT);
 		
-		if(isReadOnly)
-		{
-			if(GwtModesType.ReadWrite==this.currentState.getMode())
-			{
-				this.matrixHeader.setWidget(2, 1, editRatingsLink);
-			}		
-			this.matrixHeader.setWidget(3, 1, matrix);		
-		}
-		else
-		{
-			this.matrixHeader.setWidget(2, 1, finishRatingsLink);
-			this.matrixHeader.setWidget(3, 1, matrix);
-		}
+		this.matrixHeader.setWidget(3, 1, matrix);		
 		
 	}
 	
@@ -288,6 +270,7 @@ public class FinalProductSelectionPane extends BasePane
 						System.out.println("We got quality attribute: "+result.size());
 						attributes = result;
 						loadPackages();
+						
 					}
 					
 					@Override
@@ -308,10 +291,7 @@ public class FinalProductSelectionPane extends BasePane
 			public void onSuccess(List<GwtSoftwarePackage> result)
 			{
 				softwarePackages = result;
-				System.out.println("We got software packages: "+result.size());
-				loadRatings();		
-				
-				loadRequirementRatings();
+				loadRatings();	
 			}	
 			@Override
 			public void onFailure(Throwable caught)
@@ -329,12 +309,11 @@ public class FinalProductSelectionPane extends BasePane
 					@Override
 					public void onSuccess(List<GwtTradeoffReason> result)
 					{
-						System.out.println("tradeoff reason: "+result.size());
-						System.out.println("tradeoff reason:........"+result.get(0).getTradeoffreason());
+						
 						tradeoffReasons = result;
-						drawRateMatrix();
-						getTotalsFromMatrix();
-						PaneInitialization();
+						
+						loadRequirementRatings();
+						
 					}
 					@Override
 					public void onFailure(Throwable caught)
@@ -352,12 +331,10 @@ public class FinalProductSelectionPane extends BasePane
 					@Override
 					public void onSuccess(List<GwtRating >  result)
 					{
-						System.out.println("We got ratings: "+result.size());
-						System.out.println("We got ratings:    ... 0"+result.get(0).getPackageId());
+						
 						ratings = result;
-						drawRateMatrix();
-						getTotalsFromMatrix();
-						PaneInitialization();
+						
+						loadRationale();
 					}			
 					@Override
 					public void onFailure(Throwable caught)
@@ -375,8 +352,6 @@ public class FinalProductSelectionPane extends BasePane
 					@Override
 					public void onSuccess(List<GwtRequirementRating> result)
 					{
-						System.out.println("We got requirement ratings: "+result.size());
-						System.out.println("We got requirement ratings:    ... 0"+result.get(0).getPackageId());
 						requirementRatings = result;
 						drawRateMatrix();
 						getTotalsFromMatrix();
