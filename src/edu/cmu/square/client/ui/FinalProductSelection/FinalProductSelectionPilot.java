@@ -76,6 +76,10 @@ public class FinalProductSelectionPilot extends Pilot
 		{
 			currentState.setMode(GwtModesType.ReadOnly);
 		}
+		else if (currentState.getUserProjectRole() == ProjectRole.Administrator)
+		{
+			currentState.setMode(GwtModesType.ReadWrite);
+		}
 		else
 		{
 			currentState.setMode(GwtModesType.ReadOnly);

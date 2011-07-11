@@ -64,7 +64,7 @@ public class ElicitSecurityRequirementsPilot extends Pilot
 	public void determineAccessRights(String page, State currentState)
 	{
 		//SQUARE
-		if (currentState.getUserProjectRole() == ProjectRole.Lead_Requirements_Engineer)
+		/*if (currentState.getUserProjectRole() == ProjectRole.Lead_Requirements_Engineer)
 		{
 			currentState.setMode(GwtModesType.ReadWrite);
 		}			
@@ -72,9 +72,14 @@ public class ElicitSecurityRequirementsPilot extends Pilot
 		{
 			currentState.setMode(GwtModesType.ReadWrite);
 		}
-		else if (currentState.getUserProjectRole() == ProjectRole.None)
+		*/
+		if (currentState.getUserProjectRole() == ProjectRole.None)
 		{
 			currentState.setMode(GwtModesType.NoAccess);
+		}
+		else if (currentState.getUserProjectRole() == ProjectRole.Administrator)
+		{
+			currentState.setMode(GwtModesType.ReadWrite);
 		}
 		else{
 			currentState.setMode(GwtModesType.ReadOnly);

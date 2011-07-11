@@ -10,9 +10,9 @@ public enum ProjectRole
 	Contractor("Contractor"),
 	COTS_Vendor("COTS Vendor"),
 	Security_Specialist("Security Specialist"),
+	Administrator("Administrator"),
 	
 	None("None");
-	
 	
 	
 	private String label;

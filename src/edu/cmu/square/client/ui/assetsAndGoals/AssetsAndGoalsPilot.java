@@ -128,6 +128,10 @@ public class AssetsAndGoalsPilot extends Pilot
 			{
 				currentState.setMode(GwtModesType.NoAccess);
 			}
+			else if (currentState.getUserProjectRole() == ProjectRole.Administrator)
+			{
+				currentState.setMode(GwtModesType.ReadWrite);
+			}
 			else 
 			{
 				currentState.setMode(GwtModesType.ReadOnly);
@@ -161,6 +165,10 @@ public class AssetsAndGoalsPilot extends Pilot
 			else if (currentState.getUserProjectRole() == ProjectRole.None)
 			{
 				currentState.setMode(GwtModesType.NoAccess);
+			}
+			else if (currentState.getUserProjectRole() == ProjectRole.Administrator)
+			{
+				currentState.setMode(GwtModesType.ReadWrite);
 			}
 			else 
 			{

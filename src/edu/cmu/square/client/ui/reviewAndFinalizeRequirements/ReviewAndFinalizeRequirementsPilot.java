@@ -102,7 +102,11 @@ public class ReviewAndFinalizeRequirementsPilot extends Pilot
 		{
 			currentState.setMode(GwtModesType.ReadWrite);
 		}
-		*/		
+		*/	
+		else if (currentState.getUserProjectRole() == ProjectRole.Administrator)
+		{
+			currentState.setMode(GwtModesType.ReadWrite);
+		}
 		else 
 		{
 			currentState.setMode(GwtModesType.ReadOnly);

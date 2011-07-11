@@ -96,6 +96,10 @@ public class ReviewPackagesPilot extends Pilot
 		{
 			currentState.setMode(GwtModesType.NoAccess);
 		}
+		else if (currentState.getUserProjectRole() == ProjectRole.Administrator)
+		{
+			currentState.setMode(GwtModesType.ReadWrite);
+		}
 		else
 		{
 			currentState.setMode(GwtModesType.ReadOnly);
