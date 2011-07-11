@@ -46,7 +46,8 @@ public class State extends StateHandler
 	private int projectID;
 	private int caseID;
 	private int totalPrioritizations;
-	private AsquareCase caseName = AsquareCase.None;
+	//private String caseName ="";
+	private AsquareCase caseName = null;
 	private String projectName = "";
 	private String projectInspectionStatus = null;
 	private GWTAppProperties appProperties;
@@ -61,6 +62,8 @@ public class State extends StateHandler
 		setUserName("anonymous");
 		setProjectName("");
 		setCaseName(null);
+		//setCaseName("");
+		
 		setCurrentView("LogInPane");
 		setAuthenticated(null);
 		setSiteAdministrator(false);

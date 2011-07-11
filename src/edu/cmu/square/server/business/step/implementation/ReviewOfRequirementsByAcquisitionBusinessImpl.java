@@ -164,7 +164,7 @@ public class ReviewOfRequirementsByAcquisitionBusinessImpl extends BaseBusinessI
 			requirementDao.zeroOutPriorities(projectId);
 		}
 
-		//@AllowedRoles(roles = {Roles.All})
+		@AllowedRoles(roles = {Roles.All})
 		public List<GwtRequirement> getRequirementsFromProject(int projectId) throws SquareException
 		{
 			Project project = projectDao.fetch(projectId);
