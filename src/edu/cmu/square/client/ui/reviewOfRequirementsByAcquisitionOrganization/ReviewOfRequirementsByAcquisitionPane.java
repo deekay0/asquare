@@ -618,16 +618,35 @@ public class ReviewOfRequirementsByAcquisitionPane extends BasePane
 			searchTable.setWidget(0, 0, new Label(messages.termsAndDefinition()));
 		}
 		*/
-		searchTable.setWidget(0, 1, new Label(" "));
-		searchTable.setWidget(0, 2, searchBox);
+	//	searchTable.setWidget(0, 1, new Label(" "));
+	//	searchTable.setWidget(0, 2, searchBox);
+		
+	//	searchTable.setWidget(0, 0, new Label(messages.requirementTableTitle()));
+		
+		searchTable.setWidget(0, 0, new Label(messages.requirementTableBarTitle()));
+		searchTable.setWidget(0, 1, new Label(messages.requirementTableBarDescription()));
+		searchTable.setWidget(0, 2, new Label(messages.requirementTableBarStatus()));
+		searchTable.setWidget(0, 3, new Label("      "));
 
-		searchTable.getCellFormatter().setHorizontalAlignment(0, 0, HasHorizontalAlignment.ALIGN_LEFT);
-		searchTable.getCellFormatter().setHorizontalAlignment(0, 2, HasHorizontalAlignment.ALIGN_RIGHT);
+		searchTable.getCellFormatter().setWidth(0, 0, "20%");
+		searchTable.getCellFormatter().setWidth(0, 1, "60%");
+		searchTable.getCellFormatter().setWidth(0, 2, "15%");
+		searchTable.getCellFormatter().setWidth(0, 3, "20%");
+		
+		//searchTable.getCellFormatter().setHorizontalAlignment(0, 0, HasHorizontalAlignment.ALIGN_LEFT);
+		//searchTable.getCellFormatter().setHorizontalAlignment(0, 2, HasHorizontalAlignment.ALIGN_RIGHT);
+		
+		searchTable.getCellFormatter().setHorizontalAlignment(0, 0, HasHorizontalAlignment.ALIGN_CENTER);
+		searchTable.getCellFormatter().setHorizontalAlignment(0, 1, HasHorizontalAlignment.ALIGN_CENTER);
+		searchTable.getCellFormatter().setHorizontalAlignment(0, 2, HasHorizontalAlignment.ALIGN_CENTER);
+		searchTable.getCellFormatter().setHorizontalAlignment(0, 3, HasHorizontalAlignment.ALIGN_CENTER);
 
 		searchTable.getCellFormatter().setStyleName(0, 0, "square-Categorize-TableHeader");
 		searchTable.getCellFormatter().setStyleName(0, 1, "square-Categorize-TableHeader");
 		searchTable.getCellFormatter().setStyleName(0, 2, "square-Categorize-TableHeader");
+		searchTable.getCellFormatter().setStyleName(0, 3, "square-Categorize-TableHeader");
 
+		
 		return searchTable;
 	}
 
