@@ -572,8 +572,7 @@ public class PerformTradeoffAnalysisPane extends BasePane
 	private void setPackagePriority(final int packageID, final int priority)
 	{	
 		//the sequence of requirementID and packageID has problems 
-		
-		
+		System.out.println("set priority........."+currentProject.getId()+"  "+packageID +"  "+priority);		
 		this.performTradeoffService.setPriority(currentProject.getId(), packageID, priority, new AsyncCallback<Void>(){
 		
 			public void onFailure(Throwable caught) {
@@ -702,6 +701,7 @@ public class PerformTradeoffAnalysisPane extends BasePane
 		{		
 			Label packageLabel = new Label(softwarePackages.get(j).getName());
 			
+			
 			final DecoratedPopupPanel simplePopup = new DecoratedPopupPanel(true);
 			simplePopup.setWidth("150px");
 			simplePopup.setWidget(new HTML(softwarePackages.get(j).getDescription()));
@@ -723,6 +723,8 @@ public class PerformTradeoffAnalysisPane extends BasePane
 			
 			final SummaryElementHyperLinkElement tradeoffReasonLink = new SummaryElementHyperLinkElement(softwarePackages.get(j).getId(), "Tradeoff Reason");
 			final int index = j;
+			final int packageid = softwarePackages.get(j).getId();
+			
 			tradeoffReasonLink.addClickHandler(new ClickHandler(){
 				public void onClick(ClickEvent event) {
 					editTradeoffReasonDialog = new EditTradeoffReasonDialog(tradeoffReasons.get(index),tradeoffReasons,PerformTradeoffAnalysisPane.this);
@@ -755,8 +757,8 @@ public class PerformTradeoffAnalysisPane extends BasePane
 					{
 						valueSelected =-1;
 					}
-					System.out.println("here2....."+"  "+index+"   "+valueSelected);
-					setPackagePriority(index+1,valueSelected);
+					System.out.println("here2....."+"  "+packageid+"   "+valueSelected);
+					setPackagePriority(packageid,valueSelected);
 					tradeoffReasons.get(index).setPriority(valueSelected);
 					System.out.println("here3.....");
 				}
