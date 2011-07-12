@@ -58,6 +58,7 @@ public class ReviewAndFinalizeRequirementsPilot extends Pilot
 		}
 		else if(pageId.equals(PageId.requirementDetail))
 		{
+			System.out.println("navigato  heelo");
 			return  new ReviewAndFinalizeRequirementsDetailPane(currentStateInformation);
 		}
 		
@@ -66,6 +67,7 @@ public class ReviewAndFinalizeRequirementsPilot extends Pilot
 
 	public void determineAccessRights(String page, State currentState)
 	{
+		System.out.println("determin access heelo");
 		if (currentState.isSiteAdministrator() == true)
 		{
 			currentState.setMode(GwtModesType.ReadWrite);
@@ -121,6 +123,7 @@ public class ReviewAndFinalizeRequirementsPilot extends Pilot
 	@Override
 	public String getBreadCrumb()
 	{
+		System.out.println("get breadcrumb heelo");
 		final BreadCrumbMessages messages = (BreadCrumbMessages) GWT.create(BreadCrumbMessages.class);
 		return messages.reviewAndFinalizeRequirements();
 	}

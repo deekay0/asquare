@@ -47,6 +47,9 @@ import edu.cmu.square.client.remoteService.step.interfaces.ReviewPackagesService
 import edu.cmu.square.client.ui.ChooseStepCase3.ChooseStepCase3Pilot;
 import edu.cmu.square.client.ui.core.BasePane;
 import edu.cmu.square.client.ui.core.SquareHyperlink;
+import edu.cmu.square.client.ui.reviewOfRequirementsByAcquisitionOrganization.ReviewOfRequirementsByAcquisitionPane;
+import edu.cmu.square.client.ui.reviewOfRequirementsByAcquisitionOrganization.ReviewOfRequirementsByAcquisitionPilot;
+//import edu.cmu.square.client.ui.reviewOfRequirementsByAcquisitionOrganization.ReviewOfRequirementsByAcquisitionPane.SummaryElementHyperLinkElement;
 
 
 public class ReviewAndFinalizeRequirementsPane extends BasePane
@@ -1034,7 +1037,7 @@ public class ReviewAndFinalizeRequirementsPane extends BasePane
 	public Widget getDataRow(int rowCount, GwtRequirement req)
 	{
 		FlexTable rowTable = new FlexTable();
-		rowTable.setStyleName("square-agree-on-definition-flex"); 
+		rowTable.setStyleName("square-agree-on-definition-flex"); //ASQUARE change!!!!
 		rowTable.setCellSpacing(4);
 		rowTable.setSize("100%", "50px");
 
@@ -1044,9 +1047,27 @@ public class ReviewAndFinalizeRequirementsPane extends BasePane
 		
 		
 		final SummaryElementHyperLinkElement viewDetailLink = new SummaryElementHyperLinkElement(req.getId(), "View Detail");
-		
+		//final SummaryElementHyperLinkElement hyper2 = new SummaryElementHyperLinkElement(req.getId(), "Remove");
 
-		if (this.getCurrentState().getMode().equals(GwtModesType.ReadWrite))
+		/*
+		hyper2.addClickHandler(new ClickHandler()
+			{
+
+				@Override
+				public void onClick(ClickEvent event)
+				{
+					boolean response = Window.confirm(messages.confirmDelete() + "?");
+					if (response)
+					{
+						GwtRequirement requirement = new GwtRequirement();
+						requirement.setId(hyper2.getrequirementirementId());
+						removeRequirement(requirement);
+					}
+				}
+			});
+			*/
+
+		if (this.getCurrentState().getMode().equals(GwtModesType.ReadOnly)||this.getCurrentState().getMode().equals(GwtModesType.ReadWrite))
 		{
 			HorizontalPanel links = new HorizontalPanel();
 			links.setStyleName("flex-link-bar");
@@ -1060,7 +1081,7 @@ public class ReviewAndFinalizeRequirementsPane extends BasePane
 			rowTable.setWidget(0, 2, new Label(" "));
 		}
 
-
+		//final ReviewOfRequirementsByAcquisitionPane reviewOfRequirementsByAcquisitionObject = this;
 
 //view detail hyperlink
 		viewDetailLink.addClickHandler(new ClickHandler()
@@ -1077,7 +1098,6 @@ public class ReviewAndFinalizeRequirementsPane extends BasePane
 				}
 	
 			});
-
 		int addedItemIndex = getIndexById(modifyRequirementId);
 
 		if (addedItemIndex != -1 && (addedItemIndex + 1) == rowCount)

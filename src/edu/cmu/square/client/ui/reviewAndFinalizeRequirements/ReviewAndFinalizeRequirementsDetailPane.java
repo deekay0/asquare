@@ -136,6 +136,7 @@ public class ReviewAndFinalizeRequirementsDetailPane extends BasePane implements
 			
 			this.showLoadingStatusBar();
 
+			System.out.println("ReviewAndFinalizeRequirementsDetailPane");
 			loadSubGoalsFromProject();
 		}
 
@@ -158,13 +159,17 @@ public class ReviewAndFinalizeRequirementsDetailPane extends BasePane implements
 					{
 						businessGoalInfo = result;
 						listOfProjectSubGoals = businessGoalInfo.getSubGoals();
-						//loadArtifactsFromProject();
+						loadArtifactsFromProject();
+						System.out.println("loadSubGoalsFromProject");
+
 					}
 				});
 		}
-		/*
+		
 		public void loadArtifactsFromProject()
 		{
+			System.out.println("loadArtifactsFromProject");
+
 			CollectArtifactsServiceAsync service = GWT.create(CollectArtifactsService.class);
 			int projectId = this.getCurrentState().getProjectID();
 			
@@ -179,12 +184,14 @@ public class ReviewAndFinalizeRequirementsDetailPane extends BasePane implements
 				
 				public void onSuccess(List<GwtArtifact> result)
 				{
-					listOfProjectArtifacts = result;
+			//		listOfProjectArtifacts = result;
 					loadProjectRequirements();
+					System.out.println("loadArtifactsFromProject success");
+
 				}
 			});
 		}
-*/
+
 		
 		public void loadProjectRequirements()
 		{
@@ -320,8 +327,7 @@ public class ReviewAndFinalizeRequirementsDetailPane extends BasePane implements
 					{
 						if (CommandTypes.insert == currentCommand)
 						{
-							History.newItem(ReviewAndFinalizeRequirementsPilot
-									.generateNavigationId(ReviewAndFinalizeRequirementsPilot.PageId.home));
+							History.newItem(ReviewAndFinalizeRequirementsPilot.generateNavigationId(ReviewAndFinalizeRequirementsPilot.PageId.home));
 						}
 						else
 						{
@@ -374,8 +380,8 @@ public class ReviewAndFinalizeRequirementsDetailPane extends BasePane implements
 			this.matrix.getCellFormatter().setAlignment(1, 1, HasHorizontalAlignment.ALIGN_LEFT, HasVerticalAlignment.ALIGN_TOP);
 			this.matrix.getCellFormatter().setAlignment(2, 0, HasHorizontalAlignment.ALIGN_RIGHT, HasVerticalAlignment.ALIGN_TOP);
 			this.matrix.getCellFormatter().setAlignment(2, 1, HasHorizontalAlignment.ALIGN_LEFT, HasVerticalAlignment.ALIGN_TOP);
-			this.matrix.getCellFormatter().setAlignment(3, 0, HasHorizontalAlignment.ALIGN_RIGHT, HasVerticalAlignment.ALIGN_TOP);
-			this.matrix.getCellFormatter().setAlignment(3, 1, HasHorizontalAlignment.ALIGN_LEFT, HasVerticalAlignment.ALIGN_TOP);
+		//	this.matrix.getCellFormatter().setAlignment(3, 0, HasHorizontalAlignment.ALIGN_RIGHT, HasVerticalAlignment.ALIGN_TOP);
+		//	this.matrix.getCellFormatter().setAlignment(3, 1, HasHorizontalAlignment.ALIGN_LEFT, HasVerticalAlignment.ALIGN_TOP);
 		//	this.matrix.getCellFormatter().setAlignment(4, 0, HasHorizontalAlignment.ALIGN_RIGHT, HasVerticalAlignment.ALIGN_TOP);
 		//	this.matrix.getCellFormatter().setAlignment(4, 1, HasHorizontalAlignment.ALIGN_LEFT, HasVerticalAlignment.ALIGN_TOP);
 
@@ -430,11 +436,11 @@ public class ReviewAndFinalizeRequirementsDetailPane extends BasePane implements
 					@Override
 					public void onClick(ClickEvent event)
 					{
-						System.out.println("Hello, you clicked approve button.");
+						//System.out.println("Hello, you clicked approve button.");
 						boolean response = Window.confirm(messages.confirmApprove() + "?");
 						if (response)
 						{
-							System.out.println("approv button response is working");
+							//System.out.println("approv button response is working");
 							GwtRequirement req = new GwtRequirement();
 							//req.setId(approveButton.getRequirementId());
 							req.setId(currentRequirementId);
@@ -452,11 +458,11 @@ public class ReviewAndFinalizeRequirementsDetailPane extends BasePane implements
 				@Override
 				public void onClick(ClickEvent event)
 				{
-					System.out.println("Hello, you clicked request revision button.");
+					//System.out.println("Hello, you clicked request revision button.");
 					boolean response = Window.confirm(messages.confirmRequestRevision() + "?");
 					if (response)
 					{
-						System.out.println("request button response is working");
+						//System.out.println("request button response is working");
 						GwtRequirement req = new GwtRequirement();
 						req.setId(currentRequirementId);
 						//req.setId(requestRevisionButton.getRequirementId());
