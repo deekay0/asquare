@@ -68,7 +68,7 @@ public class AddRationaleDialog extends DialogBox
 		this.tradeoffReasonTextBox.setSize("500px", "80px");
 
 		// Set up the buttons
-		saveButton = new Button(messages.editTradeoffReasonDialogBoxOkay(), new SaveHandler(this, project, spackage));
+		saveButton = new Button(messages.editTradeoffReasonDialogBoxSave(), new SaveHandler(this, project, spackage));
 		Button cancelButton = new Button(messages.editTradeoffReasonDialogBoxCancel(), new CancelHandler(this));
 		
 		this.tradeoffReasonTextBox.addKeyUpHandler(new KeyUpHandler()
@@ -221,6 +221,9 @@ public class AddRationaleDialog extends DialogBox
 		public void onClick(ClickEvent event)
 		{
 			this.dialog.hide();
+
+			localRationale.setRationale(SquareUtil.firstCharacterToUpperCase(tradeoffReasonTextBox.getText().trim()));
+			updateRationaleCommand.updateCommand(this.localRationale);
 		}
 	}
 
