@@ -147,11 +147,11 @@ public class ElicitSecurityRequirementPane extends BasePane implements Command
 				{
 					businessGoalInfo = result;
 					listOfProjectSubGoals = businessGoalInfo.getSubGoals();
-					//loadArtifactsFromProject();
+					loadArtifactsFromProject();
 				}
 			});
 	}
-	/*
+	
 	public void loadArtifactsFromProject()
 	{
 		CollectArtifactsServiceAsync service = GWT.create(CollectArtifactsService.class);
@@ -168,12 +168,12 @@ public class ElicitSecurityRequirementPane extends BasePane implements Command
 			
 			public void onSuccess(List<GwtArtifact> result)
 			{
-				listOfProjectArtifacts = result;
+			//	listOfProjectArtifacts = result;
 				loadProjectRequirements();
 			}
 		});
 	}
-*/
+
 	
 	public void loadProjectRequirements()
 	{
