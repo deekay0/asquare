@@ -236,6 +236,7 @@ public class HistoryManager implements ValueChangeHandler<String>
 			Hyperlink chooseStepCase3 = new Hyperlink(this.currentState.getProjectName(), ChooseStepCase3Pilot.generateNavigationId(ChooseStepCase3Pilot.PageId.home));
 			
 			chooseStep.setStyleName("square-crumb");
+			chooseStepCase3.setStyleName("square-crumb");
 			crumbBar.add(chooseCase);
 			System.out.println("chooseCase"+chooseCase);
 			
@@ -248,12 +249,16 @@ public class HistoryManager implements ValueChangeHandler<String>
 			if(this.currentState.getProjectName()!="none") //empty value of project
 			 { 
 				crumbBar.add(new Label(" > "));
+				System.out.println("aaaa   ........."+this.currentState.getProjectName()+"   id..."+this.currentState.getCaseID());
 				crumbBar.add(chooseProject);
+				
 				crumbBar.add(new Label(" > "));
 				if(this.currentState.getCaseID()==1)
 					crumbBar.add(chooseStep);
 				else if(this.currentState.getCaseID()==3)
 					crumbBar.add(chooseStepCase3);
+				
+				
 				//else crumbBar.add("fuck you");
 			 }
 			
