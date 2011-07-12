@@ -243,6 +243,7 @@ public class ReviewAndFinalizeRequirementsBusinessImpl extends BaseBusinessImpl 
 				
 				r.update(gwtRequirement);
 				
+				/*
 				if(gwtRequirement.getRisks().isEmpty()) 
 				{
 					SquareException se = new SquareException("At least one risk is required.");
