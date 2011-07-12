@@ -73,7 +73,7 @@ public class ReviewOfRequirementsByAcquisitionDetailPane extends BasePane implem
 
 		private Label subGoalLabel = new Label(messages.securityGoal());
 //		private Label riskLabel = new Label(messages.risks());
-		private Label artifactLabel = new Label(messages.artifacts());
+		//private Label artifactLabel = new Label(messages.artifacts());
 
 
 		private TextBox requirementTitleTextBox = new TextBox();
@@ -394,7 +394,7 @@ public class ReviewOfRequirementsByAcquisitionDetailPane extends BasePane implem
 
 			this.subGoalLabel.setStyleName("Risk-Input-Labels");
 //			this.riskLabel.setStyleName("Risk-Input-Labels");
-			this.artifactLabel.setStyleName("Risk-Input-Labels");
+			//this.artifactLabel.setStyleName("Risk-Input-Labels");
 
 			this.requirementTitleTextBox.setStyleName("square-long-textBox");
 			this.requirementDescriptionTextBox.setStyleName("square-long-textBox");
@@ -420,7 +420,7 @@ public class ReviewOfRequirementsByAcquisitionDetailPane extends BasePane implem
 
 			this.matrix.setWidget(2, 0, subGoalLabel);
 //			this.matrix.setWidget(3, 0, riskLabel);
-			this.matrix.setWidget(3, 0, artifactLabel);
+			//this.matrix.setWidget(3, 0, artifactLabel);
 
 			//System.out.println("before button");
 			
