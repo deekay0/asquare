@@ -68,7 +68,7 @@ public class ElicitSecurityRequirementPane extends BasePane implements Command
 
 	private Label subGoalLabel = new Label(messages.securityGoal());
 //	private Label riskLabel = new Label(messages.risks());
-	private Label artifactLabel = new Label(messages.artifacts());
+//	private Label artifactLabel = new Label(messages.artifacts());
 
 
 	private TextBox requirementTitleTextBox = new TextBox();
@@ -92,8 +92,8 @@ public class ElicitSecurityRequirementPane extends BasePane implements Command
 	private List<GwtRisk> listOfRiksMapppedToRequirement = new ArrayList<GwtRisk>();
 	private List<GwtSubGoal> listOfProjectSubGoals = new ArrayList<GwtSubGoal>();
 	private List<GwtSubGoal> listOfSubGoalsMappedToRequirement = new ArrayList<GwtSubGoal>();
-	private List<GwtArtifact> listOfProjectArtifacts = new ArrayList<GwtArtifact>();
-	private List<GwtArtifact> listOfArtifactsMappedToRequirement = new ArrayList<GwtArtifact>();
+//	private List<GwtArtifact> listOfProjectArtifacts = new ArrayList<GwtArtifact>();
+//	private List<GwtArtifact> listOfArtifactsMappedToRequirement = new ArrayList<GwtArtifact>();
 
 	private int currentIndex = -1;
 	private int currentRequirementId = -1;
@@ -101,7 +101,7 @@ public class ElicitSecurityRequirementPane extends BasePane implements Command
 	
 	private Label subGoalEmptyLabel;
 	private Label riskEmptyLabel;
-	private Label artifactsEmptyLabel;
+//	private Label artifactsEmptyLabel;
 
 	private enum CommandTypes
 	{
@@ -110,7 +110,7 @@ public class ElicitSecurityRequirementPane extends BasePane implements Command
 	
 	private CommandTypes currentCommand;
 	private SubGoalDialogBox subGoalDialog;
-	private ArtifactDialogBox artifactDialog;
+//	private ArtifactDialogBox artifactDialog;
 //	private RiskDialogBox riskDialogBox;
 
 	private GwtBusinessGoal businessGoalInfo = new GwtBusinessGoal();
@@ -147,11 +147,11 @@ public class ElicitSecurityRequirementPane extends BasePane implements Command
 				{
 					businessGoalInfo = result;
 					listOfProjectSubGoals = businessGoalInfo.getSubGoals();
-					loadArtifactsFromProject();
+					//loadArtifactsFromProject();
 				}
 			});
 	}
-	
+	/*
 	public void loadArtifactsFromProject()
 	{
 		CollectArtifactsServiceAsync service = GWT.create(CollectArtifactsService.class);
@@ -173,7 +173,7 @@ public class ElicitSecurityRequirementPane extends BasePane implements Command
 			}
 		});
 	}
-
+*/
 	
 	public void loadProjectRequirements()
 	{
@@ -195,7 +195,7 @@ public class ElicitSecurityRequirementPane extends BasePane implements Command
 				{
 					listOfSubGoalsMappedToRequirement = currentRequirement.getSubGoals();
 					listOfRiksMapppedToRequirement = currentRequirement.getRisks();
-					listOfArtifactsMappedToRequirement = currentRequirement.getArtifacts();
+				//	listOfArtifactsMappedToRequirement = currentRequirement.getArtifacts();
 				}
 				loadProjectRisks();
 			}
@@ -357,7 +357,7 @@ public class ElicitSecurityRequirementPane extends BasePane implements Command
 
 		this.matrix.setWidget(2, 1, createHTMLSubGoalList());
 //		this.matrix.setWidget(3, 1, createHTMLRisksList());
-		this.matrix.setWidget(3, 1, createHTMLArtifactsList());
+//		this.matrix.setWidget(3, 1, createHTMLArtifactsList());
 
 		
 		this.matrix.getCellFormatter().setAlignment(1, 0, HasHorizontalAlignment.ALIGN_RIGHT, HasVerticalAlignment.ALIGN_TOP);
@@ -366,8 +366,8 @@ public class ElicitSecurityRequirementPane extends BasePane implements Command
 		this.matrix.getCellFormatter().setAlignment(2, 1, HasHorizontalAlignment.ALIGN_LEFT, HasVerticalAlignment.ALIGN_TOP);
 		this.matrix.getCellFormatter().setAlignment(3, 0, HasHorizontalAlignment.ALIGN_RIGHT, HasVerticalAlignment.ALIGN_TOP);
 		this.matrix.getCellFormatter().setAlignment(3, 1, HasHorizontalAlignment.ALIGN_LEFT, HasVerticalAlignment.ALIGN_TOP);
-		this.matrix.getCellFormatter().setAlignment(4, 0, HasHorizontalAlignment.ALIGN_RIGHT, HasVerticalAlignment.ALIGN_TOP);
-		this.matrix.getCellFormatter().setAlignment(4, 1, HasHorizontalAlignment.ALIGN_LEFT, HasVerticalAlignment.ALIGN_TOP);
+//		this.matrix.getCellFormatter().setAlignment(4, 0, HasHorizontalAlignment.ALIGN_RIGHT, HasVerticalAlignment.ALIGN_TOP);
+//		this.matrix.getCellFormatter().setAlignment(4, 1, HasHorizontalAlignment.ALIGN_LEFT, HasVerticalAlignment.ALIGN_TOP);
 
 	}
 
@@ -382,7 +382,7 @@ public class ElicitSecurityRequirementPane extends BasePane implements Command
 
 		this.subGoalLabel.setStyleName("Risk-Input-Labels");
 //		this.riskLabel.setStyleName("Risk-Input-Labels");
-		this.artifactLabel.setStyleName("Risk-Input-Labels");
+//		this.artifactLabel.setStyleName("Risk-Input-Labels");
 
 		this.requirementTitleTextBox.setStyleName("square-long-textBox");
 		this.requirementDescriptionTextBox.setStyleName("square-long-textBox");
@@ -408,7 +408,7 @@ public class ElicitSecurityRequirementPane extends BasePane implements Command
 
 		this.matrix.setWidget(2, 0, subGoalLabel);
 //		this.matrix.setWidget(3, 0, riskLabel);
-		this.matrix.setWidget(3, 0, artifactLabel);
+//		this.matrix.setWidget(3, 0, artifactLabel);
 
 
 		if (currentState.getMode() == GwtModesType.ReadWrite)
@@ -466,7 +466,7 @@ public class ElicitSecurityRequirementPane extends BasePane implements Command
 
 		this.matrix.setWidget(2, 0, getEditSubGoalsHyperLink(this));
 //		this.matrix.setWidget(3, 0, getEditRisksHyperLink(this));
-		this.matrix.setWidget(3, 0, getEditArtifactsHyperLink(this));
+//		this.matrix.setWidget(3, 0, getEditArtifactsHyperLink(this));
 
 		subGoalLabel.setStyleName("Risk-Input-Labels");
 //		riskLabel.setStyleName("Risk-Input-Labels");
@@ -543,7 +543,7 @@ public class ElicitSecurityRequirementPane extends BasePane implements Command
 		gwtRequirement.setDescription(this.requirementDescriptionTextBox.getText());
 		gwtRequirement.setSubGoals(this.listOfSubGoalsMappedToRequirement);
 		gwtRequirement.setRisks(this.listOfRiksMapppedToRequirement);
-		gwtRequirement.setArtifacts(this.listOfArtifactsMappedToRequirement);
+		//gwtRequirement.setArtifacts(this.listOfArtifactsMappedToRequirement);
 
 		return gwtRequirement;
 	}
@@ -808,13 +808,14 @@ public class ElicitSecurityRequirementPane extends BasePane implements Command
 //			riskEmptyLabel.setStyleName("square-RequiredMessage");
 //			return false;
 //		}
+		/*
 		else if (listOfArtifactsMappedToRequirement.size() == 0)
 		{
 			disPanel.setOpen(true);
 			artifactsEmptyLabel.setStyleName("square-RequiredMessage");
 			return false;
 		}
-		
+		*/
 		
 		//Check to make sure this requirement title is not already in the system
 		for (GwtRequirement requirement : lisOfRequirements)
@@ -875,7 +876,7 @@ public class ElicitSecurityRequirementPane extends BasePane implements Command
 //		return associateLink;
 //
 //	}
-
+/*
 	public Widget getEditArtifactsHyperLink(final ElicitSecurityRequirementPane riksPane)
 	{
 		SquareHyperlink associateLink = new SquareHyperlink(messages.editArtifactLink());
@@ -893,7 +894,7 @@ public class ElicitSecurityRequirementPane extends BasePane implements Command
 			});
 		return associateLink;
 	}
-
+*/
 	public Widget createHTMLSubGoalList()
 	{
 		if (listOfSubGoalsMappedToRequirement.size() > 0)
@@ -948,7 +949,7 @@ public class ElicitSecurityRequirementPane extends BasePane implements Command
 //		}
 //
 //	}
-
+/*
 	public Widget createHTMLArtifactsList()
 	{
 		if (listOfArtifactsMappedToRequirement.size() > 0)
@@ -975,7 +976,7 @@ public class ElicitSecurityRequirementPane extends BasePane implements Command
 		}
 
 	}
-
+*/
 	public List<GwtRisk> filterRiskBaseOnGoals(List<GwtSubGoal> subGoals, List<GwtRisk> risks)
 	{
 		
@@ -1025,6 +1026,7 @@ public class ElicitSecurityRequirementPane extends BasePane implements Command
 //			listOfRiksMapppedToRequirement = riskDialogBox.getNewSelectedRisks();
 //			this.matrix.setWidget(3, 1, createHTMLRisksList());
 //		}
+		/*
 		else if (currentDialog.equalsIgnoreCase("Artifact"))
 		{
 			listArtifactChanged(listOfArtifactsMappedToRequirement,artifactDialog.getNewSelectedArtifacts());
@@ -1032,6 +1034,7 @@ public class ElicitSecurityRequirementPane extends BasePane implements Command
 			listOfArtifactsMappedToRequirement = artifactDialog.getNewSelectedArtifacts();
 			this.matrix.setWidget(3, 1, createHTMLArtifactsList());
 		}
+		*/
 
 	}
 
