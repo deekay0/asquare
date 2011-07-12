@@ -72,7 +72,7 @@ public class ReviewAndFinalizeRequirementsDetailPane extends BasePane implements
 
 		private Label subGoalLabel = new Label(messages.securityGoal());
 //		private Label riskLabel = new Label(messages.risks());
-		private Label artifactLabel = new Label(messages.artifacts());
+//		private Label artifactLabel = new Label(messages.artifacts());
 
 
 		private TextBox requirementTitleTextBox = new TextBox();
@@ -100,8 +100,8 @@ public class ReviewAndFinalizeRequirementsDetailPane extends BasePane implements
 		private List<GwtRisk> listOfRiksMapppedToRequirement = new ArrayList<GwtRisk>();
 		private List<GwtSubGoal> listOfProjectSubGoals = new ArrayList<GwtSubGoal>();
 		private List<GwtSubGoal> listOfSubGoalsMappedToRequirement = new ArrayList<GwtSubGoal>();
-		private List<GwtArtifact> listOfProjectArtifacts = new ArrayList<GwtArtifact>();
-		private List<GwtArtifact> listOfArtifactsMappedToRequirement = new ArrayList<GwtArtifact>();
+		//private List<GwtArtifact> listOfProjectArtifacts = new ArrayList<GwtArtifact>();
+//		private List<GwtArtifact> listOfArtifactsMappedToRequirement = new ArrayList<GwtArtifact>();
 
 		private int currentIndex = -1;
 		private int currentRequirementId = -1;
@@ -109,7 +109,7 @@ public class ReviewAndFinalizeRequirementsDetailPane extends BasePane implements
 		
 		private Label subGoalEmptyLabel;
 		private Label riskEmptyLabel;
-		private Label artifactsEmptyLabel;
+//		private Label artifactsEmptyLabel;
 
 		private enum CommandTypes
 		{
@@ -119,7 +119,7 @@ public class ReviewAndFinalizeRequirementsDetailPane extends BasePane implements
 		
 		private CommandTypes currentCommand;
 		private SubGoalDialogBox subGoalDialog;
-		private ArtifactDialogBox artifactDialog;
+//		private ArtifactDialogBox artifactDialog;
 		private RiskDialogBox riskDialogBox;
 
 		private GwtBusinessGoal businessGoalInfo = new GwtBusinessGoal();
@@ -158,11 +158,11 @@ public class ReviewAndFinalizeRequirementsDetailPane extends BasePane implements
 					{
 						businessGoalInfo = result;
 						listOfProjectSubGoals = businessGoalInfo.getSubGoals();
-						loadArtifactsFromProject();
+						//loadArtifactsFromProject();
 					}
 				});
 		}
-		
+		/*
 		public void loadArtifactsFromProject()
 		{
 			CollectArtifactsServiceAsync service = GWT.create(CollectArtifactsService.class);
@@ -184,7 +184,7 @@ public class ReviewAndFinalizeRequirementsDetailPane extends BasePane implements
 				}
 			});
 		}
-
+*/
 		
 		public void loadProjectRequirements()
 		{
@@ -206,7 +206,7 @@ public class ReviewAndFinalizeRequirementsDetailPane extends BasePane implements
 					{
 						listOfSubGoalsMappedToRequirement = currentRequirement.getSubGoals();
 						listOfRiksMapppedToRequirement = currentRequirement.getRisks();
-						listOfArtifactsMappedToRequirement = currentRequirement.getArtifacts();
+					//	listOfArtifactsMappedToRequirement = currentRequirement.getArtifacts();
 					}
 					loadProjectRisks();
 				}
@@ -367,7 +367,7 @@ public class ReviewAndFinalizeRequirementsDetailPane extends BasePane implements
 
 			this.matrix.setWidget(2, 1, createHTMLSubGoalList());
 //			this.matrix.setWidget(3, 1, createHTMLRisksList());
-			this.matrix.setWidget(3, 1, createHTMLArtifactsList());
+//			this.matrix.setWidget(3, 1, createHTMLArtifactsList());
 
 			
 			this.matrix.getCellFormatter().setAlignment(1, 0, HasHorizontalAlignment.ALIGN_RIGHT, HasVerticalAlignment.ALIGN_TOP);
@@ -376,8 +376,8 @@ public class ReviewAndFinalizeRequirementsDetailPane extends BasePane implements
 			this.matrix.getCellFormatter().setAlignment(2, 1, HasHorizontalAlignment.ALIGN_LEFT, HasVerticalAlignment.ALIGN_TOP);
 			this.matrix.getCellFormatter().setAlignment(3, 0, HasHorizontalAlignment.ALIGN_RIGHT, HasVerticalAlignment.ALIGN_TOP);
 			this.matrix.getCellFormatter().setAlignment(3, 1, HasHorizontalAlignment.ALIGN_LEFT, HasVerticalAlignment.ALIGN_TOP);
-			this.matrix.getCellFormatter().setAlignment(4, 0, HasHorizontalAlignment.ALIGN_RIGHT, HasVerticalAlignment.ALIGN_TOP);
-			this.matrix.getCellFormatter().setAlignment(4, 1, HasHorizontalAlignment.ALIGN_LEFT, HasVerticalAlignment.ALIGN_TOP);
+		//	this.matrix.getCellFormatter().setAlignment(4, 0, HasHorizontalAlignment.ALIGN_RIGHT, HasVerticalAlignment.ALIGN_TOP);
+		//	this.matrix.getCellFormatter().setAlignment(4, 1, HasHorizontalAlignment.ALIGN_LEFT, HasVerticalAlignment.ALIGN_TOP);
 
 		}
 
@@ -392,7 +392,7 @@ public class ReviewAndFinalizeRequirementsDetailPane extends BasePane implements
 
 			this.subGoalLabel.setStyleName("Risk-Input-Labels");
 //			this.riskLabel.setStyleName("Risk-Input-Labels");
-			this.artifactLabel.setStyleName("Risk-Input-Labels");
+			//this.artifactLabel.setStyleName("Risk-Input-Labels");
 
 			this.requirementTitleTextBox.setStyleName("square-long-textBox");
 			this.requirementDescriptionTextBox.setStyleName("square-long-textBox");
@@ -418,7 +418,7 @@ public class ReviewAndFinalizeRequirementsDetailPane extends BasePane implements
 
 			this.matrix.setWidget(2, 0, subGoalLabel);
 //			this.matrix.setWidget(3, 0, riskLabel);
-			this.matrix.setWidget(3, 0, artifactLabel);
+//			this.matrix.setWidget(3, 0, artifactLabel);
 
 			//System.out.println("before button");
 			
@@ -530,7 +530,7 @@ public class ReviewAndFinalizeRequirementsDetailPane extends BasePane implements
 
 			this.matrix.setWidget(2, 0, getEditSubGoalsHyperLink(this));
 //			this.matrix.setWidget(3, 0, getEditRisksHyperLink(this));
-			this.matrix.setWidget(3, 0, getEditArtifactsHyperLink(this));
+		//	this.matrix.setWidget(3, 0, getEditArtifactsHyperLink(this));
 
 			subGoalLabel.setStyleName("Risk-Input-Labels");
 //			riskLabel.setStyleName("Risk-Input-Labels");
@@ -607,7 +607,7 @@ public class ReviewAndFinalizeRequirementsDetailPane extends BasePane implements
 			gwtRequirement.setDescription(this.requirementDescriptionTextBox.getText());
 			gwtRequirement.setSubGoals(this.listOfSubGoalsMappedToRequirement);
 			gwtRequirement.setRisks(this.listOfRiksMapppedToRequirement);
-			gwtRequirement.setArtifacts(this.listOfArtifactsMappedToRequirement);
+//			gwtRequirement.setArtifacts(this.listOfArtifactsMappedToRequirement);
 
 			return gwtRequirement;
 		}
@@ -872,13 +872,14 @@ public class ReviewAndFinalizeRequirementsDetailPane extends BasePane implements
 //				riskEmptyLabel.setStyleName("square-RequiredMessage");
 //				return false;
 //			}
+			/*
 			else if (listOfArtifactsMappedToRequirement.size() == 0)
 			{
 				disPanel.setOpen(true);
 				artifactsEmptyLabel.setStyleName("square-RequiredMessage");
 				return false;
 			}
-			
+			*/
 			
 			//Check to make sure this requirement title is not already in the system
 			for (GwtRequirement requirement : lisOfRequirements)
@@ -940,6 +941,7 @@ public class ReviewAndFinalizeRequirementsDetailPane extends BasePane implements
 
 		}
 
+		/*
 		public Widget getEditArtifactsHyperLink(final ReviewAndFinalizeRequirementsDetailPane riksPane)
 		{
 			SquareHyperlink associateLink = new SquareHyperlink(messages.editArtifactLink());
@@ -957,7 +959,7 @@ public class ReviewAndFinalizeRequirementsDetailPane extends BasePane implements
 				});
 			return associateLink;
 		}
-
+*/
 		public Widget createHTMLSubGoalList()
 		{
 			if (listOfSubGoalsMappedToRequirement.size() > 0)
@@ -1013,6 +1015,7 @@ public class ReviewAndFinalizeRequirementsDetailPane extends BasePane implements
 
 		}
 
+		/*
 		public Widget createHTMLArtifactsList()
 		{
 			if (listOfArtifactsMappedToRequirement.size() > 0)
@@ -1039,7 +1042,7 @@ public class ReviewAndFinalizeRequirementsDetailPane extends BasePane implements
 			}
 
 		}
-
+*/
 		public List<GwtRisk> filterRiskBaseOnGoals(List<GwtSubGoal> subGoals, List<GwtRisk> risks)
 		{
 			
@@ -1089,6 +1092,7 @@ public class ReviewAndFinalizeRequirementsDetailPane extends BasePane implements
 //				listOfRiksMapppedToRequirement = riskDialogBox.getNewSelectedRisks();
 //				this.matrix.setWidget(3, 1, createHTMLRisksList());
 //			}
+			/*
 			else if (currentDialog.equalsIgnoreCase("Artifact"))
 			{
 				listArtifactChanged(listOfArtifactsMappedToRequirement,artifactDialog.getNewSelectedArtifacts());
@@ -1096,7 +1100,7 @@ public class ReviewAndFinalizeRequirementsDetailPane extends BasePane implements
 				listOfArtifactsMappedToRequirement = artifactDialog.getNewSelectedArtifacts();
 				this.matrix.setWidget(3, 1, createHTMLArtifactsList());
 			}
-
+*/
 		}
 
 

@@ -15,4 +15,11 @@ public interface ReviewOfRequirementsByAcquisitionMessages extends TeachMessages
 
 
 	String noelementsFound();
+	
+	
+	String requirementTableTitle();
+	String requirementTableBarTitle();
+	String requirementTableBarDescription();
+	String requirementTableBarStatus();
+
 }
