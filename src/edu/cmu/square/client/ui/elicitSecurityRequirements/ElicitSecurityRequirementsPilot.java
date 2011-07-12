@@ -63,28 +63,14 @@ public class ElicitSecurityRequirementsPilot extends Pilot
 	
 	public void determineAccessRights(String page, State currentState)
 	{
-		//SQUARE
-		if (currentState.getUserProjectRole() == ProjectRole.Lead_Requirements_Engineer)
-		{
-			currentState.setMode(GwtModesType.ReadWrite);
-		}			
-		else if (currentState.getUserProjectRole() == ProjectRole.Requirements_Engineer)
+		if (currentState.isSiteAdministrator() == true)
 		{
 			currentState.setMode(GwtModesType.ReadWrite);
 		}
-		else if (currentState.getUserProjectRole() == ProjectRole.None)
-		{
-			currentState.setMode(GwtModesType.NoAccess);
-		}
-		else{
-			currentState.setMode(GwtModesType.ReadOnly);
-		}
-		
+				
 		//case1
-		if(currentState.getCaseID()==1)
+		else if(currentState.getCaseID()==1)
 		{
-			System.out.println("case1.........");
-			System.out.println("your role is"+currentState.getUserProjectRole());
 			if (currentState.getUserProjectRole() == ProjectRole.Acquisition_Organization_Engineer)
 			{
 				currentState.setMode(GwtModesType.ReadOnly);
@@ -105,17 +91,18 @@ public class ElicitSecurityRequirementsPilot extends Pilot
 			{
 				currentState.setMode(GwtModesType.NoAccess);
 			}
+			else if (currentState.getUserProjectRole() == ProjectRole.Administrator)
+			{
+				currentState.setMode(GwtModesType.ReadWrite);
+			}
 			else 
 			{
 				currentState.setMode(GwtModesType.ReadOnly);
-				System.out.println("your role is"+currentState.getUserProjectRole());
+				
 			}
 		}
 		else if(currentState.getCaseID()==3)
 		{
-			System.out.println(currentState.getCaseName());
-			//System.out.println(currentState.getCaseName() == AsquareCase.Case3);
-			System.out.println("case3.........");
 			
 			if (currentState.getUserProjectRole() == ProjectRole.Acquisition_Organization_Engineer)
 			{
@@ -127,7 +114,7 @@ public class ElicitSecurityRequirementsPilot extends Pilot
 			}
 			else if (currentState.getUserProjectRole() == ProjectRole.Security_Specialist)
 			{
-				System.out.println("security specialist................");
+				//System.out.println("security specialist................");
 				currentState.setMode(GwtModesType.ReadWrite);
 			}
 			else if (currentState.getUserProjectRole() == ProjectRole.COTS_Vendor)
@@ -137,6 +124,10 @@ public class ElicitSecurityRequirementsPilot extends Pilot
 			else if (currentState.getUserProjectRole() == ProjectRole.None)
 			{
 				currentState.setMode(GwtModesType.NoAccess);
+			}
+			else if (currentState.getUserProjectRole() == ProjectRole.Administrator)
+			{
+				currentState.setMode(GwtModesType.ReadWrite);
 			}
 			else 
 			{

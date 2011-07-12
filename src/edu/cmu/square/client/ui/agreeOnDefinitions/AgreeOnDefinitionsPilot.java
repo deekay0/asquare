@@ -59,10 +59,20 @@ public class AgreeOnDefinitionsPilot extends Pilot
 
 	public void determineAccessRights(String page, State currentState)
 	{
-		//case1
-		if(currentState.getCaseID() == 1)
+		
+		if (currentState.isSiteAdministrator() == true)
 		{
-			if (currentState.getUserProjectRole() == ProjectRole.Acquisition_Organization_Engineer)
+			currentState.setMode(GwtModesType.ReadWrite);
+		}
+		//case1
+		else if(currentState.getCaseID() == 1)
+		{
+			
+			if (currentState.isSiteAdministrator() == true)
+			{
+				currentState.setMode(GwtModesType.ReadWrite);
+			}
+			else if (currentState.getUserProjectRole() == ProjectRole.Acquisition_Organization_Engineer)
 			{
 				currentState.setMode(GwtModesType.ReadWrite);
 			}
@@ -88,6 +98,10 @@ public class AgreeOnDefinitionsPilot extends Pilot
 			else if (currentState.getUserProjectRole() == ProjectRole.None)
 			{
 				currentState.setMode(GwtModesType.NoAccess);
+			}
+			else if (currentState.getUserProjectRole() == ProjectRole.Administrator)
+			{
+				currentState.setMode(GwtModesType.ReadWrite);
 			}
 			else 
 			{
@@ -96,9 +110,13 @@ public class AgreeOnDefinitionsPilot extends Pilot
 		}
 		else if(currentState.getCaseID() == 3)
 		{
-			System.out.println("case is"+currentState.getCaseID());
 			
-			if (currentState.getUserProjectRole() == ProjectRole.Acquisition_Organization_Engineer)
+			
+			if (currentState.isSiteAdministrator() == true)
+			{
+				currentState.setMode(GwtModesType.ReadWrite);
+			}
+			else if (currentState.getUserProjectRole() == ProjectRole.Acquisition_Organization_Engineer)
 			{
 				currentState.setMode(GwtModesType.ReadWrite);
 			}
@@ -124,6 +142,10 @@ public class AgreeOnDefinitionsPilot extends Pilot
 			else if (currentState.getUserProjectRole() == ProjectRole.None)
 			{
 				currentState.setMode(GwtModesType.NoAccess);
+			}
+			else if (currentState.getUserProjectRole() == ProjectRole.Administrator)
+			{
+				currentState.setMode(GwtModesType.ReadWrite);
 			}
 			else 
 			{

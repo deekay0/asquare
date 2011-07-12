@@ -46,6 +46,9 @@ public class State extends StateHandler
 	private int projectID;
 	private int caseID;
 	private int totalPrioritizations;
+
+	//private String caseName ="";
+//	private AsquareCase caseName = null;
 	private String caseName = "";
 	private String projectName = "";
 	private String projectInspectionStatus = null;
@@ -60,6 +63,7 @@ public class State extends StateHandler
 		setSessionID("");
 		setUserName("anonymous");
 		setProjectName("");
+		
 		setCaseName("");
 		setCurrentView("LogInPane");
 		setAuthenticated(null);

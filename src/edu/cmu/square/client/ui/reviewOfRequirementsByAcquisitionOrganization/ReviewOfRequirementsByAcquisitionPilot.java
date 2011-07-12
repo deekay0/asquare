@@ -84,7 +84,11 @@ public class ReviewOfRequirementsByAcquisitionPilot extends Pilot
 		}
 		*/
 		//ASQUARE
-		if (currentState.getUserProjectRole() == ProjectRole.Acquisition_Organization_Engineer)
+		if (currentState.isSiteAdministrator() == true)
+		{
+			currentState.setMode(GwtModesType.ReadWrite);
+		}
+		else if (currentState.getUserProjectRole() == ProjectRole.Acquisition_Organization_Engineer)
 		{
 			currentState.setMode(GwtModesType.ReadWrite);
 		}
@@ -103,6 +107,10 @@ public class ReviewOfRequirementsByAcquisitionPilot extends Pilot
 		else if (currentState.getUserProjectRole() == ProjectRole.None)
 		{			
 			currentState.setMode(GwtModesType.NoAccess);
+		}
+		else if (currentState.getUserProjectRole() == ProjectRole.Administrator)
+		{
+			currentState.setMode(GwtModesType.ReadWrite);
 		}
 		else 
 		{

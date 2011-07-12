@@ -4,8 +4,8 @@ public enum AsquareCase
 {
 		Case1("Case 1"), 
 		Case2("Case 2"), 
-		Case3("Case 3"),
-		None("None");
+		Case3("Case 3");
+		//None("None");
 			
 		private String label;
 		

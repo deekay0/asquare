@@ -53,10 +53,15 @@ public class FinalProductSelectionPilot extends Pilot
 	public void determineAccessRights(String page, State currentState)
 	{
 		
-		if (currentState.getUserProjectRole() == ProjectRole.Acquisition_Organization_Engineer)
+		if (currentState.isSiteAdministrator() == true)
 		{
 			currentState.setMode(GwtModesType.ReadWrite);
 		}
+		else if (currentState.getUserProjectRole() == ProjectRole.Acquisition_Organization_Engineer)
+		{
+			currentState.setMode(GwtModesType.ReadWrite);
+		}
+			
 		/*
 //Delete this role, I just give him RW access right.
 		else if (currentState.getUserProjectRole() == ProjectRole.Lead_Requirements_Engineer)
@@ -75,6 +80,10 @@ public class FinalProductSelectionPilot extends Pilot
 		else if (currentState.getUserProjectRole() == ProjectRole.COTS_Vendor)
 		{
 			currentState.setMode(GwtModesType.ReadOnly);
+		}
+		else if (currentState.getUserProjectRole() == ProjectRole.Administrator)
+		{
+			currentState.setMode(GwtModesType.ReadWrite);
 		}
 		else
 		{

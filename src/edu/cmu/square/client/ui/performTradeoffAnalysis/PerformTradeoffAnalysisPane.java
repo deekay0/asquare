@@ -108,9 +108,8 @@ public class PerformTradeoffAnalysisPane extends BasePane
 		
 	
 		isReadOnly = true;
-		loadRequirements();
+		
 		loadAttributes();
-		loadTradeoffReasons();
 	}
 	
 	public void loadRequirements()
@@ -131,7 +130,10 @@ public class PerformTradeoffAnalysisPane extends BasePane
 				public void onSuccess(List<GwtRequirement> result)
 				{
 					listOfRequirements = result;
-					initializePane();
+					
+
+					loadTradeoffReasons();
+					
 				}
 			});
 	}
@@ -295,7 +297,7 @@ public class PerformTradeoffAnalysisPane extends BasePane
 				//loadEvaluationsCriteria();
 				drawRateMatrix();
 				getTotalsFromMatrix();
-				PaneInitialization();
+				
 				changeLink();		
 		}});
 		finishRatingsLink.addClickHandler(new ClickHandler(){	
@@ -304,7 +306,7 @@ public class PerformTradeoffAnalysisPane extends BasePane
 				//loadEvaluationsCriteria();
 				drawRateMatrix();
 				getTotalsFromMatrix();
-				PaneInitialization();
+				
 				changeLink();		
 			}});
 		drawMatrixPage();
@@ -343,7 +345,7 @@ public class PerformTradeoffAnalysisPane extends BasePane
 					
 					public void onSuccess(Void result) 
 					{
-						
+						loadTradeoffReasons();
 					}
 				});	
 	}
@@ -434,7 +436,7 @@ public class PerformTradeoffAnalysisPane extends BasePane
 				
 				loadRatings();		
 				
-				loadRequirementRatings();
+				
 			}	
 			@Override
 			public void onFailure(Throwable caught)
@@ -445,7 +447,7 @@ public class PerformTradeoffAnalysisPane extends BasePane
 		});
 	}
 	
-	private void loadTradeoffReasons()
+	public void loadTradeoffReasons()
 	{
 		performTradeoffService.getTradeoffReasons(currentProject.getId(), new AsyncCallback<List<GwtTradeoffReason>>()		
 				{		
@@ -453,6 +455,7 @@ public class PerformTradeoffAnalysisPane extends BasePane
 					public void onSuccess(List<GwtTradeoffReason> result)
 					{
 						tradeoffReasons = result;
+						initializePane();
 						drawRateMatrix();
 						getTotalsFromMatrix();
 						PaneInitialization();
@@ -473,11 +476,10 @@ public class PerformTradeoffAnalysisPane extends BasePane
 					@Override
 					public void onSuccess(List<GwtRating >  result)
 					{
-	
+						
 						ratings = result;
-						drawRateMatrix();
-						getTotalsFromMatrix();
-						PaneInitialization();
+						
+						loadRequirementRatings();
 					}			
 					@Override
 					public void onFailure(Throwable caught)
@@ -497,9 +499,8 @@ public class PerformTradeoffAnalysisPane extends BasePane
 					{
 						
 						requirementRatings = result;
-						drawRateMatrix();
-						getTotalsFromMatrix();
-						PaneInitialization();
+						
+						loadRequirements();
 					}
 					@Override
 					public void onFailure(Throwable caught)
@@ -533,7 +534,8 @@ public class PerformTradeoffAnalysisPane extends BasePane
 			}
 			
 			public void onSuccess(Void result) {
-				setValueFromlistOfRateValues(packageID, attributeID, value);			
+				setValueFromlistOfRateValues(packageID, attributeID, value);	
+				loadRequirementRatings();
 			}});
 	}
 	
@@ -560,7 +562,9 @@ public class PerformTradeoffAnalysisPane extends BasePane
 				}				
 			}		
 			public void onSuccess(Void result) {
-				setValueFromlistOfRequirementRateValues(requirementID, packageID, value);			
+				
+				setValueFromlistOfRequirementRateValues(requirementID, packageID, value);	
+				loadRequirementRatings();
 			}});
 	}
 	
@@ -587,7 +591,8 @@ public class PerformTradeoffAnalysisPane extends BasePane
 					Window.alert(messages.error());
 				}				
 			}		
-			public void onSuccess(Void result) {			
+			public void onSuccess(Void result) {
+			
 			}});
 	}
 	
@@ -1141,5 +1146,4 @@ public class PerformTradeoffAnalysisPane extends BasePane
 	{
 		updateTradeoffReasoninDB(localTradeoffReason);
 	}
-	
 }

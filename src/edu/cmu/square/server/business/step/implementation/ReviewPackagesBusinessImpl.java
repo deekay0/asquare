@@ -26,9 +26,12 @@ import edu.cmu.square.server.dao.interfaces.ProjectDao;
 import edu.cmu.square.server.dao.interfaces.ProjectPackageAttributeRatingDao;
 import edu.cmu.square.server.dao.interfaces.QualityAttributeDao;
 import edu.cmu.square.server.dao.interfaces.SoftwarePackageDao;
+import edu.cmu.square.server.dao.interfaces.TradeoffReasonDao;
 import edu.cmu.square.server.dao.model.Project;
 import edu.cmu.square.server.dao.model.ProjectPackageAttributeRating;
 import edu.cmu.square.server.dao.model.ProjectPackageAttributeRatingId;
+import edu.cmu.square.server.dao.model.ProjectPackageTradeoffreason;
+import edu.cmu.square.server.dao.model.ProjectPackageTradeoffreasonId;
 import edu.cmu.square.server.dao.model.QualityAttribute;
 import edu.cmu.square.server.dao.model.SoftwarePackage;
 
@@ -44,6 +47,8 @@ public class ReviewPackagesBusinessImpl extends BaseBusinessImpl implements Revi
 	private QualityAttributeDao qualityAttributeDao;
 	@Resource
 	private ProjectPackageAttributeRatingDao projectPackageAttributeRatingDao;
+	@Resource
+	private TradeoffReasonDao tradeoffReasonDao;
 
 	
 //	@AllowedRoles(roles = {Roles.Lead_Requirements_Engineer,Roles.Administrator})
@@ -117,7 +122,7 @@ public class ReviewPackagesBusinessImpl extends BaseBusinessImpl implements Revi
 	{
 		Project currentProject = new Project(gwtProject);
 		SoftwarePackage softwarePackage = new SoftwarePackage(gwtSoftwarePackage);
-
+		
 		// get the technique by name and check for duplicates
 		List<SoftwarePackage> techniques = this.softwarePackageDao.getSoftwarePackagesByNameAndProject(softwarePackage.getName(), gwtProject.getId());
 		if (!techniques.isEmpty())
@@ -125,15 +130,19 @@ public class ReviewPackagesBusinessImpl extends BaseBusinessImpl implements Revi
 			SquareException se = new SquareException("Already exists");
 			se.setType(ExceptionType.duplicateName);
 			throw se;
-		}
-		
+		}		
 		this.softwarePackageDao.create(softwarePackage);
 		gwtSoftwarePackage.setId(softwarePackage.getId());
 		
+		
+		ProjectPackageTradeoffreasonId id = new ProjectPackageTradeoffreasonId(currentProject.getId(), softwarePackage.getId());
+		ProjectPackageTradeoffreason tradeoffReason = new ProjectPackageTradeoffreason(id, currentProject, new SoftwarePackage(gwtSoftwarePackage), "add new tradeoff reason...", 0);
+		this.tradeoffReasonDao.create(tradeoffReason);
+		
+		
+		
 		List<QualityAttribute> QAs = qualityAttributeDao.getQualityAttributesByProject(currentProject);
 		 
-		
-
 		if(QAs.isEmpty())
 		{
 			System.out.println("We're here");
