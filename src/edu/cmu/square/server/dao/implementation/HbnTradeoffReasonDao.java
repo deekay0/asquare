@@ -106,7 +106,7 @@ public class HbnTradeoffReasonDao extends HbnAbstractDao<ProjectPackageTradeoffr
 		//System.out.println("here...."+projectID+"   "+packageId+"  "+tradeoffreason);
 		
 
-		System.out.println("here priority...."+projectID+"   "+packageId+"  "+priority);		
+		System.out.println("daodao here priority...."+projectID+"   "+packageId+"  "+priority);		
 		
 		String query = "Update ProjectPackageTradeoffreason r set r.priority=:priority where r.project.id=:projectId and r.softwarePackage.id=:packageId";
 		Query q = getSession().createQuery(query);

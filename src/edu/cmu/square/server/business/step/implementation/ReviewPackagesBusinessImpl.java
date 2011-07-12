@@ -135,8 +135,10 @@ public class ReviewPackagesBusinessImpl extends BaseBusinessImpl implements Revi
 		gwtSoftwarePackage.setId(softwarePackage.getId());
 		
 		
+		List<SoftwarePackage> packages = this.softwarePackageDao.getSoftwarePackagesByProject(currentProject);
+		
 		ProjectPackageTradeoffreasonId id = new ProjectPackageTradeoffreasonId(currentProject.getId(), softwarePackage.getId());
-		ProjectPackageTradeoffreason tradeoffReason = new ProjectPackageTradeoffreason(id, currentProject, new SoftwarePackage(gwtSoftwarePackage), "add new tradeoff reason...", 0);
+		ProjectPackageTradeoffreason tradeoffReason = new ProjectPackageTradeoffreason(id, currentProject, new SoftwarePackage(gwtSoftwarePackage), "add new tradeoff reason...", packages.size());
 		this.tradeoffReasonDao.create(tradeoffReason);
 		
 		
