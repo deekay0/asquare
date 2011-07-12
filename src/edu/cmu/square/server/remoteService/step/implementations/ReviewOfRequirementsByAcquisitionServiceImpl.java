@@ -40,7 +40,7 @@ public class ReviewOfRequirementsByAcquisitionServiceImpl extends SquareRemoteSe
 
 		public void updateRequirement(GwtProject gwtProject, GwtRequirement gwtRequirement) throws SquareException
 		{
-				reviewOfRequirementsByAcquisitionBusiness.updateRequirement(gwtProject, gwtRequirement);
+			reviewOfRequirementsByAcquisitionBusiness.updateRequirement(gwtProject, gwtRequirement);
 		}
 		
 		

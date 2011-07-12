@@ -20,9 +20,8 @@ public class GwtRequirement implements Serializable, Comparable<GwtRequirement>
 	private List<GwtArtifact> artifacts = new ArrayList<GwtArtifact>();
 	private List<GwtCategory> categories = new ArrayList<GwtCategory>();
 	private int priority=0;              
-	private int projectID;
-		
-	private String status="";
+	private int projectID;		
+	private String status;
 	
 	
 	public Integer getId() 
@@ -128,7 +127,6 @@ public class GwtRequirement implements Serializable, Comparable<GwtRequirement>
 	{
 		this.risks = risks;
 	}
-	
 	
 
 	public List<GwtRisk> getRisks()

@@ -73,12 +73,18 @@ public class Requirement implements java.io.Serializable
 	public void update(GwtRequirement gwtRequirement)
 	{
 		
+		
 		this.title = gwtRequirement.getTitle();
 		this.description = gwtRequirement.getDescription();
 		this.privacy=gwtRequirement.isPrivacy();
 		this.security = gwtRequirement.isSecurity();
 		this.priority = gwtRequirement.getPriority();
+		
+		gwtRequirement.setStatus(this.status);
 		this.status = gwtRequirement.getStatus();
+		
+		//System.out.println("after status is"+this.status);
+		
 		
 		for(GwtRisk r: gwtRequirement.getRisks()) {
 			this.getRisks().add(new Risk(r));
