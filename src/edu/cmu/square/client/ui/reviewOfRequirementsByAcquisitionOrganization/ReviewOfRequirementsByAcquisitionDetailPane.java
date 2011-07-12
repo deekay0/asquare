@@ -239,13 +239,14 @@ public class ReviewOfRequirementsByAcquisitionDetailPane extends BasePane implem
 		public void updateRequirement(int requirementId, GwtRequirement gwtRequirement)
 		{
 			gwtRequirement.setId(requirementId);
-			System.out.println("after setId");
+			System.out.println("detailpane, updateRequirement"+gwtRequirement.getStatus());
+			//System.out.println("after setId");
 			
 			this.requirementService.updateRequirement(gwtRequirement, new AsyncCallback<Void>()
 			{
 				public void onFailure(Throwable caught)
 				{
-					System.out.println("onfailure : "+caught);
+					//System.out.println("onfailure : "+caught);
 					ExceptionHelper.SquareRootRPCExceptionHandler(caught, messages.errorUpdatingRequirements());
 				}
 				
