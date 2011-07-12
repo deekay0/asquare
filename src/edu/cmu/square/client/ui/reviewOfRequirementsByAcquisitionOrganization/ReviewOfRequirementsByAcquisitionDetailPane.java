@@ -110,7 +110,7 @@ public class ReviewOfRequirementsByAcquisitionDetailPane extends BasePane implem
 		
 		private Label subGoalEmptyLabel;
 		private Label riskEmptyLabel;
-		private Label artifactsEmptyLabel;
+//		private Label artifactsEmptyLabel;
 
 		private enum CommandTypes
 		{
@@ -120,7 +120,7 @@ public class ReviewOfRequirementsByAcquisitionDetailPane extends BasePane implem
 		
 		private CommandTypes currentCommand;
 		private SubGoalDialogBox subGoalDialog;
-		private ArtifactDialogBox artifactDialog;
+	//	private ArtifactDialogBox artifactDialog;
 		private RiskDialogBox riskDialogBox;
 
 		private GwtBusinessGoal businessGoalInfo = new GwtBusinessGoal();

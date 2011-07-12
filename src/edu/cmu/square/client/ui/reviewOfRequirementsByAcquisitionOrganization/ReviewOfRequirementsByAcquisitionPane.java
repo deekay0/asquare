@@ -683,7 +683,7 @@ public class ReviewOfRequirementsByAcquisitionPane extends BasePane
 			});
 			*/
 
-		if (this.getCurrentState().getMode().equals(GwtModesType.ReadWrite))
+		if (this.getCurrentState().getMode().equals(GwtModesType.ReadOnly)||this.getCurrentState().getMode().equals(GwtModesType.ReadWrite))
 		{
 			HorizontalPanel links = new HorizontalPanel();
 			links.setStyleName("flex-link-bar");
