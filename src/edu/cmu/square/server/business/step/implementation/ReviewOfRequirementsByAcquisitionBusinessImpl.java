@@ -127,14 +127,14 @@ public class ReviewOfRequirementsByAcquisitionBusinessImpl extends BaseBusinessI
 			se.setType(ExceptionType.missingLink);
 			throw se;
 		}
-		*/
+		
 		if(gwtRequirement.getArtifacts().isEmpty()) 
 		{
 			SquareException se = new SquareException("At least one artifact is required.");
 			se.setType(ExceptionType.missingLink);
 			throw se;
 		}
-	
+	*/
 		requirementDao.create(requirement);
 		p.getRequirements().add(requirement);
 		return requirement.getId();
@@ -247,7 +247,7 @@ public class ReviewOfRequirementsByAcquisitionBusinessImpl extends BaseBusinessI
 			//r.getCategories().clear();
 			
 			r.update(gwtRequirement);
-			
+			/*
 			if(gwtRequirement.getRisks().isEmpty()) 
 			{
 				SquareException se = new SquareException("At least one risk is required.");
@@ -260,7 +260,7 @@ public class ReviewOfRequirementsByAcquisitionBusinessImpl extends BaseBusinessI
 				se.setType(ExceptionType.missingLink);
 				throw se;
 			}
-			
+			*/
 			requirementDao.update(r);
 			
 

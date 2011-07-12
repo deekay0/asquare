@@ -101,8 +101,8 @@ public class ReviewOfRequirementsByAcquisitionDetailPane extends BasePane implem
 		private List<GwtRisk> listOfRiksMapppedToRequirement = new ArrayList<GwtRisk>();
 		private List<GwtSubGoal> listOfProjectSubGoals = new ArrayList<GwtSubGoal>();
 		private List<GwtSubGoal> listOfSubGoalsMappedToRequirement = new ArrayList<GwtSubGoal>();
-		//private List<GwtArtifact> listOfProjectArtifacts = new ArrayList<GwtArtifact>();
-		//private List<GwtArtifact> listOfArtifactsMappedToRequirement = new ArrayList<GwtArtifact>();
+		private List<GwtArtifact> listOfProjectArtifacts = new ArrayList<GwtArtifact>();
+		private List<GwtArtifact> listOfArtifactsMappedToRequirement = new ArrayList<GwtArtifact>();
 
 		private int currentIndex = -1;
 		private int currentRequirementId = -1;
@@ -120,7 +120,7 @@ public class ReviewOfRequirementsByAcquisitionDetailPane extends BasePane implem
 		
 		private CommandTypes currentCommand;
 		private SubGoalDialogBox subGoalDialog;
-	//	private ArtifactDialogBox artifactDialog;
+		private ArtifactDialogBox artifactDialog;
 		private RiskDialogBox riskDialogBox;
 
 		private GwtBusinessGoal businessGoalInfo = new GwtBusinessGoal();
@@ -239,10 +239,13 @@ public class ReviewOfRequirementsByAcquisitionDetailPane extends BasePane implem
 		public void updateRequirement(int requirementId, GwtRequirement gwtRequirement)
 		{
 			gwtRequirement.setId(requirementId);
+			System.out.println("after setId");
+			
 			this.requirementService.updateRequirement(gwtRequirement, new AsyncCallback<Void>()
 			{
 				public void onFailure(Throwable caught)
 				{
+					System.out.println("onfailure : "+caught);
 					ExceptionHelper.SquareRootRPCExceptionHandler(caught, messages.errorUpdatingRequirements());
 				}
 				
@@ -753,8 +756,9 @@ public class ReviewOfRequirementsByAcquisitionDetailPane extends BasePane implem
 				}
 				else
 				{
-
+					System.out.println(""+requirementId+""+gwtRequirement);
 					updateRequirement(requirementId, gwtRequirement);
+					
 				}
 			}
 		}
@@ -943,7 +947,7 @@ public class ReviewOfRequirementsByAcquisitionDetailPane extends BasePane implem
 			return associateLink;
 
 		}
-/*
+
 		public Widget getEditArtifactsHyperLink(final ReviewOfRequirementsByAcquisitionDetailPane riksPane)
 		{
 			SquareHyperlink associateLink = new SquareHyperlink(messages.editArtifactLink());
@@ -961,7 +965,7 @@ public class ReviewOfRequirementsByAcquisitionDetailPane extends BasePane implem
 				});
 			return associateLink;
 		}
-*/
+
 		public Widget createHTMLSubGoalList()
 		{
 			if (listOfSubGoalsMappedToRequirement.size() > 0)
