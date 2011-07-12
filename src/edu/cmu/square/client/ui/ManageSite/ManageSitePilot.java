@@ -4,6 +4,7 @@ import com.google.gwt.core.client.GWT;
 import com.google.gwt.user.client.ui.Widget;
 
 import edu.cmu.square.client.model.GwtModesType;
+import edu.cmu.square.client.model.ProjectRole;
 import edu.cmu.square.client.navigation.HistoryManager;
 import edu.cmu.square.client.navigation.Pilot;
 import edu.cmu.square.client.navigation.State;
@@ -41,8 +42,13 @@ public class ManageSitePilot extends Pilot
 		{
 			currentState.setMode(GwtModesType.ReadWrite);
 		}
+		else if (currentState.getUserProjectRole() == ProjectRole.Acquisition_Organization_Engineer)
+		{
+			currentState.setMode(GwtModesType.ReadWrite);
+		}
+		
 		else{
-		currentState.setMode(GwtModesType.NoAccess);
+			currentState.setMode(GwtModesType.NoAccess);
 		}
 	}
 	
