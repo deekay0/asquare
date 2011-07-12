@@ -112,7 +112,7 @@ public class ReviewOfRequirementsByAcquisitionBusinessImpl extends BaseBusinessI
 	}
 	
 	
-	@AllowedRoles(roles = {Roles.Contractor, Roles.Security_Specialist, Roles.Administrator})
+	@AllowedRoles(roles = {Roles.Contractor, Roles.Security_Specialist, Roles.Administrator,Roles.Acquisition_Organization_Engineer})
 	public int addRequirementToProject(Integer projectId, GwtRequirement gwtRequirement) throws SquareException
 	{
 		
@@ -157,7 +157,7 @@ public class ReviewOfRequirementsByAcquisitionBusinessImpl extends BaseBusinessI
 			requirementDao.update(requirement);
 		}
 
-		@AllowedRoles(roles = {Roles.Contractor, Roles.Security_Specialist, Roles.Administrator})
+		@AllowedRoles(roles = {Roles.Contractor, Roles.Security_Specialist, Roles.Administrator, Roles.Acquisition_Organization_Engineer})
 		public void deleteRequirement(Integer requirementId, Integer projectId) throws SquareException
 		{
 			requirementDao.deleteById(requirementId);
@@ -235,7 +235,7 @@ public class ReviewOfRequirementsByAcquisitionBusinessImpl extends BaseBusinessI
 			
 		}
 
-		@AllowedRoles(roles = {Roles.Contractor, Roles.Security_Specialist, Roles.Administrator})
+		@AllowedRoles(roles = {Roles.Contractor, Roles.Security_Specialist, Roles.Administrator, Roles.Acquisition_Organization_Engineer})
 		public void updateRequirement(GwtRequirement gwtRequirement) throws SquareException
 		{
 		
