@@ -106,7 +106,7 @@ public class ReviewAndFinalizeRequirementsBusinessImpl extends BaseBusinessImpl 
 		}
 		
 		
-		@AllowedRoles(roles = {Roles.Contractor, Roles.Security_Specialist, Roles.Administrator})
+		@AllowedRoles(roles = {Roles.Security_Specialist, Roles.Administrator})
 		public int addRequirementToProject(Integer projectId, GwtRequirement gwtRequirement) throws SquareException
 		{
 			
@@ -122,13 +122,14 @@ public class ReviewAndFinalizeRequirementsBusinessImpl extends BaseBusinessImpl 
 				throw se;
 			}
 			*/
+			/*
 			if(gwtRequirement.getArtifacts().isEmpty()) 
 			{
 				SquareException se = new SquareException("At least one artifact is required.");
 				se.setType(ExceptionType.missingLink);
 				throw se;
 			}
-		
+		*/
 			requirementDao.create(requirement);
 			p.getRequirements().add(requirement);
 			return requirement.getId();
@@ -143,7 +144,7 @@ public class ReviewAndFinalizeRequirementsBusinessImpl extends BaseBusinessImpl 
 				requirementDao.deleteById(gwtRequirement.getId());
 			}
 			
-			@AllowedRoles(roles = {Roles.Administrator, Roles.Security_Specialist})
+			@AllowedRoles(roles = {Roles.Administrator, Roles.Security_Specialist, Roles.Acquisition_Organization_Engineer})
 			public void updateRequirement(GwtProject gwtProject, GwtRequirement gwtRequirement) throws SquareException
 			{
 				Requirement requirement = new Requirement(gwtRequirement);
@@ -236,25 +237,27 @@ public class ReviewAndFinalizeRequirementsBusinessImpl extends BaseBusinessImpl 
 				Requirement  r = requirementDao.fetch(gwtRequirement.getId());
 				
 				r.getRisks().clear();
-				r.getArtifacts().clear();
+				//r.getArtifacts().clear();
 				r.getGoals().clear();
 				//r.getCategories().clear();
 				
 				r.update(gwtRequirement);
 				
+				/*
 				if(gwtRequirement.getRisks().isEmpty()) 
 				{
 					SquareException se = new SquareException("At least one risk is required.");
 					se.setType(ExceptionType.missingLink);
 					throw se;
 				}
+				/*
 				if(gwtRequirement.getArtifacts().isEmpty()) 
 				{
 					SquareException se = new SquareException("At least one artifact is required.");
 					se.setType(ExceptionType.missingLink);
 					throw se;
 				}
-				
+				*/
 				requirementDao.update(r);
 				
 

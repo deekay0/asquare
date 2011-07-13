@@ -346,6 +346,8 @@ public class State extends StateHandler
 		this.sessionID = Cookies.getCookie("sessionID");
 		this.currentView = Cookies.getCookie("currentView");
 		this.projectName = Cookies.getCookie("projectName");
+		this.caseName = Cookies.getCookie("caseName");
+		this.caseID = Integer.valueOf(Cookies.getCookie("caseID"));
 		this.projectInspectionStatus = Cookies.getCookie("projectInspectionStatus");
 		if (Cookies.getCookie("isSiteAdministrator") != null)
 		{

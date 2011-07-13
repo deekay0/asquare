@@ -38,7 +38,7 @@ public class IdentifyGoalsAssetsBusinessImpl extends BaseBusinessImpl implements
 	
 
 	
-	@AllowedRoles(roles={Roles.Administrator, Roles.Contractor, Roles.Acquisition_Organization_Engineer, Roles.Security_Specialist})
+	@AllowedRoles(roles={Roles.Administrator, Roles.Contractor, Roles.Acquisition_Organization_Engineer, Roles.Security_Specialist, Roles.COTS_Vendor})
 	public void setBusinessGoal(int projectId, GwtBusinessGoal businessGoal)  throws SquareException
 	{
 		Project project = new Project();
@@ -77,7 +77,7 @@ public class IdentifyGoalsAssetsBusinessImpl extends BaseBusinessImpl implements
 		businessGoal.setDescription(goal.getDescription());
 	}
 
-	@AllowedRoles(roles = {Roles.Administrator, Roles.Contractor, Roles.Acquisition_Organization_Engineer, Roles.Security_Specialist})
+	@AllowedRoles(roles = {Roles.Administrator, Roles.Contractor, Roles.Acquisition_Organization_Engineer, Roles.Security_Specialist, Roles.COTS_Vendor})
 	public GwtBusinessGoal getBusinessGoalInformation(int projectId)
 	{	
 		Project project = new Project();
@@ -149,7 +149,7 @@ public class IdentifyGoalsAssetsBusinessImpl extends BaseBusinessImpl implements
 	}
 	
 	
-	@AllowedRoles(roles={Roles.Administrator, Roles.Contractor, Roles.Acquisition_Organization_Engineer, Roles.Security_Specialist})
+	@AllowedRoles(roles={Roles.Administrator, Roles.Contractor, Roles.Acquisition_Organization_Engineer, Roles.Security_Specialist, Roles.COTS_Vendor})
 	public void updateSubGoal(int projectId, GwtSubGoal subgoal)  throws SquareException
 	{
 		Project project = new Project();
@@ -198,7 +198,7 @@ public class IdentifyGoalsAssetsBusinessImpl extends BaseBusinessImpl implements
 	}
 
 	
-	@AllowedRoles(roles={Roles.Administrator, Roles.Contractor, Roles.Acquisition_Organization_Engineer, Roles.Security_Specialist})
+	@AllowedRoles(roles={Roles.Administrator, Roles.Contractor, Roles.Acquisition_Organization_Engineer, Roles.Security_Specialist, Roles.COTS_Vendor})
 	public void updateAsset(int projectId, GwtAsset gwtAsset)  throws SquareException
 	{
 		Project project = new Project();
@@ -223,7 +223,7 @@ public class IdentifyGoalsAssetsBusinessImpl extends BaseBusinessImpl implements
 	}
 	
 	
-	@AllowedRoles(roles={Roles.Administrator, Roles.Contractor, Roles.Acquisition_Organization_Engineer, Roles.Security_Specialist})
+	@AllowedRoles(roles={Roles.Administrator, Roles.Contractor, Roles.Acquisition_Organization_Engineer, Roles.Security_Specialist, Roles.COTS_Vendor})
 	public void associateSubGoalAndAsset(GwtSubGoal gwtSubgoal, GwtAsset gwtAsset)  throws SquareException
 	{
 		Goal subGoal = this.goalDataAccess.fetch(gwtSubgoal.getId());

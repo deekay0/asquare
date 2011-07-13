@@ -19,6 +19,7 @@ import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.VerticalPanel;
 
 import edu.cmu.square.client.model.GWTAppProperties;
+import edu.cmu.square.client.model.GwtModesType;
 import edu.cmu.square.client.model.ProjectRole;
 import edu.cmu.square.client.navigation.State;
 import edu.cmu.square.client.remoteService.interfaces.LogInService;
@@ -129,8 +130,11 @@ public class HeaderPane extends Composite
 		
 		this.linksPanel.add(new Label(messages.delimiter()));
 		
-		// Only the admin can mange the site settings.
-		if (currentState.isSiteAdministrator())
+		// Only the admin and aoe can mange the site settings.
+		if (currentState.isSiteAdministrator()||currentState.getUserProjectRole() == ProjectRole.Acquisition_Organization_Engineer)
+		{
+			currentState.setMode(GwtModesType.ReadWrite);
+		}
 		{
 			Hyperlink adminLink = new Hyperlink(messages.adminLinkText(), ManageSitePilot.generateNavigationId(ManageSitePilot.PageId.home));
 			this.linksPanel.add(adminLink);

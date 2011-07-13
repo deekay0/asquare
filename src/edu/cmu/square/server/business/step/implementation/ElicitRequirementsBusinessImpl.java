@@ -49,19 +49,19 @@ public class ElicitRequirementsBusinessImpl extends BaseBusinessImpl implements 
 		Requirement requirement = new Requirement(gwtRequirement);
 		requirement.setProject(p);
 		requirement.setStatus("Pending");
-//		if(gwtRequirement.getRisks().isEmpty()) 
-//		{
-//			SquareException se = new SquareException("At least one risk is required.");
-//			se.setType(ExceptionType.missingLink);
-//			throw se;
-//		}
+/*		if(gwtRequirement.getRisks().isEmpty()) 
+		{
+			SquareException se = new SquareException("At least one risk is required.");
+			se.setType(ExceptionType.missingLink);
+			throw se;
+		}
 		if(gwtRequirement.getArtifacts().isEmpty()) 
 		{
 			SquareException se = new SquareException("At least one artifact is required.");
 			se.setType(ExceptionType.missingLink);
 			throw se;
 		}
-	
+*/	
 		requirementDao.create(requirement);
 		p.getRequirements().add(requirement);
 		return requirement.getId();
@@ -90,19 +90,19 @@ public class ElicitRequirementsBusinessImpl extends BaseBusinessImpl implements 
 		
 		r.update(gwtRequirement);
 		
-//		if(gwtRequirement.getRisks().isEmpty()) 
-//		{
-//			SquareException se = new SquareException("At least one risk is required.");
-//			se.setType(ExceptionType.missingLink);
-//			throw se;
-//		}
+/*		if(gwtRequirement.getRisks().isEmpty()) 
+		{
+			SquareException se = new SquareException("At least one risk is required.");
+			se.setType(ExceptionType.missingLink);
+			throw se;
+		}
 		if(gwtRequirement.getArtifacts().isEmpty()) 
 		{
 			SquareException se = new SquareException("At least one artifact is required.");
 			se.setType(ExceptionType.missingLink);
 			throw se;
 		}
-		
+*/		
 		requirementDao.update(r);
 		
 

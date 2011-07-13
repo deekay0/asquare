@@ -32,6 +32,7 @@ import edu.cmu.square.client.navigation.State;
 import edu.cmu.square.client.remoteService.step.interfaces.IdentifyGoalsAssetsService;
 import edu.cmu.square.client.remoteService.step.interfaces.IdentifyGoalsAssetsServiceAsync;
 import edu.cmu.square.client.ui.ChooseStep.ChooseStepPilot;
+import edu.cmu.square.client.ui.ChooseStepCase3.ChooseStepCase3Pilot;
 import edu.cmu.square.client.ui.core.BasePane;
 import edu.cmu.square.client.ui.core.SquareHyperlink;
 import edu.cmu.square.client.ui.risksAssessment.RiskAssessmentPaneMessages;
@@ -249,6 +250,7 @@ public class AssociateAssetsWithGoalsPane extends BasePane
 			}
 		});
 		
+		final int caseid = this.getCurrentState().getCaseID();
 		summaryButton.addClickHandler(new ClickHandler()
 		{
 			public void onClick(ClickEvent event)
@@ -270,7 +272,11 @@ public class AssociateAssetsWithGoalsPane extends BasePane
 				{
 					return;
 				}
-				History.newItem(ChooseStepPilot.generateNavigationId(ChooseStepPilot.PageId.home));
+				
+				if(caseid==1)
+					History.newItem(ChooseStepPilot.generateNavigationId(ChooseStepPilot.PageId.home));
+				if(caseid==3)
+					History.newItem(ChooseStepCase3Pilot.generateNavigationId(ChooseStepCase3Pilot.PageId.home));
 			}
 		});
 		
