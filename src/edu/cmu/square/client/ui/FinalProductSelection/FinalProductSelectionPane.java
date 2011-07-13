@@ -508,7 +508,8 @@ public class FinalProductSelectionPane extends BasePane
 			
 			RadioButton rButton = new RadioButton("group");
 			
-			if (this.getCurrentState().getMode().equals(GwtModesType.ReadWrite)){
+			if (this.getCurrentState().getMode().equals(GwtModesType.ReadWrite))
+			{
 				rButton.addClickHandler(new ClickHandler()
 					{	
 						@Override
@@ -522,12 +523,12 @@ public class FinalProductSelectionPane extends BasePane
 						}}
 				);
 			}
-			if(rationale != null && softwarePackages.get(j).getId() == rationale.getPackage().getId())
-				rButton.setValue(true);
 			else
 			{
-				System.out.println("NOT THE SAME");
+				rButton.setEnabled(false);
 			}
+			if(rationale != null && softwarePackages.get(j).getId() == rationale.getPackage().getId())
+				rButton.setValue(true);
 			
 			if(j>=1)
 			{

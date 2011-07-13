@@ -160,16 +160,14 @@ public class ReviewAndFinalizeRequirementsDetailPane extends BasePane implements
 						businessGoalInfo = result;
 						listOfProjectSubGoals = businessGoalInfo.getSubGoals();
 						loadArtifactsFromProject();
-						System.out.println("loadSubGoalsFromProject");
-
+					
 					}
 				});
 		}
 		
 		public void loadArtifactsFromProject()
 		{
-			System.out.println("loadArtifactsFromProject");
-
+			
 			CollectArtifactsServiceAsync service = GWT.create(CollectArtifactsService.class);
 			int projectId = this.getCurrentState().getProjectID();
 			

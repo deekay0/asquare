@@ -24,5 +24,6 @@ public interface FinalProductSelectionPaneMessages extends CommonMessages
 	String noelementsFound();
 	String rationaleRetrievalError();
 	String rationaleUpdateError();
+	String selectionAuthError();
 	
 }

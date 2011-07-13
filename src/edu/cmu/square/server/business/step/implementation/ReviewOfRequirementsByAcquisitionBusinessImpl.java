@@ -10,27 +10,25 @@ import javax.annotation.Resource;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Service;
 
-import edu.cmu.square.client.exceptions.ExceptionType;
+
 import edu.cmu.square.client.exceptions.SquareException;
 import edu.cmu.square.client.model.GwtProject;
 import edu.cmu.square.client.model.GwtRequirement;
 import edu.cmu.square.client.model.GwtStepVerficationResult;
-import edu.cmu.square.client.model.GwtTerm;
+
 import edu.cmu.square.client.navigation.StepEnum;
 import edu.cmu.square.server.authorization.AllowedRoles;
 import edu.cmu.square.server.authorization.Roles;
 import edu.cmu.square.server.business.implementation.BaseBusinessImpl;
-import edu.cmu.square.server.business.step.interfaces.AgreeOnDefinitionsBusiness;
 import edu.cmu.square.server.business.step.interfaces.ReviewOfRequirementsByAcquisitionBusiness;
 import edu.cmu.square.server.dao.interfaces.CategoryDao;
 import edu.cmu.square.server.dao.interfaces.ProjectDao;
 import edu.cmu.square.server.dao.interfaces.RequirementDao;
-import edu.cmu.square.server.dao.interfaces.TermDao;
-import edu.cmu.square.server.dao.model.Asset;
+
 import edu.cmu.square.server.dao.model.Category;
 import edu.cmu.square.server.dao.model.Project;
 import edu.cmu.square.server.dao.model.Requirement;
-import edu.cmu.square.server.dao.model.Term;
+
 
 
 @Service
@@ -57,7 +55,7 @@ public class ReviewOfRequirementsByAcquisitionBusinessImpl extends BaseBusinessI
 		for (Requirement req : requirements)
 		{
 			requirementList.add(req.createGwtRequirement());
-		}
+					}
 
 		return requirementList;
 
@@ -154,6 +152,8 @@ public class ReviewOfRequirementsByAcquisitionBusinessImpl extends BaseBusinessI
 		{
 			Requirement requirement = new Requirement(gwtRequirement);
 			requirement.setProject(new Project(gwtProject.getId()));
+			
+			System.out.println("ReviewOfRequirementsByAcquisitionBusinessImpl updateRequirement22"+requirement.getStatus());
 			requirementDao.update(requirement);
 		}
 
@@ -247,6 +247,9 @@ public class ReviewOfRequirementsByAcquisitionBusinessImpl extends BaseBusinessI
 			//r.getCategories().clear();
 			
 			r.update(gwtRequirement);
+			System.out.println("Business layer updateRequirement11"+r.getStatus());
+			System.out.println("Business layer updateRequirement11"+r.getTitle());
+			
 			/*
 			if(gwtRequirement.getRisks().isEmpty()) 
 			{

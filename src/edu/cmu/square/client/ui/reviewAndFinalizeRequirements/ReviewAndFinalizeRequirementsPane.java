@@ -1174,14 +1174,15 @@ public class ReviewAndFinalizeRequirementsPane extends BasePane
 				
 			}});
 		buttonPanel.setWidget(0,0,new Label(" "));
-		buttonPanel.setWidget(0,1,new Label(" "));
-		buttonPanel.setWidget(1,1,new Label(" "));
-		buttonPanel.setWidget(2,1,new Label(" "));
-		buttonPanel.setWidget(2,2,done);
-		buttonPanel.setWidth("100%");
-		done.setWidth("10%");
-		buttonPanel.getCellFormatter().setHorizontalAlignment(2,2,HasHorizontalAlignment.ALIGN_RIGHT);
-		this.vPaneCotsData.add(buttonPanel);
+		//buttonPanel.setWidget(0,1,new Label(" "));
+		//buttonPanel.setWidget(1,1,new Label(" "));
+		//buttonPanel.setWidget(2,1,new Label(" "));
+		buttonPanel.setWidget(1,0,done);
+		buttonPanel.setWidth("75%");
+		//done.setWidth("10%");
+		buttonPanel.getCellFormatter().setHorizontalAlignment(1,0,HasHorizontalAlignment.ALIGN_RIGHT);
+		this.getContent().add(buttonPanel);
+		//this.vPaneCotsData.add(buttonPanel);
 	}
 
 	class SummaryElementHyperLinkElement extends SquareHyperlink
