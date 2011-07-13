@@ -40,6 +40,7 @@ import edu.cmu.square.client.model.GwtProject;
 import edu.cmu.square.client.model.GwtQualityAttribute;
 import edu.cmu.square.client.model.GwtRating;
 import edu.cmu.square.client.model.GwtSoftwarePackage;
+import edu.cmu.square.client.model.ProjectRole;
 import edu.cmu.square.client.model.StepStatus;
 import edu.cmu.square.client.navigation.State;
 import edu.cmu.square.client.remoteService.step.interfaces.ReviewPackagesService;
@@ -345,10 +346,12 @@ public class ReviewPackagesPane extends BasePane
 		VerticalPanel YPanel = new VerticalPanel();
 		
 		XPanel.add(new Label(messages.matrixLableX()));
-		XPanel.add(addQualityAttribute);
+		if (currentState.getUserProjectRole() != ProjectRole.COTS_Vendor)
+			XPanel.add(addQualityAttribute);
 		
 		YPanel.add(new Label(messages.matrixLableY()));
-		YPanel.add(addSoftwarePackage);
+		if (currentState.getUserProjectRole() != ProjectRole.COTS_Vendor)
+			YPanel.add(addSoftwarePackage);
 		
 		this.matrixHeader.setWidget(1, 1, XPanel);
 		this.matrixHeader.setWidget(3, 0, YPanel);
@@ -527,7 +530,7 @@ public class ReviewPackagesPane extends BasePane
 		// Set the header rows  with techniques
 		for(int i=1; i<=attributes.size();i++)
 		{
-			if(this.isReadOnly)
+			if(this.isReadOnly || (currentState.getUserProjectRole() == ProjectRole.COTS_Vendor))
 			{
 				Label techniqueLabel = new Label(attributes.get(i-1).getName());
 
@@ -595,7 +598,7 @@ public class ReviewPackagesPane extends BasePane
 		// Set the left columns with the evaluation criteria 
 		for(int j=0, widgetCount=0; j<softwarePackages.size();j++, ++widgetCount)
 		{
-			if(this.isReadOnly)
+			if(this.isReadOnly || (currentState.getUserProjectRole() == ProjectRole.COTS_Vendor))
 			{
 				Label softwarePackageLabel = new Label(softwarePackages.get(j).getName());
 
