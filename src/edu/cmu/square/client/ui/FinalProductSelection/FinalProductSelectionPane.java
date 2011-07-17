@@ -1,6 +1,8 @@
 package edu.cmu.square.client.ui.FinalProductSelection;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 import com.google.gwt.core.client.GWT;
@@ -45,7 +47,7 @@ import edu.cmu.square.client.remoteService.step.interfaces.ReviewPackagesService
 import edu.cmu.square.client.remoteService.step.interfaces.ReviewPackagesServiceAsync;
 import edu.cmu.square.client.ui.core.BasePane;
 import edu.cmu.square.client.ui.core.SquareHyperlink;
-import edu.cmu.square.server.dao.model.ProjectPackageRationale;
+import edu.cmu.square.server.dao.model.SoftwarePackage;
 
 public class FinalProductSelectionPane extends BasePane
 {
@@ -291,6 +293,8 @@ public class FinalProductSelectionPane extends BasePane
 			public void onSuccess(List<GwtSoftwarePackage> result)
 			{
 				softwarePackages = result;
+				
+				
 				loadRatings();	
 			}	
 			@Override
@@ -311,6 +315,44 @@ public class FinalProductSelectionPane extends BasePane
 					{
 						
 						tradeoffReasons = result;
+						
+						final List<GwtSoftwarePackage> temp = softwarePackages.subList(1, softwarePackages.size());
+						for(int i=0; i<temp.size(); ++i)
+							System.out.println(temp.get(i).getName());
+						
+						System.out.println("\n\n");
+						
+						for(int i=0; i<softwarePackages.size(); ++i)
+							System.out.println(softwarePackages.get(i).getName());
+						
+						System.out.println("\n\n");
+						
+						for(int i=0; i<tradeoffReasons.size(); ++i)
+							System.out.println(tradeoffReasons.get(i).getTradeoffreason());
+						
+						System.out.println("\n\n");
+						
+						Collections.sort(temp, new Comparator<GwtSoftwarePackage>()
+								{
+									public int compare(GwtSoftwarePackage o1, GwtSoftwarePackage o2) 
+									{									
+										int a, b;
+										
+										System.out.println(temp.get(temp.indexOf(o1)).getName()+ " has priority ");
+										System.out.println(tradeoffReasons.get(temp.indexOf(o1)).getPriority());
+										
+										a = tradeoffReasons.get(temp.indexOf(o1)).getPriority();
+										b = tradeoffReasons.get(temp.indexOf(o2)).getPriority();
+										if(a > b)
+											return -1;
+										else if(a < b)
+											return 1;
+										else
+											return 0;
+								    }
+								});
+						softwarePackages = softwarePackages.subList(0, 1);
+						softwarePackages.addAll(temp);
 						
 						loadRequirementRatings();
 						
@@ -378,12 +420,12 @@ public class FinalProductSelectionPane extends BasePane
 		matrix.setWidth("100%");
 		matrix.setStyleName("square-Matrix");
 		matrix.setCellSpacing(0);
-		drawRateMatrixHeaderTechniques();
-		drawRateMatrixEvaluationCriteriaColum();
+		drawAttributesRequirements();
+		drawSoftwarePackages();
 		drawRateMatrixValues();
 	}
 	
-	public void drawRateMatrixHeaderTechniques()
+	public void drawAttributesRequirements()
 	{
 		FlexCellFormatter formatter = this.matrix.getFlexCellFormatter();
 		matrix.setWidget(0, 0, new Label(" "));
@@ -459,16 +501,19 @@ public class FinalProductSelectionPane extends BasePane
 		
 		matrix.setWidget(0, attributes.size()+listOfRequirements.size()+1, new Label("Total"));
 		matrix.setWidget(0, attributes.size()+listOfRequirements.size()+2, new Label("Tradeoff Reason"));
-		matrix.setWidget(0, attributes.size()+listOfRequirements.size()+3, new Label("Final Selection"));
+		matrix.setWidget(0, attributes.size()+listOfRequirements.size()+3, new Label("Priority"));
+		matrix.setWidget(0, attributes.size()+listOfRequirements.size()+4, new Label("Final Selection"));
 		formatter.setHorizontalAlignment(0, attributes.size()+listOfRequirements.size()+1, HasHorizontalAlignment.ALIGN_RIGHT);
 		formatter.setStyleName(0, attributes.size()+listOfRequirements.size()+1,"square-Matrix");	
 		formatter.setHorizontalAlignment(0, attributes.size()+listOfRequirements.size()+2, HasHorizontalAlignment.ALIGN_RIGHT);
 		formatter.setStyleName(0, attributes.size()+listOfRequirements.size()+2,"square-Matrix");	
 		formatter.setHorizontalAlignment(0, attributes.size()+listOfRequirements.size()+3, HasHorizontalAlignment.ALIGN_RIGHT);
-		formatter.setStyleName(0, attributes.size()+listOfRequirements.size()+3,"square-Matrix");	
+		formatter.setStyleName(0, attributes.size()+listOfRequirements.size()+3,"square-Matrix");
+		formatter.setHorizontalAlignment(0, attributes.size()+listOfRequirements.size()+4, HasHorizontalAlignment.ALIGN_RIGHT);
+		formatter.setStyleName(0, attributes.size()+listOfRequirements.size()+4,"square-Matrix");
 	}
 	
-	public void drawRateMatrixEvaluationCriteriaColum()
+	public void drawSoftwarePackages()
 	{
 		FlexCellFormatter formatter = this.matrix.getFlexCellFormatter();
 		// Set the left columns with the package names 
@@ -536,10 +581,16 @@ public class FinalProductSelectionPane extends BasePane
 				formatter.setHorizontalAlignment(j+1, attributes.size()+listOfRequirements.size()+2, HasHorizontalAlignment.ALIGN_RIGHT);
 				formatter.setStyleName(j+1, attributes.size()+listOfRequirements.size()+2,  "square-Matrix");
 				
-				matrix.setWidget(j+1,attributes.size()+listOfRequirements.size()+3, rButton);
+				matrix.setWidget(j+1,attributes.size()+listOfRequirements.size()+3, new Label(tradeoffReasons.get(index).getPriority().toString()));
 				formatter.setHorizontalAlignment(j+1, attributes.size()+listOfRequirements.size()+3, HasHorizontalAlignment.ALIGN_CENTER);
 				formatter.setStyleName(j+1, attributes.size()+listOfRequirements.size()+3,  "square-Matrix");
-			}
+			
+				
+				matrix.setWidget(j+1,attributes.size()+listOfRequirements.size()+4, rButton);
+				formatter.setHorizontalAlignment(j+1, attributes.size()+listOfRequirements.size()+4, HasHorizontalAlignment.ALIGN_CENTER);
+				formatter.setStyleName(j+1, attributes.size()+listOfRequirements.size()+4,  "square-Matrix");
+				
+				}
 			formatter.setHorizontalAlignment(j+1,0 , HasHorizontalAlignment.ALIGN_RIGHT);
 			formatter.setStyleName(j+1,0, "square-Matrix");		
 		}	
