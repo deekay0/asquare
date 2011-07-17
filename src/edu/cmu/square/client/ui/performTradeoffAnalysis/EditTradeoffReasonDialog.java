@@ -33,7 +33,7 @@ import edu.cmu.square.client.utils.SquareUtil;
 public class EditTradeoffReasonDialog extends DialogBox
 {
 	
-	private final TextArea tradeoffReasonTextBox = new TextArea();
+	private final Label tradeoffReasonTextBox = new Label();
 
 	private GwtTradeoffReason current;
 	private PerformTradeoffAnalysisPane updateTradeoffReasonCommand;
@@ -69,7 +69,6 @@ public class EditTradeoffReasonDialog extends DialogBox
 	 */
 	private void initializeDialogReadOnly(GwtTradeoffReason tradeoffReason)
 	{
-		System.out.println("****my access right is RO");
 		VerticalPanel baseLayout = new VerticalPanel();
 		VerticalPanel nameLayout = new VerticalPanel();
 		VerticalPanel descriptionLayout = new VerticalPanel(); 
@@ -83,37 +82,8 @@ public class EditTradeoffReasonDialog extends DialogBox
 		this.tradeoffReasonTextBox.setText(tradeoffReason.getTradeoffreason());
 
 		// Set up the buttons
-		saveButton = new Button(messages.editTradeoffReasonDialogBoxSave(), new SaveHandler(this, tradeoffReason));
+		saveButton = new Button(messages.editTradeoffReasonDialogBoxOkay(), new SaveHandler(this, tradeoffReason));
 		Button okayButton = new Button(messages.editTradeoffReasonDialogBoxOkay(), new CancelHandler(this));
-		
-		this.tradeoffReasonTextBox.addKeyUpHandler(new KeyUpHandler()
-		{
-			public void onKeyUp(KeyUpEvent event)
-			{
-				 configureButton();
-			}
-			
-		});
-		
-		this.tradeoffReasonTextBox.addChangeHandler(new ChangeHandler()
-		{
-			public void onChange(ChangeEvent event)
-			{
-				 configureButton();
-				
-			}
-			
-		});
-		
-		this.tradeoffReasonTextBox.addKeyDownHandler(new KeyDownHandler()
-		{
-			public void onKeyDown(KeyDownEvent event)
-			{
-				 configureButton();
-				
-			}
-			
-		});
 		
 		
 		saveButton.setWidth("100px");
@@ -158,37 +128,8 @@ public class EditTradeoffReasonDialog extends DialogBox
 		this.tradeoffReasonTextBox.setText(tradeoffReason.getTradeoffreason());
 
 		// Set up the buttons
-		saveButton = new Button(messages.editTradeoffReasonDialogBoxSave(), new SaveHandler(this, tradeoffReason));
+		saveButton = new Button(messages.editTradeoffReasonDialogBoxOkay(), new SaveHandler(this, tradeoffReason));
 		Button cancelButton = new Button(messages.editTradeoffReasonDialogBoxCancel(), new CancelHandler(this));
-		
-		this.tradeoffReasonTextBox.addKeyUpHandler(new KeyUpHandler()
-		{
-			public void onKeyUp(KeyUpEvent event)
-			{
-				 configureButton();
-			}
-			
-		});
-		
-		this.tradeoffReasonTextBox.addChangeHandler(new ChangeHandler()
-		{
-			public void onChange(ChangeEvent event)
-			{
-				 configureButton();
-				
-			}
-			
-		});
-		
-		this.tradeoffReasonTextBox.addKeyDownHandler(new KeyDownHandler()
-		{
-			public void onKeyDown(KeyDownEvent event)
-			{
-				 configureButton();
-				
-			}
-			
-		});
 		
 		
 		saveButton.setWidth("100px");
