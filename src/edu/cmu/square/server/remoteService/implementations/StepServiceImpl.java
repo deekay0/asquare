@@ -48,6 +48,9 @@ public class StepServiceImpl extends SquareRemoteServiceServlet implements StepS
 	{
 		WebApplicationContext ctx = WebApplicationContextUtils.getWebApplicationContext(RemoteServiceUtil.getThreadLocalContext());
 		
+		//for(int i=0;i<stepBusiness.verifyAllSteps(project.getId(), ctx).size(); i++)
+			//System.out.println("remote step service...."+stepBusiness.verifyAllSteps(project.getId(), ctx).get(i).getStep().getDescription());
+		
 		return stepBusiness.verifyAllSteps(project.getId(), ctx);
 	}
 

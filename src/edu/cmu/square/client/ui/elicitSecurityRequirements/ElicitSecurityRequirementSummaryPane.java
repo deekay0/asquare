@@ -33,6 +33,7 @@ import edu.cmu.square.client.navigation.State;
 import edu.cmu.square.client.remoteService.step.interfaces.ElicitRequirementService;
 import edu.cmu.square.client.remoteService.step.interfaces.ElicitRequirementServiceAsync;
 import edu.cmu.square.client.ui.ChooseStep.ChooseStepPilot;
+import edu.cmu.square.client.ui.ChooseStepCase3.ChooseStepCase3Pilot;
 import edu.cmu.square.client.ui.core.BasePane;
 import edu.cmu.square.client.ui.core.SquareHyperlink;
 
@@ -137,12 +138,16 @@ public class ElicitSecurityRequirementSummaryPane extends BasePane
 		FlexTable buttonPanel = new FlexTable();
 		Button done = new Button(messages.done());
 		done.addStyleName("square-button");
+		
+		final int caseid = this.getCurrentState().getCaseID();
+		
 		done.addClickHandler(new ClickHandler(){
-
-			
 			public void onClick(ClickEvent event)
 			{
-				History.newItem(ChooseStepPilot.generateNavigationId(ChooseStepPilot.PageId.home));
+				if(caseid==1)
+					History.newItem(ChooseStepPilot.generateNavigationId(ChooseStepPilot.PageId.home));
+				if(caseid==3)
+					History.newItem(ChooseStepCase3Pilot.generateNavigationId(ChooseStepCase3Pilot.PageId.home));
 				
 			}});
 		

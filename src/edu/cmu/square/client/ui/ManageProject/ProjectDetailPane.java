@@ -147,7 +147,9 @@ public class ProjectDetailPane extends VerticalPanel
 
 				public void onSuccess(List<GwtStepVerficationResult> result)
 				{
-
+					//for(int i=0; i<result.size(); i++)
+						//System.out.println("listOfSteps..."+result.get(i).getStep().getId()+"..."+result.get(i).getStep().getDescription());
+					
 					Collections.sort(result, new Comparator<GwtStepVerficationResult>()
 							{
 
@@ -167,6 +169,8 @@ public class ProjectDetailPane extends VerticalPanel
 					);
 					
 					listOfSteps = result;
+					
+					
 					CreateStepGrid();
 				}
 			});
