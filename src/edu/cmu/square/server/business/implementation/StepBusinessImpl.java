@@ -138,31 +138,37 @@ public class StepBusinessImpl extends BaseBusinessImpl implements StepBusiness
 		Set<Step> steps = project.getSteps();
 		GwtStepVerficationResult r = null;
 
+		
+		
 		if (steps.isEmpty())
 		{
 			throw new SquareException("No steps in the database");
 		}
 		for (Step s : steps)
 		{
-			System.out.println("step business....."+s.getId());
+			
 			GwtStep gs = s.createGwtStep(projectId);
 			
 			//find the logic
 			for (StepBusinessInterface sb: beanMap.values())
 			{
-				if (sb.getStepDescription().getDescription().equals(gs.getDescription()))
-				{
+				//if (sb.getStepDescription().getDescription().equals(gs.getDescription()))
+				//{
 					r =  sb.verifyStep(project);
 					if (r==null)
 					{
 						logger.info("null business " + sb);
 					}
 					break;
-				}
+				//}
 			}
 			r.setStep(gs);
 			result.add(r);
 		}
+		
+		//for(GwtStepVerficationResult s: result)
+			//System.out.println("step business impl....."+s.getStep().getDescription());
+		
 		return result;
 	}
 
