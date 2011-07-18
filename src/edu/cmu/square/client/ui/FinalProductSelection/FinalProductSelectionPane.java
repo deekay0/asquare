@@ -338,15 +338,19 @@ public class FinalProductSelectionPane extends BasePane
 									{									
 										int a, b;
 										
-										System.out.println(temp.get(temp.indexOf(o1)).getName()+ " has priority ");
-										System.out.println(tradeoffReasons.get(temp.indexOf(o1)).getPriority());
+										System.out.println(o1.getName()+ " has priority ");
+										System.out.println(findTRByPackage(o1).getPriority());
 										
-										a = tradeoffReasons.get(temp.indexOf(o1)).getPriority();
-										b = tradeoffReasons.get(temp.indexOf(o2)).getPriority();
-										if(a > b)
-											return -1;
-										else if(a < b)
+										a = findTRByPackage(o1).getPriority();
+										b = findTRByPackage(o2).getPriority();
+										if(a == -1)
 											return 1;
+										if(b == -1)
+											return -1;
+										if(a > b)
+											return 1;
+										else if(a < b)
+											return -1;
 										else
 											return 0;
 								    }
@@ -544,7 +548,7 @@ public class FinalProductSelectionPane extends BasePane
 			final int index = j;
 			tradeoffReasonLink.addClickHandler(new ClickHandler(){
 				public void onClick(ClickEvent event) {
-					editTradeoffReasonDialog = new EditTradeoffReasonDialog(tradeoffReasons.get(index),tradeoffReasons,FinalProductSelectionPane.this);
+					editTradeoffReasonDialog = new EditTradeoffReasonDialog(findTRByPackage(softwarePackages.get(index)),tradeoffReasons,FinalProductSelectionPane.this);
 					editTradeoffReasonDialog.center();
 					editTradeoffReasonDialog.setModal(true);
 					editTradeoffReasonDialog.show();
@@ -581,7 +585,7 @@ public class FinalProductSelectionPane extends BasePane
 				formatter.setHorizontalAlignment(j+1, attributes.size()+listOfRequirements.size()+2, HasHorizontalAlignment.ALIGN_RIGHT);
 				formatter.setStyleName(j+1, attributes.size()+listOfRequirements.size()+2,  "square-Matrix");
 				
-				matrix.setWidget(j+1,attributes.size()+listOfRequirements.size()+3, new Label(tradeoffReasons.get(index).getPriority().toString()));
+				matrix.setWidget(j+1,attributes.size()+listOfRequirements.size()+3, new Label(findPriorityByPackage(softwarePackages.get(index)).toString()));
 				formatter.setHorizontalAlignment(j+1, attributes.size()+listOfRequirements.size()+3, HasHorizontalAlignment.ALIGN_CENTER);
 				formatter.setStyleName(j+1, attributes.size()+listOfRequirements.size()+3,  "square-Matrix");
 			
@@ -594,6 +598,29 @@ public class FinalProductSelectionPane extends BasePane
 			formatter.setHorizontalAlignment(j+1,0 , HasHorizontalAlignment.ALIGN_RIGHT);
 			formatter.setStyleName(j+1,0, "square-Matrix");		
 		}	
+	}
+	
+	private GwtTradeoffReason findTRByPackage(GwtSoftwarePackage softwarePackage)
+	{
+		
+		for(GwtTradeoffReason i : tradeoffReasons)
+			if(i.getPackageId() == softwarePackage.getId())
+			{
+				System.out.println("This software package: "+softwarePackage.getName()+" has tradeoeffreason: "+i.getTradeoffreason());
+				return i;
+			}
+		return null;
+	}
+	
+	private Integer findPriorityByPackage(GwtSoftwarePackage softwarePackage)
+	{
+		for(GwtTradeoffReason i : tradeoffReasons)
+			if(i.getPackageId() == softwarePackage.getId())
+			{
+				System.out.println("This software package: "+softwarePackage.getName()+" has priority: "+i.getPriority());
+				return i.getPriority();
+			}
+		return -1;
 	}
 	
 	public void drawRateMatrixValues()

@@ -88,13 +88,11 @@ public class FinalProductSelectionBusinessImpl extends BaseBusinessImpl implemen
 	{
 		ProjectPackageRationale currentRationale = rationaleDao.getRationale(new Project(gwtRationale.getProject()));
 		if(currentRationale != null)
-		{
-			System.out.println("deleting!");
-			System.out.println("This is what we're deleting: "+currentRationale.getId().getPackageId()+" "+currentRationale.getId().getProjectId());
+		{			
 			rationaleDao.deleteEntity(currentRationale);
 		}
 		
-		System.out.println("This is what we're inserting values("+gwtRationale.getRationale()+","+gwtRationale.getProject().getId()+","+gwtRationale.getPackage().getId()+")");
+	
 		ProjectPackageRationale newRationale = new ProjectPackageRationale(gwtRationale);
 		rationaleDao.create(newRationale);
 	}
