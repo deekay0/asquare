@@ -47,9 +47,7 @@ public class ManageProjectPane extends BasePane
 	private ManageSiteServiceAsync mssa = GWT.create(ManageSiteService.class);
 	
 	private VerticalPanel projetusersPanel = new VerticalPanel();
-	private VerticalPanel techniquesPanel = new VerticalPanel();
-	private VerticalPanel categoriesPanel = new VerticalPanel();
-	private VerticalPanel inspectionTechPanel = new VerticalPanel();
+	
 	private ProjectDetailPane projectDetailPanel = null;
 //	private VerticalPanel exportDataPanel = new VerticalPanel();
 	
@@ -77,9 +75,7 @@ public class ManageProjectPane extends BasePane
 		
 		DecoratedTabPanel mainTabs = new DecoratedTabPanel();
 		mainTabs.add(this.projetusersPanel, messages.tab1Title());
-		mainTabs.add(this.techniquesPanel,  messages.tab2Title());
-		mainTabs.add(this.categoriesPanel,  messages.tab3Title());
-		mainTabs.add(this.inspectionTechPanel,  messages.tab4Title());
+		
 		mainTabs.add(this.projectDetailPanel, messages.tab5Title());
 //		mainTabs.add(this.exportDataPanel,  messages.tab6Title());
 
@@ -87,9 +83,6 @@ public class ManageProjectPane extends BasePane
 		mainTabs.setSize("60%", "100%");
 		
 		
-		this.setTechniquesPanel();
-		this.setCategoriesPanel();
-		this.setInspectionTechniquesPanel();
 		this.setProjectUserPanel();
 		this.projectDetailPanel.initializeTable();
 		
@@ -378,25 +371,6 @@ public class ManageProjectPane extends BasePane
 		});
 	}
 
-	/**
-	 * Set the categories panel
-	 */
-	private void setCategoriesPanel()
-	{
-		VerticalPanel mainLayout = new VerticalPanel();
-		mainLayout.setWidth("100%");
-		mainLayout.setSpacing(15);
-		
-		VerticalPanel categoryLayout = new VerticalPanel();
-		categoryLayout.setWidth("100%");
-		categoryLayout.add(new Label(messages.categoryTableDescription()));
-		categoryLayout.add(new CategoryGrid(gwtProject, this));
-		
-		mainLayout.add(categoryLayout);
-
-		this.categoriesPanel.add(mainLayout);
-		
-	}
 	
 	
 	private void setProjectUserPanel()
@@ -452,42 +426,7 @@ public class ManageProjectPane extends BasePane
 		this.projetusersPanel.add(this.projectUserTableHeader);
 		this.projetusersPanel.add(this.projectUserTable);
 	}
-	private void setTechniquesPanel()
-	{
-		VerticalPanel mainLayout = new VerticalPanel();
-		mainLayout.setWidth("100%");
-		mainLayout.setSpacing(15);
-		
-		VerticalPanel techniqueLayout = new VerticalPanel();
-		techniqueLayout.setWidth("100%");
-		techniqueLayout.add(new Label(messages.techniqueTableDescription()));
-		techniqueLayout.add(new TechniqueGrid(gwtProject, this));
-		
-		VerticalPanel evaluationLayout = new VerticalPanel();
-		evaluationLayout.setWidth("100%");
-		evaluationLayout.add(new Label(messages.evaluationTableDescription()));
-		evaluationLayout.add(new EvaluationGrid(gwtProject, this));
-		
-		mainLayout.add(techniqueLayout);
-		mainLayout.add(evaluationLayout);
 
-		this.techniquesPanel.add(mainLayout);
-	}
-	
-	
-	private void setInspectionTechniquesPanel()
-	{
-		VerticalPanel mainLayout = new VerticalPanel();
-		mainLayout.setWidth("100%");
-		mainLayout.setSpacing(15);
-		
-		mainLayout.add(new Label(messages.inspectionTableDescription()));
-		mainLayout.add(new InspectionTechniqueGrid(this.gwtProject.getId(), this));
-	
-		this.inspectionTechPanel.add(mainLayout);
-	}
-	
-	
 }
 
 

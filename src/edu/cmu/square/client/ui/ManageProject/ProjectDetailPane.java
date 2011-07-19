@@ -148,11 +148,9 @@ public class ProjectDetailPane extends VerticalPanel
 				public void onSuccess(List<GwtStepVerficationResult> result)
 				{
 					//for(int i=0; i<result.size(); i++)
-						//System.out.println("listOfSteps..."+result.get(i).getStep().getId()+"..."+result.get(i).getStep().getDescription());
-					
+						//System.out.println("listOfSteps..."+result.get(i).getStep().getId()+"..."+result.get(i).getStep().getDescription());		
 					Collections.sort(result, new Comparator<GwtStepVerficationResult>()
 							{
-
 								@Override
 								public int compare(GwtStepVerficationResult o1, GwtStepVerficationResult o2)
 								{
@@ -162,7 +160,6 @@ public class ProjectDetailPane extends VerticalPanel
 										return 0;
 									}
 									return o1.getStep().getDescription().compareTo(o2.getStep().getDescription());
-				
 								}
 						
 							}
@@ -192,7 +189,7 @@ public class ProjectDetailPane extends VerticalPanel
 		formatter.setStyleName(0, 2, "square-TableHeader");
 		stepsTable.setWidget(0, 0, new Label(messages.stepStatusLable()));
 		stepsTable.setWidget(0, 1, new Label(messages.stepDescription()));
-		stepsTable.setWidget(0, 2, new Label(messages.squareAnalysisStatus()));
+		//stepsTable.setWidget(0, 2, new Label(messages.squareAnalysisStatus()));
 
 		// Add the steps
 		int rowCount = 1;
@@ -224,7 +221,37 @@ public class ProjectDetailPane extends VerticalPanel
 					{
 						// Get the index, make a service call with the text
 						final String status = statusList.getItemText(statusList.getSelectedIndex());
+						
+						if(step.getStatus()!=StepStatus.NotStarted && StepStatus.convertLabel(status)==StepStatus.NotStarted)
+						{
+							Window.alert(messages.cannotChangeToNotStarted());
+							if(step.getStatus()==StepStatus.InProgress)
+								statusList.setSelectedIndex(1);
+							if(step.getStatus()==StepStatus.Complete)
+								statusList.setSelectedIndex(2);
+							return;
+						}
+						
+						if(step.getStatus()==StepStatus.Complete && StepStatus.convertLabel(status)==StepStatus.InProgress)
+						{
+							//System.out.println("step id...."+step.getId()+"  ... "+step.getDescription().charAt(5));
+							int stepNo = Integer.valueOf(step.getDescription().charAt(5));
+							System.out.println("stepno......."+stepNo);
+							
+							for(int i=0; i<listOfSteps.size(); i++)
+							{
+								int stepNumber = Integer.valueOf(listOfSteps.get(i).getStep().getDescription().charAt(5));
+								if(stepNumber < stepNo)
+								{
+									updateStepStatus(projectId, listOfSteps.get(i).getStep().getId(), "In Progress");
+									
+								}
+							}
+						}
+								
+						
 						updateStepStatus(projectId, step.getId(), status);
+						step.setStatus(StepStatus.convertLabel(status));
 					}
 				});
 
@@ -243,7 +270,7 @@ public class ProjectDetailPane extends VerticalPanel
 
 			stepsTable.setWidget(rowCount, 0, statusList);
 			stepsTable.setWidget(rowCount, 1, analysisResults);
-			stepsTable.setWidget(rowCount, 2, resultLabel);
+			//stepsTable.setWidget(rowCount, 2, resultLabel);
 
 			formatter.setVerticalAlignment(rowCount, 0, HasVerticalAlignment.ALIGN_TOP);
 			formatter.setWidth(rowCount, 0, "180px");

@@ -116,4 +116,8 @@ public interface ManageProjectPaneMessages extends CommonMessages
 	String evaluationError();
 	String techniqueError();
 	
+	//project detail pane
+	String cannotChangeToNotStarted();
+	String autoChangeToInProgress();
+	
 }
