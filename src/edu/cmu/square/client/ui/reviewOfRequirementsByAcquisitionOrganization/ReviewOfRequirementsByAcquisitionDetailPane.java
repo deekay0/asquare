@@ -892,7 +892,7 @@ public class ReviewOfRequirementsByAcquisitionDetailPane extends BasePane implem
 			//Check to make sure this requirement title is not already in the system
 			for (GwtRequirement requirement : lisOfRequirements)
 			{
-				if (requirement.getTitle().equals(requirementTitleTextBox.getText().trim()))
+				if (requirement.getTitle().equals(requirementTitleTextBox.getText().trim()) && (requirement.getId() != currentRequirementId))
 				{
 					errorMessage.setText(messages.duplicateTitleError());
 					disPanel.setOpen(true);

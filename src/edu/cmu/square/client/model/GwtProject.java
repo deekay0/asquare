@@ -160,15 +160,15 @@ public class GwtProject implements Serializable {
 	{
 		this.currentRole = currentRole;
 	}
-	public void setAcquisitionOrganizationEngineer(GwtUser acqusitionOrganizationEngineer)
+	public void setAcquisitionOrganizationEngineer(GwtUser acquisitionOrganizationEngineer)
 	{
-		this.acquisitionOrganizationEngineer = acqusitionOrganizationEngineer;
-	}
+		this.acquisitionOrganizationEngineer = acquisitionOrganizationEngineer;
+}
+
 	public GwtUser getAcquisitionOrganizationEngineer()
 	{
 		return acquisitionOrganizationEngineer;
 	}
-	
 	public void setCases(GwtAsquareCase cases)
 	{
 		this.cases = cases;

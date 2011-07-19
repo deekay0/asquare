@@ -28,7 +28,7 @@ public interface ManageProjectService extends RemoteService {
 	 * @return The steps associated with this project.
 	 * @throws SquareException TODO
 	 */
-	GwtProject createProject(GwtProject project, boolean useDefaultTerms, boolean useDefaultTechniques, boolean useDefaultEvaluations, boolean useDefaultInspections) throws SquareException;
+	GwtProject createProject(GwtProject project) throws SquareException;
 	
 	/**
 	 * This returns the new project GwtProject. Internally it associate the lead requirement engineer and create the steps depending on the project type
@@ -112,18 +112,18 @@ public interface ManageProjectService extends RemoteService {
 	 * This updates  the securityElicitationTechnique
 	 * @return The string statuses of the steps.
 	 */
-	void updateProjectTechnique(Integer projectId, Integer techniqueID, String rationale) throws SquareException;
-	/**
-	 * This updates  the security inpection technique
-	 * @return The string statuses of the steps.
-	 */
-	void updateProjectInspectionTechnique(Integer projectId, Integer inspectionTechniqueId) throws SquareException;
-
-	/**
-	 * This updates  the security inpection technique status
-	 * @return The string statuses of the steps.
-	 */
-	void updateProjectInspectionStatus(Integer projectId, String inspectionTechniqueStatus) throws SquareException;
+//	void updateProjectTechnique(Integer projectId, Integer techniqueID, String rationale) throws SquareException;
+//	/**
+//	 * This updates  the security inpection technique
+//	 * @return The string statuses of the steps.
+//	 */
+//	void updateProjectInspectionTechnique(Integer projectId, Integer inspectionTechniqueId) throws SquareException;
+//
+//	/**
+//	 * This updates  the security inpection technique status
+//	 * @return The string statuses of the steps.
+//	 */
+//	void updateProjectInspectionStatus(Integer projectId, String inspectionTechniqueStatus) throws SquareException;
 
 
 }

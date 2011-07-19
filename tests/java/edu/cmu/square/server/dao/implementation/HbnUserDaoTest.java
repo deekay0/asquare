@@ -58,9 +58,9 @@ public class HbnUserDaoTest extends AbstractSpringBase {
 		project.setPrivacy(false);
 		project.setSecurity(true);
 	
-		project.setPrivacyTechniqueRationale("None");
-		project.setSecurityTechniqueRationale("None");
-		
+//		project.setPrivacyTechniqueRationale("None");
+//		project.setSecurityTechniqueRationale("None");
+//		
 		project.setAcquisitionOrganizationEngineer(user);
 	
 		userDao.create(user);
@@ -101,10 +101,8 @@ public class HbnUserDaoTest extends AbstractSpringBase {
 		project.setLite(false);
 		project.setPrivacy(false);
 		project.setSecurity(true);
-		project.setPrivacyTechniqueRationale("None");
-		project.setSecurityTechniqueRationale("None");
-		//project.setLeadRequirementEngineer(user);
-		
+//		project.setPrivacyTechniqueRationale("None");
+//		project.setSecurityTechniqueRationale("None");
 		project.setAcquisitionOrganizationEngineer(user);
 		
 		Role role = roleDao.findByName("Acquisition Organization Engineer");

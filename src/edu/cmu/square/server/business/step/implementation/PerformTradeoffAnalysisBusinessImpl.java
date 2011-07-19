@@ -80,22 +80,6 @@ public class PerformTradeoffAnalysisBusinessImpl extends BaseBusinessImpl implem
 
 
 	@Override
-	public GwtStepVerficationResult verifyStep(Project project) throws SquareException
-	{
-		GwtStepVerficationResult result = new GwtStepVerficationResult();
-
-		if (project.isSecurity())
-		{
-			if (project.getSecurityTechnique() == null)
-			{
-				result.getMessages().add("The security requirements elicitation technique has not been selected!");
-				result.setHasWarning(true);
-			}
-		}
-		return result;
-	}
-
-	@Override
 	@AllowedRoles(roles = {Roles.All})
 	public List<GwtTradeoffReason> getTradeoffReasons(int projectID) throws SquareException
 	{
@@ -130,6 +114,13 @@ public class PerformTradeoffAnalysisBusinessImpl extends BaseBusinessImpl implem
 	public void updatePriority(int projectID, int packageID, int priority) throws SquareException
 	{
 		tradeoffReasonDao.setPriority(projectID, packageID, priority);
+	}
+
+	@Override
+	public GwtStepVerficationResult verifyStep(Project projectId) throws SquareException
+	{
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 

@@ -23,7 +23,7 @@ public interface ManageProjectServiceAsync
 	 * @return The steps associated with this project.
 	 * @throws SquareException
 	 */
-	void createProject(GwtProject project, boolean useDefaultTerms, boolean useDefaultTechniques, boolean useDefaultEvaluations, boolean useDefaultInspections,AsyncCallback<GwtProject> result);
+	void createProject(GwtProject project, AsyncCallback<GwtProject> result);
 
 	/**
 	 * Delete a project - This should only be done by the administrator
@@ -110,10 +110,10 @@ public interface ManageProjectServiceAsync
 
 	void getProject(Integer projectId, AsyncCallback<GwtProject> asyncCallback);
 
-	void updateProjectTechnique(Integer projectId, Integer techniqueID, String rationale, AsyncCallback<Void> result);
-
-	void updateProjectInspectionTechnique(Integer projectId, Integer inspectionTechniqueId, AsyncCallback<Void> result);
-
-	void updateProjectInspectionStatus(Integer projectId, String inspectionTechniqueStatus, AsyncCallback<Void> asyncCallback);
+//	void updateProjectTechnique(Integer projectId, Integer techniqueID, String rationale, AsyncCallback<Void> result);
+//
+//	void updateProjectInspectionTechnique(Integer projectId, Integer inspectionTechniqueId, AsyncCallback<Void> result);
+//
+//	void updateProjectInspectionStatus(Integer projectId, String inspectionTechniqueStatus, AsyncCallback<Void> asyncCallback);
 
 }

@@ -79,12 +79,12 @@ public class ProjectGrid extends Composite implements Command
 			});
 	}
 
-	public void createProject(GwtProject newProject, boolean useDefaultTerms, boolean useDefaultTechniques, boolean useDefaultEvaluations, boolean useDefaultInspections)
+	public void createProject(GwtProject newProject)
 	{
 		this.caller.showStatusBar(messages.creatingProject());
 		ServiceDefTarget endpoint = (ServiceDefTarget) manageProjectService;
 		endpoint.setServiceEntryPoint(GWT.getModuleBaseURL() + "manageProject.rpc");
-		manageProjectService.createProject(newProject, useDefaultTerms,useDefaultTechniques,useDefaultEvaluations,useDefaultInspections, new AsyncCallback<GwtProject>()
+		manageProjectService.createProject(newProject, new AsyncCallback<GwtProject>()
 			{
 				public void onFailure(Throwable caught)
 				{

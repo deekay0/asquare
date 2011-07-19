@@ -45,37 +45,17 @@ public class ManageProjectServiceImpl extends SquareRemoteServiceServlet impleme
 
 
 	
-	public GwtProject createProject(GwtProject newProject,  boolean useDefaultTerms, boolean useDefaultTechniques, boolean useDefaultEvaluations, boolean useDefaultInspections) throws SquareException
+	public GwtProject createProject(GwtProject newProject) throws SquareException
 	{
-		List<GwtTerm> terms=null;
-		List<GwtTechnique> techniques=null;
-		List<GwtEvaluation> evaluations=null;
-		List<GwtInspectionTechnique> inspections=null;
+		
 		
 		InputStream defaultValueStream = Thread.currentThread().getContextClassLoader().getResourceAsStream("defaultProjectValues.xml");
 		
 		Document projectDefaulValuesXMLDocument =getProjectDefaultValuesXMLDocument(defaultValueStream);
 		
-		if (useDefaultTerms)
-		{
-			terms=mpb.findDefaultTerms(projectDefaulValuesXMLDocument);
-		}
-		if (useDefaultTechniques)
-		{
-			techniques=mpb.findDefaultElicitationTechniques(projectDefaulValuesXMLDocument);
-		}
-		if (useDefaultEvaluations)
-		{
-			evaluations =mpb.findDefaultEvaluationCriteria(projectDefaulValuesXMLDocument);
-		}
-		if (useDefaultInspections)
-		{
-			inspections =mpb.findDefaultInspectionTechniques(projectDefaulValuesXMLDocument);
-		} 
 		
 		
-		
-		return mpb.createProject(newProject,terms,techniques,inspections,evaluations);
+		return mpb.createProject(newProject);
 	
 	}
 
@@ -183,22 +163,22 @@ public class ManageProjectServiceImpl extends SquareRemoteServiceServlet impleme
 		return mpb.getProject(projectId);
 	}
 
-	public void updateProjectTechnique(Integer projectId, Integer techniqueID, String rationale) throws SquareException
-	{
-		mpb.setTechniqueToProject(projectId, techniqueID, rationale);
-	}
-
-	public void updateProjectInspectionTechnique(Integer projectId, Integer inspectionTechniqueId) throws SquareException
-	{
-		mpb.setInspectionTechniqueToProject(projectId, inspectionTechniqueId);
-	}
-
-
-	public void updateProjectInspectionStatus(Integer projectId, String inspectionTechniqueStatus) throws SquareException
-	{
-		mpb.setInspectionTechniqueStatusToProject(projectId, inspectionTechniqueStatus);
-		
-	}
+//	public void updateProjectTechnique(Integer projectId, Integer techniqueID, String rationale) throws SquareException
+//	{
+//		mpb.setTechniqueToProject(projectId, techniqueID, rationale);
+//	}
+//
+//	public void updateProjectInspectionTechnique(Integer projectId, Integer inspectionTechniqueId) throws SquareException
+//	{
+//		mpb.setInspectionTechniqueToProject(projectId, inspectionTechniqueId);
+//	}
+//
+//
+//	public void updateProjectInspectionStatus(Integer projectId, String inspectionTechniqueStatus) throws SquareException
+//	{
+//		mpb.setInspectionTechniqueStatusToProject(projectId, inspectionTechniqueStatus);
+//		
+//	}
 	public void setValuesForAuthorization()
 	{
 		setValuesForAuthorization(mpb);

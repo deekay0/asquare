@@ -77,7 +77,7 @@ public class InspectionTechniqueBusinessImpl extends BaseBusinessImpl implements
 		}
 				
 		Project targetProject = this.projectDao.fetch(projectId);
-		targetProject.setInspectionTechnique(new InspectionTechnique(gwtInspection));
+//		targetProject.setInspectionTechnique(new InspectionTechnique(gwtInspection));
 		
 		// update in the project DAO
 		this.projectDao.update(targetProject);
@@ -179,7 +179,8 @@ public class InspectionTechniqueBusinessImpl extends BaseBusinessImpl implements
 		GwtStepVerficationResult result = new GwtStepVerficationResult();
 		
 
-		String inspectionStatus = project.getInspectionStatus();
+//		String inspectionStatus = project.getInspectionStatus();
+		String inspectionStatus = "";
 		if(inspectionStatus==null)
 		{
 			result.getMessages().add("The inspection has not been completed.");
