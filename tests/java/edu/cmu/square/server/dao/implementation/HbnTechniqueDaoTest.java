@@ -111,9 +111,9 @@ public class HbnTechniqueDaoTest extends AbstractSpringBase {
 		testProject2.setLite(false);
 		testProject2.setPrivacy(false);
 		testProject2.setSecurity(true);
-		testProject2.setPrivacyTechniqueRationale("None");
-		testProject2.setSecurityTechniqueRationale("None");
-		testProject2.setLeadRequirementEngineer(this.testUser);
+//		testProject2.setPrivacyTechniqueRationale("None");
+//		testProject2.setSecurityTechniqueRationale("None");
+		testProject2.setAcquisitionOrgEngineer(this.testUser);
 		projectDao.create(testProject2);
 		
 		

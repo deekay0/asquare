@@ -140,20 +140,20 @@ public class ElicitationTechniqueBusinessImpl extends BaseBusinessImpl implement
 	{
 
 		Project p = projectDao.fetch(projectId);
-		if (p.getSecurityTechnique() != null && p.getSecurityTechnique().getId().equals(gwtElicitTechnique.getTechniqueId()))
-		{
-			SquareException se = new SquareException();
-			se.setType(ExceptionType.constraintViolated);
-			throw se;
-		}
-		
-		if (p.getTechniques().size() == 1)
-		{
-			SquareException se = new SquareException();
-			se.setType(ExceptionType.onlyOneTechnique);
-			throw se;
-		}
-		
+//		if (p.getSecurityTechnique() != null && p.getSecurityTechnique().getId().equals(gwtElicitTechnique.getTechniqueId()))
+//		{
+//			SquareException se = new SquareException();
+//			se.setType(ExceptionType.constraintViolated);
+//			throw se;
+//		}
+//		
+//		if (p.getTechniques().size() == 1)
+//		{
+//			SquareException se = new SquareException();
+//			se.setType(ExceptionType.onlyOneTechnique);
+//			throw se;
+//		}
+//		
 		try
 		{
 			techniqueDao.deleteById(gwtElicitTechnique.getTechniqueId());
@@ -359,15 +359,15 @@ public class ElicitationTechniqueBusinessImpl extends BaseBusinessImpl implement
 
 		
 
-		if (project.isSecurity())
-		{
-			if (project.getSecurityTechnique() == null)
-			{
-				result.getMessages().add("The security requirements elicitation technique has not been selected!");
-				result.setHasWarning(true);
-
-			}
-		}
+//		if (project.isSecurity())
+//		{
+//			if (project.getSecurityTechnique() == null)
+//			{
+//				result.getMessages().add("The security requirements elicitation technique has not been selected!");
+//				result.setHasWarning(true);
+//
+//			}
+//		}
 		return result;
 	}
 	

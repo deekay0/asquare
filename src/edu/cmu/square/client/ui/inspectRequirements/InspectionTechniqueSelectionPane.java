@@ -127,20 +127,20 @@ public class InspectionTechniqueSelectionPane extends BasePane
 		ServiceDefTarget endpoint = (ServiceDefTarget) serviceForProjectManagement;
 		endpoint.setServiceEntryPoint(GWT.getModuleBaseURL() + "manageProject.rpc");
 		
-		this.serviceForProjectManagement.updateProjectInspectionTechnique(project.getId(), project.getInspectionTechniqueID().getInspectionTechniqueId(), new AsyncCallback<Void>()
-		{
-			public void onFailure(Throwable caught)
-			{
-				ExceptionHelper.SquareRootRPCExceptionHandler(caught, inspectonMessages.savingInspectionInformation());
-			}
-
-			public void onSuccess(Void result)
-			{		
-				
-				History.newItem(InspectRequirementsPilot.generateNavigationId(InspectRequirementsPilot.PageId.inspectionTechniqueDisplay));
-			}
-			
-		});
+//		this.serviceForProjectManagement.updateProjectInspectionTechnique(project.getId(), project.getInspectionTechniqueID().getInspectionTechniqueId(), new AsyncCallback<Void>()
+//		{
+//			public void onFailure(Throwable caught)
+//			{
+//				ExceptionHelper.SquareRootRPCExceptionHandler(caught, inspectonMessages.savingInspectionInformation());
+//			}
+//
+//			public void onSuccess(Void result)
+//			{		
+//				
+//				History.newItem(InspectRequirementsPilot.generateNavigationId(InspectRequirementsPilot.PageId.inspectionTechniqueDisplay));
+//			}
+//			
+//		});
 	}
 
 	public void renderInspectionTechniqueTable()

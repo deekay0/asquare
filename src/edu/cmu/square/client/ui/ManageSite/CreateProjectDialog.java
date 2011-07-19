@@ -39,10 +39,7 @@ import edu.cmu.square.client.utils.SquareUtil;
 public class CreateProjectDialog extends DialogBox
 {
 	private final TextBox projectTextBox = new TextBox();
-	private final CheckBox defaultTerms = new CheckBox();
-	private final CheckBox defaultTechniques = new CheckBox();
-	private final CheckBox defaultEvaluations = new CheckBox();
-	private final CheckBox defaultInspections = new CheckBox();
+
 	private MultiWordSuggestOracle oracle = new MultiWordSuggestOracle();
 	private SuggestBox userSuggestBox = new SuggestBox(oracle);
 
@@ -96,12 +93,7 @@ public class CreateProjectDialog extends DialogBox
 	private void initializeDialog(GwtProject project)
 	{
 		
-		this.defaultTerms.setText(messages.useDefaultTerms());
-		
-		this.defaultTechniques.setText(messages.useDefaultTechniques());
-		this.defaultEvaluations.setText(messages.useDefaultEvaluations());
-		this.defaultInspections.setText(messages.useDefaultInspections());
-		
+	
 		this.setAnimationEnabled(true);
 
 		loadUserToSuggestionBox(listOfUsers);
@@ -147,7 +139,7 @@ public class CreateProjectDialog extends DialogBox
 		if (project.isInDatabase())// Is an update
 		{
 			this.setText(messages.updateProjectDialogBoxTitle());
-			GwtUser newLeadRequirementEngineer = getUserById(project.getLeadRequirementEngineer().getUserId());
+			GwtUser newLeadRequirementEngineer = getUserById(project.getacquisitionOrgEngineer().getUserId());
 			projectTextBox.setText(project.getName());
 			userSuggestBox.setText(getSuggestionFormat(newLeadRequirementEngineer.getFullName(), newLeadRequirementEngineer.getUserName()));
 		}
@@ -158,15 +150,6 @@ public class CreateProjectDialog extends DialogBox
 			defaultTermsLayout.setSpacing(5);
 			defaultTermsLayout.setHorizontalAlignment(HasHorizontalAlignment.ALIGN_LEFT);
 			
-			defaultTerms.setValue(true);
-			defaultTechniques.setValue(true);
-			defaultEvaluations.setValue(true);
-			defaultInspections.setValue(true);
-			
-			defaultTermsLayout.add(defaultTerms);
-			defaultTermsLayout.add(defaultTechniques);
-			defaultTermsLayout.add(defaultEvaluations);
-			defaultTermsLayout.add(defaultInspections);
 			
 		}
 
@@ -311,7 +294,7 @@ public class CreateProjectDialog extends DialogBox
 				project.setPrivacy(false);
 				project.setLite(false);
 				project.setLeadRequirementEngineer(getUserByUserName(getUserName()));
-				caller.createProject(project, defaultTerms.getValue(),defaultTechniques.getValue(),defaultEvaluations.getValue(), defaultInspections.getValue());
+				caller.createProject(project);
 			}
 
 			this.dialog.hide();

@@ -164,7 +164,7 @@ public class GwtProject implements Serializable {
 	{
 		this.leadRequirementEngineer = leadRequirementEngineer;
 	}
-	public GwtUser getLeadRequirementEngineer()
+	public GwtUser getacquisitionOrgEngineer()
 	{
 		return leadRequirementEngineer;
 	}

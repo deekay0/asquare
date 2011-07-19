@@ -234,26 +234,26 @@ public class InspectionTechniqueDisplayPane extends BasePane
 				boolean response = Window.confirm(messages.techniqueModConfirm());
 				if(response)
 				{					
-					serviceForProjectManagement.updateProjectInspectionStatus (currentState.getProjectID(), null, new AsyncCallback<Void>()
-					{
-
-						@Override
-						public void onFailure(Throwable caught)
-						{
-							ExceptionHelper.SquareRootRPCExceptionHandler(caught, messages.restartInspection());		
-						}
-
-						@Override
-						public void onSuccess(Void result)
-						{
-							
-							currentState.setProjectInspectionStatus(null);
-							History.newItem(InspectRequirementsPilot.generateNavigationId(InspectRequirementsPilot.PageId.inspectionTechniqueSelection));
-
-						}
-
-								
-					});
+//					serviceForProjectManagement.updateProjectInspectionStatus (currentState.getProjectID(), null, new AsyncCallback<Void>()
+//					{
+//
+//						@Override
+//						public void onFailure(Throwable caught)
+//						{
+//							ExceptionHelper.SquareRootRPCExceptionHandler(caught, messages.restartInspection());		
+//						}
+//
+//						@Override
+//						public void onSuccess(Void result)
+//						{
+//							
+//							currentState.setProjectInspectionStatus(null);
+//							History.newItem(InspectRequirementsPilot.generateNavigationId(InspectRequirementsPilot.PageId.inspectionTechniqueSelection));
+//
+//						}
+//
+//								
+//					});
 				}
 			}
 			
@@ -340,28 +340,28 @@ public class InspectionTechniqueDisplayPane extends BasePane
 		}
 	
 		
-		serviceForProjectManagement.updateProjectInspectionStatus
-		(currentState.getProjectID(), inspectionTechniqueStatus, 
-				new AsyncCallback<Void>()
-				{
-
-					@Override
-					public void onFailure(Throwable caught)
-					{
-						ExceptionHelper.SquareRootRPCExceptionHandler(caught, messages.unpdatingInspectionStatus());
-					}
-
-					@Override
-					public void onSuccess(Void result)
-					{
-						
-						 currentState.setProjectInspectionStatus(inspectionTechniqueStatus);
-						showStatusBarWithoutAnimation(messages.savedInspectionStatus());
-					}
-			
-				}
-				
-		);
+//		serviceForProjectManagement.updateProjectInspectionStatus
+//		(currentState.getProjectID(), inspectionTechniqueStatus, 
+//				new AsyncCallback<Void>()
+//				{
+//
+//					@Override
+//					public void onFailure(Throwable caught)
+//					{
+//						ExceptionHelper.SquareRootRPCExceptionHandler(caught, messages.unpdatingInspectionStatus());
+//					}
+//
+//					@Override
+//					public void onSuccess(Void result)
+//					{
+//						
+//						 currentState.setProjectInspectionStatus(inspectionTechniqueStatus);
+//						showStatusBarWithoutAnimation(messages.savedInspectionStatus());
+//					}
+//			
+//				}
+//				
+//		);
 		
 	} 
 }

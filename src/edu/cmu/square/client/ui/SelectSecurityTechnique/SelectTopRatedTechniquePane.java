@@ -117,36 +117,36 @@ public class SelectTopRatedTechniquePane extends BasePane
 	
 	private void setProjectTechnique(int projectID, final int techniqueID, final String rationale)
 	{
-		this.service.updateProjectTechnique(projectID, techniqueID, rationale, new AsyncCallback<Void>()
-		{
-			public void onFailure(Throwable caught)
-			{
-				if (caught instanceof SquareException)
-				{
-					SquareException se = (SquareException) caught;
-					switch (se.getType())
-					{
-						case authorization:
-							Window.alert(messages.errorAuthorizedSelectTechnique());
-							break;
-				
-						default:
-							Window.alert(messages.errorUpdateProjectTechnique());
-							break;
-					}
-				}
-				else
-				{
-					Window.alert(messages.errorUpdateProjectTechnique());
-				}
-			}
-
-			
-			public void onSuccess(Void result)
-			{
-				SwitchToSummaryMode(techniqueID,rationale);	
-			}
-		});
+//		this.service.updateProjectTechnique(projectID, techniqueID, rationale, new AsyncCallback<Void>()
+//		{
+//			public void onFailure(Throwable caught)
+//			{
+//				if (caught instanceof SquareException)
+//				{
+//					SquareException se = (SquareException) caught;
+//					switch (se.getType())
+//					{
+//						case authorization:
+//							Window.alert(messages.errorAuthorizedSelectTechnique());
+//							break;
+//				
+//						default:
+//							Window.alert(messages.errorUpdateProjectTechnique());
+//							break;
+//					}
+//				}
+//				else
+//				{
+//					Window.alert(messages.errorUpdateProjectTechnique());
+//				}
+//			}
+//
+//			
+//			public void onSuccess(Void result)
+//			{
+//				SwitchToSummaryMode(techniqueID,rationale);	
+//			}
+//		});
 	}
 	
 	

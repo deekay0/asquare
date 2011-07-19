@@ -116,7 +116,7 @@ public class ManageProjectBusinessImplTest extends AbstractSpringBase
 			project.setLite(false);
 			project.setLeadRequirementEngineer(gwtUser);
 
-			GwtProject outputProject = mps.createProject(project, this.createDefaultTerms(),this.createDefaultTechnique(),this.createDefaultInspections(),this.createDefaultEvaluation());
+			GwtProject outputProject = mps.createProject(project);
 			outputProject = mps.getProject(outputProject.getId());
 	
 			Assert.assertEquals(outputProject.getName(), project.getName());
@@ -146,7 +146,7 @@ public class ManageProjectBusinessImplTest extends AbstractSpringBase
 			Assert.assertEquals("Lead Requirements Engineer", users.get(0).getRole());
 			Assert.assertEquals(gwtUser.getUserId().intValue(), users.get(0).getUserId().intValue());
 			
-			GwtUser leader = outputProject.getLeadRequirementEngineer();
+			GwtUser leader = outputProject.getacquisitionOrgEngineer();
 			Assert.assertEquals(gwtUser.getFullName(), leader.getFullName());
 			Assert.assertEquals(gwtUser.getUserId(), leader.getUserId());
 			
@@ -186,7 +186,7 @@ public class ManageProjectBusinessImplTest extends AbstractSpringBase
 			project.setLite(false);
 			project.setLeadRequirementEngineer(gwtUser);
 			
-			project =mps.createProject(project, this.createDefaultTerms(),this.createDefaultTechnique(),this.createDefaultInspections(),this.createDefaultEvaluation());
+			project =mps.createProject(project);
 			
 			
 

@@ -118,9 +118,8 @@ public class AbstractSpringBase {
 		testProject.setLite(false);
 		testProject.setPrivacy(false);
 		testProject.setSecurity(true);
-		testProject.setPrivacyTechniqueRationale("None");
-		testProject.setSecurityTechniqueRationale("None");
-		testProject.setLeadRequirementEngineer(testUser);
+		
+		testProject.setAcquisitionOrgEngineer(testUser);
 		testProject.setCases(asquareCase);
 	
 		
