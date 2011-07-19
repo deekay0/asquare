@@ -242,8 +242,8 @@ public class CollectArtifactsBusinessImplTest extends AbstractSpringBase
 		testProject.setLite(false);
 		testProject.setPrivacy(false);
 		testProject.setSecurity(true);
-		testProject.setPrivacyTechniqueRationale("None");
-		testProject.setSecurityTechniqueRationale("None");
+	//	testProject.setPrivacyTechniqueRationale("None");
+	//	testProject.setSecurityTechniqueRationale("None");
 		testProject.setAcquisitionOrganizationEngineer(this.testUser);
 		testProject.setCases(new AsquareCase(new GwtAsquareCase(1)));
 		projectDao.create(testProject);

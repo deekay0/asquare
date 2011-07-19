@@ -368,15 +368,15 @@ public class ManageProjectBusinessImpl extends BaseBusinessImpl implements Manag
 			throw new SquareException(t.getMessage());
 		}
 	}
-
+/*
 	@AllowedRoles(roles = {Roles.Lead_Requirements_Engineer, Roles.Requirements_Engineer, Roles.Acquisition_Organization_Engineer})
 	public void setTechniqueToProject(Integer projectId, Integer techniqueID, String rationale) throws SquareException
 	{
 		Project project = projectDao.fetch(projectId);
 		Technique technique = new Technique();
 		technique.setId(techniqueID);
-		project.setSecurityTechnique(technique);
-		project.setSecurityTechniqueRationale(rationale);
+		//project.setSecurityTechnique(technique);
+		//project.setSecurityTechniqueRationale(rationale);
 		projectDao.update(project);
 	}
 	@AllowedRoles(roles = {Roles.Acquisition_Organization_Engineer})
@@ -389,7 +389,7 @@ public class ManageProjectBusinessImpl extends BaseBusinessImpl implements Manag
 		project.setSecurityTechniqueRationale(rationale);
 		projectDao.update(project);
 	}
-
+*/
 	@AllowedRoles(roles = {Roles.Administrator,Roles.Acquisition_Organization_Engineer})
 	public GwtProject createProject(GwtProject newProject) throws SquareException
 	{		
@@ -402,7 +402,7 @@ public class ManageProjectBusinessImpl extends BaseBusinessImpl implements Manag
 		AsquareCase acase = asquareCaseDao.fetch(newProject.getCases().getId());
 		project.setCases(acase);
 		
-		System.out.println("lre: "+project.getAcquisitionOrgEngineer().getId()+" cases: "+project.getCases().getId()+" date1: "+project.getDateCreated() +" date2 "+project.getDateModified()+" lite "+project.isLite()+" name "+project.getName()+" priv "+project.isPrivacy()+" sec "+project.isSecurity());
+		//System.out.println("lre: "+project.getAcquisitionOrgEngineer().getId()+" cases: "+project.getCases().getId()+" date1: "+project.getDateCreated() +" date2 "+project.getDateModified()+" lite "+project.isLite()+" name "+project.getName()+" priv "+project.isPrivacy()+" sec "+project.isSecurity());
 		
 		projectDao.create(project);
 		System.out.println("done1");
