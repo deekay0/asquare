@@ -1,6 +1,7 @@
 package edu.cmu.square.server.business.step.implementation;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
@@ -213,7 +214,7 @@ public class CategorizeRequirementsBusinessImpl extends BaseBusinessImpl impleme
 	{
 		GwtStepVerficationResult result = new GwtStepVerficationResult();
 
-		Set<Category> categories = project.getCategories();
+		Set<Category> categories = new HashSet<Category>();
 		
 		Set<Requirement> requirements = project.getRequirements();
 		

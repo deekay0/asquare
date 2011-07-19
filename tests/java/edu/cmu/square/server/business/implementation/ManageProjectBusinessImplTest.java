@@ -114,9 +114,9 @@ public class ManageProjectBusinessImplTest extends AbstractSpringBase
 			project.setSecurity(true);
 			project.setPrivacy(false);
 			project.setLite(false);
-			project.setLeadRequirementEngineer(gwtUser);
+			project.setAcquisitionOrganizationEngineer(gwtUser);
 
-			GwtProject outputProject = mps.createProject(project, this.createDefaultTerms(),this.createDefaultTechnique(),this.createDefaultInspections(),this.createDefaultEvaluation());
+			GwtProject outputProject = mps.createProject(project);
 			outputProject = mps.getProject(outputProject.getId());
 	
 			Assert.assertEquals(outputProject.getName(), project.getName());
@@ -143,10 +143,10 @@ public class ManageProjectBusinessImplTest extends AbstractSpringBase
 			//Validated that the user was added to the project
 			List<GwtUser> users = mps.getUserList(outputProject);
 			Assert.assertEquals(1, users.size());
-			Assert.assertEquals("Lead Requirements Engineer", users.get(0).getRole());
+			Assert.assertEquals("Acquisition Organization Engineer", users.get(0).getRole());
 			Assert.assertEquals(gwtUser.getUserId().intValue(), users.get(0).getUserId().intValue());
 			
-			GwtUser leader = outputProject.getLeadRequirementEngineer();
+			GwtUser leader = outputProject.getAcquisitionOrganizationEngineer();
 			Assert.assertEquals(gwtUser.getFullName(), leader.getFullName());
 			Assert.assertEquals(gwtUser.getUserId(), leader.getUserId());
 			
@@ -184,9 +184,9 @@ public class ManageProjectBusinessImplTest extends AbstractSpringBase
 			project.setSecurity(true);
 			project.setPrivacy(false);
 			project.setLite(false);
-			project.setLeadRequirementEngineer(gwtUser);
+			project.setAcquisitionOrganizationEngineer(gwtUser);
 			
-			project =mps.createProject(project, this.createDefaultTerms(),this.createDefaultTechnique(),this.createDefaultInspections(),this.createDefaultEvaluation());
+			project =mps.createProject(project);
 			
 			
 
@@ -214,7 +214,7 @@ public class ManageProjectBusinessImplTest extends AbstractSpringBase
 			Role role = (Role) testMap.get("role");
 			userDao.addUserToProject(user, project, role);
 
-			String roleStr = "Lead Requirements Engineer";
+			String roleStr = "Acquisition Organization Engineer";
 			gwtUser.setRole(roleStr);
 			mps.setUserName(user.getUserName());
 			mps.setProjectName(project.getName());

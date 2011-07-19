@@ -2,6 +2,7 @@ package edu.cmu.square.server.business.step.implementation;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
@@ -10,7 +11,6 @@ import javax.annotation.Resource;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Service;
 
-import edu.cmu.square.client.exceptions.ExceptionType;
 import edu.cmu.square.client.exceptions.SquareException;
 import edu.cmu.square.client.model.GwtRequirement;
 import edu.cmu.square.client.model.GwtStepVerficationResult;
@@ -213,7 +213,7 @@ public class ElicitRequirementsBusinessImpl extends BaseBusinessImpl implements 
 		}
 
 		// Validates that every risks is address by all requirements.
-		Set<Risk> risks = project.getRisks();
+		Set<Risk> risks = new HashSet<Risk>();//project.getRisks();
 		int riskNotLinkedCount = 0;
 		for (Risk risk : risks)
 		{

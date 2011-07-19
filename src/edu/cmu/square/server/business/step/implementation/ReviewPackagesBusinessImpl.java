@@ -506,24 +506,13 @@ public class ReviewPackagesBusinessImpl extends BaseBusinessImpl implements Revi
 
 
 	@Override
-	public GwtStepVerficationResult verifyStep(Project project) throws SquareException
+	public GwtStepVerficationResult verifyStep(Project projectId) throws SquareException
 	{
-		GwtStepVerficationResult result = new GwtStepVerficationResult();
-
-		
-
-		
-
-		if (project.isSecurity())
-		{
-			if (project.getSecurityTechnique() == null)
-			{
-				result.getMessages().add("The security requirements elicitation technique has not been selected!");
-				result.setHasWarning(true);
-
-			}
-		}
-		return result;
+		// TODO Auto-generated method stub
+		return null;
 	}
+
+
+	
 	
 }

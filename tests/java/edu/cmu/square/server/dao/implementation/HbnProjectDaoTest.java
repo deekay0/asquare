@@ -105,9 +105,9 @@ public class HbnProjectDaoTest extends AbstractSpringBase
 		newProject.setLite(false);
 		newProject.setPrivacy(false);
 		newProject.setSecurity(true);
-		newProject.setPrivacyTechniqueRationale("None");
-		newProject.setSecurityTechniqueRationale("None");
-		newProject.setLeadRequirementEngineer(this.testUser);
+		//newProject.setPrivacyTechniqueRationale("None");
+		//newProject.setSecurityTechniqueRationale("None");
+		newProject.setAcquisitionOrganizationEngineer(this.testUser);
 		
 		projectDao.create(newProject);
 		
@@ -165,63 +165,10 @@ public class HbnProjectDaoTest extends AbstractSpringBase
 	
 	
 	
-	@Test
-	@Transactional
-	public void testGetProjectInspectionStatus()
-	{	
-		testProject.setInspectionStatus(InspectionStatus.NoIssues.getLabel());
-		projectDao.update(testProject);
-		
-		testProject= projectDao.fetch(testProject.getId());
-		
-		assertNotNull(testProject.getInspectionStatus());
-	
-	}
 	
 	
 	
 	
-	@Test
-	@Transactional
-	public void testSetElictitationTechniqueValue()
-	{	
-		
-		testProject.setSecurity(true);
-		testProject.setSecurityTechnique(testElicitationTechnique1);
-		testProject.setSecurityTechniqueRationale("This is the one");
-		
-		projectDao.update(testProject);
-		testProject  = this.projectDao.fetch(this.testProject.getId());
-		
-		assertTrue(testProject.getSecurityTechnique().getName().equalsIgnoreCase("ARM"));
-		assertTrue(testProject.isSecurity());
-		assertTrue(testProject.getSecurityTechniqueRationale().equalsIgnoreCase("This is the one"));
-		
-		
-	}
-	
-	@Test
-	public void testSetInspectionTechniqueValue()
-	{	
-		this.testInspectionTechnique.setProject(this.testProject);
-		this.inspectionDao.create(this.testInspectionTechnique);
-		testProject  = this.projectDao.fetch(this.testProject.getId());
-		
-		testProject.setInspectionTechnique(testInspectionTechnique);
-		projectDao.update(testProject);
-		
-		testProject  = this.projectDao.fetch(this.testProject.getId());
-		testInspectionTechnique= testProject.getInspectionTechnique();
-		
-		assertTrue(testProject.getInspectionTechnique().getName().equalsIgnoreCase("fagan"));
-		
-		testProject.getInspectionTechnique().setName("FaganUpdtated");
-		projectDao.update(testProject);
-		testProject  = this.projectDao.fetch(this.testProject.getId());
-
-		assertTrue(testProject.getInspectionTechnique().getName().equalsIgnoreCase("FaganUpdtated"));
-	
-	}
 	/*added by Nan
 	 * @Test
 	public void testGetProjectsForUserStatus() 

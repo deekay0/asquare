@@ -118,9 +118,8 @@ public class AbstractSpringBase {
 		testProject.setLite(false);
 		testProject.setPrivacy(false);
 		testProject.setSecurity(true);
-		testProject.setPrivacyTechniqueRationale("None");
-		testProject.setSecurityTechniqueRationale("None");
-		testProject.setLeadRequirementEngineer(testUser);
+		
+		testProject.setAcquisitionOrganizationEngineer(testUser);
 		testProject.setCases(asquareCase);
 	
 		
@@ -141,7 +140,7 @@ public class AbstractSpringBase {
 		userDao.create(testUser1);
 		map.put("user1", testUser1);
 		
-		testRole = roleDao.findByName("Lead Requirements Engineer");
+		testRole = roleDao.findByName("Acquisition Organization Engineer");
 		map.put("role", testRole);
 		return map;
 	}

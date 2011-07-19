@@ -33,11 +33,7 @@ public interface ManageProjectBusiness  extends BaseBusinessInterface {
 	 */
 
 	
-	 GwtProject createProject(GwtProject newProject, 
-			 				  List<GwtTerm> terms,
-							  List<GwtTechnique> techniques, 
-							  List<GwtInspectionTechnique> inspections,
-							  List<GwtEvaluation> evaluations)throws SquareException;
+	 GwtProject createProject(GwtProject newProject)throws SquareException;
 	/**
 	 * returns GwtProject this is the new project 
 	 * type(SQUARE lite/full), and project focus(security/privacy/both).
@@ -118,12 +114,6 @@ public interface ManageProjectBusiness  extends BaseBusinessInterface {
 
 
 	GwtProject getProject(Integer projectId) throws SquareException;
-	
-	void setTechniqueToProject(Integer projectId, Integer techniqueID,String rationale) throws SquareException;
-	
-	void setInspectionTechniqueToProject(Integer projectId, Integer inspectionTechniqueId) throws SquareException;
-
-	void setInspectionTechniqueStatusToProject(Integer projectId, String inspectionTechniqueStatus) throws SquareException;
 	
 	 List<GwtTerm> findDefaultTerms(Document defaultValuesProjectXMLDocument);
 	

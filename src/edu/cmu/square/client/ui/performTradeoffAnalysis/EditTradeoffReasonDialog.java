@@ -23,6 +23,7 @@ import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.TextArea;
 import com.google.gwt.user.client.ui.TextBox;
 import com.google.gwt.user.client.ui.VerticalPanel;
+import com.google.gwt.user.client.ui.Widget;
 
 import edu.cmu.square.client.model.GwtModesType;
 import edu.cmu.square.client.model.GwtTradeoffReason;
@@ -33,7 +34,7 @@ import edu.cmu.square.client.utils.SquareUtil;
 public class EditTradeoffReasonDialog extends DialogBox
 {
 	
-	private final TextArea tradeoffReasonTextBox = new TextArea();
+	private  Widget tradeoffReasonTextBox = null;
 
 	private GwtTradeoffReason current;
 	private PerformTradeoffAnalysisPane updateTradeoffReasonCommand;
@@ -69,6 +70,8 @@ public class EditTradeoffReasonDialog extends DialogBox
 	 */
 	private void initializeDialogReadOnly(GwtTradeoffReason tradeoffReason)
 	{
+		tradeoffReasonTextBox = new Label();
+		Label trLabel = (Label)tradeoffReasonTextBox;
 		System.out.println("****my access right is RO");
 		VerticalPanel baseLayout = new VerticalPanel();
 		VerticalPanel nameLayout = new VerticalPanel();
@@ -78,45 +81,14 @@ public class EditTradeoffReasonDialog extends DialogBox
 		nameLayout.add(new Label(messages.editTradeoffReasonDialogBoxName()));
 		nameLayout.add(this.tradeoffReasonTextBox);
 
-		this.tradeoffReasonTextBox.setWidth("500px");
-		this.tradeoffReasonTextBox.setSize("500px", "80px");
-		this.tradeoffReasonTextBox.setText(tradeoffReason.getTradeoffreason());
+		trLabel.setWidth("500px");
+		trLabel.setSize("500px", "80px");
+		trLabel.setText(tradeoffReason.getTradeoffreason());
 
 		// Set up the buttons
-		saveButton = new Button(messages.editTradeoffReasonDialogBoxSave(), new SaveHandler(this, tradeoffReason));
 		Button okayButton = new Button(messages.editTradeoffReasonDialogBoxOkay(), new CancelHandler(this));
+	
 		
-		this.tradeoffReasonTextBox.addKeyUpHandler(new KeyUpHandler()
-		{
-			public void onKeyUp(KeyUpEvent event)
-			{
-				 configureButton();
-			}
-			
-		});
-		
-		this.tradeoffReasonTextBox.addChangeHandler(new ChangeHandler()
-		{
-			public void onChange(ChangeEvent event)
-			{
-				 configureButton();
-				
-			}
-			
-		});
-		
-		this.tradeoffReasonTextBox.addKeyDownHandler(new KeyDownHandler()
-		{
-			public void onKeyDown(KeyDownEvent event)
-			{
-				 configureButton();
-				
-			}
-			
-		});
-		
-		
-		saveButton.setWidth("100px");
 		okayButton.setWidth("100px");
 		
 		buttonsLayout.setSpacing(10);
@@ -143,7 +115,8 @@ public class EditTradeoffReasonDialog extends DialogBox
 	 */
 	private void initializeDialogReadWrite(GwtTradeoffReason tradeoffReason)
 	{
-
+		tradeoffReasonTextBox = new TextArea();
+		TextArea trArea = (TextArea)tradeoffReasonTextBox;
 		VerticalPanel baseLayout = new VerticalPanel();
 		VerticalPanel nameLayout = new VerticalPanel();
 		VerticalPanel descriptionLayout = new VerticalPanel();
@@ -153,15 +126,15 @@ public class EditTradeoffReasonDialog extends DialogBox
 		nameLayout.add(new Label(messages.editTradeoffReasonDialogBoxName()));
 		nameLayout.add(this.tradeoffReasonTextBox);
 
-		this.tradeoffReasonTextBox.setWidth("500px");
-		this.tradeoffReasonTextBox.setSize("500px", "80px");
-		this.tradeoffReasonTextBox.setText(tradeoffReason.getTradeoffreason());
+		trArea.setWidth("500px");
+		trArea.setSize("500px", "80px");
+		trArea.setText(tradeoffReason.getTradeoffreason());
 
 		// Set up the buttons
 		saveButton = new Button(messages.editTradeoffReasonDialogBoxSave(), new SaveHandler(this, tradeoffReason));
 		Button cancelButton = new Button(messages.editTradeoffReasonDialogBoxCancel(), new CancelHandler(this));
 		
-		this.tradeoffReasonTextBox.addKeyUpHandler(new KeyUpHandler()
+		trArea.addKeyUpHandler(new KeyUpHandler()
 		{
 			public void onKeyUp(KeyUpEvent event)
 			{
@@ -170,7 +143,7 @@ public class EditTradeoffReasonDialog extends DialogBox
 			
 		});
 		
-		this.tradeoffReasonTextBox.addChangeHandler(new ChangeHandler()
+		trArea.addChangeHandler(new ChangeHandler()
 		{
 			public void onChange(ChangeEvent event)
 			{
@@ -180,7 +153,7 @@ public class EditTradeoffReasonDialog extends DialogBox
 			
 		});
 		
-		this.tradeoffReasonTextBox.addKeyDownHandler(new KeyDownHandler()
+		trArea.addKeyDownHandler(new KeyDownHandler()
 		{
 			public void onKeyDown(KeyDownEvent event)
 			{
@@ -211,7 +184,8 @@ public class EditTradeoffReasonDialog extends DialogBox
 	}
 	private void configureButton()
 	{
-		if(tradeoffReasonTextBox.getText().trim().equalsIgnoreCase(""))
+		TextArea trBox = (TextArea)tradeoffReasonTextBox;
+		if( trBox.getText().trim().equalsIgnoreCase(""))
 		{
 			saveButton.setEnabled(false);
 		}
@@ -244,8 +218,9 @@ public class EditTradeoffReasonDialog extends DialogBox
 		{
 			List<GwtTradeoffReason> list = listOfTradeoffReasons;
 			this.dialog.hide();
+			TextArea trBox = (TextArea)tradeoffReasonTextBox;
 
-			localTradeoffReason.setTradeoffreason(SquareUtil.firstCharacterToUpperCase(tradeoffReasonTextBox.getText().trim()));
+			localTradeoffReason.setTradeoffreason(SquareUtil.firstCharacterToUpperCase(trBox.getText().trim()));
 			updateTradeoffReasonCommand.updateCommand(this.localTradeoffReason);
 			//updateTradeoffReasonCommand.loadTradeoffReasons();
 		}

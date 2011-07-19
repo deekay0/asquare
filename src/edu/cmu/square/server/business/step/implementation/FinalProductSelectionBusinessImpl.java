@@ -48,21 +48,7 @@ public class FinalProductSelectionBusinessImpl extends BaseBusinessImpl implemen
 		return StepEnum.Perform_Tradeoff_Analysis;
 	}
 
-	@Override
-	public GwtStepVerficationResult verifyStep(Project project) throws SquareException
-	{
-		GwtStepVerficationResult result = new GwtStepVerficationResult();
-
-		if (project.isSecurity())
-		{
-			if (project.getSecurityTechnique() == null)
-			{
-				result.getMessages().add("The security requirements elicitation technique has not been selected!");
-				result.setHasWarning(true);
-			}
-		}
-		return result;
-	}
+	
 
 	@Override
 	public GwtRationale getRationale(GwtProject project) throws SquareException
@@ -88,13 +74,11 @@ public class FinalProductSelectionBusinessImpl extends BaseBusinessImpl implemen
 	{
 		ProjectPackageRationale currentRationale = rationaleDao.getRationale(new Project(gwtRationale.getProject()));
 		if(currentRationale != null)
-		{
-			System.out.println("deleting!");
-			System.out.println("This is what we're deleting: "+currentRationale.getId().getPackageId()+" "+currentRationale.getId().getProjectId());
+		{			
 			rationaleDao.deleteEntity(currentRationale);
 		}
 		
-		System.out.println("This is what we're inserting values("+gwtRationale.getRationale()+","+gwtRationale.getProject().getId()+","+gwtRationale.getPackage().getId()+")");
+	
 		ProjectPackageRationale newRationale = new ProjectPackageRationale(gwtRationale);
 		rationaleDao.create(newRationale);
 	}
@@ -133,5 +117,14 @@ public class FinalProductSelectionBusinessImpl extends BaseBusinessImpl implemen
 	public int getRequirementRateValue(int projectID,int packageID, int requirementID) throws SquareException
 	{
 		return projectRequirementRatingDao.getRating(projectID,packageID, requirementID);
+	}
+
+
+
+	@Override
+	public GwtStepVerficationResult verifyStep(Project projectId) throws SquareException
+	{
+		// TODO Auto-generated method stub
+		return null;
 	}
 }

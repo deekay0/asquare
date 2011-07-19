@@ -17,7 +17,6 @@ import edu.cmu.square.server.dao.model.Project;
 public interface FinalProductSelectionBusiness extends StepBusinessInterface
 {
 	public StepEnum getStepDescription() throws SquareException;
-	public GwtStepVerficationResult verifyStep(Project project) throws SquareException;
 	public GwtRationale getRationale(GwtProject project) throws SquareException;
 	public void setRationale(GwtRationale rationale) throws SquareException;
 	public void updateTradeoffReason(int projectID, int packageId, String tradeoffReason) throws SquareException;

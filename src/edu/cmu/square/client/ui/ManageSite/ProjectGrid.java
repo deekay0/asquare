@@ -79,12 +79,12 @@ public class ProjectGrid extends Composite implements Command
 			});
 	}
 
-	public void createProject(GwtProject newProject, boolean useDefaultTerms, boolean useDefaultTechniques, boolean useDefaultEvaluations, boolean useDefaultInspections)
+	public void createProject(GwtProject newProject)
 	{
 		this.caller.showStatusBar(messages.creatingProject());
 		ServiceDefTarget endpoint = (ServiceDefTarget) manageProjectService;
 		endpoint.setServiceEntryPoint(GWT.getModuleBaseURL() + "manageProject.rpc");
-		manageProjectService.createProject(newProject, useDefaultTerms,useDefaultTechniques,useDefaultEvaluations,useDefaultInspections, new AsyncCallback<GwtProject>()
+		manageProjectService.createProject(newProject, new AsyncCallback<GwtProject>()
 			{
 				public void onFailure(Throwable caught)
 				{
@@ -167,7 +167,7 @@ public class ProjectGrid extends Composite implements Command
 				{
 					if (project.isInDatabase())
 					{
-						CreateProjectDialog dialog = new CreateProjectDialog(project.getId(), project.getName(),project.getLeadRequirementEngineer().getUserId(), listOfProjects, result, caller, project.getCases().getId());
+						CreateProjectDialog dialog = new CreateProjectDialog(project.getId(), project.getName(),project.getAcquisitionOrganizationEngineer().getUserId(), listOfProjects, result, caller, project.getCases().getId());
 						dialog.center();
 						dialog.setModal(true);
 						dialog.show();
@@ -237,7 +237,7 @@ public class ProjectGrid extends Composite implements Command
 		}
 
 		this.projectTable.setWidget(row, 1, type);
-		this.projectTable.setWidget(row, 2, new Label(project.getLeadRequirementEngineer().getFullName()));
+		this.projectTable.setWidget(row, 2, new Label(project.getAcquisitionOrganizationEngineer().getFullName()));
 
 		final Command caller = this;
 
