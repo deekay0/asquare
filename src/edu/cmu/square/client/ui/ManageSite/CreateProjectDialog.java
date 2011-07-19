@@ -147,9 +147,12 @@ public class CreateProjectDialog extends DialogBox
 		if (project.isInDatabase())// Is an update
 		{
 			this.setText(messages.updateProjectDialogBoxTitle());
-			GwtUser newLeadRequirementEngineer = getUserById(project.getLeadRequirementEngineer().getUserId());
+			//GwtUser newLeadRequirementEngineer = getUserById(project.getLeadRequirementEngineer().getUserId());
+			GwtUser newAcqusitionOrganizationEngineer = getUserById(project.getAcquisitionOrganizationEngineer().getUserId());
+			
 			projectTextBox.setText(project.getName());
-			userSuggestBox.setText(getSuggestionFormat(newLeadRequirementEngineer.getFullName(), newLeadRequirementEngineer.getUserName()));
+			//userSuggestBox.setText(getSuggestionFormat(newLeadRequirementEngineer.getFullName(), newLeadRequirementEngineer.getUserName()));
+			userSuggestBox.setText(getSuggestionFormat(newAcqusitionOrganizationEngineer.getFullName(), newAcqusitionOrganizationEngineer.getUserName()));
 		}
 		else // Is a create action
 		{
@@ -310,7 +313,7 @@ public class CreateProjectDialog extends DialogBox
 				project.setSecurity(true);
 				project.setPrivacy(false);
 				project.setLite(false);
-				project.setLeadRequirementEngineer(getUserByUserName(getUserName()));
+				project.setAcquisitionOrganizationEngineer(getUserByUserName(getUserName()));
 				caller.createProject(project, defaultTerms.getValue(),defaultTechniques.getValue(),defaultEvaluations.getValue(), defaultInspections.getValue());
 			}
 

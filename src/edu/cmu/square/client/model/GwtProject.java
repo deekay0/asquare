@@ -27,7 +27,7 @@ public class GwtProject implements Serializable {
 	private int inspectionCompletionStatus = 0; // Default inspection is not complete
 	private List<GwtStep> steps = new ArrayList<GwtStep>();
 	private GwtRole currentRole;
-	private GwtUser leadRequirementEngineer;
+	private GwtUser acquisitionOrganizationEngineer;
 	private GwtAsquareCase cases;
 	
 
@@ -35,17 +35,17 @@ public class GwtProject implements Serializable {
 	{
 		this.id=id;
 	}
-	public GwtProject(Integer id, String projectName, int leadRequirementEngineer)
+	public GwtProject(Integer id, String projectName, int acquisitionOrganizationEngineer)
 	{
 		this.id=id;
 		this.name= projectName;
-		this.leadRequirementEngineer= new GwtUser(leadRequirementEngineer);
+		this.acquisitionOrganizationEngineer= new GwtUser(acquisitionOrganizationEngineer);
 	}
-	public GwtProject(Integer id, String projectName, int leadRequirementEngineer, int cases)
+	public GwtProject(Integer id, String projectName, int acquisitionOrganizationEngineer, int cases)
 	{
 		this.id=id;
 		this.name= projectName;
-		this.leadRequirementEngineer= new GwtUser(leadRequirementEngineer);
+		this.acquisitionOrganizationEngineer= new GwtUser(acquisitionOrganizationEngineer);
 		this.cases = new GwtAsquareCase(cases);
 	}
 	public GwtProject()
@@ -160,13 +160,13 @@ public class GwtProject implements Serializable {
 	{
 		this.currentRole = currentRole;
 	}
-	public void setLeadRequirementEngineer(GwtUser leadRequirementEngineer)
+	public void setAcquisitionOrganizationEngineer(GwtUser acqusitionOrganizationEngineer)
 	{
-		this.leadRequirementEngineer = leadRequirementEngineer;
+		this.acquisitionOrganizationEngineer = acqusitionOrganizationEngineer;
 	}
-	public GwtUser getLeadRequirementEngineer()
+	public GwtUser getAcquisitionOrganizationEngineer()
 	{
-		return leadRequirementEngineer;
+		return acquisitionOrganizationEngineer;
 	}
 	
 	public void setCases(GwtAsquareCase cases)

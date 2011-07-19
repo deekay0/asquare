@@ -41,7 +41,8 @@ public class Project implements java.io.Serializable
 	private Technique securityTechnique;
 	private InspectionTechnique inspectionTechnique;
 	private String inspectionStatus;
-	private User leadRequirementsEngineer;
+	//private User leadRequirementsEngineer;
+	private User acquisitionOrganizationEngineer;
 	private Role currentRole;
 	private Technique privacyTechnique;
 	private String name;
@@ -89,10 +90,16 @@ public class Project implements java.io.Serializable
 			{
 				this.currentRole = new Role(project.getCurrentRole());
 			}
-			if (project.getLeadRequirementEngineer() != null)
+			/*if (project.getLeadRequirementEngineer() != null)
 			{
 				this.leadRequirementsEngineer = new User(project.getLeadRequirementEngineer(), "");
-			}		
+			}*/
+			if (project.getAcquisitionOrganizationEngineer() != null)
+			{
+				this.acquisitionOrganizationEngineer = new User(project.getAcquisitionOrganizationEngineer(), "");
+			}
+			
+			
 		}
 	
 
@@ -137,7 +144,7 @@ public class Project implements java.io.Serializable
 	{
 		this.inspectionTechnique = inspectionTechnique;
 	}
-
+/*
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "lead_requirements_engineer", nullable = false)
 	public User getLeadRequirementEngineer()
@@ -147,6 +154,17 @@ public class Project implements java.io.Serializable
 	public void setLeadRequirementEngineer(User user)
 	{
 		this.leadRequirementsEngineer = user;
+	}
+	*/
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "acquisition_organization_engineer", nullable = false)
+	public User getAcquisitionOrganizationEngineer()
+	{
+		return this.acquisitionOrganizationEngineer;
+	}
+	public void setAcquisitionOrganizationEngineer(User user)
+	{
+		this.acquisitionOrganizationEngineer = user;
 	}
 	
 	@ManyToOne(fetch = FetchType.LAZY)
@@ -480,9 +498,9 @@ public class Project implements java.io.Serializable
 		gwtProject.setSecurity(this.security);
 		
 		
-		if (this.leadRequirementsEngineer != null)
+		if (this.acquisitionOrganizationEngineer != null)
 		{
-			gwtProject.setLeadRequirementEngineer(this.leadRequirementsEngineer.createGwtUser());
+			gwtProject.setAcquisitionOrganizationEngineer(this.acquisitionOrganizationEngineer.createGwtUser());
 		}
 		gwtProject.setCases(this.cases.createGwtCase());
 		

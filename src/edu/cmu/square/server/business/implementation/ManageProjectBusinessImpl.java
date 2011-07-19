@@ -88,7 +88,7 @@ public class ManageProjectBusinessImpl extends BaseBusinessImpl implements Manag
 	@Resource
 	private HbnSoftwarePackageDao softwarePackageDao;
 
-	@AllowedRoles(roles = {Roles.Lead_Requirements_Engineer})
+	@AllowedRoles(roles = {Roles.Acquisition_Organization_Engineer})
 	public void editRole(GwtUser gwtUser, GwtProject gwtProject) throws SquareException
 	{
 		User user = new User(gwtUser, "");
@@ -178,12 +178,13 @@ public class ManageProjectBusinessImpl extends BaseBusinessImpl implements Manag
 		}
 		catch (Throwable e)
 		{
+			System.out.println("manageproject buz, get userlist()");
 			throw new SquareException("error " + Arrays.toString(e.getStackTrace()));
 		}
 
 		return gwtUserList;
 	}
-	@AllowedRoles(roles = {Roles.Lead_Requirements_Engineer, Roles.Acquisition_Organization_Engineer})
+	@AllowedRoles(roles = {Roles.Acquisition_Organization_Engineer})
 	public void removeUserFromProject(GwtProject gwtProject, GwtUser gwtUser) throws SquareException
 	{
 		Project project = new Project(gwtProject);
@@ -205,7 +206,7 @@ public class ManageProjectBusinessImpl extends BaseBusinessImpl implements Manag
 		userDao.removeUserFromProject(user, project);
 	}
 
-	@AllowedRoles(roles = {Roles.Lead_Requirements_Engineer, Roles.Acquisition_Organization_Engineer})
+	@AllowedRoles(roles = {Roles.Acquisition_Organization_Engineer})
 	public void updateProjectName(GwtProject gwtProject) throws SquareException
 	{
 		try
@@ -230,8 +231,8 @@ public class ManageProjectBusinessImpl extends BaseBusinessImpl implements Manag
 			throw new SquareException("Error updating name", t);
 		}
 	}
-	@AllowedRoles(roles = {Roles.Administrator})
-	public GwtProject updateProject(int projectId, int leadRequiremntId, String projectName) throws SquareException
+	@AllowedRoles(roles = {Roles.Administrator, Roles.Acquisition_Organization_Engineer})
+	public GwtProject updateProject(int projectId, int acquisitionOEId, String projectName) throws SquareException
 	{
 		try
 		{
@@ -239,11 +240,19 @@ public class ManageProjectBusinessImpl extends BaseBusinessImpl implements Manag
 			Project project = projectDao.fetch(projectId);
 			project.setName(projectName);
 
-			User newLeadRequirementEngineer = userDao.fetch(leadRequiremntId);
-			User oldLeadRequirementEngineer = project.getLeadRequirementEngineer();
+			//User newLeadRequirementEngineer = userDao.fetch(leadRequiremntId);
+			//User oldLeadRequirementEngineer = project.getAcquisitionOrganizationEngineer();
 			
-			Role leadRequirementEngineer = roleDao.findByName(ProjectRole.Lead_Requirements_Engineer.getLabel());
-			Role requirementEngineer = roleDao.findByName(ProjectRole.Requirements_Engineer.getLabel());
+			User newAcquisitionOrganizationEngineer = userDao.fetch(acquisitionOEId);
+			User oldAcquisitionOrganizationEngineer = project.getAcquisitionOrganizationEngineer();
+			
+			
+			//Role leadRequirementEngineer = roleDao.findByName(ProjectRole.Lead_Requirements_Engineer.getLabel());
+			//Role requirementEngineer = roleDao.findByName(ProjectRole.Requirements_Engineer.getLabel());
+			
+			Role acquisitionOrganizationEngineer = roleDao.findByName(ProjectRole.Acquisition_Organization_Engineer.getLabel());
+						
+			/*
 			if (oldLeadRequirementEngineer != null)
 			{
 				userDao.editRole(oldLeadRequirementEngineer, requirementEngineer, project);
@@ -258,6 +267,24 @@ public class ManageProjectBusinessImpl extends BaseBusinessImpl implements Manag
 				userDao.editRole(newLeadRequirementEngineer, leadRequirementEngineer, project);
 			}
 			project.setLeadRequirementEngineer(newLeadRequirementEngineer);
+			*/
+			
+			if (oldAcquisitionOrganizationEngineer != null)
+			{
+				userDao.editRole(oldAcquisitionOrganizationEngineer, acquisitionOrganizationEngineer, project);
+			}
+			
+			Role userRole = userDao.getRoleForUserInProject(newAcquisitionOrganizationEngineer.getId(), project.getId());
+			
+			if (userRole==null)
+			{
+				userDao.addUserToProject(newAcquisitionOrganizationEngineer, project, acquisitionOrganizationEngineer);
+			}
+			else 
+			{
+				userDao.editRole(newAcquisitionOrganizationEngineer, acquisitionOrganizationEngineer, project);
+			}
+			project.setAcquisitionOrganizationEngineer(newAcquisitionOrganizationEngineer);
 			projectDao.update(project);
 			return project.createGwtProject();
 		}
@@ -267,7 +294,7 @@ public class ManageProjectBusinessImpl extends BaseBusinessImpl implements Manag
 		}
 	}
 
-	@AllowedRoles(roles = {Roles.Lead_Requirements_Engineer, Roles.Acquisition_Organization_Engineer})
+	@AllowedRoles(roles = {Roles.Acquisition_Organization_Engineer})
 	public void addUserToProject(GwtProject gwtProject, GwtUser gwtUser, GwtRole gwtRole) throws SquareException
 	{
 		try
@@ -331,7 +358,7 @@ public class ManageProjectBusinessImpl extends BaseBusinessImpl implements Manag
 		}
 	}
 
-	@AllowedRoles(roles = {Roles.Lead_Requirements_Engineer, Roles.Requirements_Engineer, Roles.Acquisition_Organization_Engineer})
+	@AllowedRoles(roles = {Roles.Acquisition_Organization_Engineer})
 	public void setTechniqueToProject(Integer projectId, Integer techniqueID, String rationale) throws SquareException
 	{
 		Project project = projectDao.fetch(projectId);
@@ -342,7 +369,7 @@ public class ManageProjectBusinessImpl extends BaseBusinessImpl implements Manag
 		projectDao.update(project);
 	}
 
-	@AllowedRoles(roles = {Roles.Lead_Requirements_Engineer, Roles.Requirements_Engineer, Roles.Acquisition_Organization_Engineer})
+	@AllowedRoles(roles = {Roles.Acquisition_Organization_Engineer})
 		public void setInspectionTechniqueToProject(Integer projectId, Integer inspectionTechniqueId) throws SquareException
 	{
 		Project project = projectDao.fetch(projectId);
@@ -352,7 +379,7 @@ public class ManageProjectBusinessImpl extends BaseBusinessImpl implements Manag
 		projectDao.update(project);
 	}
 
-	@AllowedRoles(roles = {Roles.Lead_Requirements_Engineer, Roles.Requirements_Engineer, Roles.Acquisition_Organization_Engineer})
+	@AllowedRoles(roles = {Roles.Acquisition_Organization_Engineer})
 	public void setInspectionTechniqueStatusToProject(Integer projectId, String inspectionTechniqueStatus) throws SquareException
 	{
 		Project project = projectDao.fetch(projectId);
@@ -360,15 +387,15 @@ public class ManageProjectBusinessImpl extends BaseBusinessImpl implements Manag
 		projectDao.update(project);
 	}
 
-	@AllowedRoles(roles = {Roles.Administrator})
+	@AllowedRoles(roles = {Roles.Administrator,Roles.Acquisition_Organization_Engineer})
 	public GwtProject createProject(GwtProject newProject, List<GwtTerm> terms, List<GwtTechnique> techniques,
 			List<GwtInspectionTechnique> inspections, List<GwtEvaluation> evaluations) throws SquareException
 	{		
-		User leadRequirementEngineer = userDao.fetch(newProject.getLeadRequirementEngineer().getUserId());
+		User acquisitionOrganizationEngineer = userDao.fetch(newProject.getAcquisitionOrganizationEngineer().getUserId());
 		
 		Project project = new Project(newProject);
 		
-		project.setLeadRequirementEngineer(leadRequirementEngineer);
+		project.setAcquisitionOrganizationEngineer(acquisitionOrganizationEngineer);
 		
 		AsquareCase acase = asquareCaseDao.fetch(newProject.getCases().getId());
 		project.setCases(acase);
@@ -402,9 +429,9 @@ public class ManageProjectBusinessImpl extends BaseBusinessImpl implements Manag
 
 		// Add the lead requirement engineer to project and assigned the role.
 		GwtRole role = new GwtRole();
-		role.setName(ProjectRole.Lead_Requirements_Engineer.getLabel());
+		role.setName(ProjectRole.Acquisition_Organization_Engineer.getLabel());
 
-		this.addUserToProject(newProject, leadRequirementEngineer.createGwtUser(), role);
+		this.addUserToProject(newProject, acquisitionOrganizationEngineer.createGwtUser(), role);
 		
 		if(newProject.getCases().getName().equals("Case 3"))
 		{
@@ -418,14 +445,14 @@ public class ManageProjectBusinessImpl extends BaseBusinessImpl implements Manag
 		return newProject;
 
 	}
-	@AllowedRoles(roles = {Roles.Administrator})
+	@AllowedRoles(roles = {Roles.Administrator,Roles.Acquisition_Organization_Engineer})
 	public void deleteProject(int projectId) throws SquareException
 	{
 
 		projectDao.deleteById(projectId);
 
 	}
-	@AllowedRoles(roles = {Roles.Administrator})
+	@AllowedRoles(roles = {Roles.Administrator,Roles.Acquisition_Organization_Engineer})
 	public List<GwtProject> getAllProjects() throws SquareException
 	{
 		List<GwtProject> allProjects = new ArrayList<GwtProject>();
