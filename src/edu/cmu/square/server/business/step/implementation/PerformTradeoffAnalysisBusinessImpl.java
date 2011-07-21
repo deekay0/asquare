@@ -120,7 +120,9 @@ public class PerformTradeoffAnalysisBusinessImpl extends BaseBusinessImpl implem
 	public GwtStepVerficationResult verifyStep(Project projectId) throws SquareException
 	{
 		// TODO Auto-generated method stub
-		return null;
+		GwtStepVerficationResult result = new GwtStepVerficationResult();
+		result.setHasWarning(false);
+		return result;
 	}
 
 

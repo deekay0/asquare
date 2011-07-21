@@ -152,11 +152,13 @@ public class StepBusinessImpl extends BaseBusinessImpl implements StepBusiness
 			//find the logic
 			for (StepBusinessInterface sb: beanMap.values())
 			{
+				System.out.println("ddddddd.....  "+sb.getStepDescription().getDescription() + "   "+ gs.getDescription());
 				//if (sb.getStepDescription().getDescription().equals(gs.getDescription()))
 				//{
 					r =  sb.verifyStep(project);
 					if (r==null)
 					{
+						System.out.println("wrongwrong.......");
 						logger.info("null business " + sb);
 					}
 					break;
