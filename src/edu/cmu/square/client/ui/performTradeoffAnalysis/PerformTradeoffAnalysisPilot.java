@@ -58,11 +58,7 @@ public class PerformTradeoffAnalysisPilot extends Pilot
 	public void determineAccessRights(String page, State currentState)
 	{
 		
-		if (currentState.isSiteAdministrator() == true)
-		{
-			currentState.setMode(GwtModesType.ReadWrite);
-		}
-		else if (currentState.getUserProjectRole() == ProjectRole.Acquisition_Organization_Engineer)
+		if (currentState.getUserProjectRole() == ProjectRole.Acquisition_Organization_Engineer)
 		{
 			currentState.setMode(GwtModesType.NoAccess);
 		}
@@ -78,25 +74,13 @@ public class PerformTradeoffAnalysisPilot extends Pilot
 		{
 			currentState.setMode(GwtModesType.ReadOnly);
 		}
-		
-		/*
-//SQUARE delete this later!!
-		else if (currentState.getUserProjectRole() == ProjectRole.Lead_Requirements_Engineer)
-		{
-			currentState.setMode(GwtModesType.ReadWrite);
-		}
-		else if (currentState.getUserProjectRole() == ProjectRole.Requirements_Engineer)
-		{
-			currentState.setMode(GwtModesType.ReadWrite);
-		}
-		*/
 		else if (currentState.getUserProjectRole() == ProjectRole.None)
 		{
 			currentState.setMode(GwtModesType.NoAccess);
 		}
 		else if (currentState.getUserProjectRole() == ProjectRole.Administrator)
 		{
-			currentState.setMode(GwtModesType.ReadWrite);
+			currentState.setMode(GwtModesType.NoAccess);
 		}
 		else{
 		currentState.setMode(GwtModesType.ReadOnly);

@@ -137,7 +137,7 @@ public class AssetsAndGoalsPilot extends Pilot
 			}
 			else if (currentState.getUserProjectRole() == ProjectRole.Administrator)
 			{
-				currentState.setMode(GwtModesType.ReadWrite);
+				currentState.setMode(GwtModesType.NoAccess);
 			}
 			else 
 			{
