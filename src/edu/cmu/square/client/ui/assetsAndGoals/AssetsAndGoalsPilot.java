@@ -98,12 +98,14 @@ public class AssetsAndGoalsPilot extends Pilot
 	
 	public void determineAccessRights(String page, State currentState)
 	{
+		/*
 		if (currentState.isSiteAdministrator() == true)
 		{
 			currentState.setMode(GwtModesType.ReadWrite);
 		}
+		*/
 		//case1
-		else if(currentState.getCaseID() == 1)
+		if(currentState.getCaseID() == 1)
 		{			
 			if (currentState.getUserProjectRole() == ProjectRole.Acquisition_Organization_Engineer)
 			{
