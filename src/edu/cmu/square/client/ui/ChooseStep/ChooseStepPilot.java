@@ -32,13 +32,6 @@ public class ChooseStepPilot extends Pilot
 		{
 			currentState.setMode(GwtModesType.ReadWrite);
 		}
-//Delete this role, I just give him RW access right.
-		/*
-		else if (currentState.getUserProjectRole() == ProjectRole.Lead_Requirements_Engineer)
-		{
-			currentState.setMode(GwtModesType.ReadWrite);
-		}
-		*/
 		else if (currentState.getUserProjectRole() == ProjectRole.Contractor)
 		{
 			currentState.setMode(GwtModesType.ReadOnly);
@@ -54,6 +47,10 @@ public class ChooseStepPilot extends Pilot
 		else if (currentState.getUserProjectRole() == ProjectRole.None)
 		{
 			currentState.setMode(GwtModesType.NoAccess);
+		}
+		else if (currentState.getUserProjectRole() == ProjectRole.Administrator)
+		{
+			currentState.setMode(GwtModesType.ReadWrite);
 		}
 		else{
 			currentState.setMode(GwtModesType.ReadOnly);

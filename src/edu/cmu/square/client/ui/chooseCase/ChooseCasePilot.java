@@ -51,7 +51,7 @@ public class ChooseCasePilot extends Pilot
 		else if (pageId.equals(PageId.home)) 
 		{
 			this.breadcrumb = messages.welcome(currentStateInformation.getFullName());
-			System.out.println("choose case pilot.....       "+currentStateInformation);
+			//System.out.println("choose case pilot.....       "+currentStateInformation);
 			return new ChooseCasePane(currentStateInformation);
 		}
 		else if (pageId.equals(PageId.logout))
@@ -75,7 +75,7 @@ public class ChooseCasePilot extends Pilot
 	
 	public void determineAccessRights(String page, State currentState)
 	{
-		currentState.setMode(GwtModesType.ReadWrite); // no matter what, the home pages are always read only.
+		currentState.setMode(GwtModesType.ReadOnly); // no matter what, the home pages are always read only.
 	}
 	
 	
