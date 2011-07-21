@@ -12,9 +12,9 @@ public enum Roles
 	
 	//SQUARE
 	Administrator("Administrator"),
-	//Lead_Requirements_Engineer("Lead Requirements Engineer"),
-	//Stakeholder("Stakeholder"),
-	//Requirements_Engineer("Requirements Engineer"),
+	Lead_Requirements_Engineer("Lead Requirements Engineer"),
+	Stakeholder("Stakeholder"),
+	Requirements_Engineer("Requirements Engineer"),
 	
 	None("None"),
 	All("All");
