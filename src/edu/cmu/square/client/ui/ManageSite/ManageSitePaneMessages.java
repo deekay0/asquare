@@ -75,5 +75,10 @@ public interface ManageSitePaneMessages extends CommonMessages {
 	String errorDeletingLeadRequirementsEngineer();
 	
 	String ASquareCase();
+	String copyProject();
+	String confirmCopyProject(String name);
+	String cancelCopy();
+	String confirmCopy();
+	String confirmCopyDialogTitle();
 
 }
