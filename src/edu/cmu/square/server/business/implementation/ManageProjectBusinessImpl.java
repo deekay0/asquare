@@ -2,7 +2,9 @@ package edu.cmu.square.server.business.implementation;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Date;
 import java.util.List;
+import java.util.Set;
 
 import javax.annotation.Resource;
 
@@ -12,6 +14,8 @@ import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
+
+import com.google.gwt.dev.util.collect.HashMap;
 
 import edu.cmu.square.client.exceptions.ExceptionType;
 import edu.cmu.square.client.exceptions.SquareException;
@@ -33,23 +37,32 @@ import edu.cmu.square.server.business.step.interfaces.ElicitationTechniqueBusine
 import edu.cmu.square.server.business.step.interfaces.InspectionTechniqueBusiness;
 import edu.cmu.square.server.dao.implementation.HbnSoftwarePackageDao;
 import edu.cmu.square.server.dao.interfaces.AsquareCaseDao;
+import edu.cmu.square.server.dao.interfaces.AssetDao;
+import edu.cmu.square.server.dao.interfaces.GoalDao;
+import edu.cmu.square.server.dao.interfaces.MappingDao;
 import edu.cmu.square.server.dao.interfaces.ProjectDao;
 import edu.cmu.square.server.dao.interfaces.ProjectPackageAttributeRatingDao;
 import edu.cmu.square.server.dao.interfaces.QualityAttributeDao;
+import edu.cmu.square.server.dao.interfaces.RequirementDao;
 import edu.cmu.square.server.dao.interfaces.RoleDao;
 import edu.cmu.square.server.dao.interfaces.StepDao;
+import edu.cmu.square.server.dao.interfaces.TermDao;
 import edu.cmu.square.server.dao.interfaces.UserAhpDao;
 import edu.cmu.square.server.dao.interfaces.UserDao;
 import edu.cmu.square.server.dao.model.AsquareCase;
+import edu.cmu.square.server.dao.model.Asset;
+import edu.cmu.square.server.dao.model.Goal;
 import edu.cmu.square.server.dao.model.InspectionTechnique;
 import edu.cmu.square.server.dao.model.Project;
 import edu.cmu.square.server.dao.model.ProjectPackageAttributeRating;
 import edu.cmu.square.server.dao.model.ProjectPackageAttributeRatingId;
 import edu.cmu.square.server.dao.model.QualityAttribute;
+import edu.cmu.square.server.dao.model.Requirement;
 import edu.cmu.square.server.dao.model.Role;
 import edu.cmu.square.server.dao.model.SoftwarePackage;
 import edu.cmu.square.server.dao.model.Step;
 import edu.cmu.square.server.dao.model.Technique;
+import edu.cmu.square.server.dao.model.Term;
 import edu.cmu.square.server.dao.model.User;
 import edu.cmu.square.server.dao.model.UserAhp;
 
@@ -84,12 +97,13 @@ public class ManageProjectBusinessImpl extends BaseBusinessImpl implements Manag
 	@Resource
 	private AgreeOnDefinitionsBusiness termsBusiness;
 
+	/*
 	@Resource
 	private ElicitationTechniqueBusiness elicitationTechniqueBusiness;
 
 	@Resource
 	private InspectionTechniqueBusiness inspectionTechniqueBusiness;
-	
+	*/
 	@Resource
 	private HbnSoftwarePackageDao softwarePackageDao;
 	
@@ -98,6 +112,21 @@ public class ManageProjectBusinessImpl extends BaseBusinessImpl implements Manag
 	
 	@Resource
 	private ProjectPackageAttributeRatingDao projectPackageAttributeRatingDao;
+	
+	@Resource
+	private TermDao termDao;
+	
+	@Resource
+	private GoalDao goalDao;
+
+	@Resource
+	private AssetDao assetDao;
+	
+	@Resource
+	private RequirementDao requirementDao;
+	
+	@Resource
+	  private MappingDao mappingDao;
 
 	@AllowedRoles(roles = {Roles.Acquisition_Organization_Engineer})
 	public void editRole(GwtUser gwtUser, GwtProject gwtProject) throws SquareException
@@ -189,7 +218,7 @@ public class ManageProjectBusinessImpl extends BaseBusinessImpl implements Manag
 		}
 		catch (Throwable e)
 		{
-			System.out.println("manageproject buz, get userlist()");
+			//System.out.println("manageproject buz, get userlist()");
 			throw new SquareException("error " + Arrays.toString(e.getStackTrace()));
 		}
 
@@ -659,5 +688,442 @@ public class ManageProjectBusinessImpl extends BaseBusinessImpl implements Manag
 			return null;
 		}
 	}
+	
+	/*********************
+	 * Copy project
+	 */
+	
+	@Override
+	  @AllowedRoles(roles = { Roles.Administrator })
+	  public GwtProject copyProject(GwtProject originalProject) throws SquareException {
+	    Project project = new Project(originalProject);
+	    // Sets the project type
+	    // This is set in CreateProjectDialog, and we allow the project type to be different
+	    // from the original project's type
+	    //project.setProjectType(new ProjectType(originalProject.getProjectType()));
+	    // Clears the approval
+	    //setApprovalStatus(originalProject.getId(), 1, 1);
+	    // resets the id
+	    project.setId(0);
+	    // Gets the new LRE
+	    User aoe =
+	        userDao.fetch(originalProject.getAcquisitionOrganizationEngineer().getUserId());
+	    // Sets the new LRE
+	    project.setAcquisitionOrganizationEngineer(aoe);
+
+	    Date now = new Date();
+	    project.setDateCreated(now);
+	    project.setDateModified(now);
+	    // We create an entry for the project in the db
+	    projectDao.create(project);
+
+	    // We add the user to the user-role table
+	    userDao.addUserToProject(aoe,
+	    		project,
+	    		roleDao.findByName(ProjectRole.Acquisition_Organization_Engineer.getLabel()));
+
+	    Project original = new Project(originalProject);
+
+	    // Here we begin the copying of all project related items.
+	    // We are going in order of the 9 steps of the project
+	    // The function names are usually self-explanatory, and below I have added a discussion on
+	    // specific implementation of each function
+	    copyTerms(project, original);
+
+	    HashMap<Integer, Integer> goalMap = copyGoals(project, original);
+
+	    HashMap<Integer, Integer> assetMap = copyAssets(project, original);
+
+	    copyGoalAsset(original, goalMap, assetMap);
+
+	    //HashMap<Integer, Integer> artifactMap = copyArtifacts(project, original);
+
+	    //HashMap<Integer, Integer> riskMap = copyRisks(project, original);
+
+	    //copyRiskArtifact(original, riskMap, artifactMap);
+
+	    //copyRiskAsset(original, riskMap, assetMap);
+
+	    //HashMap<Integer, Integer> techniqueMap = copyTechniques(project, original);
+
+	    //HashMap<Integer, Integer> evaluationCriteriaMap = copyEvaluationCriteria(project, original);
+
+	    //copyTechniqueEvaluationCriteria(project, original, techniqueMap, evaluationCriteriaMap);
+
+	    //copyPretAnswers(project, original);
+
+	    //HashMap<Integer, Integer> pretRequirementMap = copyPretRequirements(project, original);
+
+	    HashMap<Integer, Integer> requirementMap = copyRequirements(project, original);
+
+	    //updatePretRequirement(project, pretRequirementMap);
+
+	    //HashMap<Integer, Integer> categoryMap = copyCategories(project, original);
+
+	    //copyRequirementArtifact(original, requirementMap, artifactMap);
+
+	    //copyRequirementCategory(original, requirementMap, categoryMap);
+
+	    //copyRequirementRisk(original, requirementMap, riskMap);
+
+	    copyRequirementGoal(original, requirementMap, goalMap);
+
+	    copySteps(project);
+
+	    //HashMap<Integer, Integer> inspectionTechniqueMap = copyInspectionTechniques(project, original);
+
+	    //updateInspectionTechnique(project, original, inspectionTechniqueMap);
+	    
+	    //We return back the gwt project from the newly copied project
+	    return project.createGwtProject();
+	  }
+	
+	
+	
+	 // ------------------Copy Project---------------------------//
+
+	  /**
+	   * There is a lot of repetition in the code, though that is because we are copying the tables
+	   * Making generic functions would have so many parameters, and we'd have to create another layer
+	   * of abstraction that it would more trouble than its worth. So instead of commenting every line
+	   * of code I will present the basic pattern here which applies to all.
+	   * 
+	   * For all void functions, that take two projects as inputs All we are doing is copying all of
+	   * objects belonging to the first project, associating them with the second project, and creating
+	   * a new instance of the same
+	   * 
+	   * For all functions that return a map, do the same thing as above, except they return a map
+	   * associating the previous item's id with the new item's id. We use this because later on, we
+	   * have relationships of "many-to-many"/"many-to-one" and 'one-to-many" and we need the map for
+	   * association.
+	   * 
+	   * Finally void functions that take original project and two hashmaps are in-charge of associating
+	   * and creating the relationships described above. The pattern used here is for all of the items
+	   * belonging to the old project, get their respective relationship entities. From those entities,
+	   * using the map, find the corresponding matching new entity, and put those all in a set. Finally,
+	   * when you have that re-associate that set back to the mapped entity. This is a rather complex
+	   * portion of the code and probably re-reading it over and looking at the code can definitely help
+	   * in understanding it.
+	   * 
+	   * Lastly, there are some update functions that are in charge of setting a specific value for a
+	   * table based on a new item that is subsequently created, these are the easiest functions in code
+	   * :)
+	   */
+
+	  public void copyTerms(Project project, Project originalProject) {
+	    List<Term> terms = termDao.getTermByProject(originalProject);
+	    for (Term t : terms) {
+	      Date now = new Date();
+	      Term newTerm = new Term(project, t.getTerm(), t.getDefinition(), now, now);
+	      termDao.create(newTerm);
+	    }
+
+	  }
+
+	  public HashMap<Integer, Integer> copyGoals(Project project, Project originalProject) {
+	    HashMap<Integer, Integer> map = new HashMap<Integer, Integer>();
+	    List<Goal> goals = goalDao.getBusinessGoalByProject(originalProject);
+	    goals.addAll(goalDao.getSubGoalByProject(originalProject));
+
+	    for (Goal g : goals) {
+	      Date now = new Date();
+	      Goal newGoal =
+	          new Goal(g.getGoalType(), project, g.getDescription(), g.getPriority(), now, now);
+	      goalDao.create(newGoal);
+	      map.put(g.getId(), newGoal.getId());
+	    }
+
+	    return map;
+	  }
+
+	  public HashMap<Integer, Integer> copyAssets(Project project, Project originalProject) {
+	    HashMap<Integer, Integer> map = new HashMap<Integer, Integer>();
+	    List<Asset> assets = assetDao.getAssetByProject(originalProject);
+
+	    for (Asset a : assets) {
+	      Date now = new Date();
+	      Asset asset = new Asset(a.getDescription(), project, now, now);
+	      assetDao.create(asset);
+	      map.put(a.getId(), asset.getId());
+	    }
+
+	    return map;
+	  }
+
+	  public void copyGoalAsset(Project originalProject,
+	                            HashMap<Integer, Integer> goalMap,
+	                            HashMap<Integer, Integer> assetMap) {
+
+	    List<Asset> oldAssets = assetDao.getAssetByProject(originalProject);
+	    for (Asset a : oldAssets) {
+	      Set<Goal> temp = a.getGoals();
+	      for (Goal g : temp) {
+	        mappingDao.addAssetGoalMapping(goalMap.get(g.getId()), assetMap.get(a.getId()));
+	      }
+	    }
+	  }
+
+	  /*
+	  public HashMap<Integer, Integer> copyArtifacts(Project project, Project originalProject) {
+	    HashMap<Integer, Integer> map = new HashMap<Integer, Integer>();
+	    List<Artifact> artifacts = artifactDao.getArtifactsByProject(originalProject);
+
+	    for (Artifact a : artifacts) {
+
+	      Artifact artifact =
+	          new Artifact(null, project, a.getName(), a.getDescription(), a.getRevision(), a.getLink());
+	      Date now = new Date();
+	      artifact.setDateCreated(now);
+	      artifact.setDateModified(now);
+	      artifactDao.create(artifact);
+
+	      map.put(a.getId(), artifact.getId());
+	    }
+
+	    return map;
+	  }
+*/
+	  /*
+	  public HashMap<Integer, Integer> copyRisks(Project project, Project originalProject) {
+	    HashMap<Integer, Integer> map = new HashMap<Integer, Integer>();
+	    List<Risk> risks = riskDao.getRisksByProject(originalProject);
+
+	    for (Risk r : risks) {
+	      Date now = new Date();
+	      Risk risk =
+	          new Risk(project,
+	                   r.getRiskTitle(),
+	                   r.getThreatSource(),
+	                   r.getThreatAction(),
+	                   r.getCurrentMeasures(),
+	                   r.getPlannedMeasures(),
+	                   r.getImpact(),
+	                   r.getLikelihood(),
+	                   r.getVulnerability(),
+	                   now,
+	                   now);
+	      riskDao.create(risk);
+	      map.put(r.getId(), risk.getId());
+	    }
+
+	    return map;
+	  }
+
+	  
+	  
+	  public void copyRiskArtifact(Project originalProject,
+	                               HashMap<Integer, Integer> riskMap,
+	                               HashMap<Integer, Integer> artifactMap) {
+
+	    Project tempProject = projectDao.fetch(originalProject.getId());
+	    List<Artifact> oldArtifacts = artifactDao.getArtifactsByProject(tempProject);
+	    for (Artifact a : oldArtifacts) {
+	      Set<Risk> temp = a.getRisks();
+	      for (Risk r : temp) {
+	    	  mappingDao.addRiskArtifactMapping(riskMap.get(r.getId()), artifactMap.get(a.getId()));
+	      }
+	    }
+	  }
+
+	  public void copyRiskAsset(Project originalProject,
+	                            HashMap<Integer, Integer> riskMap,
+	                            HashMap<Integer, Integer> assetMap) {
+
+	    List<Asset> oldAssets = assetDao.getAssetByProject(originalProject);
+	    for (Asset a : oldAssets) {
+	      Set<Risk> temp = a.getRisks();
+	      for (Risk r : temp) {
+	    	  mappingDao.addRiskAssetMapping(riskMap.get(r.getId()), assetMap.get(a.getId()));
+	      }
+	    }
+	  }
+
+	  public HashMap<Integer, Integer> copyTechniques(Project project, Project originalProject) {
+	    HashMap<Integer, Integer> map = new HashMap<Integer, Integer>();
+	    List<Technique> techniques = techniqueDao.getTechniquesByProject(originalProject);
+
+	    for (Technique t : techniques) {
+	      Date now = new Date();
+	      Technique technique =
+	          new Technique(t.getName(),
+	                        t.getDescription(),
+	                        t.getRationale(),
+	                        t.getProjectType(),
+	                        t.getSelected(),
+	                        now,
+	                        now);
+	      technique.setProject(project);
+	      techniqueDao.create(technique);
+	      map.put(t.getId(), technique.getId());
+	    }
+	    return map;
+	  }
+
+	  public HashMap<Integer, Integer> copyEvaluationCriteria(Project project, Project originalProject) {
+	    HashMap<Integer, Integer> map = new HashMap<Integer, Integer>();
+	    List<EvaluationCriteria> ecs = evaCriteriaDao.getAllByProject(originalProject);
+
+	    for (EvaluationCriteria e : ecs) {
+	      Date now = new Date();
+	      EvaluationCriteria ec =
+	          new EvaluationCriteria(e.getName(), e.getDescription(), now, now, e.getWeight());
+	      ec.setProject(project);
+	      evaCriteriaDao.create(ec);
+	      map.put(e.getId(), ec.getId());
+	    }
+	    return map;
+	  }
+/*
+	  public void copyTechniqueEvaluationCriteria(Project project,
+	                                              Project originalProject,
+	                                              HashMap<Integer, Integer> techniqueMap,
+	                                              HashMap<Integer, Integer> evaluationCriteriaMap) {
+	    List<TechniqueEvaluationCriteria> tecList = techEvaCriteriaDao.getAllValues(originalProject);
+
+	    for (TechniqueEvaluationCriteria tec : tecList) {
+	      TechniqueEvaluationCriteria newTec = new TechniqueEvaluationCriteria();
+	      newTec.setProject(project);
+	      newTec.setValue(tec.getValue());
+	      Technique newTechnique = techniqueDao.fetch(techniqueMap.get(tec.getTechnique().getId()));
+	      newTec.setTechnique(newTechnique);
+	      EvaluationCriteria newEvaCriteria =
+	          evaCriteriaDao.fetch(evaluationCriteriaMap.get(tec.getTechniqueEvaluation().getId()));
+	      newTec.setTechniqueEvaluation(newEvaCriteria);
+	      newTec.setId(new TechniqueEvaluationCriteriaId(newTechnique.getId(),
+	                                                      newEvaCriteria.getId(),
+	                                                      project.getId()));
+	      techEvaCriteriaDao.create(newTec);
+	    }
+
+	  }
+
+	  
+	  public void copyPretAnswers(Project project, Project originalProject) {
+	    PretAnswer pretAnswer = pretAnswerDao.getPretAnswerByProject(originalProject);
+	    if (pretAnswer != null) {
+	      PretAnswer newPretAnswer = new PretAnswer(pretAnswer.createGwtPretAnswer());
+	      newPretAnswer.setProject(project);
+	      pretAnswerDao.create(newPretAnswer);
+	    }
+	  }
+
+	  public HashMap<Integer, Integer> copyPretRequirements(Project project, Project originalProject) {
+	    HashMap<Integer, Integer> map = new HashMap<Integer, Integer>();
+	    List<PretRequirement> pretRequirements =
+	        pretRequirementDao.getRequirementsByProject(originalProject);
+
+	    for (PretRequirement p : pretRequirements) {
+	      PretRequirement pretRequirement = new PretRequirement(p.createGwtPretRequirement());
+	      pretRequirement.setProjectId(project);
+	      pretRequirement.setRequirementId(0);
+	      pretRequirementDao.create(pretRequirement);
+	      map.put(p.getId(), pretRequirement.getId());
+	    }
+
+	    return map;
+	  }
+*/
+	  
+	  public HashMap<Integer, Integer> copyRequirements(Project project, Project originalProject) {
+	    HashMap<Integer, Integer> map = new HashMap<Integer, Integer>();
+	    Project oldProject = projectDao.fetch(originalProject.getId());
+	    Set<Requirement> requirements = oldProject.getRequirements();
+
+	    for (Requirement r : requirements) {
+	      Requirement requirement = new Requirement();
+	      requirement.setDescription(r.getDescription());
+	      requirement.setPriority(r.getPriority());
+	      //requirement.setProjectType(project.getProjectType());
+	      //requirement.setRequirementSource(r.getRequirementSource());
+	      requirement.setTitle(r.getTitle());
+	      Date now = new Date();
+	      requirement.setDateCreated(now);
+	      requirement.setDateModified(now);
+	      requirement.setProject(project);
+	      requirementDao.create(requirement);
+	      map.put(r.getId(), requirement.getId());
+	    }
+
+	    return map;
+	  }
+/*
+	  public void updatePretRequirement(Project project, HashMap<Integer, Integer> pretRequirementMap) {
+	    List<PretRequirement> pretRequirements = pretRequirementDao.getRequirementsByProject(project);
+	    pretRequirementMap.put(0, 0);
+	    for (PretRequirement p : pretRequirements) {
+	      p.setRequirementId(pretRequirementMap.get(p.getRequirementId()));
+	    }
+	  }
+
+	  public HashMap<Integer, Integer> copyCategories(Project project, Project originalProject) {
+	    HashMap<Integer, Integer> map = new HashMap<Integer, Integer>();
+	    List<Category> categories = categoryDao.getCategoriesByProject(originalProject);
+
+	    for (Category c : categories) {
+	      Category category = new Category();
+	      category.setLabel(c.getLabel());
+	      Date now = new Date();
+	      category.setDateCreated(now);
+	      category.setDateModified(now);
+	      category.setProject(project);
+	      categoryDao.create(category);
+
+	      map.put(c.getId(), category.getId());
+	    }
+
+	    return map;
+	  }
+
+	  public void copyRequirementArtifact(Project originalProject,
+	                                      HashMap<Integer, Integer> requirementMap,
+	                                      HashMap<Integer, Integer> artifactMap) {
+	    Set<Requirement> oldReqs = projectDao.fetch(originalProject.getId()).getRequirements();
+
+	    for (Requirement r : oldReqs) {
+	      Set<Artifact> temp = r.getArtifacts();
+	      for (Artifact a : temp) {
+	    	  mappingDao.addRequirementArtifactMapping(requirementMap.get(r.getId()), artifactMap.get(a.getId()));
+	      }
+	    }
+	  }
+*/
+/*
+	  public void copyRequirementCategory(Project originalProject,
+	                                      HashMap<Integer, Integer> requirementMap,
+	                                      HashMap<Integer, Integer> categoryMap) {
+	    Set<Requirement> oldReqs = projectDao.fetch(originalProject.getId()).getRequirements();
+
+	    for (Requirement r : oldReqs) {
+	      Set<Category> temp = r.getCategories();
+	      for (Category a : temp) {
+	    	  mappingDao.addRequirementCategoryMapping(requirementMap.get(r.getId()), categoryMap.get(a.getId()));
+	      }      
+	    }
+	  }
+*/
+
+	  public void copyRequirementGoal(Project originalProject,
+	                                  HashMap<Integer, Integer> requirementMap,
+	                                  HashMap<Integer, Integer> goalMap) {
+	    Set<Requirement> oldReqs = projectDao.fetch(originalProject.getId()).getRequirements();
+
+	    for (Requirement r : oldReqs) {
+	      Set<Goal> temp = r.getGoals();
+	      for (Goal g : temp) {
+	    	mappingDao.addRequirementGoalMapping(requirementMap.get(r.getId()), goalMap.get(g.getId()));  
+	      }
+	    }
+	  }
+
+	  public void copySteps(Project project) {
+	    stepBusiness.createStepsForProject(project.createGwtProject());
+	  }
+
+	 
+	
+	
+	
+	
+	
 	
 }

@@ -163,7 +163,7 @@ public class UploadRequirementsBusinessImpl extends BaseBusinessImpl implements 
 
 	}
 	@Override
-	@AllowedRoles(roles = {Roles.Lead_Requirements_Engineer, Roles.Requirements_Engineer})
+	@AllowedRoles(roles = {Roles.Acquisition_Organization_Engineer})
 	public int uploadFromRequisitePro(String fileContent, int projectId) throws SquareException
 	{
 		// get a csv requirements file
