@@ -59,13 +59,14 @@ public class AgreeOnDefinitionsPilot extends Pilot
 
 	public void determineAccessRights(String page, State currentState)
 	{
-		
+		/*
 		if (currentState.isSiteAdministrator() == true)
 		{
 			currentState.setMode(GwtModesType.ReadWrite);
 		}
+		*/
 		//case1
-		else if(currentState.getCaseID() == 1)
+		if(currentState.getCaseID() == 1)
 		{
 			
 			if (currentState.isSiteAdministrator() == true)
@@ -101,7 +102,7 @@ public class AgreeOnDefinitionsPilot extends Pilot
 			}
 			else if (currentState.getUserProjectRole() == ProjectRole.Administrator)
 			{
-				currentState.setMode(GwtModesType.ReadWrite);
+				currentState.setMode(GwtModesType.NoAccess);
 			}
 			else 
 			{

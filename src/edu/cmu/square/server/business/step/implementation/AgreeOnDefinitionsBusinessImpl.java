@@ -79,9 +79,7 @@ public class AgreeOnDefinitionsBusinessImpl extends BaseBusinessImpl implements 
 		GwtProject project = new GwtProject(projectId);
 		for (GwtTerm term : defaultTerms)
 		{
-
 			this.addTerm(project, term);	
-
 		}
 	}
 

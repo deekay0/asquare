@@ -509,7 +509,9 @@ public class ReviewPackagesBusinessImpl extends BaseBusinessImpl implements Revi
 	public GwtStepVerficationResult verifyStep(Project projectId) throws SquareException
 	{
 		// TODO Auto-generated method stub
-		return null;
+		GwtStepVerficationResult result = new GwtStepVerficationResult();
+		result.setHasWarning(false);
+		return result;
 	}
 
 
