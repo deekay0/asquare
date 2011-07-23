@@ -55,7 +55,8 @@ public class ManageProjectPilot extends Pilot
 		{
 			currentState.setMode(GwtModesType.NoAccess);
 		}
-		else{
+		else
+		{
 		currentState.setMode(GwtModesType.ReadOnly);
 		}
 	}

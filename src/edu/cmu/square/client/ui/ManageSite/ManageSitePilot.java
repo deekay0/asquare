@@ -44,9 +44,8 @@ public class ManageSitePilot extends Pilot
 		}
 		else if (currentState.getUserProjectRole() == ProjectRole.Acquisition_Organization_Engineer)
 		{
-			currentState.setMode(GwtModesType.ReadWrite);
+			currentState.setMode(GwtModesType.NoAccess);
 		}
-		
 		else{
 			currentState.setMode(GwtModesType.NoAccess);
 		}

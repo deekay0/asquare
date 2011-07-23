@@ -71,7 +71,7 @@ public class AgreeOnDefinitionsPilot extends Pilot
 			
 			if (currentState.isSiteAdministrator() == true)
 			{
-				currentState.setMode(GwtModesType.ReadWrite);
+				currentState.setMode(GwtModesType.NoAccess);
 			}
 			else if (currentState.getUserProjectRole() == ProjectRole.Acquisition_Organization_Engineer)
 			{
@@ -100,10 +100,10 @@ public class AgreeOnDefinitionsPilot extends Pilot
 			{
 				currentState.setMode(GwtModesType.NoAccess);
 			}
-			else if (currentState.getUserProjectRole() == ProjectRole.Administrator)
+			/*else if (currentState.getUserProjectRole() == ProjectRole.Administrator)
 			{
 				currentState.setMode(GwtModesType.NoAccess);
-			}
+			}*/
 			else 
 			{
 				currentState.setMode(GwtModesType.ReadOnly);
