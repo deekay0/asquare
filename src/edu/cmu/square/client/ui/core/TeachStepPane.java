@@ -1,5 +1,8 @@
 package edu.cmu.square.client.ui.core;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.ClickHandler;
@@ -51,9 +54,17 @@ public class TeachStepPane extends Composite
 		mainLayout.setStyleName("teach-step");
 		
 		TeachMessages messages = null;
+		
+		List<Roles> responsibilities = new ArrayList<Roles>();
+		List<String> contents = new ArrayList<String>();
+		
 		if (stepToTeach.equals(HistoryManager.ViewId.assetsAndGoals))
 		{
 			messages = (IdentifyAssetsAndGoalsMessages)GWT.create(IdentifyAssetsAndGoalsMessages.class);
+			
+			
+			responsibilities.add(Roles.Acquisition_Organization_Engineer);
+			contents.add(messages.aoeResponsibilities());
 		}
 		else if (stepToTeach.equals(HistoryManager.ViewId.selectSecurityElicitationTechnique))
 		{
@@ -66,6 +77,11 @@ public class TeachStepPane extends Composite
 		else if (stepToTeach.equals(HistoryManager.ViewId.elicitSecurityRequirements))
 		{
 			messages = (ElicitSecurityRequirementsMessages)GWT.create(ElicitSecurityRequirementsMessages.class);
+			responsibilities.add(Roles.Contractor);
+			responsibilities.add(Roles.Security_Specialist);
+			
+			contents.add(messages.contractorResponsibilities());
+			contents.add(messages.securityResponsibilities());
 		}
 		else if (stepToTeach.equals(HistoryManager.ViewId.categorizeRequirements))
 		{
@@ -74,6 +90,10 @@ public class TeachStepPane extends Composite
 		else if (stepToTeach.equals(HistoryManager.ViewId.agreeOnDefinitions))
 		{
 			messages = (AgreeOnDefinitionsMessages)GWT.create(AgreeOnDefinitionsMessages.class);
+			
+			
+			responsibilities.add(Roles.Acquisition_Organization_Engineer);
+			contents.add(messages.aoeResponsibilities());
 		}
 		else if (stepToTeach.equals(HistoryManager.ViewId.prioritizeRequirements))
 		{
@@ -90,22 +110,42 @@ public class TeachStepPane extends Composite
 		else if (stepToTeach.equals(HistoryManager.ViewId.reviewOfRequirementsByAcquisitionOrganization))
 		{
 			messages = (ReviewOfRequirementsByAcquisitionMessages)GWT.create(ReviewOfRequirementsByAcquisitionMessages.class);
+			
+			responsibilities.add(Roles.Acquisition_Organization_Engineer);
+			contents.add(messages.aoeResponsibilities());
 		}
 		else if (stepToTeach.equals(HistoryManager.ViewId.reviewPackages))
 		{
 			messages = (ReviewPackagesMessages)GWT.create(ReviewPackagesMessages.class);
+			responsibilities.add(Roles.COTS_Vendor);
+			responsibilities.add(Roles.Security_Specialist);
+		
+			contents.add(messages.cotsResponsibilities());
+			contents.add(messages.securityResponsibilities());
 		}
 		else if (stepToTeach.equals(HistoryManager.ViewId.reviewAndFinalizeRequirements))
 		{
 			messages = (ReviewAndFinalizeRequirementsMessages)GWT.create(ReviewAndFinalizeRequirementsMessages.class);
+	
+			responsibilities.add(Roles.Security_Specialist);
+	
+			contents.add(messages.securityResponsibilities());
 		}
 		else if (stepToTeach.equals(HistoryManager.ViewId.performTradeoffAnalysis))
 		{
 			messages = (PerformTradeoffAnalysisMessages)GWT.create(PerformTradeoffAnalysisMessages.class);
+			
+			responsibilities.add(Roles.Security_Specialist);
+			
+			contents.add(messages.securityResponsibilities());
 		}
 		else if (stepToTeach.equals(HistoryManager.ViewId.finalProductSelection))
 		{
 			messages = (FinalProductSelectionMessages)GWT.create(FinalProductSelectionMessages.class);
+			
+			responsibilities.add(Roles.Acquisition_Organization_Engineer);
+			
+			contents.add(messages.aoeResponsibilities());
 		}		
 		else
 		{
@@ -114,7 +154,7 @@ public class TeachStepPane extends Composite
 		
 		this.mainLayout.add(this.createTitle(messages.title()));
 		this.mainLayout.add(this.createPurpose(messages.purpose()));
-		this.mainLayout.add(this.createResponsibilities(messages.stakeholderResponsibilities(), messages.requirementsEngineerResponsibilities()));
+		this.mainLayout.add(this.createResponsibilities(responsibilities, contents));
 		this.mainLayout.add(this.createExitCriteria(messages.exitCriteria()));
 		this.mainLayout.add(this.createWebisteInfo(messages.webHint()));
 		
@@ -151,20 +191,56 @@ public class TeachStepPane extends Composite
 		
 		return this.setLayout(title, content, style);
 	}
-	
-	private Widget createResponsibilities(String stakeholderContent, String engineerContent)
+//	
+//	private Widget createResponsibilities(String stakeholderContent, String engineerContent)
+//	{
+//		String stakeholderStyle = "teach-step-stakeholder-content";
+//		String engineerStyle = "teach-step-engineer-content";
+//		String stakeholderTitle = this.pageMessages.stakeholderResponsibilitiesLabel();
+//		String engineerTitle = this.pageMessages.engineerResponsibilitiesLabel();
+//		
+//		HorizontalPanel layout = new HorizontalPanel();
+//		layout.setStyleName("teach-step-responsibilities");
+//		layout.add(this.setLayout(stakeholderTitle, stakeholderContent, stakeholderStyle));
+//		layout.add(new HTML("<div class=\"teach-step-spacer\"></div>"));
+//		layout.add(this.setLayout(engineerTitle, engineerContent, engineerStyle));
+//		
+//		return layout;
+//	}
+//	
+	private Widget createResponsibilities(List<Roles> roles, List<String> contents)
 	{
-		String stakeholderStyle = "teach-step-stakeholder-content";
-		String engineerStyle = "teach-step-engineer-content";
-		String stakeholderTitle = this.pageMessages.stakeholderResponsibilitiesLabel();
-		String engineerTitle = this.pageMessages.engineerResponsibilitiesLabel();
-		
+		List<String> style = new ArrayList<String>();
+		List<String> titles = new ArrayList<String>();
 		HorizontalPanel layout = new HorizontalPanel();
 		layout.setStyleName("teach-step-responsibilities");
-		layout.add(this.setLayout(stakeholderTitle, stakeholderContent, stakeholderStyle));
-		layout.add(new HTML("<div class=\"teach-step-spacer\"></div>"));
-		layout.add(this.setLayout(engineerTitle, engineerContent, engineerStyle));
-		
+		int i=0;
+		for(Roles role : roles)
+		{
+			style.add("teach-step-stakeholder-content");
+			switch(role)
+			{
+				case Acquisition_Organization_Engineer:
+					titles.add(this.pageMessages.aoeResponsibilitiesLabel());
+					break;
+				case Security_Specialist:
+					titles.add(this.pageMessages.securityResponsibilitiesLabel());
+					break;
+				case Contractor:
+					titles.add(this.pageMessages.contractorResponsibilitiesLabel());
+					break;
+				case COTS_Vendor:
+					titles.add(this.pageMessages.cotsResponsibilitiesLabel());
+					break;
+				default:
+					titles.add("ERROR occurred");				
+					
+			}
+			layout.add(this.setLayout(titles.get(i), contents.get(i), style.get(i)));
+			if(i>=roles.size()-1)
+			layout.add(new HTML("<div class=\"teach-step-spacer\"></div>"));
+			++i;
+		}	
 		return layout;
 	}
 	

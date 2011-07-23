@@ -12,4 +12,8 @@ public interface TeachMessages extends CommonMessages
 	String exitCriteria();
 	String webHint();
 	String title();
+	String aoeResponsibilities();
+	String securityResponsibilities();
+	String cotsResponsibilities();
+	String contractorResponsibilities();
 }
