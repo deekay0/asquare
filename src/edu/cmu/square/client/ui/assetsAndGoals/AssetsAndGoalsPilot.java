@@ -98,27 +98,20 @@ public class AssetsAndGoalsPilot extends Pilot
 	
 	public void determineAccessRights(String page, State currentState)
 	{
-		/*
+		
 		if (currentState.isSiteAdministrator() == true)
 		{
-			currentState.setMode(GwtModesType.ReadWrite);
+			currentState.setMode(GwtModesType.NoAccess);
 		}
-		*/
+		
 		//case1
-		if(currentState.getCaseID() == 1)
+		else if(currentState.getCaseID() == 1)
 		{			
 			if (currentState.getUserProjectRole() == ProjectRole.Acquisition_Organization_Engineer)
 			{
 				currentState.setMode(GwtModesType.ReadWrite);
 			}
-			
-//Delete this!! SQUARE user
-			/*
-			else if (currentState.getUserProjectRole() == ProjectRole.Lead_Requirements_Engineer) 
-			{
-				currentState.setMode(GwtModesType.ReadWrite);
-			}
-			*/
+		
 			else if (currentState.getUserProjectRole() == ProjectRole.Contractor)
 			{
 				currentState.setMode(GwtModesType.ReadOnly);
@@ -135,10 +128,7 @@ public class AssetsAndGoalsPilot extends Pilot
 			{
 				currentState.setMode(GwtModesType.NoAccess);
 			}
-			else if (currentState.getUserProjectRole() == ProjectRole.Administrator)
-			{
-				currentState.setMode(GwtModesType.NoAccess);
-			}
+			
 			else 
 			{
 				currentState.setMode(GwtModesType.ReadOnly);
@@ -174,10 +164,6 @@ public class AssetsAndGoalsPilot extends Pilot
 			else if (currentState.getUserProjectRole() == ProjectRole.None)
 			{
 				currentState.setMode(GwtModesType.NoAccess);
-			}
-			else if (currentState.getUserProjectRole() == ProjectRole.Administrator)
-			{
-				currentState.setMode(GwtModesType.ReadWrite);
 			}
 			else 
 			{

@@ -10,5 +10,8 @@ public interface TeachStepMessages extends Messages
 	String engineerResponsibilitiesLabel();
 	String exitCriteriaLabel();
 	String webHintLabel();
-	
+	String aoeResponsibilitiesLabel();
+	String securityResponsibilitiesLabel();
+	String cotsResponsibilitiesLabel();
+	String contractorResponsibilitiesLabel();
 }

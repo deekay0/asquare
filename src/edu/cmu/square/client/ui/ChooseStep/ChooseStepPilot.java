@@ -26,7 +26,7 @@ public class ChooseStepPilot extends Pilot
 	{
 		if (currentState.isSiteAdministrator() == true)
 		{
-			currentState.setMode(GwtModesType.ReadWrite);
+			currentState.setMode(GwtModesType.NoAccess);
 		}
 		else if(currentState.getUserProjectRole() == ProjectRole.Acquisition_Organization_Engineer)
 		{
@@ -47,10 +47,6 @@ public class ChooseStepPilot extends Pilot
 		else if (currentState.getUserProjectRole() == ProjectRole.None)
 		{
 			currentState.setMode(GwtModesType.NoAccess);
-		}
-		else if (currentState.getUserProjectRole() == ProjectRole.Administrator)
-		{
-			currentState.setMode(GwtModesType.ReadWrite);
 		}
 		else{
 			currentState.setMode(GwtModesType.ReadOnly);

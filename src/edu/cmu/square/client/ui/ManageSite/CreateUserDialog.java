@@ -88,6 +88,7 @@ public class CreateUserDialog extends DialogBox
 	    if (user.getIsAdmin())
 	    {
 	    	this.rolesComboBox.setSelectedIndex(0);
+	    	
 	    }
 	    else
 	    {

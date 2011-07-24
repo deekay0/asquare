@@ -53,7 +53,11 @@ public class FinalProductSelectionPilot extends Pilot
 	public void determineAccessRights(String page, State currentState)
 	{
 		
-		if (currentState.getUserProjectRole() == ProjectRole.Acquisition_Organization_Engineer)
+		if (currentState.isSiteAdministrator() == true)
+		{
+			currentState.setMode(GwtModesType.NoAccess);
+		}
+		else if (currentState.getUserProjectRole() == ProjectRole.Acquisition_Organization_Engineer)
 		{
 			currentState.setMode(GwtModesType.ReadWrite);
 		}
@@ -68,10 +72,6 @@ public class FinalProductSelectionPilot extends Pilot
 		else if (currentState.getUserProjectRole() == ProjectRole.COTS_Vendor)
 		{
 			currentState.setMode(GwtModesType.ReadOnly);
-		}
-		else if (currentState.getUserProjectRole() == ProjectRole.Administrator)
-		{
-			currentState.setMode(GwtModesType.NoAccess);
 		}
 		else
 		{

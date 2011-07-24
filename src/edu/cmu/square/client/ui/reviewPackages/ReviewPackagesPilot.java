@@ -60,9 +60,12 @@ public class ReviewPackagesPilot extends Pilot
 	public void determineAccessRights(String page, State currentState)
 	{
 				
-		
+		if (currentState.isSiteAdministrator() == true)
+		{
+			currentState.setMode(GwtModesType.NoAccess);
+		}
 		//ASQUARE
-		if (currentState.getUserProjectRole() == ProjectRole.Acquisition_Organization_Engineer)
+		else if (currentState.getUserProjectRole() == ProjectRole.Acquisition_Organization_Engineer)
 		{
 			currentState.setMode(GwtModesType.NoAccess);
 		}
@@ -80,10 +83,6 @@ public class ReviewPackagesPilot extends Pilot
 		}
 
 		else if (currentState.getUserProjectRole() == ProjectRole.None)
-		{
-			currentState.setMode(GwtModesType.NoAccess);
-		}
-		else if (currentState.getUserProjectRole() == ProjectRole.Administrator)
 		{
 			currentState.setMode(GwtModesType.NoAccess);
 		}

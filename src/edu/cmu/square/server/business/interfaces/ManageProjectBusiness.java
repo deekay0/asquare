@@ -117,10 +117,12 @@ public interface ManageProjectBusiness  extends BaseBusinessInterface {
 	
 	 List<GwtTerm> findDefaultTerms(Document defaultValuesProjectXMLDocument);
 	
-	 List<GwtTechnique> findDefaultElicitationTechniques(Document defaultValuesProjectXMLDocument);
+	 //List<GwtTechnique> findDefaultElicitationTechniques(Document defaultValuesProjectXMLDocument);
 	 
-	 List<GwtEvaluation> findDefaultEvaluationCriteria(Document defaultValuesProjectXMLDocument);
+	 //List<GwtEvaluation> findDefaultEvaluationCriteria(Document defaultValuesProjectXMLDocument);
 	 
-	 List<GwtInspectionTechnique> findDefaultInspectionTechniques(Document defaultValuesProjectXMLDocument);
+	 //List<GwtInspectionTechnique> findDefaultInspectionTechniques(Document defaultValuesProjectXMLDocument);
+	
+	 GwtProject copyProject(GwtProject originalProject) throws SquareException;
 	
 }

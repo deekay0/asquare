@@ -67,7 +67,11 @@ public class ReviewAndFinalizeRequirementsPilot extends Pilot
 
 	public void determineAccessRights(String page, State currentState)
 	{
-		if (currentState.getUserProjectRole() == ProjectRole.Acquisition_Organization_Engineer)
+		if (currentState.isSiteAdministrator() == true)
+		{
+			currentState.setMode(GwtModesType.NoAccess);
+		}
+		else if (currentState.getUserProjectRole() == ProjectRole.Acquisition_Organization_Engineer)
 		{
 			currentState.setMode(GwtModesType.ReadOnly);
 		}
@@ -85,10 +89,6 @@ public class ReviewAndFinalizeRequirementsPilot extends Pilot
 		}		
 		else if (currentState.getUserProjectRole() == ProjectRole.None)
 		{			
-			currentState.setMode(GwtModesType.NoAccess);
-		}
-		else if (currentState.getUserProjectRole() == ProjectRole.Administrator)
-		{
 			currentState.setMode(GwtModesType.NoAccess);
 		}
 		else 

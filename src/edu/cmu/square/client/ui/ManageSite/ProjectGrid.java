@@ -270,10 +270,30 @@ public class ProjectGrid extends Composite implements Command
 					loadCreateDialog(project);
 				}
 			});
+		
+		SquareHyperlink copyProjectLink = new SquareHyperlink(messages.copyProject());
+		copyProjectLink.setHorizontalAlignment(HasHorizontalAlignment.ALIGN_RIGHT);
+		copyProjectLink.addClickHandler(new ClickHandler()
+			{
+				public void onClick(ClickEvent event)
+				{
+					lastRowClicked = projectTable.getCellForEvent(event).getRowIndex();
+					lastProjectIdClicked = project.getId();
+
+					confirmDialog = new SquareConfirmDialog(caller, messages.confirmCopyProject(project.getName()), messages.confirmCopy(),
+							messages.cancelCopy());
+					confirmDialog.setText(messages.confirmCopyDialogTitle());
+					confirmDialog.center();
+					confirmDialog.show();
+
+				}
+			});
+		
 
 		HorizontalPanel links = new HorizontalPanel();
 		links.setStyleName("flex-link-bar");
 		links.add(editProjectLink);
+		links.add(copyProjectLink);
 		links.add(deleteProjectLink);
 
 		this.projectTable.setWidget(row, 3, links);

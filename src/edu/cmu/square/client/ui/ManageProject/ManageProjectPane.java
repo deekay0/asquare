@@ -184,7 +184,7 @@ public class ManageProjectPane extends BasePane
 			//this.projectUserTable.setBorderWidth(1);
 			/////////////////////////////////////////////////
 			// If the user role is lead requirement engineer then don't show the following link.
-			if(role.equals("Lead Requirements Engineer"))
+			if(role.equals("Acquisition Organization Engineer"))
 			{
 				this.projectUserTable.setWidget(numberOfRows, 0, userNameLink);
 				this.projectUserTable.setWidget(numberOfRows, 1, new Label(role));	
@@ -262,6 +262,7 @@ public class ManageProjectPane extends BasePane
 		oracle.clear();
 		
 		for(GwtUser u: result){
+			if(u.getIsAdmin()) continue;
 			String suggestion  = u.getFullName()+ "<"+u.getUserName()+">";
 			oracle.add(suggestion);
 		}
