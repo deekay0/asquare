@@ -100,6 +100,7 @@ public class ReviewOfRequirementsByAcquisitionBusinessImpl extends BaseBusinessI
 	@AllowedRoles(roles = {Roles.All})
 	public GwtRequirement addRequirement(GwtProject gwtProject, GwtRequirement gwtRequirement) throws SquareException
 	{
+		System.out.println("add requirement........");
 		Project project = new Project(gwtProject.getId());
 		Requirement requirement = new Requirement(gwtRequirement);
 		requirement.setProject(project);
@@ -113,7 +114,7 @@ public class ReviewOfRequirementsByAcquisitionBusinessImpl extends BaseBusinessI
 	@AllowedRoles(roles = {Roles.Contractor, Roles.Security_Specialist, Roles.Administrator,Roles.Acquisition_Organization_Engineer})
 	public int addRequirementToProject(Integer projectId, GwtRequirement gwtRequirement) throws SquareException
 	{
-		
+		System.out.println("add requirement to project........");
 		Project p = projectDao.fetch(projectId);
 		Requirement requirement = new Requirement(gwtRequirement);
 		requirement.setProject(p);
@@ -136,7 +137,6 @@ public class ReviewOfRequirementsByAcquisitionBusinessImpl extends BaseBusinessI
 		requirementDao.create(requirement);
 		p.getRequirements().add(requirement);
 		return requirement.getId();
-
 
 	}
 
@@ -202,11 +202,8 @@ public class ReviewOfRequirementsByAcquisitionBusinessImpl extends BaseBusinessI
 					  Category category= categoryDao.fetch(categoryID);
 					  r.getCategories().add(category);
 					  requirementDao.update(r);
-				  }
-				
+				  }	
 			}
-			
-			
 		}
 
 		@AllowedRoles(roles = {Roles.All})
@@ -228,11 +225,8 @@ public class ReviewOfRequirementsByAcquisitionBusinessImpl extends BaseBusinessI
 					  Category category= categoryDao.fetch(categoryID);
 					  r.getCategories().remove(category);
 					  requirementDao.update(r);
-				  }
-				
-			}
-			
-			
+				  }		
+			}			
 		}
 
 		@AllowedRoles(roles = {Roles.Contractor, Roles.Security_Specialist, Roles.Administrator, Roles.Acquisition_Organization_Engineer})
@@ -249,21 +243,6 @@ public class ReviewOfRequirementsByAcquisitionBusinessImpl extends BaseBusinessI
 			r.update(gwtRequirement);
 			System.out.println("Business layer updateRequirement11"+r.getStatus());
 			System.out.println("Business layer updateRequirement11"+r.getTitle());
-			
-			/*
-			if(gwtRequirement.getRisks().isEmpty()) 
-			{
-				SquareException se = new SquareException("At least one risk is required.");
-				se.setType(ExceptionType.missingLink);
-				throw se;
-			}
-			if(gwtRequirement.getArtifacts().isEmpty()) 
-			{
-				SquareException se = new SquareException("At least one artifact is required.");
-				se.setType(ExceptionType.missingLink);
-				throw se;
-			}
-			*/
 			requirementDao.update(r);
 			
 

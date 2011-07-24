@@ -206,40 +206,6 @@ public class ReviewPackagesBusinessImpl extends BaseBusinessImpl implements Revi
 		return softwarePackageList;
 	}
 
-
-	
-//	@AllowedRoles(roles = {Roles.Lead_Requirements_Engineer})
-//	public void removeSoftwarePackage(GwtSoftwarePackage gwtElicitTechnique, GwtProject project) throws SquareException
-//	{
-//
-//		Project p = projectDao.fetch(project.getId());
-//		if (p.getSecurityTechnique() != null && p.getSecurityTechnique().getId().equals(gwtElicitTechnique.getId()))
-//		{
-//			SquareException se = new SquareException();
-//			se.setType(ExceptionType.constraintViolated);
-//			throw se;
-//		}
-//		
-//
-////		if (p.getTechniques().size() == 1)
-////		{
-////			SquareException se = new SquareException();
-////			se.setType(ExceptionType.onlyOneTechnique);
-////			throw se;
-////		}
-////		
-//
-//		try
-//		{
-//			projectPackageAttributeRatingDao.get
-//			softwarePackageDao.deleteEntity(gwtElicitTechnique.getId());
-//		}
-//		catch (Throwable t)
-//		{
-//			throw new SquareException(t);
-//		}
-//	}
-
 	
 	@AllowedRoles(roles = {Roles.Security_Specialist, Roles.Administrator})
 	public void removeSoftwarePackage(GwtSoftwarePackage gwtSoftwarePackage, GwtProject project) throws SquareException
@@ -328,13 +294,7 @@ public class ReviewPackagesBusinessImpl extends BaseBusinessImpl implements Revi
 		{
 			System.out.print("This is the last element among all projects");
 			qualityAttributeDao.deleteEntity(qualityAttributeDao.fetch(gwtQualityAttribute.getId())); 
-		}
-		
-		
-		
-		
-		
-		
+		}	
 	}
 
 	
@@ -405,15 +365,6 @@ public class ReviewPackagesBusinessImpl extends BaseBusinessImpl implements Revi
 			//TODO:...
 //			currentTechnique.setProject(new Project(gwtProject));
 			softwarePackageDao.update(currentTechnique);
-//		}
-//		catch (SquareException ex)
-//		{
-//			throw ex;
-//		}
-//		catch (Throwable t)
-//		{
-//			throw new SquareException("updating technique failed", t);
-//		}
 
 	}
 

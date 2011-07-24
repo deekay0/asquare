@@ -93,8 +93,6 @@ public class AgreeOnDefinitionsBusinessImpl extends BaseBusinessImpl implements 
 	public GwtStepVerficationResult verifyStep(Project project) throws SquareException
 	{
 		GwtStepVerficationResult result = new GwtStepVerficationResult();
-
-		
 		List<GwtTerm> terms = getTerms(project.createGwtProject());
 
 		if (terms.size() == 0)
@@ -102,7 +100,6 @@ public class AgreeOnDefinitionsBusinessImpl extends BaseBusinessImpl implements 
 			result.getMessages().add("There are no terms defined yet!");
 			result.setHasWarning(true);
 		}
-
 		return result;
 	}
 	

@@ -76,8 +76,7 @@ public class FinalProductSelectionBusinessImpl extends BaseBusinessImpl implemen
 		if(currentRationale != null)
 		{			
 			rationaleDao.deleteEntity(currentRationale);
-		}
-		
+		}	
 	
 		ProjectPackageRationale newRationale = new ProjectPackageRationale(gwtRationale);
 		rationaleDao.create(newRationale);

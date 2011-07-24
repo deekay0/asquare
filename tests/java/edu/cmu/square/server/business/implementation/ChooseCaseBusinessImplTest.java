@@ -31,8 +31,7 @@ public class ChooseCaseBusinessImplTest extends AbstractSpringBase
 		{
 			e.printStackTrace();
 			fail("Error " + e);
-		}
-		 
+		} 
 	}
 
 }

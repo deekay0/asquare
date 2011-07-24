@@ -43,16 +43,19 @@ import edu.cmu.square.server.dao.model.User;
 @Transactional
 public class AbstractSpringBase {
 	
-	
 	protected AsquareCase asquareCase;
 	
 	protected Project testProject;
+	
+	protected Project testProject2;
 	//protected Project testProject1;
 	
 	
 	protected User testUser;
 	
 	protected User testUser1;
+	
+	protected User testSecurity;
 	
 	protected Role testRole;
 	
@@ -111,6 +114,12 @@ public class AbstractSpringBase {
 		asquareCase = caseDao.fetch(1);
 		map.put("asquareCase", asquareCase);
 		
+		
+		testSecurity = userDao.fetch(4);
+		map.put("testSecurity", testSecurity);
+		
+		testProject2 = projectDao.fetch(1047);
+		map.put("testProject2", testProject2);
 		
 		//create project
 		testProject = new Project();
