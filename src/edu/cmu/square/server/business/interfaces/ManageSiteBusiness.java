@@ -25,4 +25,6 @@ public interface ManageSiteBusiness extends BaseBusinessInterface
 	boolean removeUser(GwtUser user) throws SquareException;
 	
 	GwtUser createUser(GwtUser newUser, String password, boolean emailPassword) throws SquareException;
+	
+	
 }

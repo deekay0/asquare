@@ -372,8 +372,39 @@ public class Project implements java.io.Serializable
 		{
 			gwtProject.setCurrentRole(this.currentRole.createGwtRole());
 		}
+				
+		if (this.steps != null)
+		{
+			for (Step s: steps)
+			{
+				gwtProject.getSteps().add(s.createGwtStep(this.id));
+			}
+		}
+		return gwtProject;
+	}
+	
+	public GwtProject createCopyGwtProject()
+	{
+		String copiedNewProjectName = this.name+"copy";
+		
+		GwtProject gwtProject = new GwtProject();
+		gwtProject.setId(this.id);
+		gwtProject.setLite(this.lite);
+		gwtProject.setName(copiedNewProjectName);
+		gwtProject.setPrivacy(this.privacy);
+		gwtProject.setSecurity(this.security);
 		
 		
+		if (this.acquisitionOrganizationEngineer != null)
+		{
+			gwtProject.setAcquisitionOrganizationEngineer(this.acquisitionOrganizationEngineer.createGwtUser());
+		}
+		gwtProject.setCases(this.cases.createGwtCase());
+		
+		if (this.currentRole != null)
+		{
+			gwtProject.setCurrentRole(this.currentRole.createGwtRole());
+		}
 		
 		
 		if (this.steps != null)

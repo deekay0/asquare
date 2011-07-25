@@ -36,7 +36,10 @@ public class ProjectGrid extends Composite implements Command
 	private ManageProjectServiceAsync manageProjectService = GWT.create(ManageProjectService.class);
 	private ManageSiteServiceAsync manageSiteService = GWT.create(ManageSiteService.class);
 
-	private SquareConfirmDialog confirmDialog;
+	private SquareConfirmDialog confirmDialog = null;
+	private SquareConfirmDialog copyConfirmDialog = null;
+	
+	
 	private int lastRowClicked = -1;
 	private int lastProjectIdClicked = -1;
 
@@ -97,6 +100,33 @@ public class ProjectGrid extends Composite implements Command
 					listOfProjects.add(result);
 					addProjectToTable(result);
 					caller.yellowFadeHandler.add(projectTable, projectTable.getRowCount() - 1);
+					caller.hideStatusBar();
+				}
+			});
+	}
+	
+//Copy project
+	public void copyProject(GwtProject originalProject)
+	{
+		//System.out.println("projectgrid copyproject");
+		this.caller.showStatusBar(messages.copyProject());
+		ServiceDefTarget endpoint = (ServiceDefTarget) manageProjectService;
+		endpoint.setServiceEntryPoint(GWT.getModuleBaseURL() + "manageProject.rpc");
+		manageProjectService.copyProject(originalProject, new AsyncCallback<GwtProject>()
+			{
+				public void onFailure(Throwable caught)
+				{
+					ExceptionHelper.SquareRootRPCExceptionHandler(caught, messages.copyProject());
+					caller.hideStatusBar();
+				}
+
+				public void onSuccess(GwtProject result)
+				{
+					//System.out.println("On success copying project");
+					listOfProjects.add(result);
+					addProjectToTable(result);
+					caller.yellowFadeHandler.add(projectTable, projectTable.getRowCount() - 1);
+					
 					caller.hideStatusBar();
 				}
 			});
@@ -240,6 +270,7 @@ public class ProjectGrid extends Composite implements Command
 		this.projectTable.setWidget(row, 2, new Label(project.getAcquisitionOrganizationEngineer().getFullName()));
 
 		final Command caller = this;
+		
 
 		SquareHyperlink deleteProjectLink = new SquareHyperlink(messages.permanentlyDelete());
 		deleteProjectLink.setHorizontalAlignment(HasHorizontalAlignment.ALIGN_RIGHT);
@@ -250,7 +281,10 @@ public class ProjectGrid extends Composite implements Command
 					lastRowClicked = projectTable.getCellForEvent(event).getRowIndex();
 					lastProjectIdClicked = project.getId();
 
-					confirmDialog = new SquareConfirmDialog(caller, messages.confirmDeleteProject(project.getName()), messages.deleteForever(),
+					confirmDialog = new SquareConfirmDialog(
+							caller, 
+							messages.confirmDeleteProject(project.getName()), 
+							messages.deleteForever(),
 							messages.cancelDeleteProject());
 					confirmDialog.setText(messages.confirmDeleteDialogTitle());
 					confirmDialog.center();
@@ -277,14 +311,22 @@ public class ProjectGrid extends Composite implements Command
 			{
 				public void onClick(ClickEvent event)
 				{
+					System.out.println("done0");
+					
 					lastRowClicked = projectTable.getCellForEvent(event).getRowIndex();
 					lastProjectIdClicked = project.getId();
-
-					confirmDialog = new SquareConfirmDialog(caller, messages.confirmCopyProject(project.getName()), messages.confirmCopy(),
-							messages.cancelCopy());
-					confirmDialog.setText(messages.confirmCopyDialogTitle());
-					confirmDialog.center();
-					confirmDialog.show();
+					
+					System.out.println("done1");
+					
+					copyConfirmDialog = new SquareConfirmDialog(
+							caller, 
+							messages.confirmCopyProject(project.getName()), 
+							messages.confirmCopy(),
+							messages.cancelCopy()
+					);
+					copyConfirmDialog.setText(messages.confirmCopyDialogTitle());
+					copyConfirmDialog.center();
+					copyConfirmDialog.show();
 
 				}
 			});
@@ -306,12 +348,38 @@ public class ProjectGrid extends Composite implements Command
 	@Override
 	public void execute()
 	{
-
-		if (confirmDialog.isConfirmed())
+		
+		//System.out.println("copyProject"+copyConfirmDialog.isConfirmed());
+		
+		//System.out.println("confirmDialog"+confirmDialog.isConfirmed());
+		
+		if(copyConfirmDialog != null && copyConfirmDialog.isConfirmed())
 		{
+			System.out.println("check0");
+			caller.showStatusBar(messages.copying());
+			copyProject(listOfProjects.get(lastRowClicked-1));
+			copyConfirmDialog.setConfirmed(false);
+			
+		}
+		else if (confirmDialog != null && confirmDialog.isConfirmed())
+		{
+			System.out.println("delete is confirmed");
 			caller.showStatusBar(messages.removing());
 			deleteProject(lastProjectIdClicked);
+			confirmDialog.setConfirmed(false);
 		}
+		/*
+		else if(copyConfirmDialog.isConfirmed())
+		{
+			System.out.println("copy is confirmed done0");
+			caller.showStatusBar(messages.copying());
+			System.out.println("done1");
+			copyProject(listOfProjects.get(lastProjectIdClicked));
+			System.out.println("done2");
+		}
+		*/
+		System.out.println("execute is done");
+		
 
 	}
 

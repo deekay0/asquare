@@ -58,6 +58,16 @@ public class ManageProjectServiceImpl extends SquareRemoteServiceServlet impleme
 		return mpb.createProject(newProject);
 	
 	}
+	
+	public GwtProject copyProject(GwtProject originalProject) throws SquareException
+	{
+		
+		InputStream defaultValueStream = Thread.currentThread().getContextClassLoader().getResourceAsStream("defaultProjectValues.xml");
+		Document projectDefaulValuesXMLDocument = getProjectDefaultValuesXMLDocument(defaultValueStream);
+				
+		return mpb.copyProject(originalProject);
+	
+	}
 
 
 

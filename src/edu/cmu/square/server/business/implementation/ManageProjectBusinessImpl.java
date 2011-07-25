@@ -418,7 +418,7 @@ public class ManageProjectBusinessImpl extends BaseBusinessImpl implements Manag
 		projectDao.update(project);
 	}
 */
-	@AllowedRoles(roles = {Roles.Administrator,Roles.Acquisition_Organization_Engineer})
+	@AllowedRoles(roles = {Roles.Administrator})
 	public GwtProject createProject(GwtProject newProject) throws SquareException
 	{		
 		User acquisitionOrganizationEngineer = userDao.fetch(newProject.getAcquisitionOrganizationEngineer().getUserId());
@@ -433,32 +433,33 @@ public class ManageProjectBusinessImpl extends BaseBusinessImpl implements Manag
 		//System.out.println("lre: "+project.getAcquisitionOrgEngineer().getId()+" cases: "+project.getCases().getId()+" date1: "+project.getDateCreated() +" date2 "+project.getDateModified()+" lite "+project.isLite()+" name "+project.getName()+" priv "+project.isPrivacy()+" sec "+project.isSecurity());
 		
 		projectDao.create(project);
-		System.out.println("done1");
+		//System.out.println("done1");
 		newProject.setId(project.getId());
-		System.out.println("done2");
+		//System.out.println("done2");
+		
 		if(newProject.getCases().getId() == 3)
 		{
-		QualityAttribute qa = new QualityAttribute();
-		qa.setName("Unnamed");
-		qa.setDescription("No description");
-		System.out.println("done3");
-		qualityAttributeDao.create(qa);
-		System.out.println("done4");
-		ProjectPackageAttributeRating ppar = new ProjectPackageAttributeRating();
-		ProjectPackageAttributeRatingId pparid = new ProjectPackageAttributeRatingId();
-		pparid.setAttributeId(qa.getId());
-		pparid.setPackageId(1);
-		pparid.setProjectId(project.getId());
-		
-		System.out.println("projectid: "+project.getId()+" packageid: "+1+" attributeid: "+qa.getId());
-		
-		ppar.setId(pparid);
-		ppar.setProject(project);
-		ppar.setSoftwarePackage(softwarePackageDao.fetch(1));
-		ppar.setQualityAttribute(qa);
-		ppar.setRating(0);
-		
-		projectPackageAttributeRatingDao.create(ppar);
+			QualityAttribute qa = new QualityAttribute();
+			qa.setName("Unnamed");
+			qa.setDescription("No description");
+		//	System.out.println("done3");
+			qualityAttributeDao.create(qa);
+			//System.out.println("done4");
+			ProjectPackageAttributeRating ppar = new ProjectPackageAttributeRating();
+			ProjectPackageAttributeRatingId pparid = new ProjectPackageAttributeRatingId();
+			pparid.setAttributeId(qa.getId());
+			pparid.setPackageId(1);
+			pparid.setProjectId(project.getId());
+			
+		//	System.out.println("projectid: "+project.getId()+" packageid: "+1+" attributeid: "+qa.getId());
+			
+			ppar.setId(pparid);
+			ppar.setProject(project);
+			ppar.setSoftwarePackage(softwarePackageDao.fetch(1));
+			ppar.setQualityAttribute(qa);
+			ppar.setRating(0);
+			
+			projectPackageAttributeRatingDao.create(ppar);
 		}
 		
 //		if(newProject.getCases().getName().equals("Case 3"))
@@ -486,6 +487,7 @@ public class ManageProjectBusinessImpl extends BaseBusinessImpl implements Manag
 		return newProject;
 
 	}
+	
 	@AllowedRoles(roles = {Roles.Administrator,Roles.Acquisition_Organization_Engineer})
 	public void deleteProject(int projectId) throws SquareException
 	{
@@ -695,18 +697,22 @@ public class ManageProjectBusinessImpl extends BaseBusinessImpl implements Manag
 	@Override
 	  @AllowedRoles(roles = { Roles.Administrator })
 	  public GwtProject copyProject(GwtProject originalProject) throws SquareException {
+		
+		System.out.println("business copyProject start done 0");
 	    Project project = new Project(originalProject);
-	    // Sets the project type
-	    // This is set in CreateProjectDialog, and we allow the project type to be different
-	    // from the original project's type
+// Sets the project type
+// This is set in CreateProjectDialog, and we allow the project type to be different
+// from the original project's type
 	    //project.setProjectType(new ProjectType(originalProject.getProjectType()));
 	    // Clears the approval
 	    //setApprovalStatus(originalProject.getId(), 1, 1);
 	    // resets the id
 	    project.setId(0);
+	  
+	    
+	    project.setName(project.getName()+"_COPY");
 	    // Gets the new LRE
-	    User aoe =
-	        userDao.fetch(originalProject.getAcquisitionOrganizationEngineer().getUserId());
+	    User aoe = userDao.fetch(originalProject.getAcquisitionOrganizationEngineer().getUserId());
 	    // Sets the new LRE
 	    project.setAcquisitionOrganizationEngineer(aoe);
 
@@ -714,15 +720,22 @@ public class ManageProjectBusinessImpl extends BaseBusinessImpl implements Manag
 	    project.setDateCreated(now);
 	    project.setDateModified(now);
 	    // We create an entry for the project in the db
+	    System.out.println("done0");
+	    
+	    
 	    projectDao.create(project);
-
+	    
+	    System.out.println("done1");
+	    
 	    // We add the user to the user-role table
-	    userDao.addUserToProject(aoe,
+	    userDao.addUserToProject(
+	    		aoe,
 	    		project,
 	    		roleDao.findByName(ProjectRole.Acquisition_Organization_Engineer.getLabel()));
 
 	    Project original = new Project(originalProject);
 
+	    System.out.println("done2");
 	    // Here we begin the copying of all project related items.
 	    // We are going in order of the 9 steps of the project
 	    // The function names are usually self-explanatory, and below I have added a discussion on
@@ -774,6 +787,7 @@ public class ManageProjectBusinessImpl extends BaseBusinessImpl implements Manag
 	    //updateInspectionTechnique(project, original, inspectionTechniqueMap);
 	    
 	    //We return back the gwt project from the newly copied project
+	    System.out.println("project.createCopyProject");
 	    return project.createGwtProject();
 	  }
 	

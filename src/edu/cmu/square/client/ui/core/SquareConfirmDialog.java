@@ -25,7 +25,7 @@ public class SquareConfirmDialog extends DialogBox
 	private FlexTable buttonLayout = new FlexTable();
 
 	private Image warningImage = new Image("images/warning-icon.png");
-	private boolean confirmed;
+	private boolean confirmed = false;
 	private Command caller;
 
 	private Button confirmButton = new Button(messages.confirm());
@@ -74,6 +74,7 @@ public class SquareConfirmDialog extends DialogBox
 				public void onClick(ClickEvent event)
 				{
 					confirmed = true;
+					System.out.println("Executing execute");
 					caller.execute();
 					hide();
 				}

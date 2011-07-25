@@ -41,6 +41,8 @@ public interface ManageProjectBusiness  extends BaseBusinessInterface {
 	 * @return The steps associated with this project.
 	 */
 	
+
+	 
 	void deleteProject(int projectId) throws SquareException;
 	
 	

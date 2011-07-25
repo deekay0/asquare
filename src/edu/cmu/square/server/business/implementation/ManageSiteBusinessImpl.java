@@ -209,6 +209,8 @@ public class ManageSiteBusinessImpl extends BaseBusinessImpl implements ManageSi
 		{
 			User user = null;
 			
+
+			System.out.println("done0");
 			if (password.trim().length() != 0)
 			{
 				user = new User(userToCreate, password.trim());
@@ -217,14 +219,16 @@ public class ManageSiteBusinessImpl extends BaseBusinessImpl implements ManageSi
 			{
 				throw new SquareException("user must have a password.");
 			}
-			
+			System.out.println("done1");
 			userDao.create(user);
-			
+
+			System.out.println("done2");
 			if (emailPassword)
 			{
 				sendMail(user, userCreatedMessage, "userCreated.vm");
 			}
-			
+
+			System.out.println("done3");
 			return user.createGwtUser();
 		}
 		catch (Throwable t)

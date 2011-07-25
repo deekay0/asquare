@@ -36,6 +36,9 @@ public interface ManageProjectServiceAsync
 	void deleteProject(int projectId, AsyncCallback<Void> result);
 	
 	
+	void copyProject(GwtProject project, AsyncCallback<GwtProject> result);
+	
+	
 	void getAllProjects(AsyncCallback<List<GwtProject>> result);
 	
 	/**

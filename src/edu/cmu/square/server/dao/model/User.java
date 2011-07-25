@@ -332,7 +332,8 @@ public class User implements java.io.Serializable
 		newUser.setDepartment(this.department);
 		newUser.setLocation(this.location);
 		newUser.setSkipTeachStep(this.skipTeachStep);
-			
+					
+		//newUser.set
 		return newUser;
 	}
 	

@@ -30,6 +30,9 @@ public interface ManageProjectService extends RemoteService {
 	 */
 	GwtProject createProject(GwtProject project) throws SquareException;
 	
+	GwtProject copyProject(GwtProject project) throws SquareException;
+	
+	
 	/**
 	 * This returns the new project GwtProject. Internally it associate the lead requirement engineer and create the steps depending on the project type
 	 * @param project The project that the user selected.
@@ -106,6 +109,7 @@ public interface ManageProjectService extends RemoteService {
 	
 	
 	GwtProject getProject(Integer projectId) throws SquareException;
+
 	
 
 	/**

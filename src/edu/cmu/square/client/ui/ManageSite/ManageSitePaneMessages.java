@@ -80,5 +80,6 @@ public interface ManageSitePaneMessages extends CommonMessages {
 	String cancelCopy();
 	String confirmCopy();
 	String confirmCopyDialogTitle();
+	String copying();
 
 }
