@@ -74,7 +74,6 @@ public class SquareConfirmDialog extends DialogBox
 				public void onClick(ClickEvent event)
 				{
 					confirmed = true;
-					System.out.println("Executing execute");
 					caller.execute();
 					hide();
 				}

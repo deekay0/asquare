@@ -864,7 +864,10 @@ public class ManageProjectBusinessImpl extends BaseBusinessImpl implements Manag
 	      }
 	    }
 	  }
-
+/*
+	  public HashMap<Integer, Integer> copySWPackage(Project project, Project originalProject){
+		  
+	  }
 	  /*
 	  public HashMap<Integer, Integer> copyArtifacts(Project project, Project originalProject) {
 	    HashMap<Integer, Integer> map = new HashMap<Integer, Integer>();
@@ -1037,6 +1040,7 @@ public class ManageProjectBusinessImpl extends BaseBusinessImpl implements Manag
 	      requirement.setPriority(r.getPriority());
 	      //requirement.setProjectType(project.getProjectType());
 	      //requirement.setRequirementSource(r.getRequirementSource());
+	      requirement.setStatus(r.getStatus());
 	      requirement.setTitle(r.getTitle());
 	      Date now = new Date();
 	      requirement.setDateCreated(now);

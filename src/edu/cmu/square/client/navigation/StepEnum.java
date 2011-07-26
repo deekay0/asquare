@@ -8,8 +8,10 @@ import edu.cmu.square.client.ui.categorizeRequirements.CategorizeRequirementsPil
 import edu.cmu.square.client.ui.collectArtifacts.CollectArtifactsPilot;
 import edu.cmu.square.client.ui.elicitSecurityRequirements.ElicitSecurityRequirementsPilot;
 import edu.cmu.square.client.ui.inspectRequirements.InspectRequirementsPilot;
+
 import edu.cmu.square.client.ui.performTradeoffAnalysis.PerformTradeoffAnalysisPilot;
 import edu.cmu.square.client.ui.prioritizeRequirements.PrioritizeRequirementsPilot;
+
 import edu.cmu.square.client.ui.reviewOfRequirementsByAcquisitionOrganization.ReviewOfRequirementsByAcquisitionPilot;
 import edu.cmu.square.client.ui.reviewPackages.ReviewPackagesPilot;
 import edu.cmu.square.client.ui.risksAssessment.RiskAssessmentPilot;
@@ -29,12 +31,14 @@ public enum StepEnum
 			SelectSecurityElicitationTechniquePilot.generateNavigationId(SelectSecurityElicitationTechniquePilot.PageId.home)),		
 	Elicit_Security_Requirements("Step 3: Identify Preliminary Security Requirements",
 			ElicitSecurityRequirementsPilot.generateNavigationId(ElicitSecurityRequirementsPilot.PageId.home)),		
+	
 	Categorize_Requirements("Step 7: Final product selection",
 			CategorizeRequirementsPilot.generateNavigationId(CategorizeRequirementsPilot.PageId.home)),
 	Prioritize_Requirements("Step 8: Prioritize Requirements",
 			PrioritizeRequirementsPilot.generateNavigationId(PrioritizeRequirementsPilot.PageId.home)),
 	Inspect_Requirements("Step 9: Inspect Requirements",
 			InspectRequirementsPilot.generateNavigationId(InspectRequirementsPilot.PageId.home)),
+			
 	Review_Of_Requirements_By_Acquisition_Organization("Case 1 - Step 4: Review Of Requirements By Acquisition Organization", 
 			ReviewOfRequirementsByAcquisitionPilot.generateNavigationId(ReviewOfRequirementsByAcquisitionPilot.PageId.home)),
 	Review_COTS_Software_Package_Information_And_Specification("Case 3 - Step 4: Review COTS software package information and specification", 

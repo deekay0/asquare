@@ -62,8 +62,8 @@ public class AbstractSpringBase {
 	protected Requirement testRequirement;
 	//protected Requirement testRequirement1;
 	protected Requirement testRequirement2;
-	protected Category testCategory1;
-	protected Category testCategory2;
+	//protected Category testCategory1;
+	//protected Category testCategory2;
 	
 	@Resource
 	protected AsquareCaseDao caseDao;
@@ -74,8 +74,8 @@ public class AbstractSpringBase {
 	@Resource
 	protected CategoryDao categoryDao;
 	
-	@Resource
-	protected RiskDao riskDao;
+	//@Resource
+	//protected RiskDao riskDao;
 	@Resource
 	protected ProjectDao projectDao;
 	@Resource
@@ -84,8 +84,8 @@ public class AbstractSpringBase {
 	protected UserDao userDao;
 	
 	
-	@Resource
-	protected ArtifactDao artifactDao;
+	//@Resource
+	//protected ArtifactDao artifactDao;
 	
 	private Random r = new Random();
 	/**
@@ -174,6 +174,7 @@ public class AbstractSpringBase {
 		testRequirement.setStatus("Pending");
 		testRequirement.setTitle("Test requirement title");
 		
+		/*
 		Risk risk1 = new Risk();
 		risk1.setCurrentMeasures("currentMeasures");
 		risk1.setImpact(1);
@@ -217,6 +218,7 @@ public class AbstractSpringBase {
 		artifact2.setName("LOLZ!");
 		artifactDao.create(artifact2);
 		testRequirement.getArtifacts().add(artifact2);
+		*/
 		Goal subGoal = new Goal();
 		
 		subGoal.setDescription("this is a test subgoal");
@@ -227,6 +229,7 @@ public class AbstractSpringBase {
 		goalDao.create(subGoal);
 		testRequirement.getGoals().add(subGoal);
 
+		/*
 		//add a category
 		testCategory1 = new Category();
 		testCategory1.setLabel("Test Category");
@@ -235,6 +238,7 @@ public class AbstractSpringBase {
 		categoryDao.create(testCategory1);
 		
 		testRequirement.getCategories().add(testCategory1);
+		*/
 		requirementDao.create(testRequirement);
 
 		
@@ -249,6 +253,7 @@ public class AbstractSpringBase {
 		testRequirement2.setTitle("Test requirement title");
 		testRequirement2.setStatus("Approved");
 		
+		/*
 		Risk risk12 = new Risk();
 		risk12.setCurrentMeasures("currentMeasures");
 		risk12.setImpact(1);
@@ -274,7 +279,7 @@ public class AbstractSpringBase {
 		risk22.setProject(testProject);
 		riskDao.create(risk22);
 		testRequirement2.getRisks().add(risk22);
-		
+		*/
 		
 		Goal subGoal2 = new Goal();
 		subGoal2.setDescription("this is a test subgoal");
@@ -284,7 +289,7 @@ public class AbstractSpringBase {
 		goalDao.create(subGoal2);
 		
 		testRequirement2.getGoals().add(subGoal2);
-
+/*
 		Artifact artifact3 = new Artifact();
 		artifact3.setRevision("verison1");
 		artifact3.setDescription("artifactDesc");
@@ -303,6 +308,7 @@ public class AbstractSpringBase {
 		categoryDao.create(testCategory2);
 		
 		testRequirement2.getCategories().add(testCategory2);
+		*/
 		requirementDao.create(testRequirement2);
 		
 		
@@ -372,7 +378,7 @@ public class AbstractSpringBase {
 		
 		return reqs;
 	}
-	
+	/*
 	public List<GwtTechnique> createDefaultTechnique()
 	{
 		List<GwtTechnique> techniques = new ArrayList<GwtTechnique>();
@@ -405,6 +411,7 @@ public class AbstractSpringBase {
 		return evaluations;
 	}
 	
+	
 	public List<GwtInspectionTechnique> createDefaultInspections()
 	{
 		List<GwtInspectionTechnique> inspections = new ArrayList<GwtInspectionTechnique>();
@@ -420,6 +427,6 @@ public class AbstractSpringBase {
 		
 		return inspections;
 	}
-	
+	*/
 	
 }

@@ -13,7 +13,7 @@ public interface MappingDao {
 	
 	//void addRiskArtifactMapping(int riskId, int artifactId);
 	
-	void addRiskAssetMapping(int riskId, int assetId);
+	//void addRiskAssetMapping(int riskId, int assetId);
 	
 	//void addRequirementArtifactMapping(int requirementId, int artifactId);
 	
@@ -22,4 +22,6 @@ public interface MappingDao {
 	//void addRequirementRiskMapping(int requirementId, int riskId);
 	
 	void addRequirementGoalMapping(int requirementId, int goalId);
+	
+	
 }

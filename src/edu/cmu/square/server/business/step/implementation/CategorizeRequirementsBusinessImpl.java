@@ -31,6 +31,7 @@ import edu.cmu.square.server.dao.model.Requirement;
 @Scope("prototype")
 public class CategorizeRequirementsBusinessImpl extends BaseBusinessImpl implements CategorizeRequirementsBusiness
 {
+	
 	@Resource
 	private CategoryDao categoryDao;
 	@Resource
@@ -135,10 +136,10 @@ public class CategorizeRequirementsBusinessImpl extends BaseBusinessImpl impleme
 
 			for (Requirement requirement : requirements)
 			{
-				Set<Category> requirementCategories = requirement.getCategories();
-				requirementCategories.remove(categoryFrom);
+				//Set<Category> requirementCategories = requirement.getCategories();
+				//requirementCategories.remove(categoryFrom);
 
-				requirementCategories.add(categoryTo);
+				//requirementCategories.add(categoryTo);
 			}
 
 			// delete the category
@@ -161,7 +162,7 @@ public class CategorizeRequirementsBusinessImpl extends BaseBusinessImpl impleme
 			for (GwtRequirement r : requirements)
 			{
 				Requirement req = requirementDao.fetch(r.getId());
-				req.getCategories().add(cat);
+				//req.getCategories().add(cat);
 			}
 		}
 		catch (Throwable t)
@@ -193,7 +194,7 @@ public class CategorizeRequirementsBusinessImpl extends BaseBusinessImpl impleme
 			for (GwtRequirement r : requirements)
 			{
 				Requirement req = requirementDao.fetch(r.getId());
-				req.getCategories().remove(cat);
+				//req.getCategories().remove(cat);
 			}
 		}
 		catch (Throwable t)
@@ -221,10 +222,11 @@ public class CategorizeRequirementsBusinessImpl extends BaseBusinessImpl impleme
 		int count = 0;
 		for (Requirement r : requirements)
 		{
-			if (r.getCategories().size() == 0)
+		/*	if (r.getCategories().size() == 0)
 			{
 				count++;
 			}
+			*/
 		}
 
 		if (categories.size() == 0)
