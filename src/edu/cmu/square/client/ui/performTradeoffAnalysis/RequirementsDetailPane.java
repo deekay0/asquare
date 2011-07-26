@@ -72,7 +72,7 @@ public class RequirementsDetailPane extends BasePane implements Command
 
 		private Label subGoalLabel = new Label(messages.securityGoal());
 //		private Label riskLabel = new Label(messages.risks());
-		private Label artifactLabel = new Label(messages.artifacts());
+//		private Label artifactLabel = new Label(messages.artifacts());
 
 
 		private TextBox requirementTitleTextBox = new TextBox();
@@ -93,11 +93,11 @@ public class RequirementsDetailPane extends BasePane implements Command
 
 		private List<GwtRequirement> lisOfRequirements = new ArrayList<GwtRequirement>();
 		private List<GwtRisk> listOfProjectRisks = new ArrayList<GwtRisk>();
-		private List<GwtRisk> listOfProjectFilteredRisks = new ArrayList<GwtRisk>();
+		//private List<GwtRisk> listOfProjectFilteredRisks = new ArrayList<GwtRisk>();
 		private List<GwtRisk> listOfRiksMapppedToRequirement = new ArrayList<GwtRisk>();
 		private List<GwtSubGoal> listOfProjectSubGoals = new ArrayList<GwtSubGoal>();
 		private List<GwtSubGoal> listOfSubGoalsMappedToRequirement = new ArrayList<GwtSubGoal>();
-		private List<GwtArtifact> listOfProjectArtifacts = new ArrayList<GwtArtifact>();
+		//private List<GwtArtifact> listOfProjectArtifacts = new ArrayList<GwtArtifact>();
 		private List<GwtArtifact> listOfArtifactsMappedToRequirement = new ArrayList<GwtArtifact>();
 
 		private int currentIndex = -1;
@@ -155,11 +155,12 @@ public class RequirementsDetailPane extends BasePane implements Command
 					{
 						businessGoalInfo = result;
 						listOfProjectSubGoals = businessGoalInfo.getSubGoals();
-						loadArtifactsFromProject();
+						loadProjectRequirements();
 					}
 				});
 		}
-		
+
+		/*
 		public void loadArtifactsFromProject()
 		{
 			CollectArtifactsServiceAsync service = GWT.create(CollectArtifactsService.class);
@@ -176,12 +177,12 @@ public class RequirementsDetailPane extends BasePane implements Command
 				
 				public void onSuccess(List<GwtArtifact> result)
 				{
-					listOfProjectArtifacts = result;
+					//listOfProjectArtifacts = result;
 					loadProjectRequirements();
 				}
 			});
 		}
-
+*/
 		
 		public void loadProjectRequirements()
 		{
@@ -205,11 +206,12 @@ public class RequirementsDetailPane extends BasePane implements Command
 						listOfRiksMapppedToRequirement = currentRequirement.getRisks();
 						listOfArtifactsMappedToRequirement = currentRequirement.getArtifacts();
 					}
-					loadProjectRisks();
+					PaneInitialization();
 				}
 			});
 		}
 
+		/*
 		public void loadProjectRisks()
 		{
 			int projectId = this.getCurrentState().getProjectID();
@@ -231,7 +233,7 @@ public class RequirementsDetailPane extends BasePane implements Command
 				}
 			});
 		}
-
+*/
 		public void updateRequirement(int requirementId, GwtRequirement gwtRequirement)
 		{
 			gwtRequirement.setId(requirementId);
@@ -364,7 +366,7 @@ public class RequirementsDetailPane extends BasePane implements Command
 
 			this.matrix.setWidget(2, 1, createHTMLSubGoalList());
 //			this.matrix.setWidget(3, 1, createHTMLRisksList());
-			this.matrix.setWidget(3, 1, createHTMLArtifactsList());
+//			this.matrix.setWidget(3, 1, createHTMLArtifactsList());
 
 			
 			this.matrix.getCellFormatter().setAlignment(1, 0, HasHorizontalAlignment.ALIGN_RIGHT, HasVerticalAlignment.ALIGN_TOP);
@@ -372,7 +374,7 @@ public class RequirementsDetailPane extends BasePane implements Command
 			this.matrix.getCellFormatter().setAlignment(2, 0, HasHorizontalAlignment.ALIGN_RIGHT, HasVerticalAlignment.ALIGN_TOP);
 			this.matrix.getCellFormatter().setAlignment(2, 1, HasHorizontalAlignment.ALIGN_LEFT, HasVerticalAlignment.ALIGN_TOP);
 			this.matrix.getCellFormatter().setAlignment(3, 0, HasHorizontalAlignment.ALIGN_RIGHT, HasVerticalAlignment.ALIGN_TOP);
-			this.matrix.getCellFormatter().setAlignment(3, 1, HasHorizontalAlignment.ALIGN_LEFT, HasVerticalAlignment.ALIGN_TOP);
+//			this.matrix.getCellFormatter().setAlignment(3, 1, HasHorizontalAlignment.ALIGN_LEFT, HasVerticalAlignment.ALIGN_TOP);
 			this.matrix.getCellFormatter().setAlignment(4, 0, HasHorizontalAlignment.ALIGN_RIGHT, HasVerticalAlignment.ALIGN_TOP);
 			this.matrix.getCellFormatter().setAlignment(4, 1, HasHorizontalAlignment.ALIGN_LEFT, HasVerticalAlignment.ALIGN_TOP);
 
@@ -389,7 +391,7 @@ public class RequirementsDetailPane extends BasePane implements Command
 
 			this.subGoalLabel.setStyleName("Risk-Input-Labels");
 //			this.riskLabel.setStyleName("Risk-Input-Labels");
-			this.artifactLabel.setStyleName("Risk-Input-Labels");
+//			this.artifactLabel.setStyleName("Risk-Input-Labels");
 
 			this.requirementTitleTextBox.setStyleName("square-long-textBox");
 			this.requirementDescriptionTextBox.setStyleName("square-long-textBox");
@@ -415,7 +417,7 @@ public class RequirementsDetailPane extends BasePane implements Command
 
 			this.matrix.setWidget(2, 0, subGoalLabel);
 //			this.matrix.setWidget(3, 0, riskLabel);
-			this.matrix.setWidget(3, 0, artifactLabel);
+//			this.matrix.setWidget(3, 0, artifactLabel);
 
 			//System.out.println("before button");
 			
@@ -431,7 +433,7 @@ public class RequirementsDetailPane extends BasePane implements Command
 				bottonControlPanel.getCellFormatter().setHorizontalAlignment(0,0,HasHorizontalAlignment.ALIGN_LEFT);
 				bottonControlPanel.getCellFormatter().setHorizontalAlignment(1,0,HasHorizontalAlignment.ALIGN_LEFT);
 				bottonControlPanel.getCellFormatter().setHorizontalAlignment(2,0,HasHorizontalAlignment.ALIGN_LEFT);
-				bottonControlPanel.getCellFormatter().setHorizontalAlignment(3,0,HasHorizontalAlignment.ALIGN_LEFT);
+//				bottonControlPanel.getCellFormatter().setHorizontalAlignment(3,0,HasHorizontalAlignment.ALIGN_LEFT);
 				this.getContent().add(bottonControlPanel);
 
 			}
@@ -878,6 +880,7 @@ public class RequirementsDetailPane extends BasePane implements Command
 			}
 
 		}
+		/*
 		public Widget createHTMLRisksList()
 		{
 			if (listOfRiksMapppedToRequirement.size() > 0)
@@ -905,7 +908,8 @@ public class RequirementsDetailPane extends BasePane implements Command
 			}
 
 		}
-
+*/
+		/*
 		public Widget createHTMLArtifactsList()
 		{
 			if (listOfArtifactsMappedToRequirement.size() > 0)
@@ -932,7 +936,7 @@ public class RequirementsDetailPane extends BasePane implements Command
 			}
 
 		}
-
+*/
 		public List<GwtRisk> filterRiskBaseOnGoals(List<GwtSubGoal> subGoals, List<GwtRisk> risks)
 		{
 			
@@ -975,13 +979,13 @@ public class RequirementsDetailPane extends BasePane implements Command
 				this.matrix.setWidget(2, 1, createHTMLSubGoalList());
 				
 			}
-//			else if (currentDialog.equalsIgnoreCase("Risk"))
-//			{
-//				listRiskChanged(listOfRiksMapppedToRequirement,  riskDialogBox.getNewSelectedRisks());
-//				
-//				listOfRiksMapppedToRequirement = riskDialogBox.getNewSelectedRisks();
-//				this.matrix.setWidget(3, 1, createHTMLRisksList());
-//			}
+/*			else if (currentDialog.equalsIgnoreCase("Risk"))
+			{
+				listRiskChanged(listOfRiksMapppedToRequirement,  riskDialogBox.getNewSelectedRisks());
+				
+				listOfRiksMapppedToRequirement = riskDialogBox.getNewSelectedRisks();
+				this.matrix.setWidget(3, 1, createHTMLRisksList());
+			}
 			else if (currentDialog.equalsIgnoreCase("Artifact"))
 			{
 				listArtifactChanged(listOfArtifactsMappedToRequirement,artifactDialog.getNewSelectedArtifacts());
@@ -989,7 +993,7 @@ public class RequirementsDetailPane extends BasePane implements Command
 				listOfArtifactsMappedToRequirement = artifactDialog.getNewSelectedArtifacts();
 				this.matrix.setWidget(3, 1, createHTMLArtifactsList());
 			}
-
+*/
 		}
 
 
@@ -1005,7 +1009,7 @@ public class RequirementsDetailPane extends BasePane implements Command
 			}
 		}
 
-		
+	/*	
 		public void listArtifactChanged(List<GwtArtifact> oldArtifact, List<GwtArtifact> newArtifact)
 		{
 			for(GwtArtifact old:oldArtifact)
@@ -1030,6 +1034,7 @@ public class RequirementsDetailPane extends BasePane implements Command
 			}
 		
 		}
+		*/
 		public void listSubGoalChanged(List<GwtSubGoal> oldSubGoals, List<GwtSubGoal> newSubGoals)
 		{
 			for(GwtSubGoal old:oldSubGoals)

@@ -24,17 +24,17 @@ public interface RequirementsDetailPaneMessages extends CommonMessages
 	String errorRemovingRequirements();
 	
 	String editSubGoalsLink();
-	String editRisksLink();
-	String editArtifactLink();
+//	String editRisksLink();
+//	String editArtifactLink();
 	String noSelectedSecurityGoal();
-	String noSelectedArtifacts();
-	String noSelectedRisks();
+//	String noSelectedArtifacts();
+//	String noSelectedRisks();
 	String associateGoals();
-	String associateRisks();
-	String associateArtifacts();
+//	String associateRisks();
+//	String associateArtifacts();
 	String securityGoal();
-	String risks();
-	String artifacts();
+//	String risks();
+//	String artifacts();
 	String description();
 	String duplicateTitleError();
 	String errorFilePath(String filePath);

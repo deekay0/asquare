@@ -349,13 +349,8 @@ public class ProjectGrid extends Composite implements Command
 	public void execute()
 	{
 		
-		//System.out.println("copyProject"+copyConfirmDialog.isConfirmed());
-		
-		//System.out.println("confirmDialog"+confirmDialog.isConfirmed());
-		
 		if(copyConfirmDialog != null && copyConfirmDialog.isConfirmed())
 		{
-			System.out.println("check0");
 			caller.showStatusBar(messages.copying());
 			copyProject(listOfProjects.get(lastRowClicked-1));
 			copyConfirmDialog.setConfirmed(false);
@@ -363,22 +358,11 @@ public class ProjectGrid extends Composite implements Command
 		}
 		else if (confirmDialog != null && confirmDialog.isConfirmed())
 		{
-			System.out.println("delete is confirmed");
 			caller.showStatusBar(messages.removing());
 			deleteProject(lastProjectIdClicked);
 			confirmDialog.setConfirmed(false);
 		}
-		/*
-		else if(copyConfirmDialog.isConfirmed())
-		{
-			System.out.println("copy is confirmed done0");
-			caller.showStatusBar(messages.copying());
-			System.out.println("done1");
-			copyProject(listOfProjects.get(lastProjectIdClicked));
-			System.out.println("done2");
-		}
-		*/
-		System.out.println("execute is done");
+	
 		
 
 	}

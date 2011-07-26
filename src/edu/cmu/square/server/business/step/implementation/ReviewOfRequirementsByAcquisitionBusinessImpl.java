@@ -182,7 +182,7 @@ public class ReviewOfRequirementsByAcquisitionBusinessImpl extends BaseBusinessI
 			
 			
 		}
-
+/*
 		@AllowedRoles(roles = {Roles.All})
 		public void assignRequirementsToCategory(List<GwtRequirement> requirements,int categoryID) throws SquareException
 		{
@@ -228,15 +228,15 @@ public class ReviewOfRequirementsByAcquisitionBusinessImpl extends BaseBusinessI
 				  }		
 			}			
 		}
-
+*/
 		@AllowedRoles(roles = {Roles.Contractor, Roles.Security_Specialist, Roles.Administrator, Roles.Acquisition_Organization_Engineer})
 		public void updateRequirement(GwtRequirement gwtRequirement) throws SquareException
 		{
 		
 			Requirement  r = requirementDao.fetch(gwtRequirement.getId());
 			
-			r.getRisks().clear();
-			r.getArtifacts().clear();
+			//r.getRisks().clear();
+			//r.getArtifacts().clear();
 			r.getGoals().clear();
 			//r.getCategories().clear();
 			

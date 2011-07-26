@@ -1,6 +1,7 @@
 package edu.cmu.square.client.model;
 
 import java.io.Serializable;
+import java.util.Date;
 
 public class GwtUser implements Serializable
 {
@@ -25,6 +26,7 @@ public class GwtUser implements Serializable
 	private boolean isLocked;
 	private boolean skipTeachStep;
 	private String sessionID;
+	private Date dateCreated;
 	
 
 	public GwtUser(Integer id)
@@ -100,6 +102,9 @@ public class GwtUser implements Serializable
 
 	public void setSkipTeachStep(boolean skipTeachStep){ this.skipTeachStep = skipTeachStep;}
 	public boolean isSkipTeachStep(){return skipTeachStep;}
+	
+	//public void setDateCreated(this.dateCreated = dateCreated;)
+	//public void setDateModified
 
 
 }

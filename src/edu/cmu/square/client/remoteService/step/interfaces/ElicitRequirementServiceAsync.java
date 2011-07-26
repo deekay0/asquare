@@ -38,6 +38,8 @@ public interface ElicitRequirementServiceAsync
 
 	void getRequirementsFromProject(Integer projectID, AsyncCallback<List<GwtRequirement>> callback); 
 	
+	
+	
 	void assignRequirementsToCategory(List<GwtRequirement> requirements,int categoryID, AsyncCallback<Void> callback);
 	
 	void removeRequirementsFromCategory(List<GwtRequirement> requirements,int categoryID, AsyncCallback<Void> callback);

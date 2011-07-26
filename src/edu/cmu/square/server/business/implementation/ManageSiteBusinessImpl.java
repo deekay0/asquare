@@ -210,7 +210,7 @@ public class ManageSiteBusinessImpl extends BaseBusinessImpl implements ManageSi
 			User user = null;
 			
 
-			System.out.println("done0");
+			System.out.println(" server mngsite biz done0");
 			if (password.trim().length() != 0)
 			{
 				user = new User(userToCreate, password.trim());

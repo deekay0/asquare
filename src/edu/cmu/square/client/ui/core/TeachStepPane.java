@@ -83,10 +83,11 @@ public class TeachStepPane extends Composite
 			contents.add(messages.contractorResponsibilities());
 			contents.add(messages.securityResponsibilities());
 		}
-		else if (stepToTeach.equals(HistoryManager.ViewId.categorizeRequirements))
+		/*else if (stepToTeach.equals(HistoryManager.ViewId.categorizeRequirements))
 		{
 			messages = (CategorizeRequirementsMessages)GWT.create(CategorizeRequirementsMessages.class);
 		}
+		*/
 		else if (stepToTeach.equals(HistoryManager.ViewId.agreeOnDefinitions))
 		{
 			messages = (AgreeOnDefinitionsMessages)GWT.create(AgreeOnDefinitionsMessages.class);
@@ -99,6 +100,7 @@ public class TeachStepPane extends Composite
 		{
 			messages = (PrioritizeMessages)GWT.create(PrioritizeMessages.class);
 		}
+		/*
 		else if (stepToTeach.equals(HistoryManager.ViewId.collectArtifacts))
 		{
 			messages = (CollectArtifactsMessages)GWT.create(CollectArtifactsMessages.class);
@@ -107,6 +109,7 @@ public class TeachStepPane extends Composite
 		{
 			messages = (InspectRequirementsMessages)GWT.create(InspectRequirementsMessages.class);
 		}
+		*/
 		else if (stepToTeach.equals(HistoryManager.ViewId.reviewOfRequirementsByAcquisitionOrganization))
 		{
 			messages = (ReviewOfRequirementsByAcquisitionMessages)GWT.create(ReviewOfRequirementsByAcquisitionMessages.class);
