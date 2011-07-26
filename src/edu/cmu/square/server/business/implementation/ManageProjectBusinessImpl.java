@@ -32,8 +32,6 @@ import edu.cmu.square.server.authorization.Roles;
 import edu.cmu.square.server.business.interfaces.ManageProjectBusiness;
 import edu.cmu.square.server.business.interfaces.StepBusiness;
 import edu.cmu.square.server.business.step.interfaces.AgreeOnDefinitionsBusiness;
-import edu.cmu.square.server.business.step.interfaces.ElicitationTechniqueBusiness;
-import edu.cmu.square.server.business.step.interfaces.InspectionTechniqueBusiness;
 import edu.cmu.square.server.dao.implementation.HbnSoftwarePackageDao;
 import edu.cmu.square.server.dao.interfaces.AsquareCaseDao;
 import edu.cmu.square.server.dao.interfaces.AssetDao;
@@ -46,6 +44,7 @@ import edu.cmu.square.server.dao.interfaces.RequirementDao;
 import edu.cmu.square.server.dao.interfaces.RoleDao;
 import edu.cmu.square.server.dao.interfaces.StepDao;
 import edu.cmu.square.server.dao.interfaces.TermDao;
+import edu.cmu.square.server.dao.interfaces.TradeoffReasonDao;
 import edu.cmu.square.server.dao.interfaces.UserAhpDao;
 import edu.cmu.square.server.dao.interfaces.UserDao;
 import edu.cmu.square.server.dao.model.AsquareCase;
@@ -55,6 +54,8 @@ import edu.cmu.square.server.dao.model.InspectionTechnique;
 import edu.cmu.square.server.dao.model.Project;
 import edu.cmu.square.server.dao.model.ProjectPackageAttributeRating;
 import edu.cmu.square.server.dao.model.ProjectPackageAttributeRatingId;
+import edu.cmu.square.server.dao.model.ProjectPackageTradeoffreason;
+import edu.cmu.square.server.dao.model.ProjectPackageTradeoffreasonId;
 import edu.cmu.square.server.dao.model.QualityAttribute;
 import edu.cmu.square.server.dao.model.Requirement;
 import edu.cmu.square.server.dao.model.Role;
@@ -113,6 +114,9 @@ public class ManageProjectBusinessImpl extends BaseBusinessImpl implements Manag
 	private ProjectPackageAttributeRatingDao projectPackageAttributeRatingDao;
 	
 	@Resource
+	private TradeoffReasonDao tradeoffReasonDao;
+	
+	@Resource
 	private TermDao termDao;
 	
 	@Resource
@@ -125,7 +129,7 @@ public class ManageProjectBusinessImpl extends BaseBusinessImpl implements Manag
 	private RequirementDao requirementDao;
 	
 	@Resource
-	  private MappingDao mappingDao;
+	private MappingDao mappingDao;
 
 	@AllowedRoles(roles = {Roles.Acquisition_Organization_Engineer})
 	public void editRole(GwtUser gwtUser, GwtProject gwtProject) throws SquareException
@@ -396,28 +400,7 @@ public class ManageProjectBusinessImpl extends BaseBusinessImpl implements Manag
 			throw new SquareException(t.getMessage());
 		}
 	}
-/*
-	@AllowedRoles(roles = {Roles.Lead_Requirements_Engineer, Roles.Requirements_Engineer, Roles.Acquisition_Organization_Engineer})
-	public void setTechniqueToProject(Integer projectId, Integer techniqueID, String rationale) throws SquareException
-	{
-		Project project = projectDao.fetch(projectId);
-		Technique technique = new Technique();
-		technique.setId(techniqueID);
-		//project.setSecurityTechnique(technique);
-		//project.setSecurityTechniqueRationale(rationale);
-		projectDao.update(project);
-	}
-	@AllowedRoles(roles = {Roles.Acquisition_Organization_Engineer})
-	public void setTechniqueToProject(Integer projectId, Integer techniqueID, String rationale) throws SquareException
-	{
-		Project project = projectDao.fetch(projectId);
-		Technique technique = new Technique();
-		technique.setId(techniqueID);
-		project.setSecurityTechnique(technique);
-		project.setSecurityTechniqueRationale(rationale);
-		projectDao.update(project);
-	}
-*/
+
 	@AllowedRoles(roles = {Roles.Administrator})
 	public GwtProject createProject(GwtProject newProject) throws SquareException
 	{		
@@ -458,8 +441,14 @@ public class ManageProjectBusinessImpl extends BaseBusinessImpl implements Manag
 			ppar.setSoftwarePackage(softwarePackageDao.fetch(1));
 			ppar.setQualityAttribute(qa);
 			ppar.setRating(0);
-			
 			projectPackageAttributeRatingDao.create(ppar);
+			
+			
+			
+			ProjectPackageTradeoffreasonId id = new ProjectPackageTradeoffreasonId(project.getId(), 1);
+			ProjectPackageTradeoffreason tradeoffReason = new ProjectPackageTradeoffreason(id, project, softwarePackageDao.fetch(1), "this is weight",1);
+			tradeoffReasonDao.create(tradeoffReason);
+			
 		}
 		
 //		if(newProject.getCases().getName().equals("Case 3"))
