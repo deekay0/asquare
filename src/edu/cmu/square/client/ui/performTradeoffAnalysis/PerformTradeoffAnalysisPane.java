@@ -744,7 +744,6 @@ public class PerformTradeoffAnalysisPane extends BasePane
 			}
 			else
 			{
-				System.out.println("here1.....");
 				priorityListBox.setSelectedIndex(0);
 			}
 			
