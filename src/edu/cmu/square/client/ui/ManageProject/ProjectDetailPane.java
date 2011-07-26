@@ -112,7 +112,6 @@ public class ProjectDetailPane extends VerticalPanel
 							case authorization :
 								Window.alert(messages.errorNameUpdateAuthorization());
 								break;
-
 							default :
 								Window.alert(messages.errorChangingProjectName());
 								break;
@@ -144,7 +143,6 @@ public class ProjectDetailPane extends VerticalPanel
 				{
 					ExceptionHelper.SquareRootRPCExceptionHandler(caught, "retrieving steps");
 				}
-
 				public void onSuccess(List<GwtStepVerficationResult> result)
 				{
 					//for(int i=0; i<result.size(); i++)
@@ -165,9 +163,7 @@ public class ProjectDetailPane extends VerticalPanel
 							}
 					);
 					
-					listOfSteps = result;
-					
-					
+					listOfSteps = result;	
 					CreateStepGrid();
 				}
 			});
@@ -236,20 +232,16 @@ public class ProjectDetailPane extends VerticalPanel
 						{
 							//System.out.println("step id...."+step.getId()+"  ... "+step.getDescription().charAt(5));
 							int stepNo = Integer.valueOf(step.getDescription().charAt(5));
-							System.out.println("stepno......."+stepNo);
 							
 							for(int i=0; i<listOfSteps.size(); i++)
 							{
 								int stepNumber = Integer.valueOf(listOfSteps.get(i).getStep().getDescription().charAt(5));
 								if(stepNumber < stepNo)
 								{
-									updateStepStatus(projectId, listOfSteps.get(i).getStep().getId(), "In Progress");
-									
+									updateStepStatus(projectId, listOfSteps.get(i).getStep().getId(), "In Progress");				
 								}
 							}
-						}
-								
-						
+						}	
 						updateStepStatus(projectId, step.getId(), status);
 						step.setStatus(StepStatus.convertLabel(status));
 					}
@@ -266,7 +258,7 @@ public class ProjectDetailPane extends VerticalPanel
 			System.out.println("project detial..."+step.getId()+"..."+step.getDescription());
 			
 			analysisResults.add(new Hyperlink(step.getDescription(), StepRouter.CreateStepLink(step)));
-			analysisResults.add(warningLabel);
+			//analysisResults.add(warningLabel);
 
 			stepsTable.setWidget(rowCount, 0, statusList);
 			stepsTable.setWidget(rowCount, 1, analysisResults);
