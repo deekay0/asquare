@@ -233,6 +233,7 @@ public class ManageSiteBusinessImpl extends BaseBusinessImpl implements ManageSi
 		}
 		catch (Throwable t)
 		{
+			System.out.println();
 			throw new SquareException("creating user failed", t);
 		}
 	}

@@ -74,17 +74,19 @@ public abstract class BaseBusinessImpl {
 			model.put("user", updateUser);
 			String text = VelocityEngineUtils.mergeTemplateIntoString(velocityEngine, velocityTemplate, model);
 
-			
+			System.out.println("123");
 			if (updateUser.getEmail() == null || !(updateUser.getEmail().matches(EMAIL_VALIDATOR)))
 			{
 				SquareException se = new SquareException("Invalid email address");
 				se.setType(ExceptionType.invalidEmail);
 				throw se;
 			}
-		
+			System.out.println("4");
 			templateMessage.setTo(updateUser.getEmail());
 			templateMessage.setText(text);
-			mailSender.send(templateMessage);
+			System.out.println("5");
+			//mailSender.send(templateMessage);
+			System.out.println("6");
 		}
 		catch (SquareException se)
 		{
@@ -92,6 +94,7 @@ public abstract class BaseBusinessImpl {
 		}
 		catch (Throwable m)
 		{
+			System.out.println(m.getLocalizedMessage());
 			SquareException se = new SquareException("Error sending mail", m);
 			se.setType(ExceptionType.mailError);
 			throw se;
