@@ -31,6 +31,7 @@ public class CategorizeRequirementsPilot extends Pilot
 	/* (non-Javadoc)
 	 * @see edu.cmu.square.client.entryPoint.Pilot#navigateTo(java.lang.String, edu.cmu.square.client.entryPoint.State)
 	 */
+
 	public Widget navigateTo(String pageId, State currentStateInformation)
 	{
 		//If user settings indicates to skip teach step, the target page will be the start page not the teach step 

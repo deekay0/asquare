@@ -865,7 +865,60 @@ public class ManageProjectBusinessImpl extends BaseBusinessImpl implements Manag
 	    }
 	  }
 
-	  /*
+	  public HashMap<Integer, Integer> copySWPackage(Project project, Project originalProject){
+		  HashMap<Integer, Integer> map = new HashMap<Integer, Integer>();
+		  List<SoftwarePackage> SWPackages = softwarePackageDao.getSoftwarePackagesByProject(originalProject);
+
+			    for (SoftwarePackage swp : SWPackages) {
+			      Date now = new Date();
+			      SoftwarePackage swP = new SoftwarePackage(swp.getDescription(), project,  now, now);
+			    		  			
+			      swP.setProject(project);
+			      softwarePackageDao.create(swP);
+			      map.put(swp.getId(), swP.getId());
+			    }
+			    return map;
+			  }
+
+	  public HashMap<Integer, Integer> copyQualityAttribute(Project project, Project originalProject){
+		  HashMap<Integer, Integer> map = new HashMap<Integer, Integer>();
+		  List<QualityAttribute> QAs = qualityAttributeDao.getQualityAttributesByProject(originalProject);
+
+			    for (QualityAttribute qas : QAs) {
+			      Date now = new Date();
+			      QualityAttribute qa = new QualityAttribute(qas.getName(), qas.getDescription(), project,  now, now);
+			    		  			
+			      qa.setProject(project);
+			      qualityAttributeDao.create(qa);
+			      map.put(qas.getId(), qa.getId());
+			    }
+			    return map;
+			  }
+		/*
+			  public void copyTechniqueEvaluationCriteria(Project project,
+			                                              Project originalProject,
+			                                              HashMap<Integer, Integer> techniqueMap,
+			                                              HashMap<Integer, Integer> evaluationCriteriaMap) {
+			    List<TechniqueEvaluationCriteria> tecList = techEvaCriteriaDao.getAllValues(originalProject);
+
+			    for (TechniqueEvaluationCriteria tec : tecList) {
+			      TechniqueEvaluationCriteria newTec = new TechniqueEvaluationCriteria();
+			      newTec.setProject(project);
+			      newTec.setValue(tec.getValue());
+			      Technique newTechnique = techniqueDao.fetch(techniqueMap.get(tec.getTechnique().getId()));
+			      newTec.setTechnique(newTechnique);
+			      EvaluationCriteria newEvaCriteria =
+			          evaCriteriaDao.fetch(evaluationCriteriaMap.get(tec.getTechniqueEvaluation().getId()));
+			      newTec.setTechniqueEvaluation(newEvaCriteria);
+			      newTec.setId(new TechniqueEvaluationCriteriaId(newTechnique.getId(),
+			                                                      newEvaCriteria.getId(),
+			                                                      project.getId()));
+			      techEvaCriteriaDao.create(newTec);
+			    }
+
+			  }
+
+/*
 	  public HashMap<Integer, Integer> copyArtifacts(Project project, Project originalProject) {
 	    HashMap<Integer, Integer> map = new HashMap<Integer, Integer>();
 	    List<Artifact> artifacts = artifactDao.getArtifactsByProject(originalProject);
@@ -1037,6 +1090,7 @@ public class ManageProjectBusinessImpl extends BaseBusinessImpl implements Manag
 	      requirement.setPriority(r.getPriority());
 	      //requirement.setProjectType(project.getProjectType());
 	      //requirement.setRequirementSource(r.getRequirementSource());
+	      requirement.setStatus(r.getStatus());
 	      requirement.setTitle(r.getTitle());
 	      Date now = new Date();
 	      requirement.setDateCreated(now);

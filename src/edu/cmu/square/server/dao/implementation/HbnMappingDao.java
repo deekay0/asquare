@@ -18,7 +18,7 @@ public class HbnMappingDao implements MappingDao {
 	public void addAssetGoalMapping(int goalId, int assetId) {
 		addMapping("goal_asset", goalId, assetId);
 	}
-	
+/*	
 	public void addRiskArtifactMapping(int riskId, int artifactId) {
 		addMapping("risk_artifact", riskId, artifactId);
 	}
@@ -38,7 +38,7 @@ public class HbnMappingDao implements MappingDao {
 	public void addRequirementRiskMapping(int requirementId, int riskId) {
 		addMapping("requirement_risk", requirementId, riskId);
 	}
-	
+	*/
 	public void addRequirementGoalMapping(int requirementId, int goalId) {
 		addMapping("requirement_goal", requirementId, goalId);
 	}

@@ -16,6 +16,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
@@ -36,6 +37,7 @@ public class SoftwarePackage implements java.io.Serializable
 	private String description;
 	private Date dateCreated;
 	private Date dateModified;
+	private Project project;
 	
 	public SoftwarePackage() {
 	}
@@ -49,6 +51,15 @@ public class SoftwarePackage implements java.io.Serializable
 		this.id = gwtPackage.getId();
 		this.name = gwtPackage.getName();
 		this.description = gwtPackage.getDescription();
+	}
+
+
+	public SoftwarePackage(String description, Project project, Date dateCreated, Date dateModified)
+	{
+		this.description = description;
+		this.project = project;
+		this.dateCreated = dateCreated;
+		this.dateModified = dateModified;
 	}
 
 
@@ -80,6 +91,14 @@ public class SoftwarePackage implements java.io.Serializable
 		this.description = description;
 	}
 	
+	public void setProject(Project project) {
+		this.project = project;
+	}
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "pid", nullable = false)
+	public Project getProject() {
+		return this.project;
+	}
 
 	@Temporal(TemporalType.TIMESTAMP)
 	@Column(name = "date_created", nullable = false, length = 19)

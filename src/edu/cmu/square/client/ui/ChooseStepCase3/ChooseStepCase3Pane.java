@@ -28,8 +28,7 @@ import edu.cmu.square.client.ui.FinalProductSelection.FinalProductSelectionPilot
 import edu.cmu.square.client.ui.ManageProject.ManageProjectPilot;
 import edu.cmu.square.client.ui.agreeOnDefinitions.AgreeOnDefinitionsPilot;
 import edu.cmu.square.client.ui.assetsAndGoals.AssetsAndGoalsPilot;
-import edu.cmu.square.client.ui.categorizeRequirements.CategorizeRequirementsPilot;
-import edu.cmu.square.client.ui.collectArtifacts.CollectArtifactsPilot;
+//import edu.cmu.square.client.ui.collectArtifacts.CollectArtifactsPilot;
 import edu.cmu.square.client.ui.core.BasePane;
 import edu.cmu.square.client.ui.elicitSecurityRequirements.ElicitSecurityRequirementsPilot;
 import edu.cmu.square.client.ui.performTradeoffAnalysis.PerformTradeoffAnalysisPilot;

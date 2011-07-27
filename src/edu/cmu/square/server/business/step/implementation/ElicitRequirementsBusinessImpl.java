@@ -83,8 +83,8 @@ public class ElicitRequirementsBusinessImpl extends BaseBusinessImpl implements 
 	
 		Requirement  r = requirementDao.fetch(gwtRequirement.getId());
 		
-		r.getRisks().clear();
-		r.getArtifacts().clear();
+		//r.getRisks().clear();
+		//r.getArtifacts().clear();
 		r.getGoals().clear();
 		//r.getCategories().clear();
 		
@@ -126,6 +126,7 @@ public class ElicitRequirementsBusinessImpl extends BaseBusinessImpl implements 
 		
 		
 	}
+	
 	@AllowedRoles(roles = {Roles.All})
 	public void assignRequirementsToCategory(List<GwtRequirement> requirements,int categoryID) throws SquareException
 	{
@@ -133,17 +134,19 @@ public class ElicitRequirementsBusinessImpl extends BaseBusinessImpl implements 
 		{
 			Requirement  r = requirementDao.fetch(gwtRequirement.getId());
 			 boolean exists=false;
-			  for( Category cat:  r.getCategories())
+			 /*
+			 for( Category cat:  r.getCategories())
 			  {
 				  if(cat.getId()==categoryID)
 				  {
 					  exists=true;
 				  }
 			  }
+			  */
 			  if(!exists)
 			  {
 				  Category category= categoryDao.fetch(categoryID);
-				  r.getCategories().add(category);
+				 // r.getCategories().add(category);
 				  requirementDao.update(r);
 			  }
 			
@@ -151,6 +154,8 @@ public class ElicitRequirementsBusinessImpl extends BaseBusinessImpl implements 
 		
 		
 	}
+	
+	
 	@AllowedRoles(roles = {Roles.All})
 	public void removeRequirementsFromCategory(List<GwtRequirement> requirements,int categoryID) throws SquareException
 	{
@@ -158,23 +163,23 @@ public class ElicitRequirementsBusinessImpl extends BaseBusinessImpl implements 
 		{
 			Requirement  r = requirementDao.fetch(gwtRequirement.getId());
 			 boolean exists=false;
-			  for( Category cat:  r.getCategories())
+			 /* 
+			 for( Category cat:  r.getCategories())
 			  {
 				  if(cat.getId()==categoryID)
 				  {
 					  exists=true;
 				  }
 			  }
+			  */
 			  if(exists)
 			  {
 				  Category category= categoryDao.fetch(categoryID);
-				  r.getCategories().remove(category);
+				  //r.getCategories().remove(category);
 				  requirementDao.update(r);
 			  }
 			
-		}
-		
-		
+		}	
 	}
 
 	@Override
@@ -192,13 +197,13 @@ public class ElicitRequirementsBusinessImpl extends BaseBusinessImpl implements 
 		
 		Set<Requirement> requirements = project.getRequirements();
 
-		int reqWithoutArtifact = 0;
-		int reqWithoutRisk = 0;
+		//int reqWithoutArtifact = 0;
+		//int reqWithoutRisk = 0;
 		int reqWithoutGoal = 0;
 
 		for (Requirement r : requirements)
 		{
-			if (r.getArtifacts().size() == 0)
+			/*if (r.getArtifacts().size() == 0)
 			{
 				reqWithoutArtifact++;
 			}
@@ -206,12 +211,13 @@ public class ElicitRequirementsBusinessImpl extends BaseBusinessImpl implements 
 			{
 				reqWithoutRisk++;
 			}
+			*/
 			if (r.getGoals().size() == 0)
 			{
 				reqWithoutGoal++;
 			}
 		}
-
+/*
 		// Validates that every risks is address by all requirements.
 		Set<Risk> risks = new HashSet<Risk>();//project.getRisks();
 		int riskNotLinkedCount = 0;
@@ -233,13 +239,13 @@ public class ElicitRequirementsBusinessImpl extends BaseBusinessImpl implements 
 			}
 
 		}
-
+*/
 		if (requirements.size() == 0)
 		{
 			result.getMessages().add("There are no requirements collected!");
 			result.setHasWarning(true);
 		}
-
+/*
 		if (reqWithoutArtifact != 0)
 		{
 
@@ -252,19 +258,21 @@ public class ElicitRequirementsBusinessImpl extends BaseBusinessImpl implements 
 			result.getMessages().add("There are " + reqWithoutRisk + " requirements not associated to risks.");
 			result.setHasWarning(true);
 		}
+		*/
 		if (reqWithoutGoal != 0)
 		{
 
 			result.getMessages().add("There are " + reqWithoutGoal + " requirements not associated to security goals.");
 			result.setHasWarning(true);
 		}
+		/*
 		if (riskNotLinkedCount != 0)
 		{
 
 			result.getMessages().add("There are " + riskNotLinkedCount + " risks not yet associated to requirements.");
 			result.setHasWarning(true);
 		}
-
+*/
 		return result;
 	}
 

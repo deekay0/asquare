@@ -85,10 +85,11 @@ public class Requirement implements java.io.Serializable
 		
 		//System.out.println("after status is"+this.status);
 		
-		
+		/*
 		for(GwtRisk r: gwtRequirement.getRisks()) {
 			this.getRisks().add(new Risk(r));
 		}
+		
 		for(GwtArtifact a: gwtRequirement.getArtifacts()) {
 			this.getArtifacts().add(new Artifact(a));
 		}
@@ -96,6 +97,7 @@ public class Requirement implements java.io.Serializable
 		for(GwtCategory a: gwtRequirement.getCategories()) {
 			this.getCategories().add(new Category(a));
 		}
+		*/
 		for(GwtSubGoal a: gwtRequirement.getSubGoals()) {
 			this.getGoals().add(new Goal(a));
 		}
@@ -230,6 +232,8 @@ public class Requirement implements java.io.Serializable
 	{
 		this.userAhpsForRidB = userAhpsForRidB;
 	}
+	
+	
 	@ManyToMany(fetch=FetchType.EAGER)
 	@JoinTable(name = "requirement_risk", joinColumns = {@JoinColumn(name = "reqid")}, inverseJoinColumns = {@JoinColumn(name = "tid")})
 	public Set<Risk> getRisks()
@@ -264,6 +268,7 @@ public class Requirement implements java.io.Serializable
 	/**
 	 * @param categories the categories to set
 	 */
+
 	public void setCategories(Set<Category> categories)
 	{
 		this.categories = categories;
@@ -272,6 +277,7 @@ public class Requirement implements java.io.Serializable
 	/**
 	 * @return the categories
 	 */
+
 	@ManyToMany(fetch=FetchType.EAGER)
 	@JoinTable(name = "requirement_category", joinColumns = {@JoinColumn(name = "requirement_id")}, inverseJoinColumns = {@JoinColumn(name = "category_id")})
 	public Set<Category> getCategories()
@@ -281,7 +287,7 @@ public class Requirement implements java.io.Serializable
 
 	public GwtRequirement createGwtRequirement()
 	{
-		
+		/*
 		List<GwtRisk> risks = new ArrayList<GwtRisk>();
 		for(Risk r : this.risks) {
 			risks.add(r.createGwtRisk());
@@ -296,7 +302,7 @@ public class Requirement implements java.io.Serializable
 		for(Category c : this.categories) {
 			categories.add(c.createGwtCategory());
 		}
-		
+		*/
 		List<GwtSubGoal> goals = new ArrayList<GwtSubGoal>();
 		for(Goal c : this.goals) {
 			goals.add(c.createSubGoal());
@@ -312,10 +318,10 @@ public class Requirement implements java.io.Serializable
 		gwtRequirement.setProjectID(this.project!=null?this.project.getId():null);
 		gwtRequirement.setTitle(this.title);
 		gwtRequirement.setSecurity(this.security);
-		gwtRequirement.setRisks(risks);
+	//	gwtRequirement.setRisks(risks);
 		gwtRequirement.setSubGoals(goals);
-		gwtRequirement.setArtifacts(artifacts);
-		gwtRequirement.setCategories(categories);
+	//	gwtRequirement.setArtifacts(artifacts);
+	//	gwtRequirement.setCategories(categories);
 	
 		
 		return gwtRequirement;
@@ -324,21 +330,23 @@ public class Requirement implements java.io.Serializable
 	/**
 	 * @param artifacts the artifacts to set
 	 */
+	/*
 	public void setArtifacts(Set<Artifact> artifacts)
 	{
 		this.artifacts = artifacts;
 	}
-
+*/
 	/**
 	 * @return the artifacts
 	 */
+/*
 	@ManyToMany(fetch=FetchType.EAGER)
 	@JoinTable(name = "requirement_artifact", joinColumns = {@JoinColumn(name = "requirement_id")}, inverseJoinColumns = {@JoinColumn(name = "artifact_id")})
 	public Set<Artifact> getArtifacts()
 	{
 		return artifacts;
 	}
-
+*/
 	public void setGoals(Set<Goal> goals)
 	{
 		this.goals = goals;

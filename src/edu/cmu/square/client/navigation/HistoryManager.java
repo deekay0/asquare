@@ -21,21 +21,25 @@ import edu.cmu.square.client.ui.ManageSite.ManageSitePilot;
 import edu.cmu.square.client.ui.SelectSecurityTechnique.SelectSecurityElicitationTechniquePilot;
 import edu.cmu.square.client.ui.agreeOnDefinitions.AgreeOnDefinitionsPilot;
 import edu.cmu.square.client.ui.assetsAndGoals.AssetsAndGoalsPilot;
+
 import edu.cmu.square.client.ui.categorizeRequirements.CategorizeRequirementsPilot;
 import edu.cmu.square.client.ui.chooseCase.ChooseCasePilot;
 import edu.cmu.square.client.ui.chooseProject.HomePilot;
+
 import edu.cmu.square.client.ui.collectArtifacts.CollectArtifactsPilot;
 import edu.cmu.square.client.ui.core.AccessDeniedPane;
 import edu.cmu.square.client.ui.core.NotFoundPane;
 import edu.cmu.square.client.ui.core.content.BreadCrumbMessages;
 import edu.cmu.square.client.ui.elicitSecurityRequirements.ElicitSecurityRequirementsPilot;
 import edu.cmu.square.client.ui.inspectRequirements.InspectRequirementsPilot;
+
 import edu.cmu.square.client.ui.performTradeoffAnalysis.PerformTradeoffAnalysisPilot;
 import edu.cmu.square.client.ui.prioritizeRequirements.PrioritizeRequirementsPilot;
 import edu.cmu.square.client.ui.reviewAndFinalizeRequirements.ReviewAndFinalizeRequirementsPilot;
 import edu.cmu.square.client.ui.reviewOfRequirementsByAcquisitionOrganization.ReviewOfRequirementsByAcquisitionPilot;
 import edu.cmu.square.client.ui.reviewPackages.ReviewPackagesPilot;
 import edu.cmu.square.client.ui.risksAssessment.RiskAssessmentPilot;
+
 
 /**
  * Manages the history and all incoming links in the system. To navigate using a
@@ -338,10 +342,12 @@ public class HistoryManager implements ValueChangeHandler<String>
 		{
 			return this.assetsAndGoalsPilot;
 		}
+	/*	
 		else if (ViewId.riskAssessment.equals(view))
 		{
 			return this.riskAssessmentPilot;
 		}
+		*/
 		else if (ViewId.elicitSecurityRequirements.equals(view))
 		{
 			return this.elicitSecurityRequirementsPilot;
@@ -354,6 +360,7 @@ public class HistoryManager implements ValueChangeHandler<String>
 		{
 			return this.priorityPilot;
 		}
+		/*
 		else if (ViewId.categorizeRequirements.equals(view))
 		{
 			return this.categoryPilot;
@@ -366,6 +373,7 @@ public class HistoryManager implements ValueChangeHandler<String>
 		{
 			return this.inspectionPilot;
 		}
+		*/
 		else if (ViewId.chooseStep.equals(view))
 		{
 			return this.chooseStepPilot;
