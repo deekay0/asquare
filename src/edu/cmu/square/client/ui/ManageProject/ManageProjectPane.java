@@ -10,17 +10,19 @@ import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.google.gwt.user.client.rpc.ServiceDefTarget;
 import com.google.gwt.user.client.ui.Button;
+import com.google.gwt.user.client.ui.DecoratedPopupPanel;
 import com.google.gwt.user.client.ui.DecoratedTabPanel;
 import com.google.gwt.user.client.ui.FlexTable;
+import com.google.gwt.user.client.ui.FlexTable.FlexCellFormatter;
 import com.google.gwt.user.client.ui.HasHorizontalAlignment;
 import com.google.gwt.user.client.ui.HorizontalPanel;
-import com.google.gwt.user.client.ui.Hyperlink;
+import com.google.gwt.user.client.ui.Image;
 import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.ListBox;
 import com.google.gwt.user.client.ui.MultiWordSuggestOracle;
 import com.google.gwt.user.client.ui.SuggestBox;
 import com.google.gwt.user.client.ui.VerticalPanel;
-import com.google.gwt.user.client.ui.FlexTable.FlexCellFormatter;
+import com.google.gwt.user.client.ui.Widget;
 
 import edu.cmu.square.client.exceptions.ExceptionHelper;
 import edu.cmu.square.client.model.GwtProject;
@@ -125,6 +127,7 @@ public class ManageProjectPane extends BasePane
 	
 	public void createAndShowUserEditDialog(GwtUser gwtUser, List<GwtRole> list, ManageProjectServiceAsync mpsa2)
 	{
+		System.out.println("lalala");
 		final EditUserInProjectDialog dialogBox = new EditUserInProjectDialog(this, gwtUser, gwtProject, list, mpsa);
 	    dialogBox.setText(messages.editUserDialogTitle());
 	    dialogBox.setAnimationEnabled(true);
@@ -136,7 +139,8 @@ public class ManageProjectPane extends BasePane
 	
 	
 	public void loadUserToTable(final List<GwtUser> result)
-	{	FlexCellFormatter formatter1 = this.projectUserTable.getFlexCellFormatter();
+	{
+		FlexCellFormatter formatter1 = this.projectUserTable.getFlexCellFormatter();
 		int numberOfRows = 0;
 		this.projectUserTable.clear();
 		formatter1.setHorizontalAlignment(numberOfRows, 2, HasHorizontalAlignment.ALIGN_RIGHT);
@@ -160,7 +164,6 @@ public class ManageProjectPane extends BasePane
 				{
 					//this should pass a handle to the role data being updated
 					//so that it can be updated from within the popup.
-					
 					createAndShowUserEditDialog(currentUser, gwtRoleNames, mpsa);
 				}
 			});
@@ -179,19 +182,90 @@ public class ManageProjectPane extends BasePane
 			
 			String role = currentUser.getRole();
 			
-			Hyperlink userNameLink = new Hyperlink(displayName, currentUser.getFullName() + "userLink");
+		
+			
+			
+			
+			
+			SquareHyperlink userNameLink = new SquareHyperlink(displayName);
+
+			FlexTable userInfoTable = new FlexTable();
+			userInfoTable.setStyleName("square-choose-step-membertable");
+
+			FlexCellFormatter formatter11 = userInfoTable.getFlexCellFormatter();
+			formatter11.setWidth(0, 0, "200px");
+
+			userInfoTable.setWidget(0, 0, new Label(currentUser.getFullName()));
+			userInfoTable.setWidget(1, 0, new Label(currentUser.getEmailAddress()));
+			userInfoTable.setWidget(2, 0, new Label("" + currentUser.getPhone()));
+			userInfoTable.setWidget(3, 0, new Label(" "));
+			userInfoTable.setWidget(4, 0, new Label(currentUser.getOrganization()));
+			userInfoTable.setWidget(5, 0, new Label(currentUser.getDepartment()));
+			userInfoTable.setWidget(6, 0, new Label(currentUser.getLocation()));
+
+			formatter11.setHorizontalAlignment(0, 0, HasHorizontalAlignment.ALIGN_LEFT);
+			formatter11.setHorizontalAlignment(1, 0, HasHorizontalAlignment.ALIGN_LEFT);
+			formatter11.setHorizontalAlignment(2, 0, HasHorizontalAlignment.ALIGN_LEFT);
+			formatter11.setHorizontalAlignment(4, 0, HasHorizontalAlignment.ALIGN_LEFT);
+			formatter11.setHorizontalAlignment(5, 0, HasHorizontalAlignment.ALIGN_LEFT);
+			formatter11.setHorizontalAlignment(6, 0, HasHorizontalAlignment.ALIGN_LEFT);
+
+			// add a close icon
+			Image imageLock = new Image("images//close-button.gif");
+			userInfoTable.setWidget(0, 1, imageLock);
+			formatter11.setHorizontalAlignment(0, 1, HasHorizontalAlignment.ALIGN_LEFT);
+			
+			final DecoratedPopupPanel userInfoPopup = new DecoratedPopupPanel(true);
+			userInfoPopup.setStyleName("square-DecoratedPopupPanel.popupMiddleCenter");
+
+			userInfoPopup.setWidth("200px");
+			userInfoPopup.setWidget(userInfoTable);
+
+
+			// add a close handler to the close icon
+			imageLock.addClickHandler(new ClickHandler()
+				{
+
+					@Override
+					public void onClick(ClickEvent event)
+					{
+						userInfoPopup.hide();
+					}
+
+				});
+			
+			userNameLink.addClickHandler(new ClickHandler()
+				{
+
+					@Override
+					public void onClick(ClickEvent event)
+					{
+
+						Widget source = (Widget) event.getSource();
+						int left = source.getAbsoluteLeft() + 90;
+						int top = source.getAbsoluteTop() + 10;
+						userInfoPopup.setPopupPosition(left, top);
+						userInfoPopup.show();
+
+					}
+				});
+
+			
+			
+			
+			
 			///////////////////////////////////////////////
 			//this.projectUserTable.setBorderWidth(1);
 			/////////////////////////////////////////////////
 			// If the user role is lead requirement engineer then don't show the following link.
-			if(role.equals("Acquisition Organization Engineer"))
-			{
-				this.projectUserTable.setWidget(numberOfRows, 0, userNameLink);
-				this.projectUserTable.setWidget(numberOfRows, 1, new Label(role));	
-				this.projectUserTable.setWidget(numberOfRows, 2, new HorizontalPanel());
-			}
-
-			else
+//			if(role.equals("Acquisition Organization Engineer"))
+//			{
+//				this.projectUserTable.setWidget(numberOfRows, 0, userNameLink);
+//				this.projectUserTable.setWidget(numberOfRows, 1, new Label(role));	
+//				this.projectUserTable.setWidget(numberOfRows, 2, new HorizontalPanel());
+//			}
+//
+//			else
 			{
 				this.projectUserTable.setWidget(numberOfRows, 0, userNameLink);
 				this.projectUserTable.setWidget(numberOfRows, 1, new Label(role));
