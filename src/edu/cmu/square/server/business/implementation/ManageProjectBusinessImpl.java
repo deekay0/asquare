@@ -21,6 +21,7 @@ import edu.cmu.square.client.exceptions.SquareException;
 import edu.cmu.square.client.model.GwtEvaluation;
 import edu.cmu.square.client.model.GwtInspectionTechnique;
 import edu.cmu.square.client.model.GwtProject;
+import edu.cmu.square.client.model.GwtProjectPackageAttributeRating;
 import edu.cmu.square.client.model.GwtRole;
 import edu.cmu.square.client.model.GwtStep;
 import edu.cmu.square.client.model.GwtTechnique;
@@ -679,15 +680,15 @@ public class ManageProjectBusinessImpl extends BaseBusinessImpl implements Manag
 		}
 	}
 	
-	/*********************
+/********************************************************************************************************************************************
 	 * Copy project
-	 */
+*******************************************************************************************/
 	
 	@Override
 	  @AllowedRoles(roles = { Roles.Administrator })
 	  public GwtProject copyProject(GwtProject originalProject) throws SquareException {
 		
-		System.out.println("business copyProject start done 0");
+		System.out.println("MngProjectbusiness copyProject start done 0");
 	    Project project = new Project(originalProject);
 // Sets the project type
 // This is set in CreateProjectDialog, and we allow the project type to be different
@@ -770,6 +771,10 @@ public class ManageProjectBusinessImpl extends BaseBusinessImpl implements Manag
 	    copyRequirementGoal(original, requirementMap, goalMap);
 
 	    copySteps(project);
+	    
+	    System.out.println("perhaps");
+	    copyPackageAttributeRating(project, original);
+	    System.out.println("wow");
 
 	    //HashMap<Integer, Integer> inspectionTechniqueMap = copyInspectionTechniques(project, original);
 
@@ -828,11 +833,11 @@ public class ManageProjectBusinessImpl extends BaseBusinessImpl implements Manag
 	    goals.addAll(goalDao.getSubGoalByProject(originalProject));
 
 	    for (Goal g : goals) {
-	      Date now = new Date();
-	      Goal newGoal =
-	          new Goal(g.getGoalType(), project, g.getDescription(), g.getPriority(), now, now);
-	      goalDao.create(newGoal);
-	      map.put(g.getId(), newGoal.getId());
+		      Date now = new Date();
+		      Goal newGoal =
+		          new Goal(g.getGoalType(), project, g.getDescription(), g.getPriority(), now, now);
+		      goalDao.create(newGoal);
+		      map.put(g.getId(), newGoal.getId());
 	    }
 
 	    return map;
@@ -854,7 +859,8 @@ public class ManageProjectBusinessImpl extends BaseBusinessImpl implements Manag
 
 	  public void copyGoalAsset(Project originalProject,
 	                            HashMap<Integer, Integer> goalMap,
-	                            HashMap<Integer, Integer> assetMap) {
+	                            HashMap<Integer, Integer> assetMap) 
+	  {
 
 	    List<Asset> oldAssets = assetDao.getAssetByProject(originalProject);
 	    for (Asset a : oldAssets) {
@@ -864,7 +870,72 @@ public class ManageProjectBusinessImpl extends BaseBusinessImpl implements Manag
 	      }
 	    }
 	  }
-
+	  
+	  
+	  
+	  public HashMap<Integer, Integer> copyPackageAttributeRating(Project project, Project originalProject)
+	  {
+		  HashMap<Integer, Integer> map = new HashMap<Integer, Integer>();
+		 
+		  List<ProjectPackageAttributeRating> PPAR = projectPackageAttributeRatingDao.getAllRatingsForProjectNoGwt(originalProject);
+		  //List<GwtProjectPackageAttributeRating> gwtPPAR = projectPackageAttributeRatingDao.getAllRatingsForProject(originalProject);
+		  
+		  
+		  for (ProjectPackageAttributeRating ppar : PPAR) {
+			  System.out.println("id		-\t"+ppar.getId());
+			  System.out.println("project	-\t"+ppar.getProject());
+			  System.out.println("projectid	-\t"+ppar.getProject().getId());
+			  System.out.println("packages	-\t"+ppar.getSoftwarePackage());
+			  System.out.println("qas		-\t"+ppar.getQualityAttribute());
+			  System.out.println("ratings	-\t"+ppar.getRating());
+			  
+		  }
+		 
+		  //It makes null exception.
+		  /*for (GwtProjectPackageAttributeRating gwtppar : gwtPPAR) {
+			  System.out.println("id-g\t"+ gwtppar.getProject().getId());
+			  System.out.println("project-g\t"+gwtppar.getProject());
+			  System.out.println("packages-g\t"+gwtppar.getPackage());
+			  System.out.println("qas-g\t"+gwtppar.getAttribute());
+		  }*/
+		  
+	System.out.println("ManageProjectBusiness copyPackageAttributeRating done 0");	
+			    for (ProjectPackageAttributeRating ppar : PPAR) {
+			      Date now = new Date();
+			      
+			      ProjectPackageAttributeRating newPpar = new ProjectPackageAttributeRating(ppar.getId(), ppar.getSoftwarePackage(), project, ppar.getQualityAttribute(), ppar.getRating());
+	
+			      System.out.println("done 1");
+			      /*
+			      //Conversion
+			      GwtProjectPackageAttributeRating gPpar = new GwtProjectPackageAttributeRating();  			
+			      ppar.setAttribute(gPpar.getAttribute());
+			      ppar.setPackage(gPpar.getPackage());
+			      ppar.setProject(gPpar.getProject());
+			      ppar.setValue(gPpar.getValue());
+			      */
+			      
+			      //newPpar.set(project);
+			      
+	//System.out.println("done 2, ppar.getId-"+ppar.getProject().getId()+"\tnewPpar id-"+newPpar.getProject().getId());
+			      
+			      newPpar.setProject(ppar.getProject());
+			      
+			      projectPackageAttributeRatingDao.create(newPpar);
+			      
+	System.out.println("done 3");
+			      
+			      map.put(ppar.getProject().getId(), newPpar.getProject().getId());
+			      
+			      System.out.println("done 4");
+			    }
+			    return map;
+	  }
+	  
+	  
+	  
+	  
+/*
 	  public HashMap<Integer, Integer> copySWPackage(Project project, Project originalProject){
 		  HashMap<Integer, Integer> map = new HashMap<Integer, Integer>();
 		  List<SoftwarePackage> SWPackages = softwarePackageDao.getSoftwarePackagesByProject(originalProject);
@@ -894,6 +965,7 @@ public class ManageProjectBusinessImpl extends BaseBusinessImpl implements Manag
 			    }
 			    return map;
 			  }
+			  */
 		/*
 			  public void copyTechniqueEvaluationCriteria(Project project,
 			                                              Project originalProject,
