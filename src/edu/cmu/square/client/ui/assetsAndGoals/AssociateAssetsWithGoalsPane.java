@@ -114,9 +114,9 @@ public class AssociateAssetsWithGoalsPane extends BasePane
 		columnTable.setWidth("100%");
 		
 		FlexCellFormatter formatter = columnTable.getFlexCellFormatter();
-		formatter.setWidth(0, 0, "60%");
-		formatter.setWidth(0, 1, "20%");
-		formatter.setWidth(0, 2, "20%");
+		formatter.setWidth(0, 0, "50%");
+		formatter.setWidth(0, 1, "25%");
+		formatter.setWidth(0, 2, "25%");
 		columnHeadingPanel.add(columnTable);
 		columnHeadingPanel.setStyleName("summary-column-heading");
 		return columnHeadingPanel;
@@ -145,9 +145,9 @@ public class AssociateAssetsWithGoalsPane extends BasePane
 		goalPriorityAssociationLink.setWidth("100%");
 		
 		FlexCellFormatter formatter = goalPriorityAssociationLink.getFlexCellFormatter();
-		formatter.setWidth(0, 0, "70%");
-		formatter.setWidth(0, 1, "10%");
-		formatter.setWidth(0, 2, "20%");
+		formatter.setWidth(0, 0, "50%");
+		formatter.setWidth(0, 1, "25%");
+		formatter.setWidth(0, 2, "25%");
 		
 		VerticalPanel associatedAssetsDisplayPanel = new VerticalPanel();
 		associatedAssetsDisplayPanel.setWidth("100%");
