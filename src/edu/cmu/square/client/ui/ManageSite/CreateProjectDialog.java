@@ -50,6 +50,8 @@ public class CreateProjectDialog extends DialogBox
 
 	private List<GwtProject> listOfProjects = null;
 	private List<GwtUser> listOfUsers = null;
+	
+	private boolean edit = false;
 
 	final ManageSitePaneMessages messages = (ManageSitePaneMessages) GWT.create(ManageSitePaneMessages.class);
 
@@ -80,6 +82,8 @@ public class CreateProjectDialog extends DialogBox
 			this.listOfProjects = projects;
 			this.listOfUsers = users;
 			this.caller = caller;
+			
+			edit = true;
 
 			this.initializeDialog(new GwtProject(projectId, projectName, leadRequirementId, casesId));
 		}
@@ -127,12 +131,15 @@ public class CreateProjectDialog extends DialogBox
 		leaderLayout.add(new Label(messages.leadRequirementsEngineer() + ":"));
 		leaderLayout.add(this.userSuggestBox);
 		
-		caseLayout.setHorizontalAlignment(HasHorizontalAlignment.ALIGN_LEFT);
-		caseLayout.add(new Label(messages.ASquareCase() + ":"));
-		caseLayout.add(caseChoice);
-		
-		caseChoice.add(this.case1Radiobutton);
-		caseChoice.add(this.case3Radiobutton);
+		if(!edit)
+		{
+			caseLayout.setHorizontalAlignment(HasHorizontalAlignment.ALIGN_LEFT);
+			caseLayout.add(new Label(messages.ASquareCase() + ":"));
+			caseLayout.add(caseChoice);
+
+			caseChoice.add(this.case1Radiobutton);
+			caseChoice.add(this.case3Radiobutton);
+		}
 
 		this.case1Radiobutton.setValue(true);
 		
