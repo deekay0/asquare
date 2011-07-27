@@ -35,7 +35,7 @@ public class HbnQualityAttributeDao extends HbnAbstractDao<QualityAttribute, Int
 		List<QualityAttribute> attributes = null;
 
 		String query = "select distinct s from QualityAttribute s, ProjectPackageAttributeRating ps where ps.qualityAttribute.id=s.id and ps.project.id=:project";
-		
+		 
 		Query q = getSession().createQuery(query);
 		q.setParameter("project", project.getId());
 		
