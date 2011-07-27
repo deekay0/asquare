@@ -3,7 +3,13 @@
  */
 package edu.cmu.square.server.dao.implementation;
 
+import java.beans.BeanInfo;
+import java.beans.IntrospectionException;
+import java.beans.Introspector;
+import java.beans.PropertyDescriptor;
+import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import org.hibernate.Query;
@@ -15,6 +21,8 @@ import edu.cmu.square.client.model.GwtSoftwarePackage;
 import edu.cmu.square.server.dao.interfaces.ProjectPackageAttributeRatingDao;
 import edu.cmu.square.server.dao.model.Project;
 import edu.cmu.square.server.dao.model.ProjectPackageAttributeRating;
+import edu.cmu.square.server.dao.model.QualityAttribute;
+import edu.cmu.square.server.dao.model.SoftwarePackage;
 
 /**
  * @author DK
@@ -118,6 +126,55 @@ public class HbnProjectPackageAttributeRatingDao extends HbnAbstractDao<ProjectP
 	}
 	
 	@Override
+	public List<ProjectPackageAttributeRating> getAllRatingsForProjectNoGwt(Project project)
+	{
+System.out.println("in Hbn, getallRatingforprojectNoGWT");
+		List<ProjectPackageAttributeRating> lines = null;
+		
+		String query = "select s from ProjectPackageAttributeRating s where s.project.id=:project";
+		
+		Query q = getSession().createQuery(query);
+		q.setParameter("project", project.getId());
+
+System.out.println(project.getId());
+		
+		lines = (List<ProjectPackageAttributeRating>)q.list();
+
+System.out.println(lines);
+
+		List<ProjectPackageAttributeRating> result = new ArrayList<ProjectPackageAttributeRating>();
+		ProjectPackageAttributeRating current = null;
+		QualityAttribute qa;
+		SoftwarePackage sp;
+		
+		for(int i=0 ;i<lines.size(); ++i)
+		{
+			
+			current = new ProjectPackageAttributeRating();
+			current.setIdInt(project.getId(), lines.get(i).getSoftwarePackage().getId(), lines.get(i).getQualityAttribute().getId());
+			
+			qa = new QualityAttribute();
+			qa.setDescription(lines.get(i).getQualityAttribute().getDescription());
+			qa.setName(lines.get(i).getQualityAttribute().getName());
+			qa.setId(lines.get(i).getQualityAttribute().getId());
+			
+			sp = new SoftwarePackage();
+			sp.setDescription(lines.get(i).getSoftwarePackage().getDescription());
+			sp.setName(lines.get(i).getSoftwarePackage().getName());
+			sp.setId(lines.get(i).getSoftwarePackage().getId());
+			
+			
+			current.setQualityAttribute(qa);
+			current.setSoftwarePackage(sp);
+			current.setRating(lines.get(i).getRating());
+			result.add(current);
+		}
+			
+		return result;
+
+	}
+	
+	@Override
 	public List<GwtProjectPackageAttributeRating> getAllRatings(Project project)
 	{
 
@@ -154,6 +211,43 @@ public class HbnProjectPackageAttributeRatingDao extends HbnAbstractDao<ProjectP
 		return result;
 
 	}
+/*
+	@Override
+	public void create(GwtProjectPackageAttributeRating newPpar)
+	{
+		if (!persistentClass.isInstance(newPpar))
+			throw new IllegalArgumentException(
+					"Object class does not match dao type.");
+		//handleCreatedModifiedDate(newPpar);
+		getSession().save(newPpar);
+		
+	}
+	
+	private void handleCreatedModifiedDate(GwtProjectPackageAttributeRating newPpar) {
+		try {
+			BeanInfo beanInfo = Introspector.getBeanInfo(persistentClass);
+			PropertyDescriptor[] propertyDescriptors = beanInfo
+					.getPropertyDescriptors();
+
+			for (PropertyDescriptor p : propertyDescriptors) {
+				if (p.getName().equals("dateCreated")||p.getName().equals("dateModified")) {
+					if (p.getReadMethod().invoke(newPpar)==null) {
+						p.getWriteMethod().invoke(newPpar, new Date());
+					}
+				}
+			}
+		} catch (IntrospectionException e) {
+			throw new RuntimeException(e);
+		} catch (IllegalArgumentException e) {
+			throw new RuntimeException(e);
+		} catch (IllegalAccessException e) {
+			throw new RuntimeException(e);
+		} catch (InvocationTargetException e) {
+			throw new RuntimeException(e);
+		}
+
+	}
+*/
 
 
 }

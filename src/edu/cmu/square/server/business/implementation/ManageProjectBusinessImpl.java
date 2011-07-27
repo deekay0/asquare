@@ -41,6 +41,7 @@ import edu.cmu.square.server.dao.interfaces.MappingDao;
 import edu.cmu.square.server.dao.interfaces.ProjectDao;
 import edu.cmu.square.server.dao.interfaces.ProjectPackageAttributeRatingDao;
 import edu.cmu.square.server.dao.interfaces.QualityAttributeDao;
+import edu.cmu.square.server.dao.interfaces.RationaleDao;
 import edu.cmu.square.server.dao.interfaces.RequirementDao;
 import edu.cmu.square.server.dao.interfaces.RoleDao;
 import edu.cmu.square.server.dao.interfaces.StepDao;
@@ -55,6 +56,7 @@ import edu.cmu.square.server.dao.model.InspectionTechnique;
 import edu.cmu.square.server.dao.model.Project;
 import edu.cmu.square.server.dao.model.ProjectPackageAttributeRating;
 import edu.cmu.square.server.dao.model.ProjectPackageAttributeRatingId;
+import edu.cmu.square.server.dao.model.ProjectPackageRationale;
 import edu.cmu.square.server.dao.model.ProjectPackageTradeoffreason;
 import edu.cmu.square.server.dao.model.ProjectPackageTradeoffreasonId;
 import edu.cmu.square.server.dao.model.QualityAttribute;
@@ -117,6 +119,9 @@ public class ManageProjectBusinessImpl extends BaseBusinessImpl implements Manag
 	@Resource
 	private TradeoffReasonDao tradeoffReasonDao;
 	
+	@Resource
+	private RationaleDao rationalDao;
+		
 	@Resource
 	private TermDao termDao;
 	
@@ -772,16 +777,28 @@ public class ManageProjectBusinessImpl extends BaseBusinessImpl implements Manag
 
 	    copySteps(project);
 	    
-	    System.out.println("perhaps");
-	    copyPackageAttributeRating(project, original);
-	    System.out.println("wow");
-
-	    //HashMap<Integer, Integer> inspectionTechniqueMap = copyInspectionTechniques(project, original);
-
-	    //updateInspectionTechnique(project, original, inspectionTechniqueMap);
+	    //Case 3!!
+	    if(originalProject.getCases().getId()==3)
+	    {
 	    
+		    System.out.println("case is"+originalProject.getCases().getId());
+		    //System.out.println(proj)
+		    
+		    System.out.println("perhaps");
+		    copyPackageAttributeRating(project, original);
+		   
+		    
+		    copyTradeoffReason(project,original);
+	
+		    copyRationale(project, original);
+		    System.out.println("wow");
+		    //HashMap<Integer, Integer> inspectionTechniqueMap = copyInspectionTechniques(project, original);
+	
+		    //updateInspectionTechnique(project, original, inspectionTechniqueMap);
+	    
+	    }
 	    //We return back the gwt project from the newly copied project
-	    System.out.println("project.createCopyProject");
+	    System.out.println("copy is done~~");
 	    return project.createGwtProject();
 	  }
 	
@@ -875,16 +892,15 @@ public class ManageProjectBusinessImpl extends BaseBusinessImpl implements Manag
 	  
 	  public HashMap<Integer, Integer> copyPackageAttributeRating(Project project, Project originalProject)
 	  {
+		  System.out.println("in MngProjectBiz, copyPackagAR");
 		  HashMap<Integer, Integer> map = new HashMap<Integer, Integer>();
 		 
-		  List<ProjectPackageAttributeRating> PPAR = projectPackageAttributeRatingDao.getAllRatingsForProjectNoGwt(originalProject);
-		  //List<GwtProjectPackageAttributeRating> gwtPPAR = projectPackageAttributeRatingDao.getAllRatingsForProject(originalProject);
-		  
+		  List<ProjectPackageAttributeRating> PPAR = projectPackageAttributeRatingDao.getAllRatingsForProjectNoGwt(originalProject);		  
 		  
 		  for (ProjectPackageAttributeRating ppar : PPAR) {
-			  System.out.println("id		-\t"+ppar.getId());
-			  System.out.println("project	-\t"+ppar.getProject());
-			  System.out.println("projectid	-\t"+ppar.getProject().getId());
+			  System.out.println("id		-\t"+ppar.getId().getProjectId());
+			  //System.out.println("project	-\t"+ppar.getProject());
+			  //System.out.println("projectid	-\t"+ppar.getProject().getId());
 			  System.out.println("packages	-\t"+ppar.getSoftwarePackage());
 			  System.out.println("qas		-\t"+ppar.getQualityAttribute());
 			  System.out.println("ratings	-\t"+ppar.getRating());
@@ -903,37 +919,66 @@ public class ManageProjectBusinessImpl extends BaseBusinessImpl implements Manag
 			    for (ProjectPackageAttributeRating ppar : PPAR) {
 			      Date now = new Date();
 			      
-			      ProjectPackageAttributeRating newPpar = new ProjectPackageAttributeRating(ppar.getId(), ppar.getSoftwarePackage(), project, ppar.getQualityAttribute(), ppar.getRating());
-	
-			      System.out.println("done 1");
-			      /*
-			      //Conversion
-			      GwtProjectPackageAttributeRating gPpar = new GwtProjectPackageAttributeRating();  			
-			      ppar.setAttribute(gPpar.getAttribute());
-			      ppar.setPackage(gPpar.getPackage());
-			      ppar.setProject(gPpar.getProject());
-			      ppar.setValue(gPpar.getValue());
-			      */
-			      
-			      //newPpar.set(project);
-			      
-	//System.out.println("done 2, ppar.getId-"+ppar.getProject().getId()+"\tnewPpar id-"+newPpar.getProject().getId());
-			      
-			      newPpar.setProject(ppar.getProject());
-			      
+			      ProjectPackageAttributeRating newPpar = new ProjectPackageAttributeRating(project.getId(), ppar.getId().getPackageId(), ppar.getId().getAttributeId(), ppar.getRating(), ppar.getSoftwarePackage(), ppar.getQualityAttribute());
+
 			      projectPackageAttributeRatingDao.create(newPpar);
 			      
-	System.out.println("done 3");
+			      //map.put(ppar.getId(), newPpar.getId());
 			      
-			      map.put(ppar.getProject().getId(), newPpar.getProject().getId());
-			      
-			      System.out.println("done 4");
 			    }
 			    return map;
 	  }
 	  
+	  public void copyTradeoffReason(Project project, Project originalProject)
+	  {
+		  System.out.println("in MngProjectBiz, copyTradeoffReason");
+		  HashMap<Integer, Integer> map = new HashMap<Integer, Integer>();
+		 
+		  List<ProjectPackageTradeoffreason> PPTR = tradeoffReasonDao.getAllTradeoffReasonsNoGwt(originalProject);		  
+		  
+		  for (ProjectPackageTradeoffreason pptr : PPTR) {
+			  
+			  System.out.println("id		-\t"+pptr.getId().getProjectId());
+			  //System.out.println("project	-\t"+ppar.getProject());
+			  //System.out.println("projectid	-\t"+ppar.getProject().getId());
+			  System.out.println("packages	-\t"+pptr.getSoftwarePackage());
+			  System.out.println("priority	-\t"+pptr.getPriority());
+			  System.out.println("reasons	-\t"+pptr.getTradeoffreason());
+		  }
+		  
+		  System.out.println("ManageProjectBusiness copyTradeoffReason done 0");	
+		    for (ProjectPackageTradeoffreason pptr : PPTR) {
+		      Date now = new Date();
+		      
+		      ProjectPackageTradeoffreason newPptr = new ProjectPackageTradeoffreason(project.getId(), pptr.getId().getPackageId(), pptr.getPriority(), pptr.getSoftwarePackage(), pptr.getTradeoffreason());
+
+		      tradeoffReasonDao.create(newPptr);
+		    }
+	  }
 	  
-	  
+	  public void copyRationale(Project project, Project originalProject)
+	  {
+		  System.out.println("in MngProjectBiz, copyRationale");
+		  //HashMap<Integer, Integer> map = new HashMap<Integer, Integer>();
+		 
+		 //List<ProjectPackageRationale> PPR = rationalDao.getRationaleList(originalProject);		  
+		 ProjectPackageRationale PPR = rationalDao.getRationale(originalProject);		  
+		 
+		 
+		 
+			  System.out.println("id		-\t"+PPR.getId().getProjectId());
+			  //System.out.println("project	-\t"+ppar.getProject());
+			  //System.out.println("projectid	-\t"+ppar.getProject().getId());
+			  System.out.println("packages	-\t"+PPR.getId().getPackageId());
+			  System.out.println("rationale	-\t"+PPR.getRationale());
+			  
+		  
+		  System.out.println("ManageProjectBusiness copyProjectPackageRationale done 0");	
+		   
+		      ProjectPackageRationale newPpr = new ProjectPackageRationale(project.getId(), PPR.getId().getPackageId(), PPR.getSoftwarePackage(), PPR.getRationale());
+
+		      rationalDao.create(newPpr);
+		}
 	  
 /*
 	  public HashMap<Integer, Integer> copySWPackage(Project project, Project originalProject){

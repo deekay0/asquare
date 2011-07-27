@@ -17,6 +17,7 @@ import edu.cmu.square.server.dao.interfaces.TradeoffReasonDao;
 import edu.cmu.square.server.dao.model.Project;
 import edu.cmu.square.server.dao.model.ProjectPackageTradeoffreason;
 import edu.cmu.square.server.dao.model.QualityAttribute;
+import edu.cmu.square.server.dao.model.SoftwarePackage;
 
 /**
  * @author Nan
@@ -55,6 +56,46 @@ public class HbnTradeoffReasonDao extends HbnAbstractDao<ProjectPackageTradeoffr
 		
 		return result;
 	}
+	
+	@Override
+	public List<ProjectPackageTradeoffreason> getAllTradeoffReasonsNoGwt(Project project)
+	{
+		if(project == null) 
+			return null;
+		
+		List<ProjectPackageTradeoffreason> lines = null;
+		
+		String query = "select s from ProjectPackageTradeoffreason s where s.project.id=:project";
+		
+		Query q = getSession().createQuery(query);
+		q.setParameter("project", project.getId());
+		lines = (List<ProjectPackageTradeoffreason>)q.list();
+		
+		List<ProjectPackageTradeoffreason> result = new ArrayList<ProjectPackageTradeoffreason>();
+		ProjectPackageTradeoffreason current = null;
+		SoftwarePackage sp;
+		
+		for(int i=0 ;i<lines.size(); ++i)
+		{
+			current = new ProjectPackageTradeoffreason();
+			current.setIdInt(project.getId(), lines.get(i).getSoftwarePackage().getId());
+			
+			//current.set(lines.get(i).getId().getProjectId());
+			sp = new SoftwarePackage();
+			sp.setDescription(lines.get(i).getSoftwarePackage().getDescription());
+			sp.setName(lines.get(i).getSoftwarePackage().getName());
+			sp.setId(lines.get(i).getSoftwarePackage().getId());
+			
+			current.setSoftwarePackage(sp);
+			current.setTradeoffreason(lines.get(i).getTradeoffreason());
+			current.setPriority(lines.get(i).getPriority());
+			result.add(current);
+		}
+		
+		return result;
+	}
+	
+	
 
 	@Override
 	public void setTradeoffReason(int projectID, int packageId, String tradeoffreason)

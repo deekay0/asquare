@@ -19,4 +19,5 @@ public interface TradeoffReasonDao extends AbstractDao<ProjectPackageTradeoffrea
 	void updateTradeoffReason(int projectID, int packageId, String tradeoffreason);
 	void setPriority(int projectID, int packageId,int priority);
 	Integer getPriority(int projectID, int packageId);
+	List<ProjectPackageTradeoffreason> getAllTradeoffReasonsNoGwt(Project project);
 }

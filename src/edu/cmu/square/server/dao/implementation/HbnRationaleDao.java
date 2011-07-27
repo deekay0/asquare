@@ -3,6 +3,7 @@
  */
 package edu.cmu.square.server.dao.implementation;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.hibernate.Query;
@@ -12,6 +13,7 @@ import edu.cmu.square.server.dao.interfaces.RationaleDao;
 import edu.cmu.square.server.dao.model.Project;
 import edu.cmu.square.server.dao.model.ProjectPackageRationale;
 import edu.cmu.square.server.dao.model.ProjectPackageRationaleId;
+import edu.cmu.square.server.dao.model.ProjectPackageTradeoffreason;
 import edu.cmu.square.server.dao.model.SoftwarePackage;
 
 /**
@@ -93,4 +95,6 @@ public class HbnRationaleDao extends HbnAbstractDao<ProjectPackageRationale, Pro
 		q.setParameter("tradeoffreason", tradeoffreason);
 		q.executeUpdate();
 	}
+
+	
 }

@@ -213,6 +213,8 @@ public class ReviewPackagesBusinessImpl extends BaseBusinessImpl implements Revi
 
 		
 		List<GwtProjectPackageAttributeRating> pparlist = projectPackageAttributeRatingDao.getAllRatingsForProject(new Project(project));
+		
+		//List<GwtProjectPackageAttributeRating> pparlist = projectPackageAttributeRatingDao.getAllRatingsForProject(new Project(project));
 		for(GwtProjectPackageAttributeRating it : pparlist)
 			if(it.getPackage().getId() == gwtSoftwarePackage.getId())
 				projectPackageAttributeRatingDao.deleteEntity(new ProjectPackageAttributeRating(it));
@@ -233,6 +235,7 @@ public class ReviewPackagesBusinessImpl extends BaseBusinessImpl implements Revi
 	public void removeQualityAttribute(GwtQualityAttribute gwtQualityAttribute, GwtProject project) throws SquareException
 	{
 		boolean otherQAs = false;
+		
 		List<GwtProjectPackageAttributeRating> pparlist = projectPackageAttributeRatingDao.getAllRatingsForProject(new Project(project));
 		for(GwtProjectPackageAttributeRating it : pparlist)
 		{

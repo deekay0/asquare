@@ -41,14 +41,14 @@ public class AsquareCase implements java.io.Serializable {
 	}
 
 
-	public AsquareCase(GwtAsquareCase gwtCase) {
-		if(gwtCase == null)
+	public AsquareCase(GwtAsquareCase gwtAsquareCase) {
+		if(gwtAsquareCase == null)
 		{
 			return;
 		}
-		this.id = gwtCase.getId();
-		this.name = gwtCase.getName();
-		this.description = gwtCase.getDescription();
+		this.id = gwtAsquareCase.getId();
+		this.name = gwtAsquareCase.getName();
+		this.description = gwtAsquareCase.getDescription();
 	}
 
 
