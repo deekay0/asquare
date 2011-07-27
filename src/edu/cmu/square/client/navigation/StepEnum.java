@@ -23,35 +23,40 @@ public enum StepEnum
 			AgreeOnDefinitionsPilot.generateNavigationId(AgreeOnDefinitionsPilot.PageId.home)),
 	Identify_Assets_And_Goals("Step 2: Identify Assets and Goals", 
 			AssetsAndGoalsPilot.generateNavigationId(AssetsAndGoalsPilot.PageId.home)),
-	Collect_Artifacts("Step 3: Collect Artifacts", 
-			CollectArtifactsPilot.generateNavigationId(CollectArtifactsPilot.PageId.home)),
-	Perform_Risk_Assessment("Step 4: Review COTS software package information and specifications",
-			RiskAssessmentPilot.generateNavigationId(RiskAssessmentPilot.PageId.home)),
-	Select_Elicitation_Technique("Step 5: Review and finalize security requirements",
-			SelectSecurityElicitationTechniquePilot.generateNavigationId(SelectSecurityElicitationTechniquePilot.PageId.home)),		
 	Elicit_Security_Requirements("Step 3: Identify Preliminary Security Requirements",
 			ElicitSecurityRequirementsPilot.generateNavigationId(ElicitSecurityRequirementsPilot.PageId.home)),		
+	Review_Of_Requirements_By_Acquisition_Organization("Step 4: Review Of Requirements By Acquisition Organization", 
+			ReviewOfRequirementsByAcquisitionPilot.generateNavigationId(ReviewOfRequirementsByAcquisitionPilot.PageId.home)),
+					
+			
+	Perform_Risk_Assessment("Step 4: Review COTS software package information and specifications",			
+			ReviewPackagesPilot.generateNavigationId(ReviewPackagesPilot.PageId.home)),
+	Review_And_Finalize_Security_Requirements("Step 5: Review and finalize security requirements",
+			ReviewAndFinalizeRequirementsPilot.generateNavigationId(ReviewAndFinalizeRequirementsPilot.PageId.home)),		
+	Perform_Tradeoff_Analysis("Step 6: Perform tradeoff analysis", 
+			PerformTradeoffAnalysisPilot.generateNavigationId(PerformTradeoffAnalysisPilot.PageId.home)),
+	Final_product_selection("Step 7: Final product selection", 
+			FinalProductSelectionPilot.generateNavigationId(FinalProductSelectionPilot.PageId.home)),
+			
 	
+			
+	Collect_Artifacts("Step 3: Collect Artifacts", 
+			CollectArtifactsPilot.generateNavigationId(CollectArtifactsPilot.PageId.home)),			
+	Select_Elicitation_Technique("Step 6: Final product selection",
+			CategorizeRequirementsPilot.generateNavigationId(CategorizeRequirementsPilot.PageId.home)),				
+
 	Categorize_Requirements("Step 7: Final product selection",
 			CategorizeRequirementsPilot.generateNavigationId(CategorizeRequirementsPilot.PageId.home)),
 	Prioritize_Requirements("Step 8: Prioritize Requirements",
 			PrioritizeRequirementsPilot.generateNavigationId(PrioritizeRequirementsPilot.PageId.home)),
 	Inspect_Requirements("Step 9: Inspect Requirements",
-			InspectRequirementsPilot.generateNavigationId(InspectRequirementsPilot.PageId.home)),
-			
-	Review_Of_Requirements_By_Acquisition_Organization("Case 1 - Step 4: Review Of Requirements By Acquisition Organization", 
-			ReviewOfRequirementsByAcquisitionPilot.generateNavigationId(ReviewOfRequirementsByAcquisitionPilot.PageId.home)),
-	Review_COTS_Software_Package_Information_And_Specification("Case 3 - Step 4: Review COTS software package information and specification", 
-			ReviewPackagesPilot.generateNavigationId(ReviewPackagesPilot.PageId.home)),
-	Perform_Tradeoff_Analysis("Case 3 - Step 6: Perform tradeoff analysis", 
-			ReviewPackagesPilot.generateNavigationId(PerformTradeoffAnalysisPilot.PageId.home)),
-	Review_And_Finalize_Security_Requirements("Case 3 - Step 5: Review and Finalize Security Requirements", 
-			ReviewAndFinalizeRequirementsPilot.generateNavigationId(ReviewAndFinalizeRequirementsPilot.PageId.home)),
-	Final_product_selection("Case 3 - Step 7: Final product selection", 
-			ReviewAndFinalizeRequirementsPilot.generateNavigationId(FinalProductSelectionPilot.PageId.home));
+			PrioritizeRequirementsPilot.generateNavigationId(PrioritizeRequirementsPilot.PageId.home));
 	
-	
-	
+	//Review_COTS_Software_Package_Information_And_Specification("Case 3 - Step 4: Review COTS software package information and specification", 
+			//ReviewPackagesPilot.generateNavigationId(ReviewPackagesPilot.PageId.home)),
+	//Review_And_Finalize_Security_Requirements("Case 3 - Step 5: Review and Finalize Security Requirements", 
+			//ReviewAndFinalizeRequirementsPilot.generateNavigationId(ReviewAndFinalizeRequirementsPilot.PageId.home)),
+
 	private String description;
 	private String link;
 	private StepEnum(String description, String link)

@@ -28,7 +28,7 @@ import edu.cmu.square.client.ui.core.HeaderPane;
  */
 public class SquareGwt implements EntryPoint, SquareStateChangedEvent.ITakesMyEvent
 {
-	private HeaderPane headerPane;
+	private HeaderPane headerPane; 
 	private HorizontalPanel breadCrumbPane = null;
 	private VerticalPanel contentPane;
 	private FooterPane footerPane;

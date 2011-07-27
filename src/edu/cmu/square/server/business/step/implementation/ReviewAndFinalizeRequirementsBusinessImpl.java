@@ -41,7 +41,7 @@ public class ReviewAndFinalizeRequirementsBusinessImpl extends BaseBusinessImpl 
 	@Resource
 	private CategoryDao categoryDao;
 
-	@AllowedRoles(roles = {Roles.All})
+	@AllowedRoles(roles = {Roles.All}) 
 	public List<GwtRequirement> getRequirements(GwtProject gwtProject) throws SquareException
 		{
 			List<GwtRequirement> requirementList = new ArrayList<GwtRequirement>();
