@@ -10,6 +10,21 @@ public class GwtProjectPackageAttributeRating implements Serializable {
 	private GwtSoftwarePackage softwarePackage;
 	private GwtQualityAttribute qualityAttribute;
 	private Integer value = -1;
+	//private ProjectPackageAttributeRatingId pparId;
+	
+	public GwtProjectPackageAttributeRating()
+	{
+		
+	}
+	
+	public GwtProjectPackageAttributeRating(GwtProject project, GwtSoftwarePackage swPackage, GwtQualityAttribute attribute,
+			Integer value)
+		{
+			this.project = project;
+			this.softwarePackage = swPackage;
+			this.qualityAttribute = attribute;
+			this.value = value;
+		}
 	
 	public GwtProject getProject()
 	{

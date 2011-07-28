@@ -53,6 +53,14 @@ public class ProjectPackageRationale implements java.io.Serializable {
 	}
 
 
+	public ProjectPackageRationale(Integer pid, Integer spid, SoftwarePackage softwarePackage, String rationale)
+		{
+			this.id = new ProjectPackageRationaleId(pid, spid);
+			//this.project = new Project(rationale.getProject());
+			this.softwarePackage = softwarePackage;
+			this.rationale = rationale;
+		}
+
 	@EmbeddedId
 	@AttributeOverrides( {
 			@AttributeOverride(name = "projectId", column = @Column(name = "project_id", nullable = false)),
@@ -63,6 +71,9 @@ public class ProjectPackageRationale implements java.io.Serializable {
 
 	public void setId(ProjectPackageRationaleId id) {
 		this.id = id;
+	}
+	public void setIdInt(Integer pid, Integer sid){
+		this.id = new ProjectPackageRationaleId(pid, sid);
 	}
 
 	@ManyToOne(fetch = FetchType.LAZY)

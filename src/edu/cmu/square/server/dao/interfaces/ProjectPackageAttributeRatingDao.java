@@ -16,8 +16,14 @@ import edu.cmu.square.server.dao.model.ProjectPackageAttributeRating;
 public interface ProjectPackageAttributeRatingDao extends AbstractDao<ProjectPackageAttributeRating, Integer> 
 {
 	List<GwtProjectPackageAttributeRating> getAllRatingsForProject(Project project);
+	//List<GwtProjectPackageAttributeRating> getAllRatingsForProject(Project project);
+	
 	void setRating(int projectID, int packageId, int requirementID, int rating);
 	int getRating(int projectID, int packageId, int requirementID);
 	void updateRating(int projectID, int packageId, int requirementID, int rating);
 	List<GwtProjectPackageAttributeRating> getAllRatings(Project project);
+
+	List<ProjectPackageAttributeRating> getAllRatingsForProjectNoGwt(Project project);
+
+	//void create(GwtProjectPackageAttributeRating newPpar);
 }

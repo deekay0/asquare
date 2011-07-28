@@ -12,7 +12,10 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import edu.cmu.square.client.model.GwtProject;
 import edu.cmu.square.client.model.GwtProjectPackageAttributeRating;
+import edu.cmu.square.client.model.GwtQualityAttribute;
+import edu.cmu.square.client.model.GwtSoftwarePackage;
 
 
 @Entity
@@ -26,11 +29,12 @@ public class ProjectPackageAttributeRating implements java.io.Serializable {
 	private QualityAttribute qualityAttribute;
 	private Integer rating;
 
+
 	public ProjectPackageAttributeRating() {
 	}
 
-	public ProjectPackageAttributeRating(ProjectPackageAttributeRatingId id, SoftwarePackage softwarePackage, Project project,
-			QualityAttribute role, Integer rating) {
+	public ProjectPackageAttributeRating(ProjectPackageAttributeRatingId id, SoftwarePackage softwarePackage, Project project, QualityAttribute role, Integer rating) 
+	{
 		this.id = id;
 		this.softwarePackage = softwarePackage;
 		this.project = project;
@@ -38,7 +42,8 @@ public class ProjectPackageAttributeRating implements java.io.Serializable {
 		this.rating = rating;
 	}
 	
-	public ProjectPackageAttributeRating(GwtProjectPackageAttributeRating ppar) {
+	public ProjectPackageAttributeRating(GwtProjectPackageAttributeRating ppar) 
+	{
 		this.softwarePackage = new SoftwarePackage(ppar.getPackage());
 		this.project = new Project(ppar.getProject());
 		this.qualityAttribute = new QualityAttribute(ppar.getAttribute());
@@ -47,6 +52,16 @@ public class ProjectPackageAttributeRating implements java.io.Serializable {
 		this.id = new ProjectPackageAttributeRatingId(project.getId(), softwarePackage.getId(), qualityAttribute.getId());
 	}
 	
+
+
+	public ProjectPackageAttributeRating(Integer projectId, Integer packageId, Integer attributeId, Integer rating, SoftwarePackage softwarePackage, QualityAttribute qa )
+	{
+		this.id = new ProjectPackageAttributeRatingId(projectId, packageId, attributeId);
+		this.softwarePackage = softwarePackage;
+		this.qualityAttribute = qa;
+		this.rating = rating;
+	}
+
 	@EmbeddedId
 	@AttributeOverrides( {
 			@AttributeOverride(name = "projectId", column = @Column(name = "project_id", nullable = false)),
@@ -59,7 +74,11 @@ public class ProjectPackageAttributeRating implements java.io.Serializable {
 	public void setId(ProjectPackageAttributeRatingId id) {
 		this.id = id;
 	}
-
+	
+	public void setIdInt(Integer pid, Integer sid, Integer qid){
+		this.id = new ProjectPackageAttributeRatingId(pid, sid, qid);
+	}
+	
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "package_id", nullable = false, insertable = false, updatable = false)
 	public SoftwarePackage getSoftwarePackage() {

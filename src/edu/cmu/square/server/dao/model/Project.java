@@ -56,8 +56,14 @@ public class Project implements java.io.Serializable
 
 	private Set<Goal> goals = new HashSet<Goal>(0);
 	private Set<Asset> assets = new HashSet<Asset>(0);
-
-
+	
+/*
+	//Added to copy packages and attributes
+	private Set<SoftwarePackage> packages = new HashSet<SoftwarePackage>(0);
+	private Set<QualityAttribute> attributes = new HashSet<QualityAttribute>(0);
+	private Set<ProjectPackageRationale> rationale = new HashSet<ProjectPackageRationale>(0);
+	private Set<ProjectPackageTradeoffreason> tradeoffreason = new HashSet<ProjectPackageTradeoffreason>(0);
+*/
 	private Set<Requirement> requirements = new HashSet<Requirement>(0);
 
 	public Project()
@@ -271,6 +277,32 @@ public class Project implements java.io.Serializable
 	{
 		return users;
 	}
+/*
+//Added to copy attributes and pacakges
+	@ManyToMany
+	@JoinTable(name = "project_package_attribute_rating", joinColumns = {@JoinColumn(name = "project_id")}, inverseJoinColumns = {@JoinColumn(name = "package_id")})
+	public Set<SoftwarePackage> getPackages()
+	{
+		return packages;
+	}
+	
+	@ManyToMany
+	@JoinTable(name = "project_package_attribute_rating", joinColumns = {@JoinColumn(name = "project_id")}, inverseJoinColumns = {@JoinColumn(name = "attribure_id")})
+	public Set<QualityAttribute> getAttributes()
+	{
+		return attributes;
+	}
+	/*
+	@ManyToMany
+	@JoinTable(name = "project_package_attribute_rating", joinColumns = {@JoinColumn(name = "project_id")}, inverseJoinColumns = {@JoinColumn(name = "rating")})
+	public Set<SoftwarePackage> get()
+	{
+		return packages;
+	}
+	*/
+	
+	
+	
 
 	public void setUsers(Set<User> users)
 	{

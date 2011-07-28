@@ -21,6 +21,7 @@ import edu.cmu.square.client.exceptions.SquareException;
 import edu.cmu.square.client.model.GwtEvaluation;
 import edu.cmu.square.client.model.GwtInspectionTechnique;
 import edu.cmu.square.client.model.GwtProject;
+import edu.cmu.square.client.model.GwtProjectPackageAttributeRating;
 import edu.cmu.square.client.model.GwtRole;
 import edu.cmu.square.client.model.GwtStep;
 import edu.cmu.square.client.model.GwtTechnique;
@@ -40,6 +41,7 @@ import edu.cmu.square.server.dao.interfaces.MappingDao;
 import edu.cmu.square.server.dao.interfaces.ProjectDao;
 import edu.cmu.square.server.dao.interfaces.ProjectPackageAttributeRatingDao;
 import edu.cmu.square.server.dao.interfaces.QualityAttributeDao;
+import edu.cmu.square.server.dao.interfaces.RationaleDao;
 import edu.cmu.square.server.dao.interfaces.RequirementDao;
 import edu.cmu.square.server.dao.interfaces.RoleDao;
 import edu.cmu.square.server.dao.interfaces.StepDao;
@@ -54,6 +56,7 @@ import edu.cmu.square.server.dao.model.InspectionTechnique;
 import edu.cmu.square.server.dao.model.Project;
 import edu.cmu.square.server.dao.model.ProjectPackageAttributeRating;
 import edu.cmu.square.server.dao.model.ProjectPackageAttributeRatingId;
+import edu.cmu.square.server.dao.model.ProjectPackageRationale;
 import edu.cmu.square.server.dao.model.ProjectPackageTradeoffreason;
 import edu.cmu.square.server.dao.model.ProjectPackageTradeoffreasonId;
 import edu.cmu.square.server.dao.model.QualityAttribute;
@@ -116,6 +119,9 @@ public class ManageProjectBusinessImpl extends BaseBusinessImpl implements Manag
 	@Resource
 	private TradeoffReasonDao tradeoffReasonDao;
 	
+	@Resource
+	private RationaleDao rationalDao;
+		
 	@Resource
 	private TermDao termDao;
 	
@@ -679,15 +685,15 @@ public class ManageProjectBusinessImpl extends BaseBusinessImpl implements Manag
 		}
 	}
 	
-	/*********************
+/********************************************************************************************************************************************
 	 * Copy project
-	 */
+*******************************************************************************************/
 	
 	@Override
 	  @AllowedRoles(roles = { Roles.Administrator })
 	  public GwtProject copyProject(GwtProject originalProject) throws SquareException {
 		
-		System.out.println("business copyProject start done 0");
+		System.out.println("MngProjectbusiness copyProject start done 0");
 	    Project project = new Project(originalProject);
 // Sets the project type
 // This is set in CreateProjectDialog, and we allow the project type to be different
@@ -770,13 +776,29 @@ public class ManageProjectBusinessImpl extends BaseBusinessImpl implements Manag
 	    copyRequirementGoal(original, requirementMap, goalMap);
 
 	    copySteps(project);
-
-	    //HashMap<Integer, Integer> inspectionTechniqueMap = copyInspectionTechniques(project, original);
-
-	    //updateInspectionTechnique(project, original, inspectionTechniqueMap);
 	    
+	    //Case 3!!
+	    if(originalProject.getCases().getId()==3)
+	    {
+	    
+		    System.out.println("case is"+originalProject.getCases().getId());
+		    //System.out.println(proj)
+		    
+		    System.out.println("perhaps");
+		    copyPackageAttributeRating(project, original);
+		   
+		    
+		    copyTradeoffReason(project,original);
+	
+		    copyRationale(project, original);
+		    System.out.println("wow");
+		    //HashMap<Integer, Integer> inspectionTechniqueMap = copyInspectionTechniques(project, original);
+	
+		    //updateInspectionTechnique(project, original, inspectionTechniqueMap);
+	    
+	    }
 	    //We return back the gwt project from the newly copied project
-	    System.out.println("project.createCopyProject");
+	    System.out.println("copy is done~~");
 	    return project.createGwtProject();
 	  }
 	
@@ -828,11 +850,11 @@ public class ManageProjectBusinessImpl extends BaseBusinessImpl implements Manag
 	    goals.addAll(goalDao.getSubGoalByProject(originalProject));
 
 	    for (Goal g : goals) {
-	      Date now = new Date();
-	      Goal newGoal =
-	          new Goal(g.getGoalType(), project, g.getDescription(), g.getPriority(), now, now);
-	      goalDao.create(newGoal);
-	      map.put(g.getId(), newGoal.getId());
+		      Date now = new Date();
+		      Goal newGoal =
+		          new Goal(g.getGoalType(), project, g.getDescription(), g.getPriority(), now, now);
+		      goalDao.create(newGoal);
+		      map.put(g.getId(), newGoal.getId());
 	    }
 
 	    return map;
@@ -854,7 +876,8 @@ public class ManageProjectBusinessImpl extends BaseBusinessImpl implements Manag
 
 	  public void copyGoalAsset(Project originalProject,
 	                            HashMap<Integer, Integer> goalMap,
-	                            HashMap<Integer, Integer> assetMap) {
+	                            HashMap<Integer, Integer> assetMap) 
+	  {
 
 	    List<Asset> oldAssets = assetDao.getAssetByProject(originalProject);
 	    for (Asset a : oldAssets) {
@@ -864,8 +887,155 @@ public class ManageProjectBusinessImpl extends BaseBusinessImpl implements Manag
 	      }
 	    }
 	  }
+	  
+	  
+	  
+	  public HashMap<Integer, Integer> copyPackageAttributeRating(Project project, Project originalProject)
+	  {
+		  System.out.println("in MngProjectBiz, copyPackagAR");
+		  HashMap<Integer, Integer> map = new HashMap<Integer, Integer>();
+		 
+		  List<ProjectPackageAttributeRating> PPAR = projectPackageAttributeRatingDao.getAllRatingsForProjectNoGwt(originalProject);		  
+		  
+		  for (ProjectPackageAttributeRating ppar : PPAR) {
+			  System.out.println("id		-\t"+ppar.getId().getProjectId());
+			  //System.out.println("project	-\t"+ppar.getProject());
+			  //System.out.println("projectid	-\t"+ppar.getProject().getId());
+			  System.out.println("packages	-\t"+ppar.getSoftwarePackage());
+			  System.out.println("qas		-\t"+ppar.getQualityAttribute());
+			  System.out.println("ratings	-\t"+ppar.getRating());
+			  
+		  }
+		 
+		  //It makes null exception.
+		  /*for (GwtProjectPackageAttributeRating gwtppar : gwtPPAR) {
+			  System.out.println("id-g\t"+ gwtppar.getProject().getId());
+			  System.out.println("project-g\t"+gwtppar.getProject());
+			  System.out.println("packages-g\t"+gwtppar.getPackage());
+			  System.out.println("qas-g\t"+gwtppar.getAttribute());
+		  }*/
+		  
+	System.out.println("ManageProjectBusiness copyPackageAttributeRating done 0");	
+			    for (ProjectPackageAttributeRating ppar : PPAR) {
+			      Date now = new Date();
+			      
+			      ProjectPackageAttributeRating newPpar = new ProjectPackageAttributeRating(project.getId(), ppar.getId().getPackageId(), ppar.getId().getAttributeId(), ppar.getRating(), ppar.getSoftwarePackage(), ppar.getQualityAttribute());
 
-	  /*
+			      projectPackageAttributeRatingDao.create(newPpar);
+			      
+			      //map.put(ppar.getId(), newPpar.getId());
+			      
+			    }
+			    return map;
+	  }
+	  
+	  public void copyTradeoffReason(Project project, Project originalProject)
+	  {
+		  System.out.println("in MngProjectBiz, copyTradeoffReason");
+		  HashMap<Integer, Integer> map = new HashMap<Integer, Integer>();
+		 
+		  List<ProjectPackageTradeoffreason> PPTR = tradeoffReasonDao.getAllTradeoffReasonsNoGwt(originalProject);		  
+		  
+		  for (ProjectPackageTradeoffreason pptr : PPTR) {
+			  
+			  System.out.println("id		-\t"+pptr.getId().getProjectId());
+			  //System.out.println("project	-\t"+ppar.getProject());
+			  //System.out.println("projectid	-\t"+ppar.getProject().getId());
+			  System.out.println("packages	-\t"+pptr.getSoftwarePackage());
+			  System.out.println("priority	-\t"+pptr.getPriority());
+			  System.out.println("reasons	-\t"+pptr.getTradeoffreason());
+		  }
+		  
+		  System.out.println("ManageProjectBusiness copyTradeoffReason done 0");	
+		    for (ProjectPackageTradeoffreason pptr : PPTR) {
+		      Date now = new Date();
+		      
+		      ProjectPackageTradeoffreason newPptr = new ProjectPackageTradeoffreason(project.getId(), pptr.getId().getPackageId(), pptr.getPriority(), pptr.getSoftwarePackage(), pptr.getTradeoffreason());
+
+		      tradeoffReasonDao.create(newPptr);
+		    }
+	  }
+	  
+	  public void copyRationale(Project project, Project originalProject)
+	  {
+		  System.out.println("in MngProjectBiz, copyRationale");
+		  //HashMap<Integer, Integer> map = new HashMap<Integer, Integer>();
+		 
+		 //List<ProjectPackageRationale> PPR = rationalDao.getRationaleList(originalProject);		  
+		 ProjectPackageRationale PPR = rationalDao.getRationale(originalProject);		  
+		 
+		 
+		 
+			  System.out.println("id		-\t"+PPR.getId().getProjectId());
+			  //System.out.println("project	-\t"+ppar.getProject());
+			  //System.out.println("projectid	-\t"+ppar.getProject().getId());
+			  System.out.println("packages	-\t"+PPR.getId().getPackageId());
+			  System.out.println("rationale	-\t"+PPR.getRationale());
+			  
+		  
+		  System.out.println("ManageProjectBusiness copyProjectPackageRationale done 0");	
+		   
+		      ProjectPackageRationale newPpr = new ProjectPackageRationale(project.getId(), PPR.getId().getPackageId(), PPR.getSoftwarePackage(), PPR.getRationale());
+
+		      rationalDao.create(newPpr);
+		}
+	  
+/*
+	  public HashMap<Integer, Integer> copySWPackage(Project project, Project originalProject){
+		  HashMap<Integer, Integer> map = new HashMap<Integer, Integer>();
+		  List<SoftwarePackage> SWPackages = softwarePackageDao.getSoftwarePackagesByProject(originalProject);
+
+			    for (SoftwarePackage swp : SWPackages) {
+			      Date now = new Date();
+			      SoftwarePackage swP = new SoftwarePackage(swp.getDescription(), project,  now, now);
+			    		  			
+			      swP.setProject(project);
+			      softwarePackageDao.create(swP);
+			      map.put(swp.getId(), swP.getId());
+			    }
+			    return map;
+			  }
+
+	  public HashMap<Integer, Integer> copyQualityAttribute(Project project, Project originalProject){
+		  HashMap<Integer, Integer> map = new HashMap<Integer, Integer>();
+		  List<QualityAttribute> QAs = qualityAttributeDao.getQualityAttributesByProject(originalProject);
+
+			    for (QualityAttribute qas : QAs) {
+			      Date now = new Date();
+			      QualityAttribute qa = new QualityAttribute(qas.getName(), qas.getDescription(), project,  now, now);
+			    		  			
+			      qa.setProject(project);
+			      qualityAttributeDao.create(qa);
+			      map.put(qas.getId(), qa.getId());
+			    }
+			    return map;
+			  }
+			  */
+		/*
+			  public void copyTechniqueEvaluationCriteria(Project project,
+			                                              Project originalProject,
+			                                              HashMap<Integer, Integer> techniqueMap,
+			                                              HashMap<Integer, Integer> evaluationCriteriaMap) {
+			    List<TechniqueEvaluationCriteria> tecList = techEvaCriteriaDao.getAllValues(originalProject);
+
+			    for (TechniqueEvaluationCriteria tec : tecList) {
+			      TechniqueEvaluationCriteria newTec = new TechniqueEvaluationCriteria();
+			      newTec.setProject(project);
+			      newTec.setValue(tec.getValue());
+			      Technique newTechnique = techniqueDao.fetch(techniqueMap.get(tec.getTechnique().getId()));
+			      newTec.setTechnique(newTechnique);
+			      EvaluationCriteria newEvaCriteria =
+			          evaCriteriaDao.fetch(evaluationCriteriaMap.get(tec.getTechniqueEvaluation().getId()));
+			      newTec.setTechniqueEvaluation(newEvaCriteria);
+			      newTec.setId(new TechniqueEvaluationCriteriaId(newTechnique.getId(),
+			                                                      newEvaCriteria.getId(),
+			                                                      project.getId()));
+			      techEvaCriteriaDao.create(newTec);
+			    }
+
+			  }
+
+/*
 	  public HashMap<Integer, Integer> copyArtifacts(Project project, Project originalProject) {
 	    HashMap<Integer, Integer> map = new HashMap<Integer, Integer>();
 	    List<Artifact> artifacts = artifactDao.getArtifactsByProject(originalProject);
@@ -1037,6 +1207,7 @@ public class ManageProjectBusinessImpl extends BaseBusinessImpl implements Manag
 	      requirement.setPriority(r.getPriority());
 	      //requirement.setProjectType(project.getProjectType());
 	      //requirement.setRequirementSource(r.getRequirementSource());
+	      requirement.setStatus(r.getStatus());
 	      requirement.setTitle(r.getTitle());
 	      Date now = new Date();
 	      requirement.setDateCreated(now);

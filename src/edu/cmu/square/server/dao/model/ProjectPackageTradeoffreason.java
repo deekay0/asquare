@@ -38,6 +38,14 @@ public class ProjectPackageTradeoffreason implements java.io.Serializable {
 		this.tradeoffreason = tradeoffreason;
 		this.priority = priority;
 	}
+	
+	public ProjectPackageTradeoffreason(Integer projectId, Integer packageId, Integer priority, SoftwarePackage softwarePackage, String treason )
+	{
+		this.id = new ProjectPackageTradeoffreasonId(projectId, packageId);
+		this.softwarePackage = softwarePackage;
+		this.priority = priority;
+		this.tradeoffreason = treason;
+	}
 
 
 	@EmbeddedId
@@ -50,6 +58,10 @@ public class ProjectPackageTradeoffreason implements java.io.Serializable {
 
 	public void setId(ProjectPackageTradeoffreasonId id) {
 		this.id = id;
+	}
+	
+	public void setIdInt(Integer pid, Integer sid){
+		this.id = new ProjectPackageTradeoffreasonId(pid, sid);
 	}
 
 	@ManyToOne(fetch = FetchType.LAZY)
@@ -89,6 +101,7 @@ public class ProjectPackageTradeoffreason implements java.io.Serializable {
 	public void setPriority(int priority) {
 		this.priority =  priority;
 	}
+	
 	
 	public GwtTradeoffReason createGwtTradeoffReason() {
 		GwtTradeoffReason gwtTradeoffReason = new GwtTradeoffReason();
