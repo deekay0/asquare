@@ -497,7 +497,7 @@ public class PerformTradeoffAnalysisPane extends BasePane
 					@Override
 					public void onSuccess(List<GwtRequirementRating> result)
 					{
-						
+						System.out.println("ui pane loadreqratings"+result);
 						requirementRatings = result;
 						
 						loadRequirements();

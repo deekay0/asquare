@@ -40,6 +40,7 @@ import edu.cmu.square.server.dao.interfaces.GoalDao;
 import edu.cmu.square.server.dao.interfaces.MappingDao;
 import edu.cmu.square.server.dao.interfaces.ProjectDao;
 import edu.cmu.square.server.dao.interfaces.ProjectPackageAttributeRatingDao;
+import edu.cmu.square.server.dao.interfaces.ProjectPackageRequirementRatingDao;
 import edu.cmu.square.server.dao.interfaces.QualityAttributeDao;
 import edu.cmu.square.server.dao.interfaces.RationaleDao;
 import edu.cmu.square.server.dao.interfaces.RequirementDao;
@@ -57,6 +58,7 @@ import edu.cmu.square.server.dao.model.Project;
 import edu.cmu.square.server.dao.model.ProjectPackageAttributeRating;
 import edu.cmu.square.server.dao.model.ProjectPackageAttributeRatingId;
 import edu.cmu.square.server.dao.model.ProjectPackageRationale;
+import edu.cmu.square.server.dao.model.ProjectPackageRequirementRating;
 import edu.cmu.square.server.dao.model.ProjectPackageTradeoffreason;
 import edu.cmu.square.server.dao.model.ProjectPackageTradeoffreasonId;
 import edu.cmu.square.server.dao.model.QualityAttribute;
@@ -115,6 +117,9 @@ public class ManageProjectBusinessImpl extends BaseBusinessImpl implements Manag
 	
 	@Resource
 	private ProjectPackageAttributeRatingDao projectPackageAttributeRatingDao;
+	
+	@Resource
+	private ProjectPackageRequirementRatingDao projectPackageRequirementRatingDao;
 	
 	@Resource
 	private TradeoffReasonDao tradeoffReasonDao;
@@ -784,9 +789,12 @@ public class ManageProjectBusinessImpl extends BaseBusinessImpl implements Manag
 		    System.out.println("case is"+originalProject.getCases().getId());
 		    //System.out.println(proj)
 		    
-		    System.out.println("perhaps");
+		    
+		    
+		    System.out.println("perhaps0");
 		    copyPackageAttributeRating(project, original);
-		   
+		    copyPackageRequirementRating(project,original);
+		    System.out.println("perhaps1");
 		    
 		    copyTradeoffReason(project,original);
 	
@@ -917,11 +925,49 @@ public class ManageProjectBusinessImpl extends BaseBusinessImpl implements Manag
 		  
 	System.out.println("ManageProjectBusiness copyPackageAttributeRating done 0");	
 			    for (ProjectPackageAttributeRating ppar : PPAR) {
-			      Date now = new Date();
 			      
 			      ProjectPackageAttributeRating newPpar = new ProjectPackageAttributeRating(project.getId(), ppar.getId().getPackageId(), ppar.getId().getAttributeId(), ppar.getRating(), ppar.getSoftwarePackage(), ppar.getQualityAttribute());
 
 			      projectPackageAttributeRatingDao.create(newPpar);
+			      
+			      //map.put(ppar.getId(), newPpar.getId());
+			      
+			    }
+			    return map;
+	  }
+	  
+	  public HashMap<Integer, Integer> copyPackageRequirementRating(Project project, Project originalProject)
+	  {
+		  System.out.println("in MngProjectBiz, copyPackageRequirementRating");
+		  HashMap<Integer, Integer> map = new HashMap<Integer, Integer>();
+		 
+		  List<ProjectPackageRequirementRating> PPRR = projectPackageRequirementRatingDao.getAllRatingsNoGwt(originalProject);		  
+		  
+		  for (ProjectPackageRequirementRating pprr : PPRR) {
+			  System.out.println("id		-\t"+pprr.getId().getProjectId());
+			  //System.out.println("project	-\t"+ppar.getProject());
+			  //System.out.println("projectid	-\t"+ppar.getProject().getId());
+			  System.out.println("packages	-\t"+pprr.getSoftwarePackage());
+			  System.out.println("reqs		-\t"+pprr.getRequirement());
+			  System.out.println("ratings	-\t"+pprr.getRating());
+			  
+		  }
+		 
+		  //It makes null exception.
+		  /*for (GwtProjectPackageAttributeRating gwtppar : gwtPPAR) {
+			  System.out.println("id-g\t"+ gwtppar.getProject().getId());
+			  System.out.println("project-g\t"+gwtppar.getProject());
+			  System.out.println("packages-g\t"+gwtppar.getPackage());
+			  System.out.println("qas-g\t"+gwtppar.getAttribute());
+		  }*/
+		  
+	System.out.println("ManageProjectBusiness copyPackageAttributeRating done 0");	
+			    for (ProjectPackageRequirementRating pprr : PPRR) {
+			      System.out.println("ratating?"+pprr.getRating());
+			      
+			      ProjectPackageRequirementRating newPprr = new ProjectPackageRequirementRating(project.getId(), pprr.getId().getPackageId(), pprr.getId().getRequirementId(), pprr.getRating(), pprr.getSoftwarePackage(), pprr.getRequirement());
+
+			      projectPackageRequirementRatingDao.create(newPprr);
 			      
 			      //map.put(ppar.getId(), newPpar.getId());
 			      
@@ -948,8 +994,7 @@ public class ManageProjectBusinessImpl extends BaseBusinessImpl implements Manag
 		  
 		  System.out.println("ManageProjectBusiness copyTradeoffReason done 0");	
 		    for (ProjectPackageTradeoffreason pptr : PPTR) {
-		      Date now = new Date();
-		      
+		     
 		      ProjectPackageTradeoffreason newPptr = new ProjectPackageTradeoffreason(project.getId(), pptr.getId().getPackageId(), pptr.getPriority(), pptr.getSoftwarePackage(), pptr.getTradeoffreason());
 
 		      tradeoffReasonDao.create(newPptr);

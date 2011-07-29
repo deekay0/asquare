@@ -45,7 +45,7 @@ public class PerformTradeoffAnalysisBusinessImpl extends BaseBusinessImpl implem
 	@AllowedRoles(roles = {Roles.Security_Specialist, Roles.Administrator})
 	public void setRequirementRateValue(int projectID, int packageID, int requirementID, int value) throws SquareException
 	{
-		//System.out.println("here.............."+projectID+"  "+packageID+"  "+requirementID+"  "+value);
+		System.out.println("here.............."+projectID+"  "+packageID+"  "+requirementID+"  "+value);
 		if( -1 == projectRequirementRatingDao.getRating(projectID, packageID,requirementID))
 			projectRequirementRatingDao.setRating(projectID,packageID, requirementID, value);
 		else
@@ -68,6 +68,7 @@ public class PerformTradeoffAnalysisBusinessImpl extends BaseBusinessImpl implem
 	@AllowedRoles(roles = {Roles.All})
 	public int getRequirementRateValue(int projectID,int packageID, int requirementID) throws SquareException
 	{
+		System.out.println("biz step impl, getreqrating "+projectRequirementRatingDao.getRating(projectID,packageID, requirementID));
 		return projectRequirementRatingDao.getRating(projectID,packageID, requirementID);
 	}
 	
