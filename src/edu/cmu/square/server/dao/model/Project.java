@@ -350,7 +350,7 @@ public class Project implements java.io.Serializable
 	{
 		return requirements;
 	}
-
+	
 	public boolean equals(Object obj)
 	{
 		if (!(obj instanceof Project))
