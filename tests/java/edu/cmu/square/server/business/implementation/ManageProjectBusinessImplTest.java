@@ -116,7 +116,7 @@ public class ManageProjectBusinessImplTest extends AbstractSpringBase
 			project.setLite(false);
 			project.setAcquisitionOrganizationEngineer(gwtUser);
 
-			GwtProject outputProject = mps.createProject(project);
+			GwtProject outputProject = mps.createProject(project, null);
 			outputProject = mps.getProject(outputProject.getId());
 	
 			Assert.assertEquals(outputProject.getName(), project.getName());
@@ -186,7 +186,7 @@ public class ManageProjectBusinessImplTest extends AbstractSpringBase
 			project.setLite(false);
 			project.setAcquisitionOrganizationEngineer(gwtUser);
 			
-			project =mps.createProject(project);
+			project =mps.createProject(project, null);
 			
 			
 
