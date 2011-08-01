@@ -1066,22 +1066,27 @@ public class ManageProjectBusinessImpl extends BaseBusinessImpl implements Manag
 		  //HashMap<Integer, Integer> map = new HashMap<Integer, Integer>();
 		 
 		 //List<ProjectPackageRationale> PPR = rationalDao.getRationaleList(originalProject);		  
-		 ProjectPackageRationale PPR = rationalDao.getRationale(originalProject);		  
-		 
-		 
-		 
+		  		
+		  ProjectPackageRationale PPR = rationalDao.getRationale(originalProject);
+		  
+		  System.out.println("check1");
+		  
+		  if(PPR!=null){
 			  System.out.println("id		-\t"+PPR.getId().getProjectId());
 			  //System.out.println("project	-\t"+ppar.getProject());
 			  //System.out.println("projectid	-\t"+ppar.getProject().getId());
 			  System.out.println("packages	-\t"+PPR.getId().getPackageId());
 			  System.out.println("rationale	-\t"+PPR.getRationale());
+				  
 			  
-		  
-		  System.out.println("ManageProjectBusiness copyProjectPackageRationale done 0");	
-		   
-		      ProjectPackageRationale newPpr = new ProjectPackageRationale(project.getId(), PPR.getId().getPackageId(), PPR.getSoftwarePackage(), PPR.getRationale());
+			  System.out.println("ManageProjectBusiness copyProjectPackageRationale done 0");	
+			   
+			      ProjectPackageRationale newPpr = new ProjectPackageRationale(project.getId(), PPR.getId().getPackageId(), PPR.getSoftwarePackage(), PPR.getRationale());
 
-		      rationalDao.create(newPpr);
+			      rationalDao.create(newPpr);
+			  
+		  }
+		  
 		}
 	  
 /*
