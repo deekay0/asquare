@@ -291,26 +291,6 @@ public class ProjectDetailPane extends VerticalPanel
 		}
 	}
 
-	private String createWarningList(List<String> warnings)
-	{
-		if (warnings.size() == 0)
-		{
-			return "";
-		}
-
-		StringBuilder listBuilder = new StringBuilder();
-		listBuilder.append("<ul>");
-
-		for (String warning : warnings)
-		{
-			listBuilder.append("<li>" + warning + "</li>");
-		}
-
-		listBuilder.append("</ul>");
-
-		return listBuilder.toString();
-	}
-
 	private void updateStepStatus(int projectId, int stepId, String status)
 	{
 		StepServiceAsync service = GWT.create(StepService.class);

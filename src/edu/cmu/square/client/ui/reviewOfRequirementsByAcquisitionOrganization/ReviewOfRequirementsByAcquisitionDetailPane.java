@@ -272,7 +272,7 @@ public class ReviewOfRequirementsByAcquisitionDetailPane extends BasePane implem
 					
 					public void onSuccess(Void result)
 					{
-						History.newItem(ReviewOfRequirementsByAcquisitionPilot.generateNavigationId(ReviewOfRequirementsByAcquisitionPilot.PageId.home));
+						History.newItem(ReviewOfRequirementsByAcquisitionPilot.generateNavigationId(ReviewOfRequirementsByAcquisitionPilot.PageId.start));
 					}
 				});
 			}
@@ -326,7 +326,7 @@ public class ReviewOfRequirementsByAcquisitionDetailPane extends BasePane implem
 						if (CommandTypes.insert == currentCommand)
 						{
 							History.newItem(ReviewOfRequirementsByAcquisitionPilot
-									.generateNavigationId(ReviewOfRequirementsByAcquisitionPilot.PageId.home));
+									.generateNavigationId(ReviewOfRequirementsByAcquisitionPilot.PageId.start));
 						}
 						else
 						{
@@ -487,6 +487,10 @@ public class ReviewOfRequirementsByAcquisitionDetailPane extends BasePane implem
 					bottonControlPanel.setWidget(0, 2, approveButton);
 				}
 				
+				if(currentRequirement.getStatus().equals("Approved")){
+					bottonControlPanel.setWidget(0, 1, requestRevisionButton);
+				}
+				
 				bottonControlPanel.setWidget(2, 0, new Label(" "));
 				bottonControlPanel.setWidget(3, 0, gotToSummary);
 				bottonControlPanel.getCellFormatter().setHorizontalAlignment(0,0,HasHorizontalAlignment.ALIGN_LEFT);
@@ -523,7 +527,7 @@ public class ReviewOfRequirementsByAcquisitionDetailPane extends BasePane implem
 
 					public void onClick(ClickEvent event)
 					{
-						History.newItem(ReviewOfRequirementsByAcquisitionPilot.generateNavigationId(ReviewOfRequirementsByAcquisitionPilot.PageId.home));
+						History.newItem(ReviewOfRequirementsByAcquisitionPilot.generateNavigationId(ReviewOfRequirementsByAcquisitionPilot.PageId.start));
 
 					}
 				});
@@ -709,7 +713,7 @@ public class ReviewOfRequirementsByAcquisitionDetailPane extends BasePane implem
 					{
 						//saveChangesConfirmation();
 					
-						History.newItem(ReviewOfRequirementsByAcquisitionPilot.generateNavigationId(ReviewOfRequirementsByAcquisitionPilot.PageId.home));
+						History.newItem(ReviewOfRequirementsByAcquisitionPilot.generateNavigationId(ReviewOfRequirementsByAcquisitionPilot.PageId.start));
 					}
 				});
 
@@ -1021,34 +1025,7 @@ public class ReviewOfRequirementsByAcquisitionDetailPane extends BasePane implem
 			}
 
 		}
-/*
-		public Widget createHTMLArtifactsList()
-		{
-			if (listOfArtifactsMappedToRequirement.size() > 0)
-			{
-				String listStart = "<UL>";
-				String listEnd = "</UL>";
-				StringBuilder listBuilder = new StringBuilder();
-				listBuilder.append(listStart);
-				for (GwtArtifact a : listOfArtifactsMappedToRequirement)
-				{
-					listBuilder.append("<LI><font color=\"black\">" + a.getName() + "</font></LI>");
-				}
-				listBuilder.append(listEnd);
-				HTML list = new HTML(listBuilder.toString());
-				list.setStyleName("square-sssets-listing");
 
-				return list;
-			}
-			else
-			{
-				artifactsEmptyLabel = new Label(messages.noSelectedArtifacts());
-				artifactsEmptyLabel.setStyleName("square-note");
-				return artifactsEmptyLabel;
-			}
-
-		}
-*/
 		public List<GwtRisk> filterRiskBaseOnGoals(List<GwtSubGoal> subGoals, List<GwtRisk> risks)
 		{
 			
@@ -1187,7 +1164,7 @@ public class ReviewOfRequirementsByAcquisitionDetailPane extends BasePane implem
 					public void onSuccess(Void result)
 					{
 						System.out.println("success on chaning status to approved");
-						History.newItem(ReviewOfRequirementsByAcquisitionPilot.generateNavigationId(ReviewOfRequirementsByAcquisitionPilot.PageId.home));
+						History.newItem(ReviewOfRequirementsByAcquisitionPilot.generateNavigationId(ReviewOfRequirementsByAcquisitionPilot.PageId.start));
 					}
 
 				});
@@ -1218,7 +1195,7 @@ public class ReviewOfRequirementsByAcquisitionDetailPane extends BasePane implem
 					public void onSuccess(Void result)
 					{
 						System.out.println("success on chaning status to request");
-						History.newItem(ReviewOfRequirementsByAcquisitionPilot.generateNavigationId(ReviewOfRequirementsByAcquisitionPilot.PageId.home));
+						History.newItem(ReviewOfRequirementsByAcquisitionPilot.generateNavigationId(ReviewOfRequirementsByAcquisitionPilot.PageId.start));
 					}
 
 				});

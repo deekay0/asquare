@@ -60,16 +60,10 @@ public class ElicitSecurityRequirementPane extends BasePane implements Command
 	private GwtProject currentProject;
 	private FlexTable matrix = new FlexTable();
 
-//	private VerticalPanel risksPane = new VerticalPanel();
-
-
 	private Label requirementTitleLabel = new Label(messages.labelRequirementTitle());
 	private Label requirementDescriptionLabel = new Label(messages.description());
 
 	private Label subGoalLabel = new Label(messages.securityGoal());
-//	private Label riskLabel = new Label(messages.risks());
-//	private Label artifactLabel = new Label(messages.artifacts());
-
 
 	private TextBox requirementTitleTextBox = new TextBox();
 	private TextArea requirementDescriptionTextBox = new TextArea();
@@ -92,9 +86,7 @@ public class ElicitSecurityRequirementPane extends BasePane implements Command
 	private List<GwtRisk> listOfRiksMapppedToRequirement = new ArrayList<GwtRisk>();
 	private List<GwtSubGoal> listOfProjectSubGoals = new ArrayList<GwtSubGoal>();
 	private List<GwtSubGoal> listOfSubGoalsMappedToRequirement = new ArrayList<GwtSubGoal>();
-//	private List<GwtArtifact> listOfProjectArtifacts = new ArrayList<GwtArtifact>();
-//	private List<GwtArtifact> listOfArtifactsMappedToRequirement = new ArrayList<GwtArtifact>();
-
+	
 	private int currentIndex = -1;
 	private int currentRequirementId = -1;
 	private boolean contetHasChanged = false;
@@ -434,7 +426,6 @@ public class ElicitSecurityRequirementPane extends BasePane implements Command
 				{
 					currentCommand = CommandTypes.update;
 					PaneInitialization();
-
 				}
 			});
 
@@ -629,7 +620,6 @@ public class ElicitSecurityRequirementPane extends BasePane implements Command
 			{
 				Label label = new Label(" ");
 				requirementNavigatorWidget.setWidget(0, 2, label);
-
 			}
 		}
 
@@ -637,8 +627,6 @@ public class ElicitSecurityRequirementPane extends BasePane implements Command
 			{
 				public void onClick(ClickEvent event)
 				{
-					//saveChangesConfirmation();
-				
 					History.newItem(ElicitSecurityRequirementsPilot.generateNavigationId(ElicitSecurityRequirementsPilot.PageId.requirementsSummary));
 				}
 			});
@@ -687,7 +675,6 @@ public class ElicitSecurityRequirementPane extends BasePane implements Command
 			}
 			else
 			{
-
 				updateRequirement(requirementId, gwtRequirement);
 			}
 		}
@@ -772,7 +759,6 @@ public class ElicitSecurityRequirementPane extends BasePane implements Command
 				TextArea field = (TextArea) w;
 				textValue = field.getText().trim();
 				setValidationStyle(field, textValue);
-
 			}
 			else if (w instanceof ListBox)
 			{
@@ -780,14 +766,6 @@ public class ElicitSecurityRequirementPane extends BasePane implements Command
 				textValue = field.getItemText(field.getSelectedIndex()).trim();
 				setValidationStyle(field, textValue);
 			}
-//			else if (w instanceof VerticalPanel)
-//			{
-//				if (listOfRiksMapppedToRequirement == null || listOfRiksMapppedToRequirement.isEmpty())
-//				{
-//					textValue = "";
-//				}
-//				setValidationStyle(risksPane, textValue);
-//			}
 
 			if (textValue.trim().length() == 0)
 			{
@@ -802,20 +780,6 @@ public class ElicitSecurityRequirementPane extends BasePane implements Command
 			subGoalEmptyLabel.setStyleName("square-RequiredMessage");
 			return false;
 		}
-//		else if (listOfRiksMapppedToRequirement.size() == 0)
-//		{
-//			disPanel.setOpen(true);
-//			riskEmptyLabel.setStyleName("square-RequiredMessage");
-//			return false;
-//		}
-		/*
-		else if (listOfArtifactsMappedToRequirement.size() == 0)
-		{
-			disPanel.setOpen(true);
-			artifactsEmptyLabel.setStyleName("square-RequiredMessage");
-			return false;
-		}
-		*/
 		
 		//Check to make sure this requirement title is not already in the system
 		for (GwtRequirement requirement : lisOfRequirements)
@@ -857,44 +821,7 @@ public class ElicitSecurityRequirementPane extends BasePane implements Command
 		return associateLink;
 
 	}
-//	public Widget getEditRisksHyperLink(final ElicitSecurityRequirementPane riksPane)
-//	{
-//
-//		SquareHyperlink associateLink = new SquareHyperlink(messages.editRisksLink());
-//		associateLink.addClickHandler(new ClickHandler()
-//			{
-//				public void onClick(ClickEvent event)
-//				{
-//					riskDialogBox = new RiskDialogBox(riksPane, listOfProjectFilteredRisks, listOfRiksMapppedToRequirement);
-//					riskDialogBox.setModal(true);
-//					riskDialogBox.center();
-//					currentDialog = "Risk";
-//					riskDialogBox.show();
-//
-//				}
-//			});
-//		return associateLink;
-//
-//	}
-/*
-	public Widget getEditArtifactsHyperLink(final ElicitSecurityRequirementPane riksPane)
-	{
-		SquareHyperlink associateLink = new SquareHyperlink(messages.editArtifactLink());
-		associateLink.addClickHandler(new ClickHandler()
-			{
-				public void onClick(ClickEvent event)
-				{
-					artifactDialog = new ArtifactDialogBox(riksPane, listOfProjectArtifacts, listOfArtifactsMappedToRequirement, messages.associateArtifacts());
-					artifactDialog.setModal(true);
-					artifactDialog.center();
-					artifactDialog.show();
-					currentDialog = "Artifact";
-					// isAssetCurrentDialog = false;
-				}
-			});
-		return associateLink;
-	}
-*/
+
 	public Widget createHTMLSubGoalList()
 	{
 		if (listOfSubGoalsMappedToRequirement.size() > 0)
@@ -922,61 +849,7 @@ public class ElicitSecurityRequirementPane extends BasePane implements Command
 		}
 
 	}
-//	public Widget createHTMLRisksList()
-//	{
-//		if (listOfRiksMapppedToRequirement.size() > 0)
-//		{
-//			String listStart = "<UL>";
-//			String listEnd = "</UL>";
-//			StringBuilder listBuilder = new StringBuilder();
-//
-//			listBuilder.append(listStart);
-//			for (GwtRisk a : listOfRiksMapppedToRequirement)
-//			{
-//				listBuilder.append("<LI><font color=\"black\">" + a.getRiskTitle() + "</font></LI>");
-//
-//			}
-//			listBuilder.append(listEnd);
-//			HTML list = new HTML(listBuilder.toString());
-//			list.setStyleName("square-sssets-listing");
-//			return list;
-//		}
-//		else
-//		{
-//			riskEmptyLabel = new Label(messages.noSelectedRisks());
-//			riskEmptyLabel.setStyleName("square-note");
-//			return riskEmptyLabel;
-//		}
-//
-//	}
-/*
-	public Widget createHTMLArtifactsList()
-	{
-		if (listOfArtifactsMappedToRequirement.size() > 0)
-		{
-			String listStart = "<UL>";
-			String listEnd = "</UL>";
-			StringBuilder listBuilder = new StringBuilder();
-			listBuilder.append(listStart);
-			for (GwtArtifact a : listOfArtifactsMappedToRequirement)
-			{
-				listBuilder.append("<LI><font color=\"black\">" + a.getName() + "</font></LI>");
-			}
-			listBuilder.append(listEnd);
-			HTML list = new HTML(listBuilder.toString());
-			list.setStyleName("square-sssets-listing");
 
-			return list;
-		}
-		else
-		{
-			artifactsEmptyLabel = new Label(messages.noSelectedArtifacts());
-			artifactsEmptyLabel.setStyleName("square-note");
-			return artifactsEmptyLabel;
-		}
-
-	}
-*/
 	public List<GwtRisk> filterRiskBaseOnGoals(List<GwtSubGoal> subGoals, List<GwtRisk> risks)
 	{
 		
@@ -1019,22 +892,6 @@ public class ElicitSecurityRequirementPane extends BasePane implements Command
 			this.matrix.setWidget(2, 1, createHTMLSubGoalList());
 			
 		}
-//		else if (currentDialog.equalsIgnoreCase("Risk"))
-//		{
-//			listRiskChanged(listOfRiksMapppedToRequirement,  riskDialogBox.getNewSelectedRisks());
-//			
-//			listOfRiksMapppedToRequirement = riskDialogBox.getNewSelectedRisks();
-//			this.matrix.setWidget(3, 1, createHTMLRisksList());
-//		}
-		/*
-		else if (currentDialog.equalsIgnoreCase("Artifact"))
-		{
-			listArtifactChanged(listOfArtifactsMappedToRequirement,artifactDialog.getNewSelectedArtifacts());
-			
-			listOfArtifactsMappedToRequirement = artifactDialog.getNewSelectedArtifacts();
-			this.matrix.setWidget(3, 1, createHTMLArtifactsList());
-		}
-		*/
 
 	}
 

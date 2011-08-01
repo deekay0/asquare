@@ -101,7 +101,7 @@ public class ReviewAndFinalizeRequirementsDetailPane extends BasePane implements
 		private List<GwtSubGoal> listOfProjectSubGoals = new ArrayList<GwtSubGoal>();
 		private List<GwtSubGoal> listOfSubGoalsMappedToRequirement = new ArrayList<GwtSubGoal>();
 		//private List<GwtArtifact> listOfProjectArtifacts = new ArrayList<GwtArtifact>();
-//		private List<GwtArtifact> listOfArtifactsMappedToRequirement = new ArrayList<GwtArtifact>();
+		//private List<GwtArtifact> listOfArtifactsMappedToRequirement = new ArrayList<GwtArtifact>();
 
 		private int currentIndex = -1;
 		private int currentRequirementId = -1;
