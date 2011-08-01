@@ -20,4 +20,7 @@ public interface RequirementDao extends AbstractDao<Requirement, Integer>
 
 	void changeStatusToRequestRevision(Requirement r);
 
+	List<String> getRequirementTitleByReqId(Integer originalReqId);
+	
+	List<Integer> getNewRequirementIdByTitleProject(String title, Integer projectId);
 }

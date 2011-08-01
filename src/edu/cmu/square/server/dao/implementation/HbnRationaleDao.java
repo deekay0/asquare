@@ -34,7 +34,7 @@ public class HbnRationaleDao extends HbnAbstractDao<ProjectPackageRationale, Pro
 	
 	public ProjectPackageRationaleId getIdForProject(Project project)
 	{
-		String query = "Select s.id from ProjectPackageRationale s where s.project.id=:projectId)";
+		String query = "Select s.id from ProjectPackageRationale s where s.project.id=:projectId";
 		
 		Query q = getSession().createQuery(query);
 		
@@ -70,7 +70,7 @@ public class HbnRationaleDao extends HbnAbstractDao<ProjectPackageRationale, Pro
 	@Override
 	public ProjectPackageRationale getRationale(Project projectID)
 	{
-		String query = "Select s from ProjectPackageRationale s where s.project.id=:projectId)";
+		String query = "Select s from ProjectPackageRationale s where s.project.id=:projectId";
 		
 		Query q = getSession().createQuery(query);
 		

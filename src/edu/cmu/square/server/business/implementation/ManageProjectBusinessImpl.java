@@ -930,7 +930,14 @@ public class ManageProjectBusinessImpl extends BaseBusinessImpl implements Manag
 	System.out.println("ManageProjectBusiness copyPackageAttributeRating done 0");	
 			    for (ProjectPackageAttributeRating ppar : PPAR) {
 			      
-			      ProjectPackageAttributeRating newPpar = new ProjectPackageAttributeRating(project.getId(), ppar.getId().getPackageId(), ppar.getId().getAttributeId(), ppar.getRating(), ppar.getSoftwarePackage(), ppar.getQualityAttribute());
+			      ProjectPackageAttributeRating newPpar = new ProjectPackageAttributeRating(
+			    		  project.getId(), 
+			    		  ppar.getId().getPackageId(), 
+			    		  ppar.getId().getAttributeId(), 
+			    		  ppar.getRating(), 
+			    		  ppar.getSoftwarePackage(), 
+			    		  ppar.getQualityAttribute()
+			    		  );
 
 			      projectPackageAttributeRatingDao.create(newPpar);
 			      
@@ -940,20 +947,64 @@ public class ManageProjectBusinessImpl extends BaseBusinessImpl implements Manag
 			    return map;
 	  }
 	  
+	  public Integer searchNewRequirementId(Project project, Project originalProject, Integer originalReqId)
+	  {
+		  // System.out.println("searchNew");
+		  //List<Requirement> reqAll	=	requirementDao.get
+		  //List<Requirement> reqListProject = requirementDao.getRequirementByProject(project);
+		  //List<Requirement> reqListOriginalProject = requirementDao.getRequirementByProject(originalProject);
+		  
+		  //System.out.println("req3->"+reqListProject);
+		  //System.out.println("req4->"+reqListOriginalProject);
+		  
+		  List<String> reqTitle = requirementDao.getRequirementTitleByReqId(originalReqId);
+		  //System.out.println("reqTitle"+reqTitle.toString());
+		  //String reqTitleString1 = reqTitle.toString();
+		  //System.out.println("reqTitleString"+reqTitleString1);
+		  
+		  String reqTitleString = reqTitle.get(0);
+		  //System.out.println("reqTitleListIndex- "+reqTitleString2);
+		  
+		  List<Integer> newReqIdList = requirementDao.getNewRequirementIdByTitleProject(reqTitleString, project.getId());
+			  
+		  Integer newReqIdI = newReqIdList.get(0);
+		  //System.out.println("newReqId"+newReqIdI);
+		  
+		  return newReqIdI;
+	  }
+	  
 	  public HashMap<Integer, Integer> copyPackageRequirementRating(Project project, Project originalProject)
 	  {
 		  System.out.println("in MngProjectBiz, copyPackageRequirementRating");
 		  HashMap<Integer, Integer> map = new HashMap<Integer, Integer>();
-		 
+			  
+		 	  
 		  List<ProjectPackageRequirementRating> PPRR = projectPackageRequirementRatingDao.getAllRatingsNoGwt(originalProject);		  
 		  
-		  for (ProjectPackageRequirementRating pprr : PPRR) {
+		  
+		  
+		  for (ProjectPackageRequirementRating pprr : PPRR) 
+		  {
 			  System.out.println("id		-\t"+pprr.getId().getProjectId());
 			  //System.out.println("project	-\t"+ppar.getProject());
 			  //System.out.println("projectid	-\t"+ppar.getProject().getId());
+			  System.out.println("new reqId	-\t"+searchNewRequirementId(project,originalProject, pprr.getId().getRequirementId()));
+			  
 			  System.out.println("packages	-\t"+pprr.getSoftwarePackage());
 			  System.out.println("reqs		-\t"+pprr.getRequirement());
 			  System.out.println("ratings	-\t"+pprr.getRating());
+		}
+		
+		  
+		  System.out.println(project.getRequirements().toString());
+		  System.out.println(project.getRequirements());
+	  	  
+		  System.out.println("toarray\t"+project.getRequirements().toArray());
+		  
+		  for (int i=0;i<project.getRequirements().size();i++)
+		  {
+			  System.out.println("new req"+project.getRequirements().toString().indexOf(i));
+			  System.out.println("new req"+originalProject.getRequirements().toString().indexOf(i));
 			  
 		  }
 		 
@@ -967,9 +1018,17 @@ public class ManageProjectBusinessImpl extends BaseBusinessImpl implements Manag
 		  
 	System.out.println("ManageProjectBusiness copyPackageAttributeRating done 0");	
 			    for (ProjectPackageRequirementRating pprr : PPRR) {
-			      System.out.println("ratating?"+pprr.getRating());
-			      
-			      ProjectPackageRequirementRating newPprr = new ProjectPackageRequirementRating(project.getId(), pprr.getId().getPackageId(), pprr.getId().getRequirementId(), pprr.getRating(), pprr.getSoftwarePackage(), pprr.getRequirement());
+			      //System.out.println("ratating?"+pprr.getRating());
+			
+			      ProjectPackageRequirementRating newPprr = new ProjectPackageRequirementRating(
+			    		  project.getId(), 
+			    		  pprr.getId().getPackageId(),
+			    		  searchNewRequirementId(project,originalProject, pprr.getId().getRequirementId()),
+			    		  //project.getRequirements().iterator()
+			    		  //pprr.getId().getRequirementId(),
+			    		  pprr.getRating(), 
+			    		  pprr.getSoftwarePackage(), 
+			    		  pprr.getRequirement());
 
 			      projectPackageRequirementRatingDao.create(newPprr);
 			      
@@ -1011,22 +1070,27 @@ public class ManageProjectBusinessImpl extends BaseBusinessImpl implements Manag
 		  //HashMap<Integer, Integer> map = new HashMap<Integer, Integer>();
 		 
 		 //List<ProjectPackageRationale> PPR = rationalDao.getRationaleList(originalProject);		  
-		 ProjectPackageRationale PPR = rationalDao.getRationale(originalProject);		  
-		 
-		 
-		 
+		  		
+		  ProjectPackageRationale PPR = rationalDao.getRationale(originalProject);
+		  
+		  System.out.println("check1");
+		  
+		  if(PPR!=null){
 			  System.out.println("id		-\t"+PPR.getId().getProjectId());
 			  //System.out.println("project	-\t"+ppar.getProject());
 			  //System.out.println("projectid	-\t"+ppar.getProject().getId());
 			  System.out.println("packages	-\t"+PPR.getId().getPackageId());
 			  System.out.println("rationale	-\t"+PPR.getRationale());
+				  
 			  
-		  
-		  System.out.println("ManageProjectBusiness copyProjectPackageRationale done 0");	
-		   
-		      ProjectPackageRationale newPpr = new ProjectPackageRationale(project.getId(), PPR.getId().getPackageId(), PPR.getSoftwarePackage(), PPR.getRationale());
+			  System.out.println("ManageProjectBusiness copyProjectPackageRationale done 0");	
+			   
+			      ProjectPackageRationale newPpr = new ProjectPackageRationale(project.getId(), PPR.getId().getPackageId(), PPR.getSoftwarePackage(), PPR.getRationale());
 
-		      rationalDao.create(newPpr);
+			      rationalDao.create(newPpr);
+			  
+		  }
+		  
 		}
 	  
 /*
