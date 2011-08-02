@@ -16,6 +16,8 @@ import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
+import com.google.gwt.dev.protobuf.ServiceException;
+
 import edu.cmu.square.client.exceptions.ExceptionType;
 import edu.cmu.square.client.exceptions.SquareException;
 import edu.cmu.square.client.model.GwtEvaluation;
@@ -29,6 +31,7 @@ import edu.cmu.square.client.model.GwtTerm;
 import edu.cmu.square.client.model.GwtUser;
 import edu.cmu.square.client.model.ProjectRole;
 import edu.cmu.square.server.authorization.AllowedRoles;
+import edu.cmu.square.server.authorization.ExceptionAspect;
 import edu.cmu.square.server.authorization.Roles;
 import edu.cmu.square.server.business.interfaces.ManageProjectBusiness;
 import edu.cmu.square.server.business.interfaces.StepBusiness;
@@ -708,8 +711,11 @@ public class ManageProjectBusinessImpl extends BaseBusinessImpl implements Manag
 	    //setApprovalStatus(originalProject.getId(), 1, 1);
 	    // resets the id
 	    project.setId(0);
-	  
-	    
+	  /*
+	    if(checkCopiedProjectNameExisted(originalProject)){
+	    	throw new SquareException(": Please, change a name of this project first"+project.getName()+"_COPY");
+	    }
+		*/	
 	    project.setName(project.getName()+"_COPY");
 	    // Gets the new LRE
 	    User aoe = userDao.fetch(originalProject.getAcquisitionOrganizationEngineer().getUserId());
@@ -721,7 +727,6 @@ public class ManageProjectBusinessImpl extends BaseBusinessImpl implements Manag
 	    project.setDateModified(now);
 	    // We create an entry for the project in the db
 	    System.out.println("done0");
-	    
 	    
 	    projectDao.create(project);
 	    
@@ -897,14 +902,21 @@ public class ManageProjectBusinessImpl extends BaseBusinessImpl implements Manag
 	  }
 	  
 	  
-	  
+	  public boolean checkCopiedProjectNameExisted(GwtProject originalProject)
+	  {
+		  String checkThisProjectName = originalProject.getName()+"_COPY";
+		  Project termProject = projectDao.findByName(checkThisProjectName);
+		  
+		 if(termProject!=null) return true;
+		 else return false;
+	  }
 	  public HashMap<Integer, Integer> copyPackageAttributeRating(Project project, Project originalProject)
 	  {
-		  System.out.println("in MngProjectBiz, copyPackagAR");
+		  //System.out.println("in MngProjectBiz, copyPackagAR");
 		  HashMap<Integer, Integer> map = new HashMap<Integer, Integer>();
 		 
 		  List<ProjectPackageAttributeRating> PPAR = projectPackageAttributeRatingDao.getAllRatingsForProjectNoGwt(originalProject);		  
-		  
+		  /*
 		  for (ProjectPackageAttributeRating ppar : PPAR) {
 			  System.out.println("id		-\t"+ppar.getId().getProjectId());
 			  //System.out.println("project	-\t"+ppar.getProject());
@@ -916,14 +928,14 @@ public class ManageProjectBusinessImpl extends BaseBusinessImpl implements Manag
 		  }
 		 
 		  //It makes null exception.
-		  /*for (GwtProjectPackageAttributeRating gwtppar : gwtPPAR) {
+		  for (GwtProjectPackageAttributeRating gwtppar : gwtPPAR) {
 			  System.out.println("id-g\t"+ gwtppar.getProject().getId());
 			  System.out.println("project-g\t"+gwtppar.getProject());
 			  System.out.println("packages-g\t"+gwtppar.getPackage());
 			  System.out.println("qas-g\t"+gwtppar.getAttribute());
 		  }*/
 		  
-	System.out.println("ManageProjectBusiness copyPackageAttributeRating done 0");	
+		  //System.out.println("ManageProjectBusiness copyPackageAttributeRating done 0");	
 			    for (ProjectPackageAttributeRating ppar : PPAR) {
 			      
 			      ProjectPackageAttributeRating newPpar = new ProjectPackageAttributeRating(
@@ -971,14 +983,14 @@ public class ManageProjectBusinessImpl extends BaseBusinessImpl implements Manag
 	  
 	  public HashMap<Integer, Integer> copyPackageRequirementRating(Project project, Project originalProject)
 	  {
-		  System.out.println("in MngProjectBiz, copyPackageRequirementRating");
+		  //System.out.println("in MngProjectBiz, copyPackageRequirementRating");
 		  HashMap<Integer, Integer> map = new HashMap<Integer, Integer>();
 			  
 		 	  
 		  List<ProjectPackageRequirementRating> PPRR = projectPackageRequirementRatingDao.getAllRatingsNoGwt(originalProject);		  
 		  
 		  
-		  
+		 /* 
 		  for (ProjectPackageRequirementRating pprr : PPRR) 
 		  {
 			  System.out.println("id		-\t"+pprr.getId().getProjectId());
@@ -1003,7 +1015,7 @@ public class ManageProjectBusinessImpl extends BaseBusinessImpl implements Manag
 			  System.out.println("new req"+originalProject.getRequirements().toString().indexOf(i));
 			  
 		  }
-		 
+		 */
 		  //It makes null exception.
 		  /*for (GwtProjectPackageAttributeRating gwtppar : gwtPPAR) {
 			  System.out.println("id-g\t"+ gwtppar.getProject().getId());
@@ -1012,7 +1024,7 @@ public class ManageProjectBusinessImpl extends BaseBusinessImpl implements Manag
 			  System.out.println("qas-g\t"+gwtppar.getAttribute());
 		  }*/
 		  
-	System.out.println("ManageProjectBusiness copyPackageAttributeRating done 0");	
+	//System.out.println("ManageProjectBusiness copyPackageAttributeRating done 0");	
 			    for (ProjectPackageRequirementRating pprr : PPRR) {
 			      //System.out.println("ratating?"+pprr.getRating());
 			
