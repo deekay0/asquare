@@ -416,7 +416,7 @@ public class ManageProjectBusinessImpl extends BaseBusinessImpl implements Manag
 	}
 
 	@AllowedRoles(roles = {Roles.Administrator})
-	public GwtProject createProject(GwtProject newProject) throws SquareException
+	public GwtProject createProject(GwtProject newProject, List<GwtTerm> terms) throws SquareException
 	{		
 		User acquisitionOrganizationEngineer = userDao.fetch(newProject.getAcquisitionOrganizationEngineer().getUserId());
 		
@@ -480,6 +480,11 @@ public class ManageProjectBusinessImpl extends BaseBusinessImpl implements Manag
 		// Create the steps
 		stepBusiness.createStepsForProject(newProject);
 
+		 if (terms != null)
+		 {
+			 termsBusiness.loadDefaultTerms(newProject.getId(), terms);
+		 }
+ 
 		// Add the lead requirement engineer to project and assigned the role.
 		GwtRole role = new GwtRole();
 		role.setName(ProjectRole.Acquisition_Organization_Engineer.getLabel());
@@ -1412,6 +1417,10 @@ public class ManageProjectBusinessImpl extends BaseBusinessImpl implements Manag
 	  public void copySteps(Project project) {
 	    stepBusiness.createStepsForProject(project.createGwtProject());
 	  }
+
+
+	
+
 
 	 
 	

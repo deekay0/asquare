@@ -125,6 +125,6 @@ public interface ManageProjectBusiness  extends BaseBusinessInterface {
 	 
 	 //List<GwtInspectionTechnique> findDefaultInspectionTechniques(Document defaultValuesProjectXMLDocument);
 	
-	 GwtProject copyProject(GwtProject originalProject) throws SquareException;
+	GwtProject copyProject(GwtProject originalProject) throws SquareException;
 	
 }
