@@ -485,6 +485,7 @@ public class ManageProjectBusinessImpl extends BaseBusinessImpl implements Manag
 			 termsBusiness.loadDefaultTerms(newProject.getId(), terms);
 		 }
  
+
 		// Add the lead requirement engineer to project and assigned the role.
 		GwtRole role = new GwtRole();
 		role.setName(ProjectRole.Acquisition_Organization_Engineer.getLabel());
