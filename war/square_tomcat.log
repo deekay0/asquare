@@ -1,0 +1,538 @@
+INFO btpool0-0 edu.cmu.square.server.remoteService.implementations.SquareRemoteServiceServlet - ----Session Value name: 5e2d3189-d0f8-4269-b3e4-7ba92a18fca3
+INFO btpool0-0 edu.cmu.square.server.remoteService.implementations.SquareRemoteServiceServlet - Session Expired: false
+INFO btpool0-0 edu.cmu.square.server.remoteService.implementations.SquareRemoteServiceServlet - Setting project name: 
+INFO btpool0-0 edu.cmu.square.server.remoteService.implementations.SquareRemoteServiceServlet - Setting user name: admin
+INFO btpool0-0 edu.cmu.square.server.remoteService.implementations.SquareRemoteServiceServlet - Setting user name: admin
+INFO btpool0-0 edu.cmu.square.server.authorization.AuthorizationAspect - User name: admin
+INFO btpool0-0 edu.cmu.square.server.authorization.AuthorizationAspect - Project name: 
+INFO btpool0-0 edu.cmu.square.server.authorization.AuthorizationAspect - allowedRoles: [Administrator]
+INFO btpool0-0 edu.cmu.square.server.authorization.AuthorizationAspect - user roles [Administrator]
+INFO btpool0-0 edu.cmu.square.server.authorization.AuthorizationAspect - Aspect triggered expired from aspect:false execution(copyProject)
+ERROR btpool0-0 edu.cmu.square.server.authorization.ExceptionAspect - Handling serviceException org.hibernate.exception.ConstraintViolationException: could not insert: [edu.cmu.square.server.dao.model.Project]
+INFO main org.springframework.web.context.ContextLoader - Root WebApplicationContext: initialization started
+INFO main org.springframework.web.context.support.XmlWebApplicationContext - Refreshing org.springframework.web.context.support.XmlWebApplicationContext@e0cc23: display name [Root WebApplicationContext]; startup date [Tue Aug 02 18:52:14 KST 2011]; root of context hierarchy
+INFO main org.springframework.beans.factory.xml.XmlBeanDefinitionReader - Loading XML bean definitions from file [C:\Users\tae\test\asquare\war\WEB-INF\classes\applicationContext-hibernate.xml]
+INFO main org.springframework.beans.factory.xml.XmlBeanDefinitionReader - Loading XML bean definitions from file [C:\Users\tae\test\asquare\war\WEB-INF\classes\applicationContext-jdbc.xml]
+INFO main org.springframework.web.context.support.XmlWebApplicationContext - Bean factory for application context [org.springframework.web.context.support.XmlWebApplicationContext@e0cc23]: org.springframework.beans.factory.support.DefaultListableBeanFactory@1dee400
+INFO main org.springframework.beans.factory.config.PropertyPlaceholderConfigurer - Loading properties file from class path resource [square.properties]
+INFO main org.springframework.beans.factory.support.DefaultListableBeanFactory - Pre-instantiating singletons in org.springframework.beans.factory.support.DefaultListableBeanFactory@1dee400: defining beans [org.springframework.context.annotation.internalPersistenceAnnotationProcessor,org.springframework.context.annotation.internalCommonAnnotationProcessor,org.springframework.context.annotation.internalAutowiredAnnotationProcessor,org.springframework.context.annotation.internalRequiredAnnotationProcessor,authorizationAspect,exceptionAspect,chooseCaseBusinessImpl,chooseProjectBusinessImpl,exportBusinessImpl,logInBusinessImpl,manageProjectBusinessImpl,manageSiteBusinessImpl,stepBusinessImpl,uploadRequirementsBusinessImpl,agreeOnDefinitionsBusinessImpl,categorizeRequirementsBusinessImpl,collectArtifactsBusinessImpl,elicitationTechniqueBusinessImpl,elicitRequirementsBusinessImpl,finalProductSelectionBusinessImpl,identifyGoalsAssetsBusinessImpl,inspectionTechniqueBusinessImpl,performTradeoffAnalysisBusinessImpl,prioritizeRequirementBusinessImpl,reviewAndFinalizeRequirementsBusinessImpl,reviewOfRequirementsByAcquisitionBusinessImpl,reviewPackagesBusinessImpl,riskAssessmentBusinessImpl,hbnArtifactDao,hbnAsquareCaseDao,hbnAssetDao,hbnCategoryDao,hbnGoalDao,hbnInspectionTechniqueDao,hbnMappingDao,hbnProjectDao,hbnProjectPackageAttributeRatingDao,hbnProjectPackageRequirementRatingDao,hbnProjectStepDao,hbnQualityAttributeDao,hbnRationaleDao,hbnRequirementDao,hbnRiskDao,hbnRoleDao,hbnSoftwarePackageDao,hbnStepDao,hbnTechniqueDao,hbnTechniqueEvaluationCriteriaDao,hbnTechniqueEvaluationDao,hbnTermDao,hbnTradeoffReasonDao,hbnUserAhpDao,hbnUserDao,hbnUserProjectRoleDao,appPropertiesServiceImpl,chooseCaseServiceImpl,chooseProjectServiceImpl,LogInService,manageProjectServiceImpl,manageSiteServiceImpl,stepServiceImpl,agreeOnDefinitionsServiceImpl,categorizeRequirementsServiceImpl,collectArtifactsServiceImpl,elicitationTechniqueServiceImpl,elicitRequirementServiceImpl,finalProductSelectionServiceImpl,identifyGoalsAssetsServiceImpl,inspectionTechniqueServiceImpl,performTradeoffAnalysisServiceImpl,prioritizeRequirementsServiceImpl,reviewAndFinalizeRequirementsServiceImpl,reviewOfRequirementsByAcquisitionServiceImpl,reviewPackagesServiceImpl,riskAssessmentServiceImpl,xmlExportServlet,org.springframework.aop.config.internalAutoProxyCreator,org.springframework.transaction.annotation.AnnotationTransactionAttributeSource#0,org.springframework.transaction.interceptor.TransactionInterceptor#0,org.springframework.transaction.config.internalTransactionAdvisor,transactionManager,sessionFactory,mailSender,resetPasswordTemplateEmail,userCreatedMessage,velocityEngine,org.springframework.beans.factory.config.PropertyPlaceholderConfigurer#0,dataSource]; root of factory hierarchy
+INFO main org.springframework.jdbc.datasource.DriverManagerDataSource - Loaded JDBC driver: com.mysql.jdbc.Driver
+INFO main org.springframework.orm.hibernate3.annotation.AnnotationSessionFactoryBean - Building new Hibernate SessionFactory
+INFO main org.apache.velocity.app.VelocityEngine - LogSystem has been deprecated. Please use a LogChute implementation.
+INFO main org.springframework.orm.hibernate3.HibernateTransactionManager - Using DataSource [org.springframework.jdbc.datasource.DriverManagerDataSource@53f0a8] of Hibernate SessionFactory for HibernateTransactionManager
+INFO main org.springframework.web.context.ContextLoader - Root WebApplicationContext: initialization completed in 10714 ms
+INFO btpool0-0 edu.cmu.square.server.remoteService.implementations.SquareRemoteServiceServlet - Session Expired: true
+INFO btpool0-0 edu.cmu.square.server.remoteService.implementations.SquareRemoteServiceServlet - Setting project name: 
+INFO btpool0-0 edu.cmu.square.server.remoteService.implementations.SquareRemoteServiceServlet - Setting user name: anonymous
+INFO btpool0-0 edu.cmu.square.server.remoteService.implementations.SquareRemoteServiceServlet - Setting user name: anonymous
+INFO btpool0-0 edu.cmu.square.server.remoteService.implementations.SquareRemoteServiceServlet - Session Expired: true
+INFO btpool0-0 edu.cmu.square.server.remoteService.implementations.SquareRemoteServiceServlet - Setting project name: 
+INFO btpool0-0 edu.cmu.square.server.remoteService.implementations.SquareRemoteServiceServlet - Setting user name: anonymous
+INFO btpool0-0 edu.cmu.square.server.remoteService.implementations.SquareRemoteServiceServlet - Setting user name: anonymous
+INFO btpool0-0 edu.cmu.square.server.remoteService.implementations.SquareRemoteServiceServlet - ----Session Value name: 31dc23c6-ecda-40cc-bff6-5493a962b6e1
+INFO btpool0-0 edu.cmu.square.server.remoteService.implementations.SquareRemoteServiceServlet - ----Session Value name: 31dc23c6-ecda-40cc-bff6-5493a962b6e1
+INFO btpool0-0 edu.cmu.square.server.remoteService.implementations.SquareRemoteServiceServlet - Session Expired: false
+INFO btpool0-0 edu.cmu.square.server.remoteService.implementations.SquareRemoteServiceServlet - Setting project name: 
+INFO btpool0-0 edu.cmu.square.server.remoteService.implementations.SquareRemoteServiceServlet - Setting user name: admin
+INFO btpool0-0 edu.cmu.square.server.remoteService.implementations.SquareRemoteServiceServlet - Setting user name: admin
+INFO btpool0-0 edu.cmu.square.server.authorization.AuthorizationAspect - User name: admin
+INFO btpool0-0 edu.cmu.square.server.authorization.AuthorizationAspect - Project name: 
+INFO btpool0-0 edu.cmu.square.server.authorization.AuthorizationAspect - allowedRoles: [All]
+INFO btpool0-0 edu.cmu.square.server.authorization.AuthorizationAspect - Aspect triggered expired from aspect:false execution(getAsquareCases)
+INFO btpool0-0 edu.cmu.square.server.business.implementation.ChooseProjectBusinessImpl - Calling getAsquareCases
+INFO btpool0-0 edu.cmu.square.server.remoteService.implementations.SquareRemoteServiceServlet - ----Session Value name: 31dc23c6-ecda-40cc-bff6-5493a962b6e1
+INFO btpool0-0 edu.cmu.square.server.remoteService.implementations.SquareRemoteServiceServlet - ----Session Value name: 31dc23c6-ecda-40cc-bff6-5493a962b6e1
+INFO btpool0-0 edu.cmu.square.server.remoteService.implementations.SquareRemoteServiceServlet - Session Expired: false
+INFO btpool0-0 edu.cmu.square.server.remoteService.implementations.SquareRemoteServiceServlet - Setting project name: 
+INFO btpool0-0 edu.cmu.square.server.remoteService.implementations.SquareRemoteServiceServlet - Setting user name: admin
+INFO btpool0-0 edu.cmu.square.server.remoteService.implementations.SquareRemoteServiceServlet - Setting user name: admin
+INFO btpool0-0 edu.cmu.square.server.authorization.AuthorizationAspect - User name: admin
+INFO btpool0-0 edu.cmu.square.server.authorization.AuthorizationAspect - Project name: 
+INFO btpool0-0 edu.cmu.square.server.authorization.AuthorizationAspect - allowedRoles: [All]
+INFO btpool0-0 edu.cmu.square.server.authorization.AuthorizationAspect - Aspect triggered expired from aspect:false execution(getAllUsers)
+INFO btpool0-0 edu.cmu.square.server.remoteService.implementations.SquareRemoteServiceServlet - ----Session Value name: 31dc23c6-ecda-40cc-bff6-5493a962b6e1
+INFO btpool0-0 edu.cmu.square.server.remoteService.implementations.SquareRemoteServiceServlet - ----Session Value name: 31dc23c6-ecda-40cc-bff6-5493a962b6e1
+INFO btpool0-0 edu.cmu.square.server.remoteService.implementations.SquareRemoteServiceServlet - Session Expired: false
+INFO btpool0-0 edu.cmu.square.server.remoteService.implementations.SquareRemoteServiceServlet - Setting project name: 
+INFO btpool0-0 edu.cmu.square.server.remoteService.implementations.SquareRemoteServiceServlet - Setting user name: admin
+INFO btpool0-0 edu.cmu.square.server.remoteService.implementations.SquareRemoteServiceServlet - Setting user name: admin
+INFO btpool0-0 edu.cmu.square.server.authorization.AuthorizationAspect - User name: admin
+INFO btpool0-0 edu.cmu.square.server.authorization.AuthorizationAspect - Project name: 
+INFO btpool0-0 edu.cmu.square.server.authorization.AuthorizationAspect - allowedRoles: [Administrator, Acquisition_Organization_Engineer]
+INFO btpool0-0 edu.cmu.square.server.authorization.AuthorizationAspect - user roles [Administrator]
+INFO btpool0-0 edu.cmu.square.server.authorization.AuthorizationAspect - Aspect triggered expired from aspect:false execution(getAllProjects)
+INFO btpool0-0 edu.cmu.square.server.remoteService.implementations.SquareRemoteServiceServlet - ----Session Value name: 31dc23c6-ecda-40cc-bff6-5493a962b6e1
+INFO btpool0-0 edu.cmu.square.server.remoteService.implementations.SquareRemoteServiceServlet - ----Session Value name: 31dc23c6-ecda-40cc-bff6-5493a962b6e1
+INFO btpool0-0 edu.cmu.square.server.remoteService.implementations.SquareRemoteServiceServlet - Session Expired: false
+INFO btpool0-0 edu.cmu.square.server.remoteService.implementations.SquareRemoteServiceServlet - Setting project name: 
+INFO btpool0-0 edu.cmu.square.server.remoteService.implementations.SquareRemoteServiceServlet - Setting user name: admin
+INFO btpool0-0 edu.cmu.square.server.remoteService.implementations.SquareRemoteServiceServlet - Setting user name: admin
+INFO btpool0-0 edu.cmu.square.server.authorization.AuthorizationAspect - User name: admin
+INFO btpool0-0 edu.cmu.square.server.authorization.AuthorizationAspect - Project name: 
+INFO btpool0-0 edu.cmu.square.server.authorization.AuthorizationAspect - allowedRoles: [Administrator]
+INFO btpool0-0 edu.cmu.square.server.authorization.AuthorizationAspect - user roles [Administrator]
+INFO btpool0-0 edu.cmu.square.server.authorization.AuthorizationAspect - Aspect triggered expired from aspect:false execution(copyProject)
+ERROR btpool0-0 edu.cmu.square.server.authorization.ExceptionAspect - Handling serviceException org.hibernate.exception.ConstraintViolationException: could not insert: [edu.cmu.square.server.dao.model.Project]
+INFO main org.springframework.web.context.ContextLoader - Root WebApplicationContext: initialization started
+INFO main org.springframework.web.context.support.XmlWebApplicationContext - Refreshing org.springframework.web.context.support.XmlWebApplicationContext@11ca803: display name [Root WebApplicationContext]; startup date [Tue Aug 02 19:00:59 KST 2011]; root of context hierarchy
+INFO main org.springframework.beans.factory.xml.XmlBeanDefinitionReader - Loading XML bean definitions from file [C:\Users\tae\test\asquare\war\WEB-INF\classes\applicationContext-hibernate.xml]
+INFO main org.springframework.beans.factory.xml.XmlBeanDefinitionReader - Loading XML bean definitions from file [C:\Users\tae\test\asquare\war\WEB-INF\classes\applicationContext-jdbc.xml]
+INFO main org.springframework.web.context.support.XmlWebApplicationContext - Bean factory for application context [org.springframework.web.context.support.XmlWebApplicationContext@11ca803]: org.springframework.beans.factory.support.DefaultListableBeanFactory@1dee400
+INFO main org.springframework.beans.factory.config.PropertyPlaceholderConfigurer - Loading properties file from class path resource [square.properties]
+INFO main org.springframework.beans.factory.support.DefaultListableBeanFactory - Pre-instantiating singletons in org.springframework.beans.factory.support.DefaultListableBeanFactory@1dee400: defining beans [org.springframework.context.annotation.internalPersistenceAnnotationProcessor,org.springframework.context.annotation.internalCommonAnnotationProcessor,org.springframework.context.annotation.internalAutowiredAnnotationProcessor,org.springframework.context.annotation.internalRequiredAnnotationProcessor,authorizationAspect,exceptionAspect,chooseCaseBusinessImpl,chooseProjectBusinessImpl,exportBusinessImpl,logInBusinessImpl,manageProjectBusinessImpl,manageSiteBusinessImpl,stepBusinessImpl,uploadRequirementsBusinessImpl,agreeOnDefinitionsBusinessImpl,categorizeRequirementsBusinessImpl,collectArtifactsBusinessImpl,elicitationTechniqueBusinessImpl,elicitRequirementsBusinessImpl,finalProductSelectionBusinessImpl,identifyGoalsAssetsBusinessImpl,inspectionTechniqueBusinessImpl,performTradeoffAnalysisBusinessImpl,prioritizeRequirementBusinessImpl,reviewAndFinalizeRequirementsBusinessImpl,reviewOfRequirementsByAcquisitionBusinessImpl,reviewPackagesBusinessImpl,riskAssessmentBusinessImpl,hbnArtifactDao,hbnAsquareCaseDao,hbnAssetDao,hbnCategoryDao,hbnGoalDao,hbnInspectionTechniqueDao,hbnMappingDao,hbnProjectDao,hbnProjectPackageAttributeRatingDao,hbnProjectPackageRequirementRatingDao,hbnProjectStepDao,hbnQualityAttributeDao,hbnRationaleDao,hbnRequirementDao,hbnRiskDao,hbnRoleDao,hbnSoftwarePackageDao,hbnStepDao,hbnTechniqueDao,hbnTechniqueEvaluationCriteriaDao,hbnTechniqueEvaluationDao,hbnTermDao,hbnTradeoffReasonDao,hbnUserAhpDao,hbnUserDao,hbnUserProjectRoleDao,appPropertiesServiceImpl,chooseCaseServiceImpl,chooseProjectServiceImpl,LogInService,manageProjectServiceImpl,manageSiteServiceImpl,stepServiceImpl,agreeOnDefinitionsServiceImpl,categorizeRequirementsServiceImpl,collectArtifactsServiceImpl,elicitationTechniqueServiceImpl,elicitRequirementServiceImpl,finalProductSelectionServiceImpl,identifyGoalsAssetsServiceImpl,inspectionTechniqueServiceImpl,performTradeoffAnalysisServiceImpl,prioritizeRequirementsServiceImpl,reviewAndFinalizeRequirementsServiceImpl,reviewOfRequirementsByAcquisitionServiceImpl,reviewPackagesServiceImpl,riskAssessmentServiceImpl,xmlExportServlet,org.springframework.aop.config.internalAutoProxyCreator,org.springframework.transaction.annotation.AnnotationTransactionAttributeSource#0,org.springframework.transaction.interceptor.TransactionInterceptor#0,org.springframework.transaction.config.internalTransactionAdvisor,transactionManager,sessionFactory,mailSender,resetPasswordTemplateEmail,userCreatedMessage,velocityEngine,org.springframework.beans.factory.config.PropertyPlaceholderConfigurer#0,dataSource]; root of factory hierarchy
+INFO main org.springframework.jdbc.datasource.DriverManagerDataSource - Loaded JDBC driver: com.mysql.jdbc.Driver
+INFO main org.springframework.orm.hibernate3.annotation.AnnotationSessionFactoryBean - Building new Hibernate SessionFactory
+INFO main org.apache.velocity.app.VelocityEngine - LogSystem has been deprecated. Please use a LogChute implementation.
+INFO main org.springframework.orm.hibernate3.HibernateTransactionManager - Using DataSource [org.springframework.jdbc.datasource.DriverManagerDataSource@53f0a8] of Hibernate SessionFactory for HibernateTransactionManager
+INFO main org.springframework.web.context.ContextLoader - Root WebApplicationContext: initialization completed in 10841 ms
+INFO main org.springframework.web.context.ContextLoader - Root WebApplicationContext: initialization started
+INFO main org.springframework.web.context.support.XmlWebApplicationContext - Refreshing org.springframework.web.context.support.XmlWebApplicationContext@5e13ad: display name [Root WebApplicationContext]; startup date [Tue Aug 02 19:03:36 KST 2011]; root of context hierarchy
+INFO main org.springframework.beans.factory.xml.XmlBeanDefinitionReader - Loading XML bean definitions from file [C:\Users\tae\test\asquare\war\WEB-INF\classes\applicationContext-hibernate.xml]
+INFO main org.springframework.beans.factory.xml.XmlBeanDefinitionReader - Loading XML bean definitions from file [C:\Users\tae\test\asquare\war\WEB-INF\classes\applicationContext-jdbc.xml]
+INFO main org.springframework.web.context.support.XmlWebApplicationContext - Bean factory for application context [org.springframework.web.context.support.XmlWebApplicationContext@5e13ad]: org.springframework.beans.factory.support.DefaultListableBeanFactory@d75415
+INFO main org.springframework.beans.factory.config.PropertyPlaceholderConfigurer - Loading properties file from class path resource [square.properties]
+INFO main org.springframework.beans.factory.support.DefaultListableBeanFactory - Pre-instantiating singletons in org.springframework.beans.factory.support.DefaultListableBeanFactory@d75415: defining beans [org.springframework.context.annotation.internalPersistenceAnnotationProcessor,org.springframework.context.annotation.internalCommonAnnotationProcessor,org.springframework.context.annotation.internalAutowiredAnnotationProcessor,org.springframework.context.annotation.internalRequiredAnnotationProcessor,authorizationAspect,exceptionAspect,chooseCaseBusinessImpl,chooseProjectBusinessImpl,exportBusinessImpl,logInBusinessImpl,manageProjectBusinessImpl,manageSiteBusinessImpl,stepBusinessImpl,uploadRequirementsBusinessImpl,agreeOnDefinitionsBusinessImpl,categorizeRequirementsBusinessImpl,collectArtifactsBusinessImpl,elicitationTechniqueBusinessImpl,elicitRequirementsBusinessImpl,finalProductSelectionBusinessImpl,identifyGoalsAssetsBusinessImpl,inspectionTechniqueBusinessImpl,performTradeoffAnalysisBusinessImpl,prioritizeRequirementBusinessImpl,reviewAndFinalizeRequirementsBusinessImpl,reviewOfRequirementsByAcquisitionBusinessImpl,reviewPackagesBusinessImpl,riskAssessmentBusinessImpl,hbnArtifactDao,hbnAsquareCaseDao,hbnAssetDao,hbnCategoryDao,hbnGoalDao,hbnInspectionTechniqueDao,hbnMappingDao,hbnProjectDao,hbnProjectPackageAttributeRatingDao,hbnProjectPackageRequirementRatingDao,hbnProjectStepDao,hbnQualityAttributeDao,hbnRationaleDao,hbnRequirementDao,hbnRiskDao,hbnRoleDao,hbnSoftwarePackageDao,hbnStepDao,hbnTechniqueDao,hbnTechniqueEvaluationCriteriaDao,hbnTechniqueEvaluationDao,hbnTermDao,hbnTradeoffReasonDao,hbnUserAhpDao,hbnUserDao,hbnUserProjectRoleDao,appPropertiesServiceImpl,chooseCaseServiceImpl,chooseProjectServiceImpl,LogInService,manageProjectServiceImpl,manageSiteServiceImpl,stepServiceImpl,agreeOnDefinitionsServiceImpl,categorizeRequirementsServiceImpl,collectArtifactsServiceImpl,elicitationTechniqueServiceImpl,elicitRequirementServiceImpl,finalProductSelectionServiceImpl,identifyGoalsAssetsServiceImpl,inspectionTechniqueServiceImpl,performTradeoffAnalysisServiceImpl,prioritizeRequirementsServiceImpl,reviewAndFinalizeRequirementsServiceImpl,reviewOfRequirementsByAcquisitionServiceImpl,reviewPackagesServiceImpl,riskAssessmentServiceImpl,xmlExportServlet,org.springframework.aop.config.internalAutoProxyCreator,org.springframework.transaction.annotation.AnnotationTransactionAttributeSource#0,org.springframework.transaction.interceptor.TransactionInterceptor#0,org.springframework.transaction.config.internalTransactionAdvisor,transactionManager,sessionFactory,mailSender,resetPasswordTemplateEmail,userCreatedMessage,velocityEngine,org.springframework.beans.factory.config.PropertyPlaceholderConfigurer#0,dataSource]; root of factory hierarchy
+INFO main org.springframework.jdbc.datasource.DriverManagerDataSource - Loaded JDBC driver: com.mysql.jdbc.Driver
+INFO main org.springframework.orm.hibernate3.annotation.AnnotationSessionFactoryBean - Building new Hibernate SessionFactory
+INFO main org.apache.velocity.app.VelocityEngine - LogSystem has been deprecated. Please use a LogChute implementation.
+INFO main org.springframework.orm.hibernate3.HibernateTransactionManager - Using DataSource [org.springframework.jdbc.datasource.DriverManagerDataSource@1ad093c] of Hibernate SessionFactory for HibernateTransactionManager
+INFO main org.springframework.web.context.ContextLoader - Root WebApplicationContext: initialization completed in 11028 ms
+INFO btpool0-0 edu.cmu.square.server.remoteService.implementations.SquareRemoteServiceServlet - Session Expired: true
+INFO btpool0-0 edu.cmu.square.server.remoteService.implementations.SquareRemoteServiceServlet - Setting project name: 
+INFO btpool0-0 edu.cmu.square.server.remoteService.implementations.SquareRemoteServiceServlet - Setting user name: anonymous
+INFO btpool0-0 edu.cmu.square.server.remoteService.implementations.SquareRemoteServiceServlet - Setting user name: anonymous
+INFO btpool0-0 edu.cmu.square.server.remoteService.implementations.SquareRemoteServiceServlet - Session Expired: true
+INFO btpool0-0 edu.cmu.square.server.remoteService.implementations.SquareRemoteServiceServlet - Setting project name: 
+INFO btpool0-0 edu.cmu.square.server.remoteService.implementations.SquareRemoteServiceServlet - Setting user name: anonymous
+INFO btpool0-0 edu.cmu.square.server.remoteService.implementations.SquareRemoteServiceServlet - Setting user name: anonymous
+INFO btpool0-0 edu.cmu.square.server.remoteService.implementations.SquareRemoteServiceServlet - ----Session Value name: 1d802e27-12e1-4d7c-9800-cfdce9c03e9f
+INFO btpool0-0 edu.cmu.square.server.remoteService.implementations.SquareRemoteServiceServlet - ----Session Value name: 1d802e27-12e1-4d7c-9800-cfdce9c03e9f
+INFO btpool0-0 edu.cmu.square.server.remoteService.implementations.SquareRemoteServiceServlet - Session Expired: false
+INFO btpool0-0 edu.cmu.square.server.remoteService.implementations.SquareRemoteServiceServlet - Setting project name: 
+INFO btpool0-0 edu.cmu.square.server.remoteService.implementations.SquareRemoteServiceServlet - Setting user name: admin
+INFO btpool0-0 edu.cmu.square.server.remoteService.implementations.SquareRemoteServiceServlet - Setting user name: admin
+INFO btpool0-0 edu.cmu.square.server.authorization.AuthorizationAspect - User name: admin
+INFO btpool0-0 edu.cmu.square.server.authorization.AuthorizationAspect - Project name: 
+INFO btpool0-0 edu.cmu.square.server.authorization.AuthorizationAspect - allowedRoles: [All]
+INFO btpool0-0 edu.cmu.square.server.authorization.AuthorizationAspect - Aspect triggered expired from aspect:false execution(getAsquareCases)
+INFO btpool0-0 edu.cmu.square.server.business.implementation.ChooseProjectBusinessImpl - Calling getAsquareCases
+INFO btpool0-0 edu.cmu.square.server.remoteService.implementations.SquareRemoteServiceServlet - ----Session Value name: 1d802e27-12e1-4d7c-9800-cfdce9c03e9f
+INFO btpool0-0 edu.cmu.square.server.remoteService.implementations.SquareRemoteServiceServlet - ----Session Value name: 1d802e27-12e1-4d7c-9800-cfdce9c03e9f
+INFO btpool0-0 edu.cmu.square.server.remoteService.implementations.SquareRemoteServiceServlet - Session Expired: false
+INFO btpool0-0 edu.cmu.square.server.remoteService.implementations.SquareRemoteServiceServlet - Setting project name: 
+INFO btpool0-0 edu.cmu.square.server.remoteService.implementations.SquareRemoteServiceServlet - Setting user name: admin
+INFO btpool0-0 edu.cmu.square.server.remoteService.implementations.SquareRemoteServiceServlet - Setting user name: admin
+INFO btpool0-0 edu.cmu.square.server.authorization.AuthorizationAspect - User name: admin
+INFO btpool0-0 edu.cmu.square.server.authorization.AuthorizationAspect - Project name: 
+INFO btpool0-0 edu.cmu.square.server.authorization.AuthorizationAspect - allowedRoles: [All]
+INFO btpool0-0 edu.cmu.square.server.authorization.AuthorizationAspect - Aspect triggered expired from aspect:false execution(getAllUsers)
+INFO btpool0-0 edu.cmu.square.server.remoteService.implementations.SquareRemoteServiceServlet - ----Session Value name: 1d802e27-12e1-4d7c-9800-cfdce9c03e9f
+INFO btpool0-0 edu.cmu.square.server.remoteService.implementations.SquareRemoteServiceServlet - ----Session Value name: 1d802e27-12e1-4d7c-9800-cfdce9c03e9f
+INFO btpool0-0 edu.cmu.square.server.remoteService.implementations.SquareRemoteServiceServlet - Session Expired: false
+INFO btpool0-0 edu.cmu.square.server.remoteService.implementations.SquareRemoteServiceServlet - Setting project name: 
+INFO btpool0-0 edu.cmu.square.server.remoteService.implementations.SquareRemoteServiceServlet - Setting user name: admin
+INFO btpool0-0 edu.cmu.square.server.remoteService.implementations.SquareRemoteServiceServlet - Setting user name: admin
+INFO btpool0-0 edu.cmu.square.server.authorization.AuthorizationAspect - User name: admin
+INFO btpool0-0 edu.cmu.square.server.authorization.AuthorizationAspect - Project name: 
+INFO btpool0-0 edu.cmu.square.server.authorization.AuthorizationAspect - allowedRoles: [Administrator, Acquisition_Organization_Engineer]
+INFO btpool0-0 edu.cmu.square.server.authorization.AuthorizationAspect - user roles [Administrator]
+INFO btpool0-0 edu.cmu.square.server.authorization.AuthorizationAspect - Aspect triggered expired from aspect:false execution(getAllProjects)
+INFO btpool0-0 edu.cmu.square.server.remoteService.implementations.SquareRemoteServiceServlet - ----Session Value name: 1d802e27-12e1-4d7c-9800-cfdce9c03e9f
+INFO btpool0-0 edu.cmu.square.server.remoteService.implementations.SquareRemoteServiceServlet - ----Session Value name: 1d802e27-12e1-4d7c-9800-cfdce9c03e9f
+INFO btpool0-0 edu.cmu.square.server.remoteService.implementations.SquareRemoteServiceServlet - Session Expired: false
+INFO btpool0-0 edu.cmu.square.server.remoteService.implementations.SquareRemoteServiceServlet - Setting project name: 
+INFO btpool0-0 edu.cmu.square.server.remoteService.implementations.SquareRemoteServiceServlet - Setting user name: admin
+INFO btpool0-0 edu.cmu.square.server.remoteService.implementations.SquareRemoteServiceServlet - Setting user name: admin
+INFO btpool0-0 edu.cmu.square.server.authorization.AuthorizationAspect - User name: admin
+INFO btpool0-0 edu.cmu.square.server.authorization.AuthorizationAspect - Project name: 
+INFO btpool0-0 edu.cmu.square.server.authorization.AuthorizationAspect - allowedRoles: [Administrator]
+INFO btpool0-0 edu.cmu.square.server.authorization.AuthorizationAspect - user roles [Administrator]
+INFO btpool0-0 edu.cmu.square.server.authorization.AuthorizationAspect - Aspect triggered expired from aspect:false execution(copyProject)
+ERROR btpool0-0 edu.cmu.square.server.authorization.ExceptionAspect - Handling serviceException org.hibernate.exception.ConstraintViolationException: could not insert: [edu.cmu.square.server.dao.model.Project]
+INFO btpool0-0 edu.cmu.square.server.remoteService.implementations.SquareRemoteServiceServlet - Session Expired: true
+INFO btpool0-0 edu.cmu.square.server.remoteService.implementations.SquareRemoteServiceServlet - Setting project name: 
+INFO btpool0-0 edu.cmu.square.server.remoteService.implementations.SquareRemoteServiceServlet - Setting user name: anonymous
+INFO btpool0-0 edu.cmu.square.server.remoteService.implementations.SquareRemoteServiceServlet - Setting user name: anonymous
+INFO btpool0-0 edu.cmu.square.server.authorization.AuthorizationAspect - User name: anonymous
+INFO btpool0-0 edu.cmu.square.server.authorization.AuthorizationAspect - Project name: 
+INFO btpool0-0 edu.cmu.square.server.authorization.AuthorizationAspect - allowedRoles: [Administrator]
+INFO btpool0-0 edu.cmu.square.server.authorization.AuthorizationAspect - user roles []
+INFO btpool0-0 edu.cmu.square.server.authorization.AuthorizationAspect - Aspect triggered expired from aspect:true execution(copyProject)
+ERROR btpool0-0 edu.cmu.square.server.authorization.AuthorizationAspect - expired from aspect: true
+ERROR btpool0-0 edu.cmu.square.server.authorization.ExceptionAspect - Handling serviceException edu.cmu.square.client.exceptions.SquareException: Session expired
+INFO btpool0-0 edu.cmu.square.server.remoteService.implementations.SquareRemoteServiceServlet - Session Expired: true
+INFO btpool0-0 edu.cmu.square.server.remoteService.implementations.SquareRemoteServiceServlet - Setting project name: 
+INFO btpool0-0 edu.cmu.square.server.remoteService.implementations.SquareRemoteServiceServlet - Setting user name: anonymous
+INFO btpool0-0 edu.cmu.square.server.remoteService.implementations.SquareRemoteServiceServlet - Setting user name: anonymous
+INFO btpool0-0 edu.cmu.square.server.remoteService.implementations.SquareRemoteServiceServlet - Session Expired: true
+INFO btpool0-0 edu.cmu.square.server.remoteService.implementations.SquareRemoteServiceServlet - Setting project name: 
+INFO btpool0-0 edu.cmu.square.server.remoteService.implementations.SquareRemoteServiceServlet - Setting user name: anonymous
+INFO btpool0-0 edu.cmu.square.server.remoteService.implementations.SquareRemoteServiceServlet - Setting user name: anonymous
+INFO btpool0-0 edu.cmu.square.server.remoteService.implementations.SquareRemoteServiceServlet - ----Session Value name: 93bcf5bb-f2f7-49f9-82af-ebbc80fc25d1
+INFO btpool0-0 edu.cmu.square.server.remoteService.implementations.SquareRemoteServiceServlet - ----Session Value name: 93bcf5bb-f2f7-49f9-82af-ebbc80fc25d1
+INFO btpool0-0 edu.cmu.square.server.remoteService.implementations.SquareRemoteServiceServlet - Session Expired: false
+INFO btpool0-0 edu.cmu.square.server.remoteService.implementations.SquareRemoteServiceServlet - Setting project name: 
+INFO btpool0-0 edu.cmu.square.server.remoteService.implementations.SquareRemoteServiceServlet - Setting user name: admin
+INFO btpool0-0 edu.cmu.square.server.remoteService.implementations.SquareRemoteServiceServlet - Setting user name: admin
+INFO btpool0-0 edu.cmu.square.server.authorization.AuthorizationAspect - User name: admin
+INFO btpool0-0 edu.cmu.square.server.authorization.AuthorizationAspect - Project name: 
+INFO btpool0-0 edu.cmu.square.server.authorization.AuthorizationAspect - allowedRoles: [All]
+INFO btpool0-0 edu.cmu.square.server.authorization.AuthorizationAspect - Aspect triggered expired from aspect:false execution(getAsquareCases)
+INFO btpool0-0 edu.cmu.square.server.business.implementation.ChooseProjectBusinessImpl - Calling getAsquareCases
+INFO btpool0-0 edu.cmu.square.server.remoteService.implementations.SquareRemoteServiceServlet - ----Session Value name: 93bcf5bb-f2f7-49f9-82af-ebbc80fc25d1
+INFO btpool0-0 edu.cmu.square.server.remoteService.implementations.SquareRemoteServiceServlet - ----Session Value name: 93bcf5bb-f2f7-49f9-82af-ebbc80fc25d1
+INFO btpool0-0 edu.cmu.square.server.remoteService.implementations.SquareRemoteServiceServlet - Session Expired: false
+INFO btpool0-0 edu.cmu.square.server.remoteService.implementations.SquareRemoteServiceServlet - Setting project name: 
+INFO btpool0-0 edu.cmu.square.server.remoteService.implementations.SquareRemoteServiceServlet - Setting user name: admin
+INFO btpool0-0 edu.cmu.square.server.remoteService.implementations.SquareRemoteServiceServlet - Setting user name: admin
+INFO btpool0-0 edu.cmu.square.server.authorization.AuthorizationAspect - User name: admin
+INFO btpool0-0 edu.cmu.square.server.authorization.AuthorizationAspect - Project name: 
+INFO btpool0-0 edu.cmu.square.server.authorization.AuthorizationAspect - allowedRoles: [All]
+INFO btpool0-0 edu.cmu.square.server.authorization.AuthorizationAspect - Aspect triggered expired from aspect:false execution(getAllUsers)
+INFO btpool0-0 edu.cmu.square.server.remoteService.implementations.SquareRemoteServiceServlet - ----Session Value name: 93bcf5bb-f2f7-49f9-82af-ebbc80fc25d1
+INFO btpool0-0 edu.cmu.square.server.remoteService.implementations.SquareRemoteServiceServlet - ----Session Value name: 93bcf5bb-f2f7-49f9-82af-ebbc80fc25d1
+INFO btpool0-0 edu.cmu.square.server.remoteService.implementations.SquareRemoteServiceServlet - Session Expired: false
+INFO btpool0-0 edu.cmu.square.server.remoteService.implementations.SquareRemoteServiceServlet - Setting project name: 
+INFO btpool0-0 edu.cmu.square.server.remoteService.implementations.SquareRemoteServiceServlet - Setting user name: admin
+INFO btpool0-0 edu.cmu.square.server.remoteService.implementations.SquareRemoteServiceServlet - Setting user name: admin
+INFO btpool0-0 edu.cmu.square.server.authorization.AuthorizationAspect - User name: admin
+INFO btpool0-0 edu.cmu.square.server.authorization.AuthorizationAspect - Project name: 
+INFO btpool0-0 edu.cmu.square.server.authorization.AuthorizationAspect - allowedRoles: [Administrator, Acquisition_Organization_Engineer]
+INFO btpool0-0 edu.cmu.square.server.authorization.AuthorizationAspect - user roles [Administrator]
+INFO btpool0-0 edu.cmu.square.server.authorization.AuthorizationAspect - Aspect triggered expired from aspect:false execution(getAllProjects)
+INFO btpool0-0 edu.cmu.square.server.remoteService.implementations.SquareRemoteServiceServlet - ----Session Value name: 93bcf5bb-f2f7-49f9-82af-ebbc80fc25d1
+INFO btpool0-0 edu.cmu.square.server.remoteService.implementations.SquareRemoteServiceServlet - ----Session Value name: 93bcf5bb-f2f7-49f9-82af-ebbc80fc25d1
+INFO btpool0-0 edu.cmu.square.server.remoteService.implementations.SquareRemoteServiceServlet - Session Expired: false
+INFO btpool0-0 edu.cmu.square.server.remoteService.implementations.SquareRemoteServiceServlet - Setting project name: 
+INFO btpool0-0 edu.cmu.square.server.remoteService.implementations.SquareRemoteServiceServlet - Setting user name: admin
+INFO btpool0-0 edu.cmu.square.server.remoteService.implementations.SquareRemoteServiceServlet - Setting user name: admin
+INFO btpool0-0 edu.cmu.square.server.authorization.AuthorizationAspect - User name: admin
+INFO btpool0-0 edu.cmu.square.server.authorization.AuthorizationAspect - Project name: 
+INFO btpool0-0 edu.cmu.square.server.authorization.AuthorizationAspect - allowedRoles: [Administrator]
+INFO btpool0-0 edu.cmu.square.server.authorization.AuthorizationAspect - user roles [Administrator]
+INFO btpool0-0 edu.cmu.square.server.authorization.AuthorizationAspect - Aspect triggered expired from aspect:false execution(copyProject)
+ERROR btpool0-0 edu.cmu.square.server.authorization.ExceptionAspect - Handling serviceException org.hibernate.exception.ConstraintViolationException: could not insert: [edu.cmu.square.server.dao.model.Project]
+INFO main org.springframework.web.context.ContextLoader - Root WebApplicationContext: initialization started
+INFO main org.springframework.web.context.support.XmlWebApplicationContext - Refreshing org.springframework.web.context.support.XmlWebApplicationContext@5a67c9: display name [Root WebApplicationContext]; startup date [Tue Aug 02 19:50:38 KST 2011]; root of context hierarchy
+INFO main org.springframework.beans.factory.xml.XmlBeanDefinitionReader - Loading XML bean definitions from file [C:\Users\tae\test\asquare\war\WEB-INF\classes\applicationContext-hibernate.xml]
+INFO main org.springframework.beans.factory.xml.XmlBeanDefinitionReader - Loading XML bean definitions from file [C:\Users\tae\test\asquare\war\WEB-INF\classes\applicationContext-jdbc.xml]
+INFO main org.springframework.web.context.support.XmlWebApplicationContext - Bean factory for application context [org.springframework.web.context.support.XmlWebApplicationContext@5a67c9]: org.springframework.beans.factory.support.DefaultListableBeanFactory@4ac216
+INFO main org.springframework.beans.factory.config.PropertyPlaceholderConfigurer - Loading properties file from class path resource [square.properties]
+INFO main org.springframework.beans.factory.support.DefaultListableBeanFactory - Pre-instantiating singletons in org.springframework.beans.factory.support.DefaultListableBeanFactory@4ac216: defining beans [org.springframework.context.annotation.internalPersistenceAnnotationProcessor,org.springframework.context.annotation.internalCommonAnnotationProcessor,org.springframework.context.annotation.internalAutowiredAnnotationProcessor,org.springframework.context.annotation.internalRequiredAnnotationProcessor,authorizationAspect,exceptionAspect,chooseCaseBusinessImpl,chooseProjectBusinessImpl,exportBusinessImpl,logInBusinessImpl,manageProjectBusinessImpl,manageSiteBusinessImpl,stepBusinessImpl,uploadRequirementsBusinessImpl,agreeOnDefinitionsBusinessImpl,categorizeRequirementsBusinessImpl,collectArtifactsBusinessImpl,elicitationTechniqueBusinessImpl,elicitRequirementsBusinessImpl,finalProductSelectionBusinessImpl,identifyGoalsAssetsBusinessImpl,inspectionTechniqueBusinessImpl,performTradeoffAnalysisBusinessImpl,prioritizeRequirementBusinessImpl,reviewAndFinalizeRequirementsBusinessImpl,reviewOfRequirementsByAcquisitionBusinessImpl,reviewPackagesBusinessImpl,riskAssessmentBusinessImpl,hbnArtifactDao,hbnAsquareCaseDao,hbnAssetDao,hbnCategoryDao,hbnGoalDao,hbnInspectionTechniqueDao,hbnMappingDao,hbnProjectDao,hbnProjectPackageAttributeRatingDao,hbnProjectPackageRequirementRatingDao,hbnProjectStepDao,hbnQualityAttributeDao,hbnRationaleDao,hbnRequirementDao,hbnRiskDao,hbnRoleDao,hbnSoftwarePackageDao,hbnStepDao,hbnTechniqueDao,hbnTechniqueEvaluationCriteriaDao,hbnTechniqueEvaluationDao,hbnTermDao,hbnTradeoffReasonDao,hbnUserAhpDao,hbnUserDao,hbnUserProjectRoleDao,appPropertiesServiceImpl,chooseCaseServiceImpl,chooseProjectServiceImpl,LogInService,manageProjectServiceImpl,manageSiteServiceImpl,stepServiceImpl,agreeOnDefinitionsServiceImpl,categorizeRequirementsServiceImpl,collectArtifactsServiceImpl,elicitationTechniqueServiceImpl,elicitRequirementServiceImpl,finalProductSelectionServiceImpl,identifyGoalsAssetsServiceImpl,inspectionTechniqueServiceImpl,performTradeoffAnalysisServiceImpl,prioritizeRequirementsServiceImpl,reviewAndFinalizeRequirementsServiceImpl,reviewOfRequirementsByAcquisitionServiceImpl,reviewPackagesServiceImpl,riskAssessmentServiceImpl,xmlExportServlet,org.springframework.aop.config.internalAutoProxyCreator,org.springframework.transaction.annotation.AnnotationTransactionAttributeSource#0,org.springframework.transaction.interceptor.TransactionInterceptor#0,org.springframework.transaction.config.internalTransactionAdvisor,transactionManager,sessionFactory,mailSender,resetPasswordTemplateEmail,userCreatedMessage,velocityEngine,org.springframework.beans.factory.config.PropertyPlaceholderConfigurer#0,dataSource]; root of factory hierarchy
+INFO main org.springframework.jdbc.datasource.DriverManagerDataSource - Loaded JDBC driver: com.mysql.jdbc.Driver
+INFO main org.springframework.orm.hibernate3.annotation.AnnotationSessionFactoryBean - Building new Hibernate SessionFactory
+INFO main org.apache.velocity.app.VelocityEngine - LogSystem has been deprecated. Please use a LogChute implementation.
+INFO main org.springframework.orm.hibernate3.HibernateTransactionManager - Using DataSource [org.springframework.jdbc.datasource.DriverManagerDataSource@dca7d0] of Hibernate SessionFactory for HibernateTransactionManager
+INFO main org.springframework.web.context.ContextLoader - Root WebApplicationContext: initialization completed in 10679 ms
+INFO btpool0-0 edu.cmu.square.server.remoteService.implementations.SquareRemoteServiceServlet - Session Expired: true
+INFO btpool0-0 edu.cmu.square.server.remoteService.implementations.SquareRemoteServiceServlet - Setting project name: 
+INFO btpool0-0 edu.cmu.square.server.remoteService.implementations.SquareRemoteServiceServlet - Setting user name: anonymous
+INFO btpool0-0 edu.cmu.square.server.remoteService.implementations.SquareRemoteServiceServlet - Setting user name: anonymous
+INFO btpool0-0 edu.cmu.square.server.remoteService.implementations.SquareRemoteServiceServlet - Session Expired: true
+INFO btpool0-0 edu.cmu.square.server.remoteService.implementations.SquareRemoteServiceServlet - Setting project name: 
+INFO btpool0-0 edu.cmu.square.server.remoteService.implementations.SquareRemoteServiceServlet - Setting user name: anonymous
+INFO btpool0-0 edu.cmu.square.server.remoteService.implementations.SquareRemoteServiceServlet - Setting user name: anonymous
+INFO btpool0-0 edu.cmu.square.server.remoteService.implementations.SquareRemoteServiceServlet - ----Session Value name: 5da17a5f-7fcc-432b-8806-798d76644d7a
+INFO btpool0-0 edu.cmu.square.server.remoteService.implementations.SquareRemoteServiceServlet - ----Session Value name: 5da17a5f-7fcc-432b-8806-798d76644d7a
+INFO btpool0-0 edu.cmu.square.server.remoteService.implementations.SquareRemoteServiceServlet - Session Expired: false
+INFO btpool0-0 edu.cmu.square.server.remoteService.implementations.SquareRemoteServiceServlet - Setting project name: 
+INFO btpool0-0 edu.cmu.square.server.remoteService.implementations.SquareRemoteServiceServlet - Setting user name: admin
+INFO btpool0-0 edu.cmu.square.server.remoteService.implementations.SquareRemoteServiceServlet - Setting user name: admin
+INFO btpool0-0 edu.cmu.square.server.authorization.AuthorizationAspect - User name: admin
+INFO btpool0-0 edu.cmu.square.server.authorization.AuthorizationAspect - Project name: 
+INFO btpool0-0 edu.cmu.square.server.authorization.AuthorizationAspect - allowedRoles: [All]
+INFO btpool0-0 edu.cmu.square.server.authorization.AuthorizationAspect - Aspect triggered expired from aspect:false execution(getAsquareCases)
+INFO btpool0-0 edu.cmu.square.server.business.implementation.ChooseProjectBusinessImpl - Calling getAsquareCases
+INFO btpool0-0 edu.cmu.square.server.remoteService.implementations.SquareRemoteServiceServlet - ----Session Value name: 5da17a5f-7fcc-432b-8806-798d76644d7a
+INFO btpool0-0 edu.cmu.square.server.remoteService.implementations.SquareRemoteServiceServlet - ----Session Value name: 5da17a5f-7fcc-432b-8806-798d76644d7a
+INFO btpool0-0 edu.cmu.square.server.remoteService.implementations.SquareRemoteServiceServlet - Session Expired: false
+INFO btpool0-0 edu.cmu.square.server.remoteService.implementations.SquareRemoteServiceServlet - Setting project name: 
+INFO btpool0-0 edu.cmu.square.server.remoteService.implementations.SquareRemoteServiceServlet - Setting user name: admin
+INFO btpool0-0 edu.cmu.square.server.remoteService.implementations.SquareRemoteServiceServlet - Setting user name: admin
+INFO btpool0-0 edu.cmu.square.server.authorization.AuthorizationAspect - User name: admin
+INFO btpool0-0 edu.cmu.square.server.authorization.AuthorizationAspect - Project name: 
+INFO btpool0-0 edu.cmu.square.server.authorization.AuthorizationAspect - allowedRoles: [All]
+INFO btpool0-0 edu.cmu.square.server.authorization.AuthorizationAspect - Aspect triggered expired from aspect:false execution(getAllUsers)
+INFO btpool0-0 edu.cmu.square.server.remoteService.implementations.SquareRemoteServiceServlet - ----Session Value name: 5da17a5f-7fcc-432b-8806-798d76644d7a
+INFO btpool0-0 edu.cmu.square.server.remoteService.implementations.SquareRemoteServiceServlet - ----Session Value name: 5da17a5f-7fcc-432b-8806-798d76644d7a
+INFO btpool0-0 edu.cmu.square.server.remoteService.implementations.SquareRemoteServiceServlet - Session Expired: false
+INFO btpool0-0 edu.cmu.square.server.remoteService.implementations.SquareRemoteServiceServlet - Setting project name: 
+INFO btpool0-0 edu.cmu.square.server.remoteService.implementations.SquareRemoteServiceServlet - Setting user name: admin
+INFO btpool0-0 edu.cmu.square.server.remoteService.implementations.SquareRemoteServiceServlet - Setting user name: admin
+INFO btpool0-0 edu.cmu.square.server.authorization.AuthorizationAspect - User name: admin
+INFO btpool0-0 edu.cmu.square.server.authorization.AuthorizationAspect - Project name: 
+INFO btpool0-0 edu.cmu.square.server.authorization.AuthorizationAspect - allowedRoles: [Administrator, Acquisition_Organization_Engineer]
+INFO btpool0-0 edu.cmu.square.server.authorization.AuthorizationAspect - user roles [Administrator]
+INFO btpool0-0 edu.cmu.square.server.authorization.AuthorizationAspect - Aspect triggered expired from aspect:false execution(getAllProjects)
+INFO btpool0-0 edu.cmu.square.server.remoteService.implementations.SquareRemoteServiceServlet - ----Session Value name: 5da17a5f-7fcc-432b-8806-798d76644d7a
+INFO btpool0-0 edu.cmu.square.server.remoteService.implementations.SquareRemoteServiceServlet - ----Session Value name: 5da17a5f-7fcc-432b-8806-798d76644d7a
+INFO btpool0-0 edu.cmu.square.server.remoteService.implementations.SquareRemoteServiceServlet - Session Expired: false
+INFO btpool0-0 edu.cmu.square.server.remoteService.implementations.SquareRemoteServiceServlet - Setting project name: 
+INFO btpool0-0 edu.cmu.square.server.remoteService.implementations.SquareRemoteServiceServlet - Setting user name: admin
+INFO btpool0-0 edu.cmu.square.server.remoteService.implementations.SquareRemoteServiceServlet - Setting user name: admin
+INFO btpool0-0 edu.cmu.square.server.authorization.AuthorizationAspect - User name: admin
+INFO btpool0-0 edu.cmu.square.server.authorization.AuthorizationAspect - Project name: 
+INFO btpool0-0 edu.cmu.square.server.authorization.AuthorizationAspect - allowedRoles: [Administrator]
+INFO btpool0-0 edu.cmu.square.server.authorization.AuthorizationAspect - user roles [Administrator]
+INFO btpool0-0 edu.cmu.square.server.authorization.AuthorizationAspect - Aspect triggered expired from aspect:false execution(copyProject)
+ERROR btpool0-0 edu.cmu.square.server.authorization.ExceptionAspect - Handling serviceException org.hibernate.exception.ConstraintViolationException: could not insert: [edu.cmu.square.server.dao.model.Project]
+INFO btpool0-0 edu.cmu.square.server.remoteService.implementations.SquareRemoteServiceServlet - ----Session Value name: 5da17a5f-7fcc-432b-8806-798d76644d7a
+INFO btpool0-0 edu.cmu.square.server.remoteService.implementations.SquareRemoteServiceServlet - ----Session Value name: 5da17a5f-7fcc-432b-8806-798d76644d7a
+INFO btpool0-0 edu.cmu.square.server.remoteService.implementations.SquareRemoteServiceServlet - Session Expired: false
+INFO btpool0-0 edu.cmu.square.server.remoteService.implementations.SquareRemoteServiceServlet - Setting project name: 
+INFO btpool0-0 edu.cmu.square.server.remoteService.implementations.SquareRemoteServiceServlet - Setting user name: admin
+INFO btpool0-0 edu.cmu.square.server.remoteService.implementations.SquareRemoteServiceServlet - Setting user name: admin
+INFO btpool0-0 edu.cmu.square.server.authorization.AuthorizationAspect - User name: admin
+INFO btpool0-0 edu.cmu.square.server.authorization.AuthorizationAspect - Project name: 
+INFO btpool0-0 edu.cmu.square.server.authorization.AuthorizationAspect - allowedRoles: [Administrator]
+INFO btpool0-0 edu.cmu.square.server.authorization.AuthorizationAspect - user roles [Administrator]
+INFO btpool0-0 edu.cmu.square.server.authorization.AuthorizationAspect - Aspect triggered expired from aspect:false execution(copyProject)
+ERROR btpool0-0 edu.cmu.square.server.authorization.ExceptionAspect - Handling serviceException org.hibernate.exception.ConstraintViolationException: could not insert: [edu.cmu.square.server.dao.model.Project]
+INFO main org.springframework.web.context.ContextLoader - Root WebApplicationContext: initialization started
+INFO main org.springframework.web.context.support.XmlWebApplicationContext - Refreshing org.springframework.web.context.support.XmlWebApplicationContext@5e13ad: display name [Root WebApplicationContext]; startup date [Tue Aug 02 19:56:45 KST 2011]; root of context hierarchy
+INFO main org.springframework.beans.factory.xml.XmlBeanDefinitionReader - Loading XML bean definitions from file [C:\Users\tae\test\asquare\war\WEB-INF\classes\applicationContext-hibernate.xml]
+INFO main org.springframework.beans.factory.xml.XmlBeanDefinitionReader - Loading XML bean definitions from file [C:\Users\tae\test\asquare\war\WEB-INF\classes\applicationContext-jdbc.xml]
+INFO main org.springframework.web.context.support.XmlWebApplicationContext - Bean factory for application context [org.springframework.web.context.support.XmlWebApplicationContext@5e13ad]: org.springframework.beans.factory.support.DefaultListableBeanFactory@d75415
+INFO main org.springframework.beans.factory.config.PropertyPlaceholderConfigurer - Loading properties file from class path resource [square.properties]
+INFO main org.springframework.beans.factory.support.DefaultListableBeanFactory - Pre-instantiating singletons in org.springframework.beans.factory.support.DefaultListableBeanFactory@d75415: defining beans [org.springframework.context.annotation.internalPersistenceAnnotationProcessor,org.springframework.context.annotation.internalCommonAnnotationProcessor,org.springframework.context.annotation.internalAutowiredAnnotationProcessor,org.springframework.context.annotation.internalRequiredAnnotationProcessor,authorizationAspect,exceptionAspect,chooseCaseBusinessImpl,chooseProjectBusinessImpl,exportBusinessImpl,logInBusinessImpl,manageProjectBusinessImpl,manageSiteBusinessImpl,stepBusinessImpl,uploadRequirementsBusinessImpl,agreeOnDefinitionsBusinessImpl,categorizeRequirementsBusinessImpl,collectArtifactsBusinessImpl,elicitationTechniqueBusinessImpl,elicitRequirementsBusinessImpl,finalProductSelectionBusinessImpl,identifyGoalsAssetsBusinessImpl,inspectionTechniqueBusinessImpl,performTradeoffAnalysisBusinessImpl,prioritizeRequirementBusinessImpl,reviewAndFinalizeRequirementsBusinessImpl,reviewOfRequirementsByAcquisitionBusinessImpl,reviewPackagesBusinessImpl,riskAssessmentBusinessImpl,hbnArtifactDao,hbnAsquareCaseDao,hbnAssetDao,hbnCategoryDao,hbnGoalDao,hbnInspectionTechniqueDao,hbnMappingDao,hbnProjectDao,hbnProjectPackageAttributeRatingDao,hbnProjectPackageRequirementRatingDao,hbnProjectStepDao,hbnQualityAttributeDao,hbnRationaleDao,hbnRequirementDao,hbnRiskDao,hbnRoleDao,hbnSoftwarePackageDao,hbnStepDao,hbnTechniqueDao,hbnTechniqueEvaluationCriteriaDao,hbnTechniqueEvaluationDao,hbnTermDao,hbnTradeoffReasonDao,hbnUserAhpDao,hbnUserDao,hbnUserProjectRoleDao,appPropertiesServiceImpl,chooseCaseServiceImpl,chooseProjectServiceImpl,LogInService,manageProjectServiceImpl,manageSiteServiceImpl,stepServiceImpl,agreeOnDefinitionsServiceImpl,categorizeRequirementsServiceImpl,collectArtifactsServiceImpl,elicitationTechniqueServiceImpl,elicitRequirementServiceImpl,finalProductSelectionServiceImpl,identifyGoalsAssetsServiceImpl,inspectionTechniqueServiceImpl,performTradeoffAnalysisServiceImpl,prioritizeRequirementsServiceImpl,reviewAndFinalizeRequirementsServiceImpl,reviewOfRequirementsByAcquisitionServiceImpl,reviewPackagesServiceImpl,riskAssessmentServiceImpl,xmlExportServlet,org.springframework.aop.config.internalAutoProxyCreator,org.springframework.transaction.annotation.AnnotationTransactionAttributeSource#0,org.springframework.transaction.interceptor.TransactionInterceptor#0,org.springframework.transaction.config.internalTransactionAdvisor,transactionManager,sessionFactory,mailSender,resetPasswordTemplateEmail,userCreatedMessage,velocityEngine,org.springframework.beans.factory.config.PropertyPlaceholderConfigurer#0,dataSource]; root of factory hierarchy
+INFO main org.springframework.jdbc.datasource.DriverManagerDataSource - Loaded JDBC driver: com.mysql.jdbc.Driver
+INFO main org.springframework.orm.hibernate3.annotation.AnnotationSessionFactoryBean - Building new Hibernate SessionFactory
+INFO main org.apache.velocity.app.VelocityEngine - LogSystem has been deprecated. Please use a LogChute implementation.
+INFO main org.springframework.orm.hibernate3.HibernateTransactionManager - Using DataSource [org.springframework.jdbc.datasource.DriverManagerDataSource@1ad093c] of Hibernate SessionFactory for HibernateTransactionManager
+INFO main org.springframework.web.context.ContextLoader - Root WebApplicationContext: initialization completed in 10584 ms
+INFO btpool0-0 edu.cmu.square.server.remoteService.implementations.SquareRemoteServiceServlet - Session Expired: true
+INFO btpool0-0 edu.cmu.square.server.remoteService.implementations.SquareRemoteServiceServlet - Setting project name: 
+INFO btpool0-0 edu.cmu.square.server.remoteService.implementations.SquareRemoteServiceServlet - Setting user name: anonymous
+INFO btpool0-0 edu.cmu.square.server.remoteService.implementations.SquareRemoteServiceServlet - Setting user name: anonymous
+INFO btpool0-0 edu.cmu.square.server.remoteService.implementations.SquareRemoteServiceServlet - Session Expired: true
+INFO btpool0-0 edu.cmu.square.server.remoteService.implementations.SquareRemoteServiceServlet - Setting project name: 
+INFO btpool0-0 edu.cmu.square.server.remoteService.implementations.SquareRemoteServiceServlet - Setting user name: anonymous
+INFO btpool0-0 edu.cmu.square.server.remoteService.implementations.SquareRemoteServiceServlet - Setting user name: anonymous
+INFO btpool0-0 edu.cmu.square.server.remoteService.implementations.SquareRemoteServiceServlet - ----Session Value name: cb727054-36d7-4cdb-8003-35482d7a5901
+INFO btpool0-0 edu.cmu.square.server.remoteService.implementations.SquareRemoteServiceServlet - ----Session Value name: cb727054-36d7-4cdb-8003-35482d7a5901
+INFO btpool0-0 edu.cmu.square.server.remoteService.implementations.SquareRemoteServiceServlet - Session Expired: false
+INFO btpool0-0 edu.cmu.square.server.remoteService.implementations.SquareRemoteServiceServlet - Setting project name: 
+INFO btpool0-0 edu.cmu.square.server.remoteService.implementations.SquareRemoteServiceServlet - Setting user name: admin
+INFO btpool0-0 edu.cmu.square.server.remoteService.implementations.SquareRemoteServiceServlet - Setting user name: admin
+INFO btpool0-0 edu.cmu.square.server.authorization.AuthorizationAspect - User name: admin
+INFO btpool0-0 edu.cmu.square.server.authorization.AuthorizationAspect - Project name: 
+INFO btpool0-0 edu.cmu.square.server.authorization.AuthorizationAspect - allowedRoles: [All]
+INFO btpool0-0 edu.cmu.square.server.authorization.AuthorizationAspect - Aspect triggered expired from aspect:false execution(getAsquareCases)
+INFO btpool0-0 edu.cmu.square.server.business.implementation.ChooseProjectBusinessImpl - Calling getAsquareCases
+INFO btpool0-0 edu.cmu.square.server.remoteService.implementations.SquareRemoteServiceServlet - ----Session Value name: cb727054-36d7-4cdb-8003-35482d7a5901
+INFO btpool0-0 edu.cmu.square.server.remoteService.implementations.SquareRemoteServiceServlet - ----Session Value name: cb727054-36d7-4cdb-8003-35482d7a5901
+INFO btpool0-0 edu.cmu.square.server.remoteService.implementations.SquareRemoteServiceServlet - Session Expired: false
+INFO btpool0-0 edu.cmu.square.server.remoteService.implementations.SquareRemoteServiceServlet - Setting project name: 
+INFO btpool0-0 edu.cmu.square.server.remoteService.implementations.SquareRemoteServiceServlet - Setting user name: admin
+INFO btpool0-0 edu.cmu.square.server.remoteService.implementations.SquareRemoteServiceServlet - Setting user name: admin
+INFO btpool0-0 edu.cmu.square.server.authorization.AuthorizationAspect - User name: admin
+INFO btpool0-0 edu.cmu.square.server.authorization.AuthorizationAspect - Project name: 
+INFO btpool0-0 edu.cmu.square.server.authorization.AuthorizationAspect - allowedRoles: [All]
+INFO btpool0-0 edu.cmu.square.server.authorization.AuthorizationAspect - Aspect triggered expired from aspect:false execution(getAllUsers)
+INFO btpool0-0 edu.cmu.square.server.remoteService.implementations.SquareRemoteServiceServlet - ----Session Value name: cb727054-36d7-4cdb-8003-35482d7a5901
+INFO btpool0-0 edu.cmu.square.server.remoteService.implementations.SquareRemoteServiceServlet - ----Session Value name: cb727054-36d7-4cdb-8003-35482d7a5901
+INFO btpool0-0 edu.cmu.square.server.remoteService.implementations.SquareRemoteServiceServlet - Session Expired: false
+INFO btpool0-0 edu.cmu.square.server.remoteService.implementations.SquareRemoteServiceServlet - Setting project name: 
+INFO btpool0-0 edu.cmu.square.server.remoteService.implementations.SquareRemoteServiceServlet - Setting user name: admin
+INFO btpool0-0 edu.cmu.square.server.remoteService.implementations.SquareRemoteServiceServlet - Setting user name: admin
+INFO btpool0-0 edu.cmu.square.server.authorization.AuthorizationAspect - User name: admin
+INFO btpool0-0 edu.cmu.square.server.authorization.AuthorizationAspect - Project name: 
+INFO btpool0-0 edu.cmu.square.server.authorization.AuthorizationAspect - allowedRoles: [Administrator, Acquisition_Organization_Engineer]
+INFO btpool0-0 edu.cmu.square.server.authorization.AuthorizationAspect - user roles [Administrator]
+INFO btpool0-0 edu.cmu.square.server.authorization.AuthorizationAspect - Aspect triggered expired from aspect:false execution(getAllProjects)
+INFO btpool0-0 edu.cmu.square.server.remoteService.implementations.SquareRemoteServiceServlet - ----Session Value name: cb727054-36d7-4cdb-8003-35482d7a5901
+INFO btpool0-0 edu.cmu.square.server.remoteService.implementations.SquareRemoteServiceServlet - ----Session Value name: cb727054-36d7-4cdb-8003-35482d7a5901
+INFO btpool0-0 edu.cmu.square.server.remoteService.implementations.SquareRemoteServiceServlet - Session Expired: false
+INFO btpool0-0 edu.cmu.square.server.remoteService.implementations.SquareRemoteServiceServlet - Setting project name: 
+INFO btpool0-0 edu.cmu.square.server.remoteService.implementations.SquareRemoteServiceServlet - Setting user name: admin
+INFO btpool0-0 edu.cmu.square.server.remoteService.implementations.SquareRemoteServiceServlet - Setting user name: admin
+INFO btpool0-0 edu.cmu.square.server.authorization.AuthorizationAspect - User name: admin
+INFO btpool0-0 edu.cmu.square.server.authorization.AuthorizationAspect - Project name: 
+INFO btpool0-0 edu.cmu.square.server.authorization.AuthorizationAspect - allowedRoles: [Administrator]
+INFO btpool0-0 edu.cmu.square.server.authorization.AuthorizationAspect - user roles [Administrator]
+INFO btpool0-0 edu.cmu.square.server.authorization.AuthorizationAspect - Aspect triggered expired from aspect:false execution(copyProject)
+ERROR btpool0-0 edu.cmu.square.server.authorization.ExceptionAspect - Handling serviceException org.hibernate.exception.ConstraintViolationException: could not insert: [edu.cmu.square.server.dao.model.Project]
+INFO btpool0-0 edu.cmu.square.server.remoteService.implementations.SquareRemoteServiceServlet - ----Session Value name: cb727054-36d7-4cdb-8003-35482d7a5901
+INFO btpool0-0 edu.cmu.square.server.remoteService.implementations.SquareRemoteServiceServlet - ----Session Value name: cb727054-36d7-4cdb-8003-35482d7a5901
+INFO btpool0-0 edu.cmu.square.server.remoteService.implementations.SquareRemoteServiceServlet - Session Expired: false
+INFO btpool0-0 edu.cmu.square.server.remoteService.implementations.SquareRemoteServiceServlet - Setting project name: 
+INFO btpool0-0 edu.cmu.square.server.remoteService.implementations.SquareRemoteServiceServlet - Setting user name: admin
+INFO btpool0-0 edu.cmu.square.server.remoteService.implementations.SquareRemoteServiceServlet - Setting user name: admin
+INFO btpool0-0 edu.cmu.square.server.authorization.AuthorizationAspect - User name: admin
+INFO btpool0-0 edu.cmu.square.server.authorization.AuthorizationAspect - Project name: 
+INFO btpool0-0 edu.cmu.square.server.authorization.AuthorizationAspect - allowedRoles: [Administrator]
+INFO btpool0-0 edu.cmu.square.server.authorization.AuthorizationAspect - user roles [Administrator]
+INFO btpool0-0 edu.cmu.square.server.authorization.AuthorizationAspect - Aspect triggered expired from aspect:false execution(copyProject)
+ERROR btpool0-0 edu.cmu.square.server.authorization.ExceptionAspect - Handling serviceException org.hibernate.exception.ConstraintViolationException: could not insert: [edu.cmu.square.server.dao.model.Project]
+INFO btpool0-0 edu.cmu.square.server.remoteService.implementations.SquareRemoteServiceServlet - ----Session Value name: cb727054-36d7-4cdb-8003-35482d7a5901
+INFO btpool0-0 edu.cmu.square.server.remoteService.implementations.SquareRemoteServiceServlet - ----Session Value name: cb727054-36d7-4cdb-8003-35482d7a5901
+INFO btpool0-0 edu.cmu.square.server.remoteService.implementations.SquareRemoteServiceServlet - Session Expired: false
+INFO btpool0-0 edu.cmu.square.server.remoteService.implementations.SquareRemoteServiceServlet - Setting project name: 
+INFO btpool0-0 edu.cmu.square.server.remoteService.implementations.SquareRemoteServiceServlet - Setting user name: admin
+INFO btpool0-0 edu.cmu.square.server.remoteService.implementations.SquareRemoteServiceServlet - Setting user name: admin
+INFO btpool0-0 edu.cmu.square.server.authorization.AuthorizationAspect - User name: admin
+INFO btpool0-0 edu.cmu.square.server.authorization.AuthorizationAspect - Project name: 
+INFO btpool0-0 edu.cmu.square.server.authorization.AuthorizationAspect - allowedRoles: [Administrator]
+INFO btpool0-0 edu.cmu.square.server.authorization.AuthorizationAspect - user roles [Administrator]
+INFO btpool0-0 edu.cmu.square.server.authorization.AuthorizationAspect - Aspect triggered expired from aspect:false execution(copyProject)
+ERROR btpool0-0 edu.cmu.square.server.authorization.ExceptionAspect - Handling serviceException org.hibernate.exception.ConstraintViolationException: could not insert: [edu.cmu.square.server.dao.model.Project]
+INFO btpool0-0 edu.cmu.square.server.remoteService.implementations.SquareRemoteServiceServlet - ----Session Value name: cb727054-36d7-4cdb-8003-35482d7a5901
+INFO btpool0-0 edu.cmu.square.server.remoteService.implementations.SquareRemoteServiceServlet - ----Session Value name: cb727054-36d7-4cdb-8003-35482d7a5901
+INFO btpool0-0 edu.cmu.square.server.remoteService.implementations.SquareRemoteServiceServlet - Session Expired: false
+INFO btpool0-0 edu.cmu.square.server.remoteService.implementations.SquareRemoteServiceServlet - Setting project name: 
+INFO btpool0-0 edu.cmu.square.server.remoteService.implementations.SquareRemoteServiceServlet - Setting user name: admin
+INFO btpool0-0 edu.cmu.square.server.remoteService.implementations.SquareRemoteServiceServlet - Setting user name: admin
+INFO btpool0-0 edu.cmu.square.server.authorization.AuthorizationAspect - User name: admin
+INFO btpool0-0 edu.cmu.square.server.authorization.AuthorizationAspect - Project name: 
+INFO btpool0-0 edu.cmu.square.server.authorization.AuthorizationAspect - allowedRoles: [Administrator]
+INFO btpool0-0 edu.cmu.square.server.authorization.AuthorizationAspect - user roles [Administrator]
+INFO btpool0-0 edu.cmu.square.server.authorization.AuthorizationAspect - Aspect triggered expired from aspect:false execution(copyProject)
+ERROR btpool0-0 edu.cmu.square.server.authorization.ExceptionAspect - Handling serviceException org.hibernate.exception.ConstraintViolationException: could not insert: [edu.cmu.square.server.dao.model.Project]
+INFO main org.springframework.web.context.ContextLoader - Root WebApplicationContext: initialization started
+INFO main org.springframework.web.context.support.XmlWebApplicationContext - Refreshing org.springframework.web.context.support.XmlWebApplicationContext@5e13ad: display name [Root WebApplicationContext]; startup date [Tue Aug 02 19:58:40 KST 2011]; root of context hierarchy
+INFO main org.springframework.beans.factory.xml.XmlBeanDefinitionReader - Loading XML bean definitions from file [C:\Users\tae\test\asquare\war\WEB-INF\classes\applicationContext-hibernate.xml]
+INFO main org.springframework.beans.factory.xml.XmlBeanDefinitionReader - Loading XML bean definitions from file [C:\Users\tae\test\asquare\war\WEB-INF\classes\applicationContext-jdbc.xml]
+INFO main org.springframework.web.context.support.XmlWebApplicationContext - Bean factory for application context [org.springframework.web.context.support.XmlWebApplicationContext@5e13ad]: org.springframework.beans.factory.support.DefaultListableBeanFactory@d75415
+INFO main org.springframework.beans.factory.config.PropertyPlaceholderConfigurer - Loading properties file from class path resource [square.properties]
+INFO main org.springframework.beans.factory.support.DefaultListableBeanFactory - Pre-instantiating singletons in org.springframework.beans.factory.support.DefaultListableBeanFactory@d75415: defining beans [org.springframework.context.annotation.internalPersistenceAnnotationProcessor,org.springframework.context.annotation.internalCommonAnnotationProcessor,org.springframework.context.annotation.internalAutowiredAnnotationProcessor,org.springframework.context.annotation.internalRequiredAnnotationProcessor,authorizationAspect,exceptionAspect,chooseCaseBusinessImpl,chooseProjectBusinessImpl,exportBusinessImpl,logInBusinessImpl,manageProjectBusinessImpl,manageSiteBusinessImpl,stepBusinessImpl,uploadRequirementsBusinessImpl,agreeOnDefinitionsBusinessImpl,categorizeRequirementsBusinessImpl,collectArtifactsBusinessImpl,elicitationTechniqueBusinessImpl,elicitRequirementsBusinessImpl,finalProductSelectionBusinessImpl,identifyGoalsAssetsBusinessImpl,inspectionTechniqueBusinessImpl,performTradeoffAnalysisBusinessImpl,prioritizeRequirementBusinessImpl,reviewAndFinalizeRequirementsBusinessImpl,reviewOfRequirementsByAcquisitionBusinessImpl,reviewPackagesBusinessImpl,riskAssessmentBusinessImpl,hbnArtifactDao,hbnAsquareCaseDao,hbnAssetDao,hbnCategoryDao,hbnGoalDao,hbnInspectionTechniqueDao,hbnMappingDao,hbnProjectDao,hbnProjectPackageAttributeRatingDao,hbnProjectPackageRequirementRatingDao,hbnProjectStepDao,hbnQualityAttributeDao,hbnRationaleDao,hbnRequirementDao,hbnRiskDao,hbnRoleDao,hbnSoftwarePackageDao,hbnStepDao,hbnTechniqueDao,hbnTechniqueEvaluationCriteriaDao,hbnTechniqueEvaluationDao,hbnTermDao,hbnTradeoffReasonDao,hbnUserAhpDao,hbnUserDao,hbnUserProjectRoleDao,appPropertiesServiceImpl,chooseCaseServiceImpl,chooseProjectServiceImpl,LogInService,manageProjectServiceImpl,manageSiteServiceImpl,stepServiceImpl,agreeOnDefinitionsServiceImpl,categorizeRequirementsServiceImpl,collectArtifactsServiceImpl,elicitationTechniqueServiceImpl,elicitRequirementServiceImpl,finalProductSelectionServiceImpl,identifyGoalsAssetsServiceImpl,inspectionTechniqueServiceImpl,performTradeoffAnalysisServiceImpl,prioritizeRequirementsServiceImpl,reviewAndFinalizeRequirementsServiceImpl,reviewOfRequirementsByAcquisitionServiceImpl,reviewPackagesServiceImpl,riskAssessmentServiceImpl,xmlExportServlet,org.springframework.aop.config.internalAutoProxyCreator,org.springframework.transaction.annotation.AnnotationTransactionAttributeSource#0,org.springframework.transaction.interceptor.TransactionInterceptor#0,org.springframework.transaction.config.internalTransactionAdvisor,transactionManager,sessionFactory,mailSender,resetPasswordTemplateEmail,userCreatedMessage,velocityEngine,org.springframework.beans.factory.config.PropertyPlaceholderConfigurer#0,dataSource]; root of factory hierarchy
+INFO main org.springframework.jdbc.datasource.DriverManagerDataSource - Loaded JDBC driver: com.mysql.jdbc.Driver
+INFO main org.springframework.orm.hibernate3.annotation.AnnotationSessionFactoryBean - Building new Hibernate SessionFactory
+INFO main org.apache.velocity.app.VelocityEngine - LogSystem has been deprecated. Please use a LogChute implementation.
+INFO main org.springframework.orm.hibernate3.HibernateTransactionManager - Using DataSource [org.springframework.jdbc.datasource.DriverManagerDataSource@1ad093c] of Hibernate SessionFactory for HibernateTransactionManager
+INFO main org.springframework.web.context.ContextLoader - Root WebApplicationContext: initialization completed in 11341 ms
+INFO main org.springframework.web.context.ContextLoader - Root WebApplicationContext: initialization started
+INFO main org.springframework.web.context.support.XmlWebApplicationContext - Refreshing org.springframework.web.context.support.XmlWebApplicationContext@13ad33d: display name [Root WebApplicationContext]; startup date [Tue Aug 02 20:46:53 KST 2011]; root of context hierarchy
+INFO main org.springframework.beans.factory.xml.XmlBeanDefinitionReader - Loading XML bean definitions from file [C:\Users\tae\test\asquare\war\WEB-INF\classes\applicationContext-hibernate.xml]
+INFO main org.springframework.beans.factory.xml.XmlBeanDefinitionReader - Loading XML bean definitions from file [C:\Users\tae\test\asquare\war\WEB-INF\classes\applicationContext-jdbc.xml]
+INFO main org.springframework.web.context.support.XmlWebApplicationContext - Bean factory for application context [org.springframework.web.context.support.XmlWebApplicationContext@13ad33d]: org.springframework.beans.factory.support.DefaultListableBeanFactory@d75415
+INFO main org.springframework.beans.factory.config.PropertyPlaceholderConfigurer - Loading properties file from class path resource [square.properties]
+INFO main org.springframework.beans.factory.support.DefaultListableBeanFactory - Pre-instantiating singletons in org.springframework.beans.factory.support.DefaultListableBeanFactory@d75415: defining beans [org.springframework.context.annotation.internalPersistenceAnnotationProcessor,org.springframework.context.annotation.internalCommonAnnotationProcessor,org.springframework.context.annotation.internalAutowiredAnnotationProcessor,org.springframework.context.annotation.internalRequiredAnnotationProcessor,authorizationAspect,exceptionAspect,chooseCaseBusinessImpl,chooseProjectBusinessImpl,exportBusinessImpl,logInBusinessImpl,manageProjectBusinessImpl,manageSiteBusinessImpl,stepBusinessImpl,uploadRequirementsBusinessImpl,agreeOnDefinitionsBusinessImpl,categorizeRequirementsBusinessImpl,collectArtifactsBusinessImpl,elicitationTechniqueBusinessImpl,elicitRequirementsBusinessImpl,finalProductSelectionBusinessImpl,identifyGoalsAssetsBusinessImpl,inspectionTechniqueBusinessImpl,performTradeoffAnalysisBusinessImpl,prioritizeRequirementBusinessImpl,reviewAndFinalizeRequirementsBusinessImpl,reviewOfRequirementsByAcquisitionBusinessImpl,reviewPackagesBusinessImpl,riskAssessmentBusinessImpl,hbnArtifactDao,hbnAsquareCaseDao,hbnAssetDao,hbnCategoryDao,hbnGoalDao,hbnInspectionTechniqueDao,hbnMappingDao,hbnProjectDao,hbnProjectPackageAttributeRatingDao,hbnProjectPackageRequirementRatingDao,hbnProjectStepDao,hbnQualityAttributeDao,hbnRationaleDao,hbnRequirementDao,hbnRiskDao,hbnRoleDao,hbnSoftwarePackageDao,hbnStepDao,hbnTechniqueDao,hbnTechniqueEvaluationCriteriaDao,hbnTechniqueEvaluationDao,hbnTermDao,hbnTradeoffReasonDao,hbnUserAhpDao,hbnUserDao,hbnUserProjectRoleDao,appPropertiesServiceImpl,chooseCaseServiceImpl,chooseProjectServiceImpl,LogInService,manageProjectServiceImpl,manageSiteServiceImpl,stepServiceImpl,agreeOnDefinitionsServiceImpl,categorizeRequirementsServiceImpl,collectArtifactsServiceImpl,elicitationTechniqueServiceImpl,elicitRequirementServiceImpl,finalProductSelectionServiceImpl,identifyGoalsAssetsServiceImpl,inspectionTechniqueServiceImpl,performTradeoffAnalysisServiceImpl,prioritizeRequirementsServiceImpl,reviewAndFinalizeRequirementsServiceImpl,reviewOfRequirementsByAcquisitionServiceImpl,reviewPackagesServiceImpl,riskAssessmentServiceImpl,xmlExportServlet,org.springframework.aop.config.internalAutoProxyCreator,org.springframework.transaction.annotation.AnnotationTransactionAttributeSource#0,org.springframework.transaction.interceptor.TransactionInterceptor#0,org.springframework.transaction.config.internalTransactionAdvisor,transactionManager,sessionFactory,mailSender,resetPasswordTemplateEmail,userCreatedMessage,velocityEngine,org.springframework.beans.factory.config.PropertyPlaceholderConfigurer#0,dataSource]; root of factory hierarchy
+INFO main org.springframework.jdbc.datasource.DriverManagerDataSource - Loaded JDBC driver: com.mysql.jdbc.Driver
+INFO main org.springframework.orm.hibernate3.annotation.AnnotationSessionFactoryBean - Building new Hibernate SessionFactory
+INFO main org.apache.velocity.app.VelocityEngine - LogSystem has been deprecated. Please use a LogChute implementation.
+INFO main org.springframework.orm.hibernate3.HibernateTransactionManager - Using DataSource [org.springframework.jdbc.datasource.DriverManagerDataSource@11a9310] of Hibernate SessionFactory for HibernateTransactionManager
+INFO main org.springframework.web.context.ContextLoader - Root WebApplicationContext: initialization completed in 10613 ms
+INFO btpool0-1 edu.cmu.square.server.remoteService.implementations.SquareRemoteServiceServlet - Session Expired: true
+INFO btpool0-1 edu.cmu.square.server.remoteService.implementations.SquareRemoteServiceServlet - Setting project name: 
+INFO btpool0-1 edu.cmu.square.server.remoteService.implementations.SquareRemoteServiceServlet - Setting user name: anonymous
+INFO btpool0-1 edu.cmu.square.server.remoteService.implementations.SquareRemoteServiceServlet - Setting user name: anonymous
+INFO btpool0-1 edu.cmu.square.server.remoteService.implementations.SquareRemoteServiceServlet - Session Expired: true
+INFO btpool0-1 edu.cmu.square.server.remoteService.implementations.SquareRemoteServiceServlet - Setting project name: 
+INFO btpool0-1 edu.cmu.square.server.remoteService.implementations.SquareRemoteServiceServlet - Setting user name: anonymous
+INFO btpool0-1 edu.cmu.square.server.remoteService.implementations.SquareRemoteServiceServlet - Setting user name: anonymous
+INFO btpool0-1 edu.cmu.square.server.remoteService.implementations.SquareRemoteServiceServlet - ----Session Value name: 50c529f1-a69e-40a5-80d8-2dbea975d3bf
+INFO btpool0-1 edu.cmu.square.server.remoteService.implementations.SquareRemoteServiceServlet - ----Session Value name: 50c529f1-a69e-40a5-80d8-2dbea975d3bf
+INFO btpool0-1 edu.cmu.square.server.remoteService.implementations.SquareRemoteServiceServlet - Session Expired: false
+INFO btpool0-1 edu.cmu.square.server.remoteService.implementations.SquareRemoteServiceServlet - Setting project name: 
+INFO btpool0-1 edu.cmu.square.server.remoteService.implementations.SquareRemoteServiceServlet - Setting user name: admin
+INFO btpool0-1 edu.cmu.square.server.remoteService.implementations.SquareRemoteServiceServlet - Setting user name: admin
+INFO btpool0-1 edu.cmu.square.server.authorization.AuthorizationAspect - User name: admin
+INFO btpool0-1 edu.cmu.square.server.authorization.AuthorizationAspect - Project name: 
+INFO btpool0-1 edu.cmu.square.server.authorization.AuthorizationAspect - allowedRoles: [All]
+INFO btpool0-1 edu.cmu.square.server.authorization.AuthorizationAspect - Aspect triggered expired from aspect:false execution(getAsquareCases)
+INFO btpool0-1 edu.cmu.square.server.business.implementation.ChooseProjectBusinessImpl - Calling getAsquareCases
+INFO btpool0-1 edu.cmu.square.server.remoteService.implementations.SquareRemoteServiceServlet - ----Session Value name: 50c529f1-a69e-40a5-80d8-2dbea975d3bf
+INFO btpool0-1 edu.cmu.square.server.remoteService.implementations.SquareRemoteServiceServlet - ----Session Value name: 50c529f1-a69e-40a5-80d8-2dbea975d3bf
+INFO btpool0-1 edu.cmu.square.server.remoteService.implementations.SquareRemoteServiceServlet - Session Expired: false
+INFO btpool0-1 edu.cmu.square.server.remoteService.implementations.SquareRemoteServiceServlet - Setting project name: 
+INFO btpool0-1 edu.cmu.square.server.remoteService.implementations.SquareRemoteServiceServlet - Setting user name: admin
+INFO btpool0-1 edu.cmu.square.server.remoteService.implementations.SquareRemoteServiceServlet - Setting user name: admin
+INFO btpool0-1 edu.cmu.square.server.authorization.AuthorizationAspect - User name: admin
+INFO btpool0-1 edu.cmu.square.server.authorization.AuthorizationAspect - Project name: 
+INFO btpool0-1 edu.cmu.square.server.authorization.AuthorizationAspect - allowedRoles: [All]
+INFO btpool0-1 edu.cmu.square.server.authorization.AuthorizationAspect - Aspect triggered expired from aspect:false execution(getAllUsers)
+INFO btpool0-1 edu.cmu.square.server.remoteService.implementations.SquareRemoteServiceServlet - ----Session Value name: 50c529f1-a69e-40a5-80d8-2dbea975d3bf
+INFO btpool0-1 edu.cmu.square.server.remoteService.implementations.SquareRemoteServiceServlet - ----Session Value name: 50c529f1-a69e-40a5-80d8-2dbea975d3bf
+INFO btpool0-1 edu.cmu.square.server.remoteService.implementations.SquareRemoteServiceServlet - Session Expired: false
+INFO btpool0-1 edu.cmu.square.server.remoteService.implementations.SquareRemoteServiceServlet - Setting project name: 
+INFO btpool0-1 edu.cmu.square.server.remoteService.implementations.SquareRemoteServiceServlet - Setting user name: admin
+INFO btpool0-1 edu.cmu.square.server.remoteService.implementations.SquareRemoteServiceServlet - Setting user name: admin
+INFO btpool0-1 edu.cmu.square.server.authorization.AuthorizationAspect - User name: admin
+INFO btpool0-1 edu.cmu.square.server.authorization.AuthorizationAspect - Project name: 
+INFO btpool0-1 edu.cmu.square.server.authorization.AuthorizationAspect - allowedRoles: [Administrator, Acquisition_Organization_Engineer]
+INFO btpool0-1 edu.cmu.square.server.authorization.AuthorizationAspect - user roles [Administrator]
+INFO btpool0-1 edu.cmu.square.server.authorization.AuthorizationAspect - Aspect triggered expired from aspect:false execution(getAllProjects)
+INFO btpool0-1 edu.cmu.square.server.remoteService.implementations.SquareRemoteServiceServlet - ----Session Value name: 50c529f1-a69e-40a5-80d8-2dbea975d3bf
+INFO btpool0-1 edu.cmu.square.server.remoteService.implementations.SquareRemoteServiceServlet - ----Session Value name: 50c529f1-a69e-40a5-80d8-2dbea975d3bf
+INFO btpool0-1 edu.cmu.square.server.remoteService.implementations.SquareRemoteServiceServlet - Session Expired: false
+INFO btpool0-1 edu.cmu.square.server.remoteService.implementations.SquareRemoteServiceServlet - Setting project name: 
+INFO btpool0-1 edu.cmu.square.server.remoteService.implementations.SquareRemoteServiceServlet - Setting user name: admin
+INFO btpool0-1 edu.cmu.square.server.remoteService.implementations.SquareRemoteServiceServlet - Setting user name: admin
+INFO btpool0-1 edu.cmu.square.server.authorization.AuthorizationAspect - User name: admin
+INFO btpool0-1 edu.cmu.square.server.authorization.AuthorizationAspect - Project name: 
+INFO btpool0-1 edu.cmu.square.server.authorization.AuthorizationAspect - allowedRoles: [Administrator]
+INFO btpool0-1 edu.cmu.square.server.authorization.AuthorizationAspect - user roles [Administrator]
+INFO btpool0-1 edu.cmu.square.server.authorization.AuthorizationAspect - Aspect triggered expired from aspect:false execution(copyProject)
+ERROR btpool0-1 edu.cmu.square.server.authorization.ExceptionAspect - Handling serviceException org.hibernate.exception.ConstraintViolationException: could not insert: [edu.cmu.square.server.dao.model.Project]
+INFO main org.springframework.web.context.ContextLoader - Root WebApplicationContext: initialization started
+INFO main org.springframework.web.context.support.XmlWebApplicationContext - Refreshing org.springframework.web.context.support.XmlWebApplicationContext@5dd582: display name [Root WebApplicationContext]; startup date [Tue Aug 02 20:52:19 KST 2011]; root of context hierarchy
+INFO main org.springframework.beans.factory.xml.XmlBeanDefinitionReader - Loading XML bean definitions from file [C:\Users\tae\test\asquare\war\WEB-INF\classes\applicationContext-hibernate.xml]
+INFO main org.springframework.beans.factory.xml.XmlBeanDefinitionReader - Loading XML bean definitions from file [C:\Users\tae\test\asquare\war\WEB-INF\classes\applicationContext-jdbc.xml]
+INFO main org.springframework.web.context.support.XmlWebApplicationContext - Bean factory for application context [org.springframework.web.context.support.XmlWebApplicationContext@5dd582]: org.springframework.beans.factory.support.DefaultListableBeanFactory@d16fc1
+INFO main org.springframework.beans.factory.config.PropertyPlaceholderConfigurer - Loading properties file from class path resource [square.properties]
+INFO main org.springframework.beans.factory.support.DefaultListableBeanFactory - Pre-instantiating singletons in org.springframework.beans.factory.support.DefaultListableBeanFactory@d16fc1: defining beans [org.springframework.context.annotation.internalPersistenceAnnotationProcessor,org.springframework.context.annotation.internalCommonAnnotationProcessor,org.springframework.context.annotation.internalAutowiredAnnotationProcessor,org.springframework.context.annotation.internalRequiredAnnotationProcessor,authorizationAspect,exceptionAspect,chooseCaseBusinessImpl,chooseProjectBusinessImpl,exportBusinessImpl,logInBusinessImpl,manageProjectBusinessImpl,manageSiteBusinessImpl,stepBusinessImpl,uploadRequirementsBusinessImpl,agreeOnDefinitionsBusinessImpl,categorizeRequirementsBusinessImpl,collectArtifactsBusinessImpl,elicitationTechniqueBusinessImpl,elicitRequirementsBusinessImpl,finalProductSelectionBusinessImpl,identifyGoalsAssetsBusinessImpl,inspectionTechniqueBusinessImpl,performTradeoffAnalysisBusinessImpl,prioritizeRequirementBusinessImpl,reviewAndFinalizeRequirementsBusinessImpl,reviewOfRequirementsByAcquisitionBusinessImpl,reviewPackagesBusinessImpl,riskAssessmentBusinessImpl,hbnArtifactDao,hbnAsquareCaseDao,hbnAssetDao,hbnCategoryDao,hbnGoalDao,hbnInspectionTechniqueDao,hbnMappingDao,hbnProjectDao,hbnProjectPackageAttributeRatingDao,hbnProjectPackageRequirementRatingDao,hbnProjectStepDao,hbnQualityAttributeDao,hbnRationaleDao,hbnRequirementDao,hbnRiskDao,hbnRoleDao,hbnSoftwarePackageDao,hbnStepDao,hbnTechniqueDao,hbnTechniqueEvaluationCriteriaDao,hbnTechniqueEvaluationDao,hbnTermDao,hbnTradeoffReasonDao,hbnUserAhpDao,hbnUserDao,hbnUserProjectRoleDao,appPropertiesServiceImpl,chooseCaseServiceImpl,chooseProjectServiceImpl,LogInService,manageProjectServiceImpl,manageSiteServiceImpl,stepServiceImpl,agreeOnDefinitionsServiceImpl,categorizeRequirementsServiceImpl,collectArtifactsServiceImpl,elicitationTechniqueServiceImpl,elicitRequirementServiceImpl,finalProductSelectionServiceImpl,identifyGoalsAssetsServiceImpl,inspectionTechniqueServiceImpl,performTradeoffAnalysisServiceImpl,prioritizeRequirementsServiceImpl,reviewAndFinalizeRequirementsServiceImpl,reviewOfRequirementsByAcquisitionServiceImpl,reviewPackagesServiceImpl,riskAssessmentServiceImpl,xmlExportServlet,org.springframework.aop.config.internalAutoProxyCreator,org.springframework.transaction.annotation.AnnotationTransactionAttributeSource#0,org.springframework.transaction.interceptor.TransactionInterceptor#0,org.springframework.transaction.config.internalTransactionAdvisor,transactionManager,sessionFactory,mailSender,resetPasswordTemplateEmail,userCreatedMessage,velocityEngine,org.springframework.beans.factory.config.PropertyPlaceholderConfigurer#0,dataSource]; root of factory hierarchy
+INFO main org.springframework.jdbc.datasource.DriverManagerDataSource - Loaded JDBC driver: com.mysql.jdbc.Driver
+INFO main org.springframework.web.context.ContextLoader - Root WebApplicationContext: initialization started
+INFO main org.springframework.web.context.support.XmlWebApplicationContext - Refreshing org.springframework.web.context.support.XmlWebApplicationContext@161dfb5: display name [Root WebApplicationContext]; startup date [Tue Aug 02 21:20:06 KST 2011]; root of context hierarchy
+INFO main org.springframework.beans.factory.xml.XmlBeanDefinitionReader - Loading XML bean definitions from file [C:\Users\tae\test\asquare\war\WEB-INF\classes\applicationContext-hibernate.xml]
+INFO main org.springframework.beans.factory.xml.XmlBeanDefinitionReader - Loading XML bean definitions from file [C:\Users\tae\test\asquare\war\WEB-INF\classes\applicationContext-jdbc.xml]
+INFO main org.springframework.web.context.support.XmlWebApplicationContext - Bean factory for application context [org.springframework.web.context.support.XmlWebApplicationContext@161dfb5]: org.springframework.beans.factory.support.DefaultListableBeanFactory@b3319f
+INFO main org.springframework.beans.factory.config.PropertyPlaceholderConfigurer - Loading properties file from class path resource [square.properties]
+INFO main org.springframework.beans.factory.support.DefaultListableBeanFactory - Pre-instantiating singletons in org.springframework.beans.factory.support.DefaultListableBeanFactory@b3319f: defining beans [org.springframework.context.annotation.internalPersistenceAnnotationProcessor,org.springframework.context.annotation.internalCommonAnnotationProcessor,org.springframework.context.annotation.internalAutowiredAnnotationProcessor,org.springframework.context.annotation.internalRequiredAnnotationProcessor,authorizationAspect,exceptionAspect,chooseCaseBusinessImpl,chooseProjectBusinessImpl,exportBusinessImpl,logInBusinessImpl,manageProjectBusinessImpl,manageSiteBusinessImpl,stepBusinessImpl,uploadRequirementsBusinessImpl,agreeOnDefinitionsBusinessImpl,categorizeRequirementsBusinessImpl,collectArtifactsBusinessImpl,elicitationTechniqueBusinessImpl,elicitRequirementsBusinessImpl,finalProductSelectionBusinessImpl,identifyGoalsAssetsBusinessImpl,inspectionTechniqueBusinessImpl,performTradeoffAnalysisBusinessImpl,prioritizeRequirementBusinessImpl,reviewAndFinalizeRequirementsBusinessImpl,reviewOfRequirementsByAcquisitionBusinessImpl,reviewPackagesBusinessImpl,riskAssessmentBusinessImpl,hbnArtifactDao,hbnAsquareCaseDao,hbnAssetDao,hbnCategoryDao,hbnGoalDao,hbnInspectionTechniqueDao,hbnMappingDao,hbnProjectDao,hbnProjectPackageAttributeRatingDao,hbnProjectPackageRequirementRatingDao,hbnProjectStepDao,hbnQualityAttributeDao,hbnRationaleDao,hbnRequirementDao,hbnRiskDao,hbnRoleDao,hbnSoftwarePackageDao,hbnStepDao,hbnTechniqueDao,hbnTechniqueEvaluationCriteriaDao,hbnTechniqueEvaluationDao,hbnTermDao,hbnTradeoffReasonDao,hbnUserAhpDao,hbnUserDao,hbnUserProjectRoleDao,appPropertiesServiceImpl,chooseCaseServiceImpl,chooseProjectServiceImpl,LogInService,manageProjectServiceImpl,manageSiteServiceImpl,stepServiceImpl,agreeOnDefinitionsServiceImpl,categorizeRequirementsServiceImpl,collectArtifactsServiceImpl,elicitationTechniqueServiceImpl,elicitRequirementServiceImpl,finalProductSelectionServiceImpl,identifyGoalsAssetsServiceImpl,inspectionTechniqueServiceImpl,performTradeoffAnalysisServiceImpl,prioritizeRequirementsServiceImpl,reviewAndFinalizeRequirementsServiceImpl,reviewOfRequirementsByAcquisitionServiceImpl,reviewPackagesServiceImpl,riskAssessmentServiceImpl,xmlExportServlet,org.springframework.aop.config.internalAutoProxyCreator,org.springframework.transaction.annotation.AnnotationTransactionAttributeSource#0,org.springframework.transaction.interceptor.TransactionInterceptor#0,org.springframework.transaction.config.internalTransactionAdvisor,transactionManager,sessionFactory,mailSender,resetPasswordTemplateEmail,userCreatedMessage,velocityEngine,org.springframework.beans.factory.config.PropertyPlaceholderConfigurer#0,dataSource]; root of factory hierarchy
+INFO main org.springframework.jdbc.datasource.DriverManagerDataSource - Loaded JDBC driver: com.mysql.jdbc.Driver
+INFO main org.springframework.orm.hibernate3.annotation.AnnotationSessionFactoryBean - Building new Hibernate SessionFactory
+INFO main org.apache.velocity.app.VelocityEngine - LogSystem has been deprecated. Please use a LogChute implementation.
+INFO main org.springframework.orm.hibernate3.HibernateTransactionManager - Using DataSource [org.springframework.jdbc.datasource.DriverManagerDataSource@1d183b7] of Hibernate SessionFactory for HibernateTransactionManager
+INFO main org.springframework.web.context.ContextLoader - Root WebApplicationContext: initialization completed in 10784 ms
+INFO btpool0-1 edu.cmu.square.server.remoteService.implementations.SquareRemoteServiceServlet - Session Expired: true
+INFO btpool0-1 edu.cmu.square.server.remoteService.implementations.SquareRemoteServiceServlet - Setting project name: 
+INFO btpool0-1 edu.cmu.square.server.remoteService.implementations.SquareRemoteServiceServlet - Setting user name: anonymous
+INFO btpool0-1 edu.cmu.square.server.remoteService.implementations.SquareRemoteServiceServlet - Setting user name: anonymous
+INFO btpool0-1 edu.cmu.square.server.remoteService.implementations.SquareRemoteServiceServlet - Session Expired: true
+INFO btpool0-1 edu.cmu.square.server.remoteService.implementations.SquareRemoteServiceServlet - Setting project name: 
+INFO btpool0-1 edu.cmu.square.server.remoteService.implementations.SquareRemoteServiceServlet - Setting user name: anonymous
+INFO btpool0-1 edu.cmu.square.server.remoteService.implementations.SquareRemoteServiceServlet - Setting user name: anonymous
+INFO btpool0-1 edu.cmu.square.server.remoteService.implementations.SquareRemoteServiceServlet - ----Session Value name: 5375fcd3-0807-467c-b805-43fd026fb9a4
+INFO btpool0-1 edu.cmu.square.server.remoteService.implementations.SquareRemoteServiceServlet - ----Session Value name: 5375fcd3-0807-467c-b805-43fd026fb9a4
+INFO btpool0-1 edu.cmu.square.server.remoteService.implementations.SquareRemoteServiceServlet - Session Expired: false
+INFO btpool0-1 edu.cmu.square.server.remoteService.implementations.SquareRemoteServiceServlet - Setting project name: 
+INFO btpool0-1 edu.cmu.square.server.remoteService.implementations.SquareRemoteServiceServlet - Setting user name: admin
+INFO btpool0-1 edu.cmu.square.server.remoteService.implementations.SquareRemoteServiceServlet - Setting user name: admin
+INFO btpool0-1 edu.cmu.square.server.authorization.AuthorizationAspect - User name: admin
+INFO btpool0-1 edu.cmu.square.server.authorization.AuthorizationAspect - Project name: 
+INFO btpool0-1 edu.cmu.square.server.authorization.AuthorizationAspect - allowedRoles: [All]
+INFO btpool0-1 edu.cmu.square.server.authorization.AuthorizationAspect - Aspect triggered expired from aspect:false execution(getAsquareCases)
+INFO btpool0-1 edu.cmu.square.server.business.implementation.ChooseProjectBusinessImpl - Calling getAsquareCases
+INFO btpool0-1 edu.cmu.square.server.remoteService.implementations.SquareRemoteServiceServlet - ----Session Value name: 5375fcd3-0807-467c-b805-43fd026fb9a4
+INFO btpool0-1 edu.cmu.square.server.remoteService.implementations.SquareRemoteServiceServlet - ----Session Value name: 5375fcd3-0807-467c-b805-43fd026fb9a4
+INFO btpool0-1 edu.cmu.square.server.remoteService.implementations.SquareRemoteServiceServlet - Session Expired: false
+INFO btpool0-1 edu.cmu.square.server.remoteService.implementations.SquareRemoteServiceServlet - Setting project name: 
+INFO btpool0-1 edu.cmu.square.server.remoteService.implementations.SquareRemoteServiceServlet - Setting user name: admin
+INFO btpool0-1 edu.cmu.square.server.remoteService.implementations.SquareRemoteServiceServlet - Setting user name: admin
+INFO btpool0-1 edu.cmu.square.server.authorization.AuthorizationAspect - User name: admin
+INFO btpool0-1 edu.cmu.square.server.authorization.AuthorizationAspect - Project name: 
+INFO btpool0-1 edu.cmu.square.server.authorization.AuthorizationAspect - allowedRoles: [All]
+INFO btpool0-1 edu.cmu.square.server.authorization.AuthorizationAspect - Aspect triggered expired from aspect:false execution(getAllUsers)
+INFO btpool0-1 edu.cmu.square.server.remoteService.implementations.SquareRemoteServiceServlet - ----Session Value name: 5375fcd3-0807-467c-b805-43fd026fb9a4
+INFO btpool0-1 edu.cmu.square.server.remoteService.implementations.SquareRemoteServiceServlet - ----Session Value name: 5375fcd3-0807-467c-b805-43fd026fb9a4
+INFO btpool0-1 edu.cmu.square.server.remoteService.implementations.SquareRemoteServiceServlet - Session Expired: false
+INFO btpool0-1 edu.cmu.square.server.remoteService.implementations.SquareRemoteServiceServlet - Setting project name: 
+INFO btpool0-1 edu.cmu.square.server.remoteService.implementations.SquareRemoteServiceServlet - Setting user name: admin
+INFO btpool0-1 edu.cmu.square.server.remoteService.implementations.SquareRemoteServiceServlet - Setting user name: admin
+INFO btpool0-1 edu.cmu.square.server.authorization.AuthorizationAspect - User name: admin
+INFO btpool0-1 edu.cmu.square.server.authorization.AuthorizationAspect - Project name: 
+INFO btpool0-1 edu.cmu.square.server.authorization.AuthorizationAspect - allowedRoles: [Administrator, Acquisition_Organization_Engineer]
+INFO btpool0-1 edu.cmu.square.server.authorization.AuthorizationAspect - user roles [Administrator]
+INFO btpool0-1 edu.cmu.square.server.authorization.AuthorizationAspect - Aspect triggered expired from aspect:false execution(getAllProjects)
+INFO btpool0-1 edu.cmu.square.server.remoteService.implementations.SquareRemoteServiceServlet - ----Session Value name: 5375fcd3-0807-467c-b805-43fd026fb9a4
+INFO btpool0-1 edu.cmu.square.server.remoteService.implementations.SquareRemoteServiceServlet - ----Session Value name: 5375fcd3-0807-467c-b805-43fd026fb9a4
+INFO btpool0-1 edu.cmu.square.server.remoteService.implementations.SquareRemoteServiceServlet - Session Expired: false
+INFO btpool0-1 edu.cmu.square.server.remoteService.implementations.SquareRemoteServiceServlet - Setting project name: 
+INFO btpool0-1 edu.cmu.square.server.remoteService.implementations.SquareRemoteServiceServlet - Setting user name: admin
+INFO btpool0-1 edu.cmu.square.server.remoteService.implementations.SquareRemoteServiceServlet - Setting user name: admin
+INFO btpool0-1 edu.cmu.square.server.authorization.AuthorizationAspect - User name: admin
+INFO btpool0-1 edu.cmu.square.server.authorization.AuthorizationAspect - Project name: 
+INFO btpool0-1 edu.cmu.square.server.authorization.AuthorizationAspect - allowedRoles: [Administrator]
+INFO btpool0-1 edu.cmu.square.server.authorization.AuthorizationAspect - user roles [Administrator]
+INFO btpool0-1 edu.cmu.square.server.authorization.AuthorizationAspect - Aspect triggered expired from aspect:false execution(copyProject)
+ERROR btpool0-1 edu.cmu.square.server.authorization.ExceptionAspect - Handling serviceException org.hibernate.exception.ConstraintViolationException: could not insert: [edu.cmu.square.server.dao.model.Project]
