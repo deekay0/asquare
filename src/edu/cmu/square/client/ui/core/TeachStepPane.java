@@ -94,6 +94,7 @@ public class TeachStepPane extends Composite
 			
 			
 			responsibilities.add(Roles.Acquisition_Organization_Engineer);
+			
 			contents.add(messages.aoeResponsibilities());
 		}
 		else if (stepToTeach.equals(HistoryManager.ViewId.prioritizeRequirements))

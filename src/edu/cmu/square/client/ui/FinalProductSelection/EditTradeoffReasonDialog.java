@@ -73,8 +73,8 @@ public class EditTradeoffReasonDialog extends DialogBox
 		VerticalPanel nameLayout = new VerticalPanel();
 		VerticalPanel descriptionLayout = new VerticalPanel();
 		HorizontalPanel buttonsLayout = new HorizontalPanel();
-		this.setText(messages.editTradeoffReasonDialogBoxTitle());
-		nameLayout.add(new Label(messages.editTradeoffReasonDialogBoxName()));
+		this.setText(messages.editTradeoffReasonDialogBoxTitleReadOnly());
+		//nameLayout.add(new Label(messages.editTradeoffReasonDialogBoxName()));
 		nameLayout.add(this.tradeoffReasonTextBox);
 
 		this.tradeoffReasonTextBox.setWidth("500px");
@@ -118,7 +118,7 @@ public class EditTradeoffReasonDialog extends DialogBox
 		VerticalPanel descriptionLayout = new VerticalPanel();
 		HorizontalPanel buttonsLayout = new HorizontalPanel();
 		this.setText(messages.editTradeoffReasonDialogBoxTitleReadOnly());
-		nameLayout.add(new Label(messages.editTradeoffReasonDialogBoxName()));
+		//nameLayout.add(new Label(messages.editTradeoffReasonDialogBoxName()));
 		nameLayout.add(this.tradeoffReasonTextBox);
 
 		this.tradeoffReasonTextBox.setWidth("500px");
@@ -128,9 +128,6 @@ public class EditTradeoffReasonDialog extends DialogBox
 		// Set up the buttons
 		//saveButton = new Button(messages.editTradeoffReasonDialogBoxSave(), new SaveHandler(this, tradeoffReason));
 		Button okayButton = new Button(messages.editTradeoffReasonDialogBoxOkay(), new CancelHandler(this));
-		
-		
-		
 		
 		//saveButton.setWidth("100px");
 		okayButton.setWidth("100px");
@@ -176,7 +173,6 @@ public class EditTradeoffReasonDialog extends DialogBox
 				this.localTradeoffReason.setTradeoffreason(newTradeoffReason.getTradeoffreason());
 				currentTradeoffReason = newTradeoffReason.getTradeoffreason();
 			}
-
 		public void onClick(ClickEvent event)
 		{
 			this.dialog.hide();
@@ -188,11 +184,10 @@ public class EditTradeoffReasonDialog extends DialogBox
 		private EditTradeoffReasonDialog dialog = null;
 
 		public CancelHandler(EditTradeoffReasonDialog dialog)
-			{
-				super();
-				this.dialog = dialog;
-			}
-
+		{
+			super();
+			this.dialog = dialog;
+		}
 		public void onClick(ClickEvent event)
 		{
 			this.dialog.hide(true);
