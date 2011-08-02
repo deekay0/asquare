@@ -1,0 +1,10 @@
+com.google.gwt.user.client.rpc.IncompatibleRemoteServiceException, true, true, true, true, com.google.gwt.user.client.rpc.IncompatibleRemoteServiceException/3936916533, 3936916533
+edu.cmu.square.client.exceptions.ExceptionType, true, true, false, false, edu.cmu.square.client.exceptions.ExceptionType/1028969306, 1028969306
+edu.cmu.square.client.exceptions.SquareException, true, true, false, false, edu.cmu.square.client.exceptions.SquareException/1843508430, 1843508430
+edu.cmu.square.client.model.GWTAppProperties, true, true, false, false, edu.cmu.square.client.model.GWTAppProperties/3475742959, 3475742959
+edu.cmu.square.client.remoteService.interfaces.AppPropertiesService, false, false, false, false, _, 3555081251
+java.lang.Boolean, true, true, false, false, java.lang.Boolean/476441737, 476441737
+java.lang.Exception, true, false, true, false, java.lang.Exception/1920171873, 1920171873
+java.lang.RuntimeException, true, false, true, false, java.lang.RuntimeException/515124647, 515124647
+java.lang.String, true, true, true, true, java.lang.String/2004016611, 2004016611
+java.lang.Throwable, true, false, true, false, java.lang.Throwable/2953622131, 2953622131
