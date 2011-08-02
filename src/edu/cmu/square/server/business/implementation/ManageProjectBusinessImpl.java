@@ -480,11 +480,11 @@ public class ManageProjectBusinessImpl extends BaseBusinessImpl implements Manag
 		// Create the steps
 		stepBusiness.createStepsForProject(newProject);
 
+
 		 if (terms != null)
 		 {
 			 termsBusiness.loadDefaultTerms(newProject.getId(), terms);
 		 }
- 
 
 		// Add the lead requirement engineer to project and assigned the role.
 		GwtRole role = new GwtRole();
