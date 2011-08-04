@@ -48,14 +48,16 @@ public class ManageProjectServiceImpl extends SquareRemoteServiceServlet impleme
 	public GwtProject createProject(GwtProject newProject) throws SquareException
 	{
 		
-		
+		List<GwtTerm> terms=null;
 		InputStream defaultValueStream = Thread.currentThread().getContextClassLoader().getResourceAsStream("defaultProjectValues.xml");
 		
 		Document projectDefaulValuesXMLDocument =getProjectDefaultValuesXMLDocument(defaultValueStream);
 		
 		
+		terms=mpb.findDefaultTerms(projectDefaulValuesXMLDocument);
+		System.out.println("termterm............"+terms.size()+"  "+terms.get(0).getDefinition());
 		
-		return mpb.createProject(newProject);
+		return mpb.createProject(newProject, terms);
 	
 	}
 	

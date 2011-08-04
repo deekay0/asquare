@@ -33,7 +33,7 @@ public interface ManageProjectBusiness  extends BaseBusinessInterface {
 	 */
 
 	
-	 GwtProject createProject(GwtProject newProject)throws SquareException;
+	 GwtProject createProject(GwtProject newProject, List<GwtTerm> terms)throws SquareException;
 	/**
 	 * returns GwtProject this is the new project 
 	 * type(SQUARE lite/full), and project focus(security/privacy/both).
@@ -125,6 +125,6 @@ public interface ManageProjectBusiness  extends BaseBusinessInterface {
 	 
 	 //List<GwtInspectionTechnique> findDefaultInspectionTechniques(Document defaultValuesProjectXMLDocument);
 	
-	 GwtProject copyProject(GwtProject originalProject) throws SquareException;
+	GwtProject copyProject(GwtProject originalProject) throws SquareException;
 	
 }

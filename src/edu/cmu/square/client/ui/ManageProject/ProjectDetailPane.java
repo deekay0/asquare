@@ -209,6 +209,25 @@ public class ProjectDetailPane extends VerticalPanel
 					statusList.setSelectedIndex(0);
 			}
 
+			final VerticalPanel analysisResults = new VerticalPanel();
+			analysisResults.setStyleName("inner-table");
+			analysisResults.setVerticalAlignment(HasVerticalAlignment.ALIGN_TOP);
+
+			HTML warningLabel = new HTML();
+			Label resultLabel = new Label();
+			this.verifyStep(this.projectId, step.getId(), warningLabel, resultLabel, stepResult);
+			
+			System.out.println("project detial..."+step.getId()+"..."+step.getDescription());
+			
+			if(step.getStatus()==StepStatus.NotStarted)
+				analysisResults.add(new Label(step.getDescription()));
+			
+			else
+				analysisResults.add(new Hyperlink(step.getDescription(), StepRouter.CreateStepLink(step)));
+			
+			
+			
+			
 			// Set up listeners for combo-boxes
 			statusList.addChangeHandler(new ChangeHandler()
 				{
@@ -242,28 +261,24 @@ public class ProjectDetailPane extends VerticalPanel
 								}
 							}
 						}	
+						
+						if(step.getStatus()==StepStatus.NotStarted && 
+								(StepStatus.convertLabel(status)==StepStatus.InProgress || StepStatus.convertLabel(status)==StepStatus.Complete))
+						{
+							analysisResults.clear();
+							analysisResults.add(new Hyperlink(step.getDescription(), StepRouter.CreateStepLink(step)));
+						}
+						
 						updateStepStatus(projectId, step.getId(), status);
 						step.setStatus(StepStatus.convertLabel(status));
 					}
 				});
 
-			VerticalPanel analysisResults = new VerticalPanel();
-			analysisResults.setStyleName("inner-table");
-			analysisResults.setVerticalAlignment(HasVerticalAlignment.ALIGN_TOP);
-
-			HTML warningLabel = new HTML();
-			Label resultLabel = new Label();
-			this.verifyStep(this.projectId, step.getId(), warningLabel, resultLabel, stepResult);
+		
 			
-			System.out.println("project detial..."+step.getId()+"..."+step.getDescription());
-			
-			analysisResults.add(new Hyperlink(step.getDescription(), StepRouter.CreateStepLink(step)));
-			//analysisResults.add(warningLabel);
-
 			stepsTable.setWidget(rowCount, 0, statusList);
 			stepsTable.setWidget(rowCount, 1, analysisResults);
-			//stepsTable.setWidget(rowCount, 2, resultLabel);
-
+			
 			formatter.setVerticalAlignment(rowCount, 0, HasVerticalAlignment.ALIGN_TOP);
 			formatter.setWidth(rowCount, 0, "180px");
 
@@ -289,26 +304,6 @@ public class ProjectDetailPane extends VerticalPanel
 			warningMessage.setText(messages.ok());
 			warningMessage.setStyleName("good");
 		}
-	}
-
-	private String createWarningList(List<String> warnings)
-	{
-		if (warnings.size() == 0)
-		{
-			return "";
-		}
-
-		StringBuilder listBuilder = new StringBuilder();
-		listBuilder.append("<ul>");
-
-		for (String warning : warnings)
-		{
-			listBuilder.append("<li>" + warning + "</li>");
-		}
-
-		listBuilder.append("</ul>");
-
-		return listBuilder.toString();
 	}
 
 	private void updateStepStatus(int projectId, int stepId, String status)

@@ -75,6 +75,37 @@ public class HbnRequirementDao extends HbnAbstractDao<Requirement, Integer> impl
 		return q.list();
 	}
 	
+	public List<String> getRequirementTitleByReqId(Integer reqId)
+	{
+		Session session = super.getSession();
+		String query = "Select r.title from Requirement r where r.id=:reqId";
+		Query q = session.createQuery(query);
+		q.setParameter("reqId", reqId);
+		return q.list();
+	}
+	
+	public List<Integer> getNewRequirementIdByTitleProject(String title, Integer projectId)
+	{
+		Session session = super.getSession();
+		String query = "Select r.id from Requirement r where r.title=:reqTitle AND r.project.id=:projectId";
+		Query q = session.createQuery(query);
+		q.setParameter("reqTitle", title);
+		q.setParameter("projectId", projectId);
+		return q.list();
+	}
+	
+	
+	/*
+	@Override
+	public Integer getNewRequirementIdByProjects(Project project, Project originProject, Integer reqId)
+	{
+		Session session = super.getSession();
+		String query = "Select p.requirements from Project p where p=:myProject";
+		Query q = session.createQuery(query);
+		q.setParameter("myProject", project);
+		return q.;
+	}
+	*/
 	@Override
 	public void changeStatusToApproved(Requirement r)
 	{

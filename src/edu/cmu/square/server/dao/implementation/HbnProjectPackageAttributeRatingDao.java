@@ -128,7 +128,7 @@ public class HbnProjectPackageAttributeRatingDao extends HbnAbstractDao<ProjectP
 	@Override
 	public List<ProjectPackageAttributeRating> getAllRatingsForProjectNoGwt(Project project)
 	{
-System.out.println("in Hbn, getallRatingforprojectNoGWT");
+		//System.out.println("in Hbn, getallRatingforprojectNoGWT");
 		List<ProjectPackageAttributeRating> lines = null;
 		
 		String query = "select s from ProjectPackageAttributeRating s where s.project.id=:project";
@@ -136,11 +136,11 @@ System.out.println("in Hbn, getallRatingforprojectNoGWT");
 		Query q = getSession().createQuery(query);
 		q.setParameter("project", project.getId());
 
-System.out.println(project.getId());
+		//System.out.println(project.getId());
 		
 		lines = (List<ProjectPackageAttributeRating>)q.list();
 
-System.out.println(lines);
+		//System.out.println(lines);
 
 		List<ProjectPackageAttributeRating> result = new ArrayList<ProjectPackageAttributeRating>();
 		ProjectPackageAttributeRating current = null;

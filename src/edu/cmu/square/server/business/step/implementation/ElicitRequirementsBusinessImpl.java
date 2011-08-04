@@ -103,6 +103,7 @@ public class ElicitRequirementsBusinessImpl extends BaseBusinessImpl implements 
 			throw se;
 		}
 */		
+		r.setStatus("Pending");
 		requirementDao.update(r);
 		
 

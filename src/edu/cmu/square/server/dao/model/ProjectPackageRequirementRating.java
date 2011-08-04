@@ -12,6 +12,9 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import edu.cmu.square.client.model.GwtProjectPackageAttributeRating;
+import edu.cmu.square.client.model.GwtRequirementRating;
+
 
 @Entity
 @Table(name = "project_package_requirement_rating")
@@ -36,6 +39,22 @@ public class ProjectPackageRequirementRating implements java.io.Serializable {
 		this.requirement = requirement;
 		this.rating = rating;
 	}
+	public ProjectPackageRequirementRating(GwtRequirementRating gPprr) {
+		
+		this.project = new Project(gPprr.getProjectId());
+		this.softwarePackage = softwarePackage;
+		this.requirement = requirement;
+		this.rating = rating;
+	}
+	
+	
+	public ProjectPackageRequirementRating(Integer projectId, Integer packageId, Integer requirementId, Integer rating, SoftwarePackage softwarePackage, Requirement req )
+	{
+		this.id = new ProjectPackageRequirementRatingId(projectId, packageId, requirementId);
+		this.softwarePackage = softwarePackage;
+		this.requirement = req;
+		this.rating = rating;
+	}
 
 	@EmbeddedId
 	@AttributeOverrides( {
@@ -48,6 +67,10 @@ public class ProjectPackageRequirementRating implements java.io.Serializable {
 
 	public void setId(ProjectPackageRequirementRatingId id) {
 		this.id = id;
+	}
+	
+	public void setIdInt(Integer pid, Integer sid, Integer rid){
+		this.id = new ProjectPackageRequirementRatingId(pid, sid, rid);
 	}
 
 	@ManyToOne(fetch = FetchType.LAZY)

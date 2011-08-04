@@ -497,9 +497,11 @@ public class PerformTradeoffAnalysisPane extends BasePane
 					@Override
 					public void onSuccess(List<GwtRequirementRating> result)
 					{
-						
+						System.out.println("ui pane loadreqratings"+result);
 						requirementRatings = result;
 						
+						for(int i=0; i<requirementRatings.size(); i++)
+							System.out.println("jjjjjjjjjj    "+requirementRatings.get(i).getValue());
 						loadRequirements();
 					}
 					@Override
@@ -1032,8 +1034,10 @@ public class PerformTradeoffAnalysisPane extends BasePane
 			int rID=requirementRatings.get(j).getRequirementId();
 			int pID=requirementRatings.get(j).getPackageId();
 			
+			System.out.println("dddddddddd"+rID+"  "+pID+"  "+ requirementID+"  "+packageID);
 			if(requirementID==rID && packageID==pID)
 			{
+				System.out.println("rrrrrrrrrrrrrrrrrrr"+requirementRatings);
 				return requirementRatings.get(j).getValue();
 			}			
 		}

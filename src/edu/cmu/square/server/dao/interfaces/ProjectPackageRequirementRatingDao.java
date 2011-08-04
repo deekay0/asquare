@@ -22,4 +22,5 @@ public interface ProjectPackageRequirementRatingDao extends AbstractDao<ProjectP
 	void setRating(int projectID, int packageId, int requirementID, int rating);
 	int getRating(int projectID, int packageId, int requirementID);
 	void updateRating(int projectID, int packageId, int requirementID, int rating);
+	List<ProjectPackageRequirementRating> getAllRatingsNoGwt(Project project);
 }

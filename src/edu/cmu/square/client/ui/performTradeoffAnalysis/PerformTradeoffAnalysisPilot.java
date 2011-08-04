@@ -63,7 +63,7 @@ public class PerformTradeoffAnalysisPilot extends Pilot
 		}
 		else if (currentState.getUserProjectRole() == ProjectRole.Acquisition_Organization_Engineer)
 		{
-			currentState.setMode(GwtModesType.NoAccess);
+			currentState.setMode(GwtModesType.ReadOnly);
 		}
 		else if (currentState.getUserProjectRole() == ProjectRole.Contractor)
 		{

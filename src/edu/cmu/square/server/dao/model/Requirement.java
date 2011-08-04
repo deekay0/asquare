@@ -177,6 +177,7 @@ public class Requirement implements java.io.Serializable
 		this.priority = priority;
 	}
 	
+
 	@Column(name = "status", nullable = false, length = 65535)
 	public String getStatus()
 	{

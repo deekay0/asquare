@@ -1,0 +1,528 @@
+INFO btpool0-8 edu.cmu.square.server.remoteService.implementations.SquareRemoteServiceServlet - ----Session Value name: a94fdc40-be8b-4abc-862e-62529dcbf3a2
+INFO btpool0-8 edu.cmu.square.server.remoteService.implementations.SquareRemoteServiceServlet - ----Session Value name: a94fdc40-be8b-4abc-862e-62529dcbf3a2
+INFO btpool0-8 edu.cmu.square.server.remoteService.implementations.SquareRemoteServiceServlet - Session Expired: false
+INFO btpool0-8 edu.cmu.square.server.remoteService.implementations.SquareRemoteServiceServlet - Setting project name: Dddddd
+INFO btpool0-8 edu.cmu.square.server.remoteService.implementations.SquareRemoteServiceServlet - Setting user name: security
+INFO btpool0-8 edu.cmu.square.server.remoteService.implementations.SquareRemoteServiceServlet - Setting user name: security
+INFO btpool0-8 edu.cmu.square.server.authorization.AuthorizationAspect - User name: security
+INFO btpool0-8 edu.cmu.square.server.authorization.AuthorizationAspect - Project name: Dddddd
+INFO btpool0-8 edu.cmu.square.server.authorization.AuthorizationAspect - allowedRoles: [All]
+INFO btpool0-8 edu.cmu.square.server.authorization.AuthorizationAspect - Aspect triggered expired from aspect:false execution(getAsquareCases)
+INFO btpool0-8 edu.cmu.square.server.business.implementation.ChooseProjectBusinessImpl - Calling getAsquareCases
+INFO btpool0-8 edu.cmu.square.server.remoteService.implementations.SquareRemoteServiceServlet - ----Session Value name: a94fdc40-be8b-4abc-862e-62529dcbf3a2
+INFO btpool0-8 edu.cmu.square.server.remoteService.implementations.SquareRemoteServiceServlet - ----Session Value name: a94fdc40-be8b-4abc-862e-62529dcbf3a2
+INFO btpool0-8 edu.cmu.square.server.remoteService.implementations.SquareRemoteServiceServlet - Session Expired: false
+INFO btpool0-8 edu.cmu.square.server.remoteService.implementations.SquareRemoteServiceServlet - Setting project name: Dddddd
+INFO btpool0-8 edu.cmu.square.server.remoteService.implementations.SquareRemoteServiceServlet - Setting user name: security
+INFO btpool0-8 edu.cmu.square.server.remoteService.implementations.SquareRemoteServiceServlet - Setting user name: security
+INFO btpool0-8 edu.cmu.square.server.authorization.AuthorizationAspect - User name: security
+INFO btpool0-8 edu.cmu.square.server.authorization.AuthorizationAspect - Project name: Dddddd
+INFO btpool0-8 edu.cmu.square.server.authorization.AuthorizationAspect - allowedRoles: [All]
+INFO btpool0-8 edu.cmu.square.server.authorization.AuthorizationAspect - Aspect triggered expired from aspect:false execution(getProjectsForUser)
+INFO btpool0-8 edu.cmu.square.server.business.implementation.ChooseProjectBusinessImpl - Calling getProjectsForUser
+INFO btpool0-8 edu.cmu.square.server.remoteService.implementations.SquareRemoteServiceServlet - ----Session Value name: a94fdc40-be8b-4abc-862e-62529dcbf3a2
+INFO btpool0-8 edu.cmu.square.server.remoteService.implementations.SquareRemoteServiceServlet - ----Session Value name: a94fdc40-be8b-4abc-862e-62529dcbf3a2
+INFO btpool0-8 edu.cmu.square.server.remoteService.implementations.SquareRemoteServiceServlet - Session Expired: false
+INFO btpool0-8 edu.cmu.square.server.remoteService.implementations.SquareRemoteServiceServlet - Setting project name: Dddddd
+INFO btpool0-8 edu.cmu.square.server.remoteService.implementations.SquareRemoteServiceServlet - Setting user name: security
+INFO btpool0-8 edu.cmu.square.server.remoteService.implementations.SquareRemoteServiceServlet - Setting user name: security
+INFO btpool0-8 edu.cmu.square.server.authorization.AuthorizationAspect - User name: security
+INFO btpool0-8 edu.cmu.square.server.authorization.AuthorizationAspect - Project name: Dddddd
+INFO btpool0-8 edu.cmu.square.server.authorization.AuthorizationAspect - allowedRoles: [All]
+INFO btpool0-8 edu.cmu.square.server.authorization.AuthorizationAspect - Aspect triggered expired from aspect:false execution(getSteps)
+INFO btpool0-8 edu.cmu.square.server.remoteService.implementations.SquareRemoteServiceServlet - ----Session Value name: a94fdc40-be8b-4abc-862e-62529dcbf3a2
+INFO btpool0-8 edu.cmu.square.server.remoteService.implementations.SquareRemoteServiceServlet - ----Session Value name: a94fdc40-be8b-4abc-862e-62529dcbf3a2
+INFO btpool0-8 edu.cmu.square.server.remoteService.implementations.SquareRemoteServiceServlet - Session Expired: false
+INFO btpool0-8 edu.cmu.square.server.remoteService.implementations.SquareRemoteServiceServlet - Setting project name: Dddddd
+INFO btpool0-8 edu.cmu.square.server.remoteService.implementations.SquareRemoteServiceServlet - Setting user name: security
+INFO btpool0-8 edu.cmu.square.server.remoteService.implementations.SquareRemoteServiceServlet - Setting user name: security
+INFO btpool0-8 edu.cmu.square.server.authorization.AuthorizationAspect - User name: security
+INFO btpool0-8 edu.cmu.square.server.authorization.AuthorizationAspect - Project name: Dddddd
+INFO btpool0-8 edu.cmu.square.server.authorization.AuthorizationAspect - allowedRoles: [All]
+INFO btpool0-8 edu.cmu.square.server.authorization.AuthorizationAspect - Aspect triggered expired from aspect:false execution(getProject)
+INFO btpool0-8 edu.cmu.square.server.authorization.AuthorizationAspect - User name: security
+INFO btpool0-8 edu.cmu.square.server.authorization.AuthorizationAspect - Project name: Dddddd
+INFO btpool0-8 edu.cmu.square.server.authorization.AuthorizationAspect - allowedRoles: [All]
+INFO btpool0-8 edu.cmu.square.server.authorization.AuthorizationAspect - Aspect triggered expired from aspect:false execution(getProject)
+INFO btpool0-8 edu.cmu.square.server.remoteService.implementations.SquareRemoteServiceServlet - ----Session Value name: a94fdc40-be8b-4abc-862e-62529dcbf3a2
+INFO btpool0-8 edu.cmu.square.server.remoteService.implementations.SquareRemoteServiceServlet - ----Session Value name: a94fdc40-be8b-4abc-862e-62529dcbf3a2
+INFO btpool0-8 edu.cmu.square.server.remoteService.implementations.SquareRemoteServiceServlet - Session Expired: false
+INFO btpool0-8 edu.cmu.square.server.remoteService.implementations.SquareRemoteServiceServlet - Setting project name: Dddddd
+INFO btpool0-8 edu.cmu.square.server.remoteService.implementations.SquareRemoteServiceServlet - Setting user name: security
+INFO btpool0-8 edu.cmu.square.server.remoteService.implementations.SquareRemoteServiceServlet - Setting user name: security
+INFO btpool0-8 edu.cmu.square.server.remoteService.implementations.SquareRemoteServiceServlet - ----Session Value name: a94fdc40-be8b-4abc-862e-62529dcbf3a2
+INFO btpool0-8 edu.cmu.square.server.remoteService.implementations.SquareRemoteServiceServlet - ----Session Value name: a94fdc40-be8b-4abc-862e-62529dcbf3a2
+INFO btpool0-8 edu.cmu.square.server.remoteService.implementations.SquareRemoteServiceServlet - Session Expired: false
+INFO btpool0-8 edu.cmu.square.server.remoteService.implementations.SquareRemoteServiceServlet - Setting project name: Dddddd
+INFO btpool0-8 edu.cmu.square.server.remoteService.implementations.SquareRemoteServiceServlet - Setting user name: security
+INFO btpool0-8 edu.cmu.square.server.remoteService.implementations.SquareRemoteServiceServlet - Setting user name: security
+INFO btpool0-8 edu.cmu.square.server.remoteService.implementations.SquareRemoteServiceServlet - ----Session Value name: a94fdc40-be8b-4abc-862e-62529dcbf3a2
+INFO btpool0-8 edu.cmu.square.server.remoteService.implementations.SquareRemoteServiceServlet - ----Session Value name: a94fdc40-be8b-4abc-862e-62529dcbf3a2
+INFO btpool0-8 edu.cmu.square.server.remoteService.implementations.SquareRemoteServiceServlet - Session Expired: false
+INFO btpool0-8 edu.cmu.square.server.remoteService.implementations.SquareRemoteServiceServlet - Setting project name: Dddddd
+INFO btpool0-8 edu.cmu.square.server.remoteService.implementations.SquareRemoteServiceServlet - Setting user name: security
+INFO btpool0-8 edu.cmu.square.server.remoteService.implementations.SquareRemoteServiceServlet - Setting user name: security
+INFO btpool0-8 edu.cmu.square.server.remoteService.implementations.SquareRemoteServiceServlet - ----Session Value name: a94fdc40-be8b-4abc-862e-62529dcbf3a2
+INFO btpool0-8 edu.cmu.square.server.remoteService.implementations.SquareRemoteServiceServlet - ----Session Value name: a94fdc40-be8b-4abc-862e-62529dcbf3a2
+INFO btpool0-8 edu.cmu.square.server.remoteService.implementations.SquareRemoteServiceServlet - Session Expired: false
+INFO btpool0-8 edu.cmu.square.server.remoteService.implementations.SquareRemoteServiceServlet - Setting project name: Dddddd
+INFO btpool0-8 edu.cmu.square.server.remoteService.implementations.SquareRemoteServiceServlet - Setting user name: security
+INFO btpool0-8 edu.cmu.square.server.remoteService.implementations.SquareRemoteServiceServlet - Setting user name: security
+INFO btpool0-8 edu.cmu.square.server.authorization.AuthorizationAspect - User name: security
+INFO btpool0-8 edu.cmu.square.server.authorization.AuthorizationAspect - Project name: Dddddd
+INFO btpool0-8 edu.cmu.square.server.authorization.AuthorizationAspect - allowedRoles: [Administrator, Contractor, Acquisition_Organization_Engineer, Security_Specialist, COTS_Vendor]
+INFO btpool0-8 edu.cmu.square.server.authorization.AuthorizationAspect - user roles [Security Specialist]
+INFO btpool0-8 edu.cmu.square.server.authorization.AuthorizationAspect - Aspect triggered expired from aspect:false execution(getBusinessGoalInformation)
+INFO btpool0-8 edu.cmu.square.server.remoteService.implementations.SquareRemoteServiceServlet - ----Session Value name: a94fdc40-be8b-4abc-862e-62529dcbf3a2
+INFO btpool0-8 edu.cmu.square.server.remoteService.implementations.SquareRemoteServiceServlet - ----Session Value name: a94fdc40-be8b-4abc-862e-62529dcbf3a2
+INFO btpool0-8 edu.cmu.square.server.remoteService.implementations.SquareRemoteServiceServlet - Session Expired: false
+INFO btpool0-8 edu.cmu.square.server.remoteService.implementations.SquareRemoteServiceServlet - Setting project name: Dddddd
+INFO btpool0-8 edu.cmu.square.server.remoteService.implementations.SquareRemoteServiceServlet - Setting user name: security
+INFO btpool0-8 edu.cmu.square.server.remoteService.implementations.SquareRemoteServiceServlet - Setting user name: security
+INFO btpool0-8 edu.cmu.square.server.authorization.AuthorizationAspect - User name: security
+INFO btpool0-8 edu.cmu.square.server.authorization.AuthorizationAspect - Project name: Dddddd
+INFO btpool0-8 edu.cmu.square.server.authorization.AuthorizationAspect - allowedRoles: [All]
+INFO btpool0-8 edu.cmu.square.server.authorization.AuthorizationAspect - Aspect triggered expired from aspect:false execution(getArtifactsForProject)
+INFO btpool0-8 edu.cmu.square.server.remoteService.implementations.SquareRemoteServiceServlet - ----Session Value name: a94fdc40-be8b-4abc-862e-62529dcbf3a2
+INFO btpool0-8 edu.cmu.square.server.remoteService.implementations.SquareRemoteServiceServlet - ----Session Value name: a94fdc40-be8b-4abc-862e-62529dcbf3a2
+INFO btpool0-8 edu.cmu.square.server.remoteService.implementations.SquareRemoteServiceServlet - Session Expired: false
+INFO btpool0-8 edu.cmu.square.server.remoteService.implementations.SquareRemoteServiceServlet - Setting project name: Dddddd
+INFO btpool0-8 edu.cmu.square.server.remoteService.implementations.SquareRemoteServiceServlet - Setting user name: security
+INFO btpool0-8 edu.cmu.square.server.remoteService.implementations.SquareRemoteServiceServlet - Setting user name: security
+INFO btpool0-8 edu.cmu.square.server.remoteService.implementations.SquareRemoteServiceServlet - ----Session Value name: a94fdc40-be8b-4abc-862e-62529dcbf3a2
+INFO btpool0-8 edu.cmu.square.server.remoteService.implementations.SquareRemoteServiceServlet - ----Session Value name: a94fdc40-be8b-4abc-862e-62529dcbf3a2
+INFO btpool0-8 edu.cmu.square.server.remoteService.implementations.SquareRemoteServiceServlet - Session Expired: false
+INFO btpool0-8 edu.cmu.square.server.remoteService.implementations.SquareRemoteServiceServlet - Setting project name: Dddddd
+INFO btpool0-8 edu.cmu.square.server.remoteService.implementations.SquareRemoteServiceServlet - Setting user name: security
+INFO btpool0-8 edu.cmu.square.server.remoteService.implementations.SquareRemoteServiceServlet - Setting user name: security
+INFO btpool0-8 edu.cmu.square.server.authorization.AuthorizationAspect - User name: security
+INFO btpool0-8 edu.cmu.square.server.authorization.AuthorizationAspect - Project name: Dddddd
+INFO btpool0-8 edu.cmu.square.server.authorization.AuthorizationAspect - allowedRoles: [All]
+INFO btpool0-8 edu.cmu.square.server.authorization.AuthorizationAspect - Aspect triggered expired from aspect:false execution(getRisksFromProject)
+INFO btpool0-8 edu.cmu.square.server.remoteService.implementations.SquareRemoteServiceServlet - ----Session Value name: a94fdc40-be8b-4abc-862e-62529dcbf3a2
+INFO btpool0-8 edu.cmu.square.server.remoteService.implementations.SquareRemoteServiceServlet - ----Session Value name: a94fdc40-be8b-4abc-862e-62529dcbf3a2
+INFO btpool0-8 edu.cmu.square.server.remoteService.implementations.SquareRemoteServiceServlet - Session Expired: false
+INFO btpool0-8 edu.cmu.square.server.remoteService.implementations.SquareRemoteServiceServlet - Setting project name: Dddddd
+INFO btpool0-8 edu.cmu.square.server.remoteService.implementations.SquareRemoteServiceServlet - Setting user name: security
+INFO btpool0-8 edu.cmu.square.server.remoteService.implementations.SquareRemoteServiceServlet - Setting user name: security
+INFO btpool0-8 edu.cmu.square.server.authorization.AuthorizationAspect - User name: security
+INFO btpool0-8 edu.cmu.square.server.authorization.AuthorizationAspect - Project name: Dddddd
+INFO btpool0-8 edu.cmu.square.server.authorization.AuthorizationAspect - allowedRoles: [Contractor, Security_Specialist, Administrator]
+INFO btpool0-8 edu.cmu.square.server.authorization.AuthorizationAspect - user roles [Security Specialist]
+INFO btpool0-8 edu.cmu.square.server.authorization.AuthorizationAspect - Aspect triggered expired from aspect:false execution(addRequirementToProject)
+INFO btpool0-8 edu.cmu.square.server.remoteService.implementations.SquareRemoteServiceServlet - ----Session Value name: a94fdc40-be8b-4abc-862e-62529dcbf3a2
+INFO btpool0-8 edu.cmu.square.server.remoteService.implementations.SquareRemoteServiceServlet - ----Session Value name: a94fdc40-be8b-4abc-862e-62529dcbf3a2
+INFO btpool0-8 edu.cmu.square.server.remoteService.implementations.SquareRemoteServiceServlet - Session Expired: false
+INFO btpool0-8 edu.cmu.square.server.remoteService.implementations.SquareRemoteServiceServlet - Setting project name: Dddddd
+INFO btpool0-8 edu.cmu.square.server.remoteService.implementations.SquareRemoteServiceServlet - Setting user name: security
+INFO btpool0-8 edu.cmu.square.server.remoteService.implementations.SquareRemoteServiceServlet - Setting user name: security
+INFO btpool0-8 edu.cmu.square.server.remoteService.implementations.SquareRemoteServiceServlet - ----Session Value name: a94fdc40-be8b-4abc-862e-62529dcbf3a2
+INFO btpool0-8 edu.cmu.square.server.remoteService.implementations.SquareRemoteServiceServlet - ----Session Value name: a94fdc40-be8b-4abc-862e-62529dcbf3a2
+INFO btpool0-8 edu.cmu.square.server.remoteService.implementations.SquareRemoteServiceServlet - Session Expired: false
+INFO btpool0-8 edu.cmu.square.server.remoteService.implementations.SquareRemoteServiceServlet - Setting project name: Dddddd
+INFO btpool0-8 edu.cmu.square.server.remoteService.implementations.SquareRemoteServiceServlet - Setting user name: security
+INFO btpool0-8 edu.cmu.square.server.remoteService.implementations.SquareRemoteServiceServlet - Setting user name: security
+INFO btpool0-8 edu.cmu.square.server.authorization.AuthorizationAspect - User name: security
+INFO btpool0-8 edu.cmu.square.server.authorization.AuthorizationAspect - Project name: Dddddd
+INFO btpool0-8 edu.cmu.square.server.authorization.AuthorizationAspect - allowedRoles: [All]
+INFO btpool0-8 edu.cmu.square.server.authorization.AuthorizationAspect - Aspect triggered expired from aspect:false execution(getRisksFromProject)
+INFO btpool0-8 edu.cmu.square.server.remoteService.implementations.SquareRemoteServiceServlet - ----Session Value name: a94fdc40-be8b-4abc-862e-62529dcbf3a2
+INFO btpool0-8 edu.cmu.square.server.remoteService.implementations.SquareRemoteServiceServlet - ----Session Value name: a94fdc40-be8b-4abc-862e-62529dcbf3a2
+INFO btpool0-8 edu.cmu.square.server.remoteService.implementations.SquareRemoteServiceServlet - Session Expired: false
+INFO btpool0-8 edu.cmu.square.server.remoteService.implementations.SquareRemoteServiceServlet - Setting project name: Dddddd
+INFO btpool0-8 edu.cmu.square.server.remoteService.implementations.SquareRemoteServiceServlet - Setting user name: security
+INFO btpool0-8 edu.cmu.square.server.remoteService.implementations.SquareRemoteServiceServlet - Setting user name: security
+INFO btpool0-8 edu.cmu.square.server.remoteService.implementations.SquareRemoteServiceServlet - ----Session Value name: a94fdc40-be8b-4abc-862e-62529dcbf3a2
+INFO btpool0-8 edu.cmu.square.server.remoteService.implementations.SquareRemoteServiceServlet - ----Session Value name: a94fdc40-be8b-4abc-862e-62529dcbf3a2
+INFO btpool0-8 edu.cmu.square.server.remoteService.implementations.SquareRemoteServiceServlet - Session Expired: false
+INFO btpool0-8 edu.cmu.square.server.remoteService.implementations.SquareRemoteServiceServlet - Setting project name: Dddddd
+INFO btpool0-8 edu.cmu.square.server.remoteService.implementations.SquareRemoteServiceServlet - Setting user name: security
+INFO btpool0-8 edu.cmu.square.server.remoteService.implementations.SquareRemoteServiceServlet - Setting user name: security
+INFO btpool0-8 edu.cmu.square.server.remoteService.implementations.SquareRemoteServiceServlet - ----Session Value name: a94fdc40-be8b-4abc-862e-62529dcbf3a2
+INFO btpool0-8 edu.cmu.square.server.remoteService.implementations.SquareRemoteServiceServlet - ----Session Value name: a94fdc40-be8b-4abc-862e-62529dcbf3a2
+INFO btpool0-8 edu.cmu.square.server.remoteService.implementations.SquareRemoteServiceServlet - Session Expired: false
+INFO btpool0-8 edu.cmu.square.server.remoteService.implementations.SquareRemoteServiceServlet - Setting project name: Dddddd
+INFO btpool0-8 edu.cmu.square.server.remoteService.implementations.SquareRemoteServiceServlet - Setting user name: security
+INFO btpool0-8 edu.cmu.square.server.remoteService.implementations.SquareRemoteServiceServlet - Setting user name: security
+INFO btpool0-8 edu.cmu.square.server.authorization.AuthorizationAspect - User name: security
+INFO btpool0-8 edu.cmu.square.server.authorization.AuthorizationAspect - Project name: Dddddd
+INFO btpool0-8 edu.cmu.square.server.authorization.AuthorizationAspect - allowedRoles: [All]
+INFO btpool0-8 edu.cmu.square.server.authorization.AuthorizationAspect - Aspect triggered expired from aspect:false execution(getSteps)
+INFO btpool0-8 edu.cmu.square.server.remoteService.implementations.SquareRemoteServiceServlet - ----Session Value name: a94fdc40-be8b-4abc-862e-62529dcbf3a2
+INFO btpool0-8 edu.cmu.square.server.remoteService.implementations.SquareRemoteServiceServlet - ----Session Value name: a94fdc40-be8b-4abc-862e-62529dcbf3a2
+INFO btpool0-8 edu.cmu.square.server.remoteService.implementations.SquareRemoteServiceServlet - Session Expired: false
+INFO btpool0-8 edu.cmu.square.server.remoteService.implementations.SquareRemoteServiceServlet - Setting project name: Dddddd
+INFO btpool0-8 edu.cmu.square.server.remoteService.implementations.SquareRemoteServiceServlet - Setting user name: security
+INFO btpool0-8 edu.cmu.square.server.remoteService.implementations.SquareRemoteServiceServlet - Setting user name: security
+INFO btpool0-8 edu.cmu.square.server.authorization.AuthorizationAspect - User name: security
+INFO btpool0-8 edu.cmu.square.server.authorization.AuthorizationAspect - Project name: Dddddd
+INFO btpool0-8 edu.cmu.square.server.authorization.AuthorizationAspect - allowedRoles: [All]
+INFO btpool0-8 edu.cmu.square.server.authorization.AuthorizationAspect - Aspect triggered expired from aspect:false execution(getProject)
+INFO btpool0-8 edu.cmu.square.server.authorization.AuthorizationAspect - User name: security
+INFO btpool0-8 edu.cmu.square.server.authorization.AuthorizationAspect - Project name: Dddddd
+INFO btpool0-8 edu.cmu.square.server.authorization.AuthorizationAspect - allowedRoles: [All]
+INFO btpool0-8 edu.cmu.square.server.authorization.AuthorizationAspect - Aspect triggered expired from aspect:false execution(getProject)
+INFO btpool0-8 edu.cmu.square.server.remoteService.implementations.SquareRemoteServiceServlet - ----Session Value name: a94fdc40-be8b-4abc-862e-62529dcbf3a2
+INFO btpool0-8 edu.cmu.square.server.remoteService.implementations.SquareRemoteServiceServlet - ----Session Value name: a94fdc40-be8b-4abc-862e-62529dcbf3a2
+INFO btpool0-8 edu.cmu.square.server.remoteService.implementations.SquareRemoteServiceServlet - Session Expired: false
+INFO btpool0-8 edu.cmu.square.server.remoteService.implementations.SquareRemoteServiceServlet - Setting project name: Dddddd
+INFO btpool0-8 edu.cmu.square.server.remoteService.implementations.SquareRemoteServiceServlet - Setting user name: security
+INFO btpool0-8 edu.cmu.square.server.remoteService.implementations.SquareRemoteServiceServlet - Setting user name: security
+INFO btpool0-8 edu.cmu.square.server.remoteService.implementations.SquareRemoteServiceServlet - ----Session Value name: a94fdc40-be8b-4abc-862e-62529dcbf3a2
+INFO btpool0-8 edu.cmu.square.server.remoteService.implementations.SquareRemoteServiceServlet - ----Session Value name: a94fdc40-be8b-4abc-862e-62529dcbf3a2
+INFO btpool0-8 edu.cmu.square.server.remoteService.implementations.SquareRemoteServiceServlet - Session Expired: false
+INFO btpool0-8 edu.cmu.square.server.remoteService.implementations.SquareRemoteServiceServlet - Setting project name: Dddddd
+INFO btpool0-8 edu.cmu.square.server.remoteService.implementations.SquareRemoteServiceServlet - Setting user name: security
+INFO btpool0-8 edu.cmu.square.server.remoteService.implementations.SquareRemoteServiceServlet - Setting user name: security
+INFO btpool0-8 edu.cmu.square.server.remoteService.implementations.SquareRemoteServiceServlet - ----Session Value name: a94fdc40-be8b-4abc-862e-62529dcbf3a2
+INFO btpool0-8 edu.cmu.square.server.remoteService.implementations.SquareRemoteServiceServlet - ----Session Value name: a94fdc40-be8b-4abc-862e-62529dcbf3a2
+INFO btpool0-8 edu.cmu.square.server.remoteService.implementations.SquareRemoteServiceServlet - Session Expired: false
+INFO btpool0-8 edu.cmu.square.server.remoteService.implementations.SquareRemoteServiceServlet - Setting project name: Dddddd
+INFO btpool0-8 edu.cmu.square.server.remoteService.implementations.SquareRemoteServiceServlet - Setting user name: security
+INFO btpool0-8 edu.cmu.square.server.remoteService.implementations.SquareRemoteServiceServlet - Setting user name: security
+INFO btpool0-8 edu.cmu.square.server.authorization.AuthorizationAspect - User name: security
+INFO btpool0-8 edu.cmu.square.server.authorization.AuthorizationAspect - Project name: Dddddd
+INFO btpool0-8 edu.cmu.square.server.authorization.AuthorizationAspect - allowedRoles: [All]
+INFO btpool0-8 edu.cmu.square.server.authorization.AuthorizationAspect - Aspect triggered expired from aspect:false execution(getQualityAttributes)
+INFO btpool0-8 edu.cmu.square.server.remoteService.implementations.SquareRemoteServiceServlet - ----Session Value name: a94fdc40-be8b-4abc-862e-62529dcbf3a2
+INFO btpool0-8 edu.cmu.square.server.remoteService.implementations.SquareRemoteServiceServlet - ----Session Value name: a94fdc40-be8b-4abc-862e-62529dcbf3a2
+INFO btpool0-8 edu.cmu.square.server.remoteService.implementations.SquareRemoteServiceServlet - Session Expired: false
+INFO btpool0-8 edu.cmu.square.server.remoteService.implementations.SquareRemoteServiceServlet - Setting project name: Dddddd
+INFO btpool0-8 edu.cmu.square.server.remoteService.implementations.SquareRemoteServiceServlet - Setting user name: security
+INFO btpool0-8 edu.cmu.square.server.remoteService.implementations.SquareRemoteServiceServlet - Setting user name: security
+INFO btpool0-8 edu.cmu.square.server.remoteService.implementations.SquareRemoteServiceServlet - ----Session Value name: a94fdc40-be8b-4abc-862e-62529dcbf3a2
+INFO btpool0-8 edu.cmu.square.server.remoteService.implementations.SquareRemoteServiceServlet - ----Session Value name: a94fdc40-be8b-4abc-862e-62529dcbf3a2
+INFO btpool0-8 edu.cmu.square.server.remoteService.implementations.SquareRemoteServiceServlet - Session Expired: false
+INFO btpool0-8 edu.cmu.square.server.remoteService.implementations.SquareRemoteServiceServlet - Setting project name: Dddddd
+INFO btpool0-8 edu.cmu.square.server.remoteService.implementations.SquareRemoteServiceServlet - Setting user name: security
+INFO btpool0-8 edu.cmu.square.server.remoteService.implementations.SquareRemoteServiceServlet - Setting user name: security
+INFO btpool0-8 edu.cmu.square.server.authorization.AuthorizationAspect - User name: security
+INFO btpool0-8 edu.cmu.square.server.authorization.AuthorizationAspect - Project name: Dddddd
+INFO btpool0-8 edu.cmu.square.server.authorization.AuthorizationAspect - allowedRoles: [All]
+INFO btpool0-8 edu.cmu.square.server.authorization.AuthorizationAspect - Aspect triggered expired from aspect:false execution(getSoftwarePackages)
+INFO btpool0-8 edu.cmu.square.server.remoteService.implementations.SquareRemoteServiceServlet - ----Session Value name: a94fdc40-be8b-4abc-862e-62529dcbf3a2
+INFO btpool0-8 edu.cmu.square.server.remoteService.implementations.SquareRemoteServiceServlet - ----Session Value name: a94fdc40-be8b-4abc-862e-62529dcbf3a2
+INFO btpool0-8 edu.cmu.square.server.remoteService.implementations.SquareRemoteServiceServlet - Session Expired: false
+INFO btpool0-8 edu.cmu.square.server.remoteService.implementations.SquareRemoteServiceServlet - Setting project name: Dddddd
+INFO btpool0-8 edu.cmu.square.server.remoteService.implementations.SquareRemoteServiceServlet - Setting user name: security
+INFO btpool0-8 edu.cmu.square.server.remoteService.implementations.SquareRemoteServiceServlet - Setting user name: security
+INFO btpool0-8 edu.cmu.square.server.authorization.AuthorizationAspect - User name: security
+INFO btpool0-8 edu.cmu.square.server.authorization.AuthorizationAspect - Project name: Dddddd
+INFO btpool0-8 edu.cmu.square.server.authorization.AuthorizationAspect - allowedRoles: [All]
+INFO btpool0-8 edu.cmu.square.server.authorization.AuthorizationAspect - Aspect triggered expired from aspect:false execution(getRateValues)
+INFO btpool0-8 edu.cmu.square.server.remoteService.implementations.SquareRemoteServiceServlet - ----Session Value name: a94fdc40-be8b-4abc-862e-62529dcbf3a2
+INFO btpool0-8 edu.cmu.square.server.remoteService.implementations.SquareRemoteServiceServlet - ----Session Value name: a94fdc40-be8b-4abc-862e-62529dcbf3a2
+INFO btpool0-8 edu.cmu.square.server.remoteService.implementations.SquareRemoteServiceServlet - Session Expired: false
+INFO btpool0-8 edu.cmu.square.server.remoteService.implementations.SquareRemoteServiceServlet - Setting project name: Dddddd
+INFO btpool0-8 edu.cmu.square.server.remoteService.implementations.SquareRemoteServiceServlet - Setting user name: security
+INFO btpool0-8 edu.cmu.square.server.remoteService.implementations.SquareRemoteServiceServlet - Setting user name: security
+INFO btpool0-8 edu.cmu.square.server.authorization.AuthorizationAspect - User name: security
+INFO btpool0-8 edu.cmu.square.server.authorization.AuthorizationAspect - Project name: Dddddd
+INFO btpool0-8 edu.cmu.square.server.authorization.AuthorizationAspect - allowedRoles: [All]
+INFO btpool0-8 edu.cmu.square.server.authorization.AuthorizationAspect - Aspect triggered expired from aspect:false execution(getRequirements)
+INFO btpool0-8 edu.cmu.square.server.remoteService.implementations.SquareRemoteServiceServlet - ----Session Value name: a94fdc40-be8b-4abc-862e-62529dcbf3a2
+INFO btpool0-8 edu.cmu.square.server.remoteService.implementations.SquareRemoteServiceServlet - ----Session Value name: a94fdc40-be8b-4abc-862e-62529dcbf3a2
+INFO btpool0-8 edu.cmu.square.server.remoteService.implementations.SquareRemoteServiceServlet - Session Expired: false
+INFO btpool0-8 edu.cmu.square.server.remoteService.implementations.SquareRemoteServiceServlet - Setting project name: Dddddd
+INFO btpool0-8 edu.cmu.square.server.remoteService.implementations.SquareRemoteServiceServlet - Setting user name: security
+INFO btpool0-8 edu.cmu.square.server.remoteService.implementations.SquareRemoteServiceServlet - Setting user name: security
+INFO btpool0-8 edu.cmu.square.server.authorization.AuthorizationAspect - User name: security
+INFO btpool0-8 edu.cmu.square.server.authorization.AuthorizationAspect - Project name: Dddddd
+INFO btpool0-8 edu.cmu.square.server.authorization.AuthorizationAspect - allowedRoles: [All]
+INFO btpool0-8 edu.cmu.square.server.authorization.AuthorizationAspect - Aspect triggered expired from aspect:false execution(getSteps)
+INFO btpool0-8 edu.cmu.square.server.remoteService.implementations.SquareRemoteServiceServlet - ----Session Value name: a94fdc40-be8b-4abc-862e-62529dcbf3a2
+INFO btpool0-8 edu.cmu.square.server.remoteService.implementations.SquareRemoteServiceServlet - ----Session Value name: a94fdc40-be8b-4abc-862e-62529dcbf3a2
+INFO btpool0-8 edu.cmu.square.server.remoteService.implementations.SquareRemoteServiceServlet - Session Expired: false
+INFO btpool0-8 edu.cmu.square.server.remoteService.implementations.SquareRemoteServiceServlet - Setting project name: Dddddd
+INFO btpool0-8 edu.cmu.square.server.remoteService.implementations.SquareRemoteServiceServlet - Setting user name: security
+INFO btpool0-8 edu.cmu.square.server.remoteService.implementations.SquareRemoteServiceServlet - Setting user name: security
+INFO btpool0-8 edu.cmu.square.server.authorization.AuthorizationAspect - User name: security
+INFO btpool0-8 edu.cmu.square.server.authorization.AuthorizationAspect - Project name: Dddddd
+INFO btpool0-8 edu.cmu.square.server.authorization.AuthorizationAspect - allowedRoles: [All]
+INFO btpool0-8 edu.cmu.square.server.authorization.AuthorizationAspect - Aspect triggered expired from aspect:false execution(getProject)
+INFO btpool0-8 edu.cmu.square.server.authorization.AuthorizationAspect - User name: security
+INFO btpool0-8 edu.cmu.square.server.authorization.AuthorizationAspect - Project name: Dddddd
+INFO btpool0-8 edu.cmu.square.server.authorization.AuthorizationAspect - allowedRoles: [All]
+INFO btpool0-8 edu.cmu.square.server.authorization.AuthorizationAspect - Aspect triggered expired from aspect:false execution(getProject)
+INFO btpool0-8 edu.cmu.square.server.remoteService.implementations.SquareRemoteServiceServlet - ----Session Value name: a94fdc40-be8b-4abc-862e-62529dcbf3a2
+INFO btpool0-8 edu.cmu.square.server.remoteService.implementations.SquareRemoteServiceServlet - ----Session Value name: a94fdc40-be8b-4abc-862e-62529dcbf3a2
+INFO btpool0-8 edu.cmu.square.server.remoteService.implementations.SquareRemoteServiceServlet - Session Expired: false
+INFO btpool0-8 edu.cmu.square.server.remoteService.implementations.SquareRemoteServiceServlet - Setting project name: Dddddd
+INFO btpool0-8 edu.cmu.square.server.remoteService.implementations.SquareRemoteServiceServlet - Setting user name: security
+INFO btpool0-8 edu.cmu.square.server.remoteService.implementations.SquareRemoteServiceServlet - Setting user name: security
+INFO btpool0-8 edu.cmu.square.server.remoteService.implementations.SquareRemoteServiceServlet - ----Session Value name: a94fdc40-be8b-4abc-862e-62529dcbf3a2
+INFO btpool0-8 edu.cmu.square.server.remoteService.implementations.SquareRemoteServiceServlet - ----Session Value name: a94fdc40-be8b-4abc-862e-62529dcbf3a2
+INFO btpool0-8 edu.cmu.square.server.remoteService.implementations.SquareRemoteServiceServlet - Session Expired: false
+INFO btpool0-8 edu.cmu.square.server.remoteService.implementations.SquareRemoteServiceServlet - Setting project name: Dddddd
+INFO btpool0-8 edu.cmu.square.server.remoteService.implementations.SquareRemoteServiceServlet - Setting user name: security
+INFO btpool0-8 edu.cmu.square.server.remoteService.implementations.SquareRemoteServiceServlet - Setting user name: security
+INFO btpool0-8 edu.cmu.square.server.remoteService.implementations.SquareRemoteServiceServlet - ----Session Value name: a94fdc40-be8b-4abc-862e-62529dcbf3a2
+INFO btpool0-8 edu.cmu.square.server.remoteService.implementations.SquareRemoteServiceServlet - ----Session Value name: a94fdc40-be8b-4abc-862e-62529dcbf3a2
+INFO btpool0-8 edu.cmu.square.server.remoteService.implementations.SquareRemoteServiceServlet - Session Expired: false
+INFO btpool0-8 edu.cmu.square.server.remoteService.implementations.SquareRemoteServiceServlet - Setting project name: Dddddd
+INFO btpool0-8 edu.cmu.square.server.remoteService.implementations.SquareRemoteServiceServlet - Setting user name: security
+INFO btpool0-8 edu.cmu.square.server.remoteService.implementations.SquareRemoteServiceServlet - Setting user name: security
+INFO btpool0-8 edu.cmu.square.server.authorization.AuthorizationAspect - User name: security
+INFO btpool0-8 edu.cmu.square.server.authorization.AuthorizationAspect - Project name: Dddddd
+INFO btpool0-8 edu.cmu.square.server.authorization.AuthorizationAspect - allowedRoles: [All]
+INFO btpool0-8 edu.cmu.square.server.authorization.AuthorizationAspect - Aspect triggered expired from aspect:false execution(getQualityAttributes)
+INFO btpool0-8 edu.cmu.square.server.remoteService.implementations.SquareRemoteServiceServlet - ----Session Value name: a94fdc40-be8b-4abc-862e-62529dcbf3a2
+INFO btpool0-8 edu.cmu.square.server.remoteService.implementations.SquareRemoteServiceServlet - ----Session Value name: a94fdc40-be8b-4abc-862e-62529dcbf3a2
+INFO btpool0-8 edu.cmu.square.server.remoteService.implementations.SquareRemoteServiceServlet - Session Expired: false
+INFO btpool0-8 edu.cmu.square.server.remoteService.implementations.SquareRemoteServiceServlet - Setting project name: Dddddd
+INFO btpool0-8 edu.cmu.square.server.remoteService.implementations.SquareRemoteServiceServlet - Setting user name: security
+INFO btpool0-8 edu.cmu.square.server.remoteService.implementations.SquareRemoteServiceServlet - Setting user name: security
+INFO btpool0-8 edu.cmu.square.server.remoteService.implementations.SquareRemoteServiceServlet - ----Session Value name: a94fdc40-be8b-4abc-862e-62529dcbf3a2
+INFO btpool0-8 edu.cmu.square.server.remoteService.implementations.SquareRemoteServiceServlet - ----Session Value name: a94fdc40-be8b-4abc-862e-62529dcbf3a2
+INFO btpool0-8 edu.cmu.square.server.remoteService.implementations.SquareRemoteServiceServlet - Session Expired: false
+INFO btpool0-8 edu.cmu.square.server.remoteService.implementations.SquareRemoteServiceServlet - Setting project name: Dddddd
+INFO btpool0-8 edu.cmu.square.server.remoteService.implementations.SquareRemoteServiceServlet - Setting user name: security
+INFO btpool0-8 edu.cmu.square.server.remoteService.implementations.SquareRemoteServiceServlet - Setting user name: security
+INFO btpool0-8 edu.cmu.square.server.authorization.AuthorizationAspect - User name: security
+INFO btpool0-8 edu.cmu.square.server.authorization.AuthorizationAspect - Project name: Dddddd
+INFO btpool0-8 edu.cmu.square.server.authorization.AuthorizationAspect - allowedRoles: [All]
+INFO btpool0-8 edu.cmu.square.server.authorization.AuthorizationAspect - Aspect triggered expired from aspect:false execution(getSoftwarePackages)
+INFO btpool0-8 edu.cmu.square.server.remoteService.implementations.SquareRemoteServiceServlet - ----Session Value name: a94fdc40-be8b-4abc-862e-62529dcbf3a2
+INFO btpool0-8 edu.cmu.square.server.remoteService.implementations.SquareRemoteServiceServlet - ----Session Value name: a94fdc40-be8b-4abc-862e-62529dcbf3a2
+INFO btpool0-8 edu.cmu.square.server.remoteService.implementations.SquareRemoteServiceServlet - Session Expired: false
+INFO btpool0-8 edu.cmu.square.server.remoteService.implementations.SquareRemoteServiceServlet - Setting project name: Dddddd
+INFO btpool0-8 edu.cmu.square.server.remoteService.implementations.SquareRemoteServiceServlet - Setting user name: security
+INFO btpool0-8 edu.cmu.square.server.remoteService.implementations.SquareRemoteServiceServlet - Setting user name: security
+INFO btpool0-8 edu.cmu.square.server.authorization.AuthorizationAspect - User name: security
+INFO btpool0-8 edu.cmu.square.server.authorization.AuthorizationAspect - Project name: Dddddd
+INFO btpool0-8 edu.cmu.square.server.authorization.AuthorizationAspect - allowedRoles: [All]
+INFO btpool0-8 edu.cmu.square.server.authorization.AuthorizationAspect - Aspect triggered expired from aspect:false execution(getRateValues)
+INFO btpool0-8 edu.cmu.square.server.remoteService.implementations.SquareRemoteServiceServlet - ----Session Value name: a94fdc40-be8b-4abc-862e-62529dcbf3a2
+INFO btpool0-8 edu.cmu.square.server.remoteService.implementations.SquareRemoteServiceServlet - ----Session Value name: a94fdc40-be8b-4abc-862e-62529dcbf3a2
+INFO btpool0-8 edu.cmu.square.server.remoteService.implementations.SquareRemoteServiceServlet - Session Expired: false
+INFO btpool0-8 edu.cmu.square.server.remoteService.implementations.SquareRemoteServiceServlet - Setting project name: Dddddd
+INFO btpool0-8 edu.cmu.square.server.remoteService.implementations.SquareRemoteServiceServlet - Setting user name: security
+INFO btpool0-8 edu.cmu.square.server.remoteService.implementations.SquareRemoteServiceServlet - Setting user name: security
+INFO btpool0-8 edu.cmu.square.server.remoteService.implementations.SquareRemoteServiceServlet - ----Session Value name: a94fdc40-be8b-4abc-862e-62529dcbf3a2
+INFO btpool0-8 edu.cmu.square.server.remoteService.implementations.SquareRemoteServiceServlet - ----Session Value name: a94fdc40-be8b-4abc-862e-62529dcbf3a2
+INFO btpool0-8 edu.cmu.square.server.remoteService.implementations.SquareRemoteServiceServlet - Session Expired: false
+INFO btpool0-8 edu.cmu.square.server.remoteService.implementations.SquareRemoteServiceServlet - Setting project name: Dddddd
+INFO btpool0-8 edu.cmu.square.server.remoteService.implementations.SquareRemoteServiceServlet - Setting user name: security
+INFO btpool0-8 edu.cmu.square.server.remoteService.implementations.SquareRemoteServiceServlet - Setting user name: security
+INFO btpool0-8 edu.cmu.square.server.authorization.AuthorizationAspect - User name: security
+INFO btpool0-8 edu.cmu.square.server.authorization.AuthorizationAspect - Project name: Dddddd
+INFO btpool0-8 edu.cmu.square.server.authorization.AuthorizationAspect - allowedRoles: [Security_Specialist, Administrator]
+INFO btpool0-8 edu.cmu.square.server.authorization.AuthorizationAspect - user roles [Security Specialist]
+INFO btpool0-8 edu.cmu.square.server.authorization.AuthorizationAspect - Aspect triggered expired from aspect:false execution(addSoftwarePackage)
+INFO btpool0-8 edu.cmu.square.server.remoteService.implementations.SquareRemoteServiceServlet - ----Session Value name: a94fdc40-be8b-4abc-862e-62529dcbf3a2
+INFO btpool0-8 edu.cmu.square.server.remoteService.implementations.SquareRemoteServiceServlet - ----Session Value name: a94fdc40-be8b-4abc-862e-62529dcbf3a2
+INFO btpool0-8 edu.cmu.square.server.remoteService.implementations.SquareRemoteServiceServlet - Session Expired: false
+INFO btpool0-8 edu.cmu.square.server.remoteService.implementations.SquareRemoteServiceServlet - Setting project name: Dddddd
+INFO btpool0-8 edu.cmu.square.server.remoteService.implementations.SquareRemoteServiceServlet - Setting user name: security
+INFO btpool0-8 edu.cmu.square.server.remoteService.implementations.SquareRemoteServiceServlet - Setting user name: security
+INFO btpool0-8 edu.cmu.square.server.remoteService.implementations.SquareRemoteServiceServlet - ----Session Value name: a94fdc40-be8b-4abc-862e-62529dcbf3a2
+INFO btpool0-8 edu.cmu.square.server.remoteService.implementations.SquareRemoteServiceServlet - ----Session Value name: a94fdc40-be8b-4abc-862e-62529dcbf3a2
+INFO btpool0-8 edu.cmu.square.server.remoteService.implementations.SquareRemoteServiceServlet - Session Expired: false
+INFO btpool0-8 edu.cmu.square.server.remoteService.implementations.SquareRemoteServiceServlet - Setting project name: Dddddd
+INFO btpool0-8 edu.cmu.square.server.remoteService.implementations.SquareRemoteServiceServlet - Setting user name: security
+INFO btpool0-8 edu.cmu.square.server.remoteService.implementations.SquareRemoteServiceServlet - Setting user name: security
+INFO btpool0-8 edu.cmu.square.server.authorization.AuthorizationAspect - User name: security
+INFO btpool0-8 edu.cmu.square.server.authorization.AuthorizationAspect - Project name: Dddddd
+INFO btpool0-8 edu.cmu.square.server.authorization.AuthorizationAspect - allowedRoles: [All]
+INFO btpool0-8 edu.cmu.square.server.authorization.AuthorizationAspect - Aspect triggered expired from aspect:false execution(getQualityAttributes)
+INFO btpool0-8 edu.cmu.square.server.remoteService.implementations.SquareRemoteServiceServlet - ----Session Value name: a94fdc40-be8b-4abc-862e-62529dcbf3a2
+INFO btpool0-8 edu.cmu.square.server.remoteService.implementations.SquareRemoteServiceServlet - ----Session Value name: a94fdc40-be8b-4abc-862e-62529dcbf3a2
+INFO btpool0-8 edu.cmu.square.server.remoteService.implementations.SquareRemoteServiceServlet - Session Expired: false
+INFO btpool0-8 edu.cmu.square.server.remoteService.implementations.SquareRemoteServiceServlet - Setting project name: Dddddd
+INFO btpool0-8 edu.cmu.square.server.remoteService.implementations.SquareRemoteServiceServlet - Setting user name: security
+INFO btpool0-8 edu.cmu.square.server.remoteService.implementations.SquareRemoteServiceServlet - Setting user name: security
+INFO btpool0-8 edu.cmu.square.server.remoteService.implementations.SquareRemoteServiceServlet - ----Session Value name: a94fdc40-be8b-4abc-862e-62529dcbf3a2
+INFO btpool0-8 edu.cmu.square.server.remoteService.implementations.SquareRemoteServiceServlet - ----Session Value name: a94fdc40-be8b-4abc-862e-62529dcbf3a2
+INFO btpool0-8 edu.cmu.square.server.remoteService.implementations.SquareRemoteServiceServlet - Session Expired: false
+INFO btpool0-8 edu.cmu.square.server.remoteService.implementations.SquareRemoteServiceServlet - Setting project name: Dddddd
+INFO btpool0-8 edu.cmu.square.server.remoteService.implementations.SquareRemoteServiceServlet - Setting user name: security
+INFO btpool0-8 edu.cmu.square.server.remoteService.implementations.SquareRemoteServiceServlet - Setting user name: security
+INFO btpool0-8 edu.cmu.square.server.authorization.AuthorizationAspect - User name: security
+INFO btpool0-8 edu.cmu.square.server.authorization.AuthorizationAspect - Project name: Dddddd
+INFO btpool0-8 edu.cmu.square.server.authorization.AuthorizationAspect - allowedRoles: [All]
+INFO btpool0-8 edu.cmu.square.server.authorization.AuthorizationAspect - Aspect triggered expired from aspect:false execution(getSoftwarePackages)
+INFO btpool0-8 edu.cmu.square.server.remoteService.implementations.SquareRemoteServiceServlet - ----Session Value name: a94fdc40-be8b-4abc-862e-62529dcbf3a2
+INFO btpool0-8 edu.cmu.square.server.remoteService.implementations.SquareRemoteServiceServlet - ----Session Value name: a94fdc40-be8b-4abc-862e-62529dcbf3a2
+INFO btpool0-8 edu.cmu.square.server.remoteService.implementations.SquareRemoteServiceServlet - Session Expired: false
+INFO btpool0-8 edu.cmu.square.server.remoteService.implementations.SquareRemoteServiceServlet - Setting project name: Dddddd
+INFO btpool0-8 edu.cmu.square.server.remoteService.implementations.SquareRemoteServiceServlet - Setting user name: security
+INFO btpool0-8 edu.cmu.square.server.remoteService.implementations.SquareRemoteServiceServlet - Setting user name: security
+INFO btpool0-8 edu.cmu.square.server.authorization.AuthorizationAspect - User name: security
+INFO btpool0-8 edu.cmu.square.server.authorization.AuthorizationAspect - Project name: Dddddd
+INFO btpool0-8 edu.cmu.square.server.authorization.AuthorizationAspect - allowedRoles: [All]
+INFO btpool0-8 edu.cmu.square.server.authorization.AuthorizationAspect - Aspect triggered expired from aspect:false execution(getRateValues)
+INFO btpool0-8 edu.cmu.square.server.remoteService.implementations.SquareRemoteServiceServlet - ----Session Value name: a94fdc40-be8b-4abc-862e-62529dcbf3a2
+INFO btpool0-8 edu.cmu.square.server.remoteService.implementations.SquareRemoteServiceServlet - ----Session Value name: a94fdc40-be8b-4abc-862e-62529dcbf3a2
+INFO btpool0-8 edu.cmu.square.server.remoteService.implementations.SquareRemoteServiceServlet - Session Expired: false
+INFO btpool0-8 edu.cmu.square.server.remoteService.implementations.SquareRemoteServiceServlet - Setting project name: Dddddd
+INFO btpool0-8 edu.cmu.square.server.remoteService.implementations.SquareRemoteServiceServlet - Setting user name: security
+INFO btpool0-8 edu.cmu.square.server.remoteService.implementations.SquareRemoteServiceServlet - Setting user name: security
+INFO btpool0-8 edu.cmu.square.server.remoteService.implementations.SquareRemoteServiceServlet - ----Session Value name: a94fdc40-be8b-4abc-862e-62529dcbf3a2
+INFO btpool0-8 edu.cmu.square.server.remoteService.implementations.SquareRemoteServiceServlet - ----Session Value name: a94fdc40-be8b-4abc-862e-62529dcbf3a2
+INFO btpool0-8 edu.cmu.square.server.remoteService.implementations.SquareRemoteServiceServlet - Session Expired: false
+INFO btpool0-8 edu.cmu.square.server.remoteService.implementations.SquareRemoteServiceServlet - Setting project name: Dddddd
+INFO btpool0-8 edu.cmu.square.server.remoteService.implementations.SquareRemoteServiceServlet - Setting user name: security
+INFO btpool0-8 edu.cmu.square.server.remoteService.implementations.SquareRemoteServiceServlet - Setting user name: security
+INFO btpool0-8 edu.cmu.square.server.authorization.AuthorizationAspect - User name: security
+INFO btpool0-8 edu.cmu.square.server.authorization.AuthorizationAspect - Project name: Dddddd
+INFO btpool0-8 edu.cmu.square.server.authorization.AuthorizationAspect - allowedRoles: [Security_Specialist, Administrator]
+INFO btpool0-8 edu.cmu.square.server.authorization.AuthorizationAspect - user roles [Security Specialist]
+INFO btpool0-8 edu.cmu.square.server.authorization.AuthorizationAspect - Aspect triggered expired from aspect:false execution(addSoftwarePackage)
+INFO btpool0-8 edu.cmu.square.server.remoteService.implementations.SquareRemoteServiceServlet - ----Session Value name: a94fdc40-be8b-4abc-862e-62529dcbf3a2
+INFO btpool0-8 edu.cmu.square.server.remoteService.implementations.SquareRemoteServiceServlet - ----Session Value name: a94fdc40-be8b-4abc-862e-62529dcbf3a2
+INFO btpool0-8 edu.cmu.square.server.remoteService.implementations.SquareRemoteServiceServlet - Session Expired: false
+INFO btpool0-8 edu.cmu.square.server.remoteService.implementations.SquareRemoteServiceServlet - Setting project name: Dddddd
+INFO btpool0-8 edu.cmu.square.server.remoteService.implementations.SquareRemoteServiceServlet - Setting user name: security
+INFO btpool0-8 edu.cmu.square.server.remoteService.implementations.SquareRemoteServiceServlet - Setting user name: security
+INFO btpool0-8 edu.cmu.square.server.remoteService.implementations.SquareRemoteServiceServlet - ----Session Value name: a94fdc40-be8b-4abc-862e-62529dcbf3a2
+INFO btpool0-8 edu.cmu.square.server.remoteService.implementations.SquareRemoteServiceServlet - ----Session Value name: a94fdc40-be8b-4abc-862e-62529dcbf3a2
+INFO btpool0-8 edu.cmu.square.server.remoteService.implementations.SquareRemoteServiceServlet - Session Expired: false
+INFO btpool0-8 edu.cmu.square.server.remoteService.implementations.SquareRemoteServiceServlet - Setting project name: Dddddd
+INFO btpool0-8 edu.cmu.square.server.remoteService.implementations.SquareRemoteServiceServlet - Setting user name: security
+INFO btpool0-8 edu.cmu.square.server.remoteService.implementations.SquareRemoteServiceServlet - Setting user name: security
+INFO btpool0-8 edu.cmu.square.server.authorization.AuthorizationAspect - User name: security
+INFO btpool0-8 edu.cmu.square.server.authorization.AuthorizationAspect - Project name: Dddddd
+INFO btpool0-8 edu.cmu.square.server.authorization.AuthorizationAspect - allowedRoles: [All]
+INFO btpool0-8 edu.cmu.square.server.authorization.AuthorizationAspect - Aspect triggered expired from aspect:false execution(getQualityAttributes)
+INFO btpool0-8 edu.cmu.square.server.remoteService.implementations.SquareRemoteServiceServlet - ----Session Value name: a94fdc40-be8b-4abc-862e-62529dcbf3a2
+INFO btpool0-8 edu.cmu.square.server.remoteService.implementations.SquareRemoteServiceServlet - ----Session Value name: a94fdc40-be8b-4abc-862e-62529dcbf3a2
+INFO btpool0-8 edu.cmu.square.server.remoteService.implementations.SquareRemoteServiceServlet - Session Expired: false
+INFO btpool0-8 edu.cmu.square.server.remoteService.implementations.SquareRemoteServiceServlet - Setting project name: Dddddd
+INFO btpool0-8 edu.cmu.square.server.remoteService.implementations.SquareRemoteServiceServlet - Setting user name: security
+INFO btpool0-8 edu.cmu.square.server.remoteService.implementations.SquareRemoteServiceServlet - Setting user name: security
+INFO btpool0-8 edu.cmu.square.server.remoteService.implementations.SquareRemoteServiceServlet - ----Session Value name: a94fdc40-be8b-4abc-862e-62529dcbf3a2
+INFO btpool0-8 edu.cmu.square.server.remoteService.implementations.SquareRemoteServiceServlet - ----Session Value name: a94fdc40-be8b-4abc-862e-62529dcbf3a2
+INFO btpool0-8 edu.cmu.square.server.remoteService.implementations.SquareRemoteServiceServlet - Session Expired: false
+INFO btpool0-8 edu.cmu.square.server.remoteService.implementations.SquareRemoteServiceServlet - Setting project name: Dddddd
+INFO btpool0-8 edu.cmu.square.server.remoteService.implementations.SquareRemoteServiceServlet - Setting user name: security
+INFO btpool0-8 edu.cmu.square.server.remoteService.implementations.SquareRemoteServiceServlet - Setting user name: security
+INFO btpool0-8 edu.cmu.square.server.authorization.AuthorizationAspect - User name: security
+INFO btpool0-8 edu.cmu.square.server.authorization.AuthorizationAspect - Project name: Dddddd
+INFO btpool0-8 edu.cmu.square.server.authorization.AuthorizationAspect - allowedRoles: [All]
+INFO btpool0-8 edu.cmu.square.server.authorization.AuthorizationAspect - Aspect triggered expired from aspect:false execution(getSoftwarePackages)
+INFO btpool0-8 edu.cmu.square.server.remoteService.implementations.SquareRemoteServiceServlet - ----Session Value name: a94fdc40-be8b-4abc-862e-62529dcbf3a2
+INFO btpool0-8 edu.cmu.square.server.remoteService.implementations.SquareRemoteServiceServlet - ----Session Value name: a94fdc40-be8b-4abc-862e-62529dcbf3a2
+INFO btpool0-8 edu.cmu.square.server.remoteService.implementations.SquareRemoteServiceServlet - Session Expired: false
+INFO btpool0-8 edu.cmu.square.server.remoteService.implementations.SquareRemoteServiceServlet - Setting project name: Dddddd
+INFO btpool0-8 edu.cmu.square.server.remoteService.implementations.SquareRemoteServiceServlet - Setting user name: security
+INFO btpool0-8 edu.cmu.square.server.remoteService.implementations.SquareRemoteServiceServlet - Setting user name: security
+INFO btpool0-8 edu.cmu.square.server.authorization.AuthorizationAspect - User name: security
+INFO btpool0-8 edu.cmu.square.server.authorization.AuthorizationAspect - Project name: Dddddd
+INFO btpool0-8 edu.cmu.square.server.authorization.AuthorizationAspect - allowedRoles: [All]
+INFO btpool0-8 edu.cmu.square.server.authorization.AuthorizationAspect - Aspect triggered expired from aspect:false execution(getRateValues)
+INFO btpool0-8 edu.cmu.square.server.remoteService.implementations.SquareRemoteServiceServlet - ----Session Value name: a94fdc40-be8b-4abc-862e-62529dcbf3a2
+INFO btpool0-8 edu.cmu.square.server.remoteService.implementations.SquareRemoteServiceServlet - ----Session Value name: a94fdc40-be8b-4abc-862e-62529dcbf3a2
+INFO btpool0-8 edu.cmu.square.server.remoteService.implementations.SquareRemoteServiceServlet - Session Expired: false
+INFO btpool0-8 edu.cmu.square.server.remoteService.implementations.SquareRemoteServiceServlet - Setting project name: Dddddd
+INFO btpool0-8 edu.cmu.square.server.remoteService.implementations.SquareRemoteServiceServlet - Setting user name: security
+INFO btpool0-8 edu.cmu.square.server.remoteService.implementations.SquareRemoteServiceServlet - Setting user name: security
+INFO btpool0-8 edu.cmu.square.server.authorization.AuthorizationAspect - User name: security
+INFO btpool0-8 edu.cmu.square.server.authorization.AuthorizationAspect - Project name: Dddddd
+INFO btpool0-8 edu.cmu.square.server.authorization.AuthorizationAspect - allowedRoles: [Security_Specialist, COTS_Vendor, Administrator]
+INFO btpool0-8 edu.cmu.square.server.authorization.AuthorizationAspect - user roles [Security Specialist]
+INFO btpool0-8 edu.cmu.square.server.authorization.AuthorizationAspect - Aspect triggered expired from aspect:false execution(setRateValue)
+INFO btpool0-8 edu.cmu.square.server.remoteService.implementations.SquareRemoteServiceServlet - ----Session Value name: a94fdc40-be8b-4abc-862e-62529dcbf3a2
+INFO btpool0-8 edu.cmu.square.server.remoteService.implementations.SquareRemoteServiceServlet - ----Session Value name: a94fdc40-be8b-4abc-862e-62529dcbf3a2
+INFO btpool0-8 edu.cmu.square.server.remoteService.implementations.SquareRemoteServiceServlet - Session Expired: false
+INFO btpool0-8 edu.cmu.square.server.remoteService.implementations.SquareRemoteServiceServlet - Setting project name: Dddddd
+INFO btpool0-8 edu.cmu.square.server.remoteService.implementations.SquareRemoteServiceServlet - Setting user name: security
+INFO btpool0-8 edu.cmu.square.server.remoteService.implementations.SquareRemoteServiceServlet - Setting user name: security
+INFO btpool0-8 edu.cmu.square.server.authorization.AuthorizationAspect - User name: security
+INFO btpool0-8 edu.cmu.square.server.authorization.AuthorizationAspect - Project name: Dddddd
+INFO btpool0-8 edu.cmu.square.server.authorization.AuthorizationAspect - allowedRoles: [Security_Specialist, COTS_Vendor, Administrator]
+INFO btpool0-8 edu.cmu.square.server.authorization.AuthorizationAspect - user roles [Security Specialist]
+INFO btpool0-8 edu.cmu.square.server.authorization.AuthorizationAspect - Aspect triggered expired from aspect:false execution(setRateValue)
+INFO btpool0-8 edu.cmu.square.server.remoteService.implementations.SquareRemoteServiceServlet - ----Session Value name: a94fdc40-be8b-4abc-862e-62529dcbf3a2
+INFO btpool0-8 edu.cmu.square.server.remoteService.implementations.SquareRemoteServiceServlet - ----Session Value name: a94fdc40-be8b-4abc-862e-62529dcbf3a2
+INFO btpool0-8 edu.cmu.square.server.remoteService.implementations.SquareRemoteServiceServlet - Session Expired: false
+INFO btpool0-8 edu.cmu.square.server.remoteService.implementations.SquareRemoteServiceServlet - Setting project name: Dddddd
+INFO btpool0-8 edu.cmu.square.server.remoteService.implementations.SquareRemoteServiceServlet - Setting user name: security
+INFO btpool0-8 edu.cmu.square.server.remoteService.implementations.SquareRemoteServiceServlet - Setting user name: security
+INFO btpool0-8 edu.cmu.square.server.authorization.AuthorizationAspect - User name: security
+INFO btpool0-8 edu.cmu.square.server.authorization.AuthorizationAspect - Project name: Dddddd
+INFO btpool0-8 edu.cmu.square.server.authorization.AuthorizationAspect - allowedRoles: [All]
+INFO btpool0-8 edu.cmu.square.server.authorization.AuthorizationAspect - Aspect triggered expired from aspect:false execution(getSteps)
+INFO btpool0-8 edu.cmu.square.server.remoteService.implementations.SquareRemoteServiceServlet - ----Session Value name: a94fdc40-be8b-4abc-862e-62529dcbf3a2
+INFO btpool0-8 edu.cmu.square.server.remoteService.implementations.SquareRemoteServiceServlet - ----Session Value name: a94fdc40-be8b-4abc-862e-62529dcbf3a2
+INFO btpool0-8 edu.cmu.square.server.remoteService.implementations.SquareRemoteServiceServlet - Session Expired: false
+INFO btpool0-8 edu.cmu.square.server.remoteService.implementations.SquareRemoteServiceServlet - Setting project name: Dddddd
+INFO btpool0-8 edu.cmu.square.server.remoteService.implementations.SquareRemoteServiceServlet - Setting user name: security
+INFO btpool0-8 edu.cmu.square.server.remoteService.implementations.SquareRemoteServiceServlet - Setting user name: security
+INFO btpool0-8 edu.cmu.square.server.authorization.AuthorizationAspect - User name: security
+INFO btpool0-8 edu.cmu.square.server.authorization.AuthorizationAspect - Project name: Dddddd
+INFO btpool0-8 edu.cmu.square.server.authorization.AuthorizationAspect - allowedRoles: [All]
+INFO btpool0-8 edu.cmu.square.server.authorization.AuthorizationAspect - Aspect triggered expired from aspect:false execution(getProject)
+INFO btpool0-8 edu.cmu.square.server.authorization.AuthorizationAspect - User name: security
+INFO btpool0-8 edu.cmu.square.server.authorization.AuthorizationAspect - Project name: Dddddd
+INFO btpool0-8 edu.cmu.square.server.authorization.AuthorizationAspect - allowedRoles: [All]
+INFO btpool0-8 edu.cmu.square.server.authorization.AuthorizationAspect - Aspect triggered expired from aspect:false execution(getProject)
+INFO btpool0-8 edu.cmu.square.server.remoteService.implementations.SquareRemoteServiceServlet - ----Session Value name: a94fdc40-be8b-4abc-862e-62529dcbf3a2
+INFO btpool0-8 edu.cmu.square.server.remoteService.implementations.SquareRemoteServiceServlet - ----Session Value name: a94fdc40-be8b-4abc-862e-62529dcbf3a2
+INFO btpool0-8 edu.cmu.square.server.remoteService.implementations.SquareRemoteServiceServlet - Session Expired: false
+INFO btpool0-8 edu.cmu.square.server.remoteService.implementations.SquareRemoteServiceServlet - Setting project name: Dddddd
+INFO btpool0-8 edu.cmu.square.server.remoteService.implementations.SquareRemoteServiceServlet - Setting user name: security
+INFO btpool0-8 edu.cmu.square.server.remoteService.implementations.SquareRemoteServiceServlet - Setting user name: security
+INFO btpool0-8 edu.cmu.square.server.remoteService.implementations.SquareRemoteServiceServlet - ----Session Value name: a94fdc40-be8b-4abc-862e-62529dcbf3a2
+INFO btpool0-8 edu.cmu.square.server.remoteService.implementations.SquareRemoteServiceServlet - ----Session Value name: a94fdc40-be8b-4abc-862e-62529dcbf3a2
+INFO btpool0-8 edu.cmu.square.server.remoteService.implementations.SquareRemoteServiceServlet - Session Expired: false
+INFO btpool0-8 edu.cmu.square.server.remoteService.implementations.SquareRemoteServiceServlet - Setting project name: Dddddd
+INFO btpool0-8 edu.cmu.square.server.remoteService.implementations.SquareRemoteServiceServlet - Setting user name: security
+INFO btpool0-8 edu.cmu.square.server.remoteService.implementations.SquareRemoteServiceServlet - Setting user name: security
+INFO btpool0-8 edu.cmu.square.server.remoteService.implementations.SquareRemoteServiceServlet - ----Session Value name: a94fdc40-be8b-4abc-862e-62529dcbf3a2
+INFO btpool0-8 edu.cmu.square.server.remoteService.implementations.SquareRemoteServiceServlet - ----Session Value name: a94fdc40-be8b-4abc-862e-62529dcbf3a2
+INFO btpool0-8 edu.cmu.square.server.remoteService.implementations.SquareRemoteServiceServlet - Session Expired: false
+INFO btpool0-8 edu.cmu.square.server.remoteService.implementations.SquareRemoteServiceServlet - Setting project name: Dddddd
+INFO btpool0-8 edu.cmu.square.server.remoteService.implementations.SquareRemoteServiceServlet - Setting user name: security
+INFO btpool0-8 edu.cmu.square.server.remoteService.implementations.SquareRemoteServiceServlet - Setting user name: security
+INFO btpool0-8 edu.cmu.square.server.authorization.AuthorizationAspect - User name: security
+INFO btpool0-8 edu.cmu.square.server.authorization.AuthorizationAspect - Project name: Dddddd
+INFO btpool0-8 edu.cmu.square.server.authorization.AuthorizationAspect - allowedRoles: [All]
+INFO btpool0-8 edu.cmu.square.server.authorization.AuthorizationAspect - Aspect triggered expired from aspect:false execution(getQualityAttributes)
+INFO btpool0-8 edu.cmu.square.server.remoteService.implementations.SquareRemoteServiceServlet - ----Session Value name: a94fdc40-be8b-4abc-862e-62529dcbf3a2
+INFO btpool0-8 edu.cmu.square.server.remoteService.implementations.SquareRemoteServiceServlet - ----Session Value name: a94fdc40-be8b-4abc-862e-62529dcbf3a2
+INFO btpool0-8 edu.cmu.square.server.remoteService.implementations.SquareRemoteServiceServlet - Session Expired: false
+INFO btpool0-8 edu.cmu.square.server.remoteService.implementations.SquareRemoteServiceServlet - Setting project name: Dddddd
+INFO btpool0-8 edu.cmu.square.server.remoteService.implementations.SquareRemoteServiceServlet - Setting user name: security
+INFO btpool0-8 edu.cmu.square.server.remoteService.implementations.SquareRemoteServiceServlet - Setting user name: security
+INFO btpool0-8 edu.cmu.square.server.remoteService.implementations.SquareRemoteServiceServlet - ----Session Value name: a94fdc40-be8b-4abc-862e-62529dcbf3a2
+INFO btpool0-8 edu.cmu.square.server.remoteService.implementations.SquareRemoteServiceServlet - ----Session Value name: a94fdc40-be8b-4abc-862e-62529dcbf3a2
+INFO btpool0-8 edu.cmu.square.server.remoteService.implementations.SquareRemoteServiceServlet - Session Expired: false
+INFO btpool0-8 edu.cmu.square.server.remoteService.implementations.SquareRemoteServiceServlet - Setting project name: Dddddd
+INFO btpool0-8 edu.cmu.square.server.remoteService.implementations.SquareRemoteServiceServlet - Setting user name: security
+INFO btpool0-8 edu.cmu.square.server.remoteService.implementations.SquareRemoteServiceServlet - Setting user name: security
+INFO btpool0-8 edu.cmu.square.server.authorization.AuthorizationAspect - User name: security
+INFO btpool0-8 edu.cmu.square.server.authorization.AuthorizationAspect - Project name: Dddddd
+INFO btpool0-8 edu.cmu.square.server.authorization.AuthorizationAspect - allowedRoles: [All]
+INFO btpool0-8 edu.cmu.square.server.authorization.AuthorizationAspect - Aspect triggered expired from aspect:false execution(getSoftwarePackages)
+INFO btpool0-8 edu.cmu.square.server.remoteService.implementations.SquareRemoteServiceServlet - ----Session Value name: a94fdc40-be8b-4abc-862e-62529dcbf3a2
+INFO btpool0-8 edu.cmu.square.server.remoteService.implementations.SquareRemoteServiceServlet - ----Session Value name: a94fdc40-be8b-4abc-862e-62529dcbf3a2
+INFO btpool0-8 edu.cmu.square.server.remoteService.implementations.SquareRemoteServiceServlet - Session Expired: false
+INFO btpool0-8 edu.cmu.square.server.remoteService.implementations.SquareRemoteServiceServlet - Setting project name: Dddddd
+INFO btpool0-8 edu.cmu.square.server.remoteService.implementations.SquareRemoteServiceServlet - Setting user name: security
+INFO btpool0-8 edu.cmu.square.server.remoteService.implementations.SquareRemoteServiceServlet - Setting user name: security
+INFO btpool0-8 edu.cmu.square.server.authorization.AuthorizationAspect - User name: security
+INFO btpool0-8 edu.cmu.square.server.authorization.AuthorizationAspect - Project name: Dddddd
+INFO btpool0-8 edu.cmu.square.server.authorization.AuthorizationAspect - allowedRoles: [All]
+INFO btpool0-8 edu.cmu.square.server.authorization.AuthorizationAspect - Aspect triggered expired from aspect:false execution(getRateValues)
+INFO btpool0-8 edu.cmu.square.server.remoteService.implementations.SquareRemoteServiceServlet - ----Session Value name: a94fdc40-be8b-4abc-862e-62529dcbf3a2
+INFO btpool0-8 edu.cmu.square.server.remoteService.implementations.SquareRemoteServiceServlet - ----Session Value name: a94fdc40-be8b-4abc-862e-62529dcbf3a2
+INFO btpool0-8 edu.cmu.square.server.remoteService.implementations.SquareRemoteServiceServlet - Session Expired: false
+INFO btpool0-8 edu.cmu.square.server.remoteService.implementations.SquareRemoteServiceServlet - Setting project name: Dddddd
+INFO btpool0-8 edu.cmu.square.server.remoteService.implementations.SquareRemoteServiceServlet - Setting user name: security
+INFO btpool0-8 edu.cmu.square.server.remoteService.implementations.SquareRemoteServiceServlet - Setting user name: security
+INFO btpool0-8 edu.cmu.square.server.remoteService.implementations.SquareRemoteServiceServlet - ----Session Value name: a94fdc40-be8b-4abc-862e-62529dcbf3a2
+INFO btpool0-8 edu.cmu.square.server.remoteService.implementations.SquareRemoteServiceServlet - ----Session Value name: a94fdc40-be8b-4abc-862e-62529dcbf3a2
+INFO btpool0-8 edu.cmu.square.server.remoteService.implementations.SquareRemoteServiceServlet - Session Expired: false
+INFO btpool0-8 edu.cmu.square.server.remoteService.implementations.SquareRemoteServiceServlet - Setting project name: Dddddd
+INFO btpool0-8 edu.cmu.square.server.remoteService.implementations.SquareRemoteServiceServlet - Setting user name: security
+INFO btpool0-8 edu.cmu.square.server.remoteService.implementations.SquareRemoteServiceServlet - Setting user name: security
+INFO btpool0-8 edu.cmu.square.server.remoteService.implementations.SquareRemoteServiceServlet - ----Session Value name: a94fdc40-be8b-4abc-862e-62529dcbf3a2
+INFO btpool0-8 edu.cmu.square.server.remoteService.implementations.SquareRemoteServiceServlet - ----Session Value name: a94fdc40-be8b-4abc-862e-62529dcbf3a2
+INFO btpool0-8 edu.cmu.square.server.remoteService.implementations.SquareRemoteServiceServlet - Session Expired: false
+INFO btpool0-8 edu.cmu.square.server.remoteService.implementations.SquareRemoteServiceServlet - Setting project name: Dddddd
+INFO btpool0-8 edu.cmu.square.server.remoteService.implementations.SquareRemoteServiceServlet - Setting user name: security
+INFO btpool0-8 edu.cmu.square.server.remoteService.implementations.SquareRemoteServiceServlet - Setting user name: security
+INFO btpool0-8 edu.cmu.square.server.authorization.AuthorizationAspect - User name: security
+INFO btpool0-8 edu.cmu.square.server.authorization.AuthorizationAspect - Project name: Dddddd
+INFO btpool0-8 edu.cmu.square.server.authorization.AuthorizationAspect - allowedRoles: [All]
+INFO btpool0-8 edu.cmu.square.server.authorization.AuthorizationAspect - Aspect triggered expired from aspect:false execution(getRequirementRateValues)

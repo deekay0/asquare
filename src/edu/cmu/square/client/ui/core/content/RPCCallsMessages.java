@@ -13,7 +13,7 @@ public interface RPCCallsMessages extends Messages {
 	String errorAction(String actionName);
 	String errorAuthorization(String actionName);
 	String errorGeneral(String actionName);
-
+	String errorDupiliatedName(String actionName);
 
 
 }
