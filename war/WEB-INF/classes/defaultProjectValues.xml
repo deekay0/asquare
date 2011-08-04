@@ -1,0 +1,97 @@
+<?xml version="1.0"?>
+<SquareRoot>
+	
+	<Terms>
+		<Term name="Access Control">Access control ensures that resources are only granted to those users who are entitled to them [SANS 2003].</Term>
+		<Term name="Artifact">The remnants of an intruder attack or incident activity. These could be software used by intruder(s), a collection of tools, malicious code, logs, files, output from tools, status of asystem after an attack or intrusion [West-Brown 2003].</Term>
+		<Term name="Attack">An action conducted by an adversary, the attacker, on a potential victim. A set of events that an observer believes to have information assurance consequences on some entity,the target of the attack [Ellison 2003].</Term>
+		<Term name="Authentication">The process of determining whether someone or something is, in fact, who or what it is declared to be [SearchSecurity 2008].</Term>
+		<Term name="Authorization">The process of granting a person, computer process, or device access to certain information, services, or functionality. Authorization is derived from the identity of the person, computer process, or device requesting access, which is verified through authentication [Tulloch 2003].</Term>
+		<Term name="Availability">The property of a system or a system resource that ensures it is accessible and usable upon demand by an authorized system user. Availability is one of the core characteristics of a secure system [Tulloch 2003].</Term>
+		<Term name="Back door">A hardware or software-based hidden entrance to a computer system that can be used to bypass the system's security policies [Tulloch 2003].</Term>
+		<Term name="Breach">Any intentional event where an intruder gains access that compromises the confidentiality, integrity, or availability of computers, networks, or the data residing on them [CERT/CC 2004].</Term>
+		<Term name="Brute force">A cryptanalysis technique or other kind of attack method involving an exhaustive procedure that tries all possibilities, one by one [SANS 2003].</Term>
+		<Term name="Cache poisoning">Malicious or misleading data from a remote name server is saved [cached] by another name server. Typically used with DNS cache poisoning attacks [SANS 2003].</Term>
+		<Term name="Confidentiality">The property that information is not made available or disclosed to unauthorized individuals, entities, or processes (i.e., to any unauthorized system entity) [SANS 2003].</Term>
+		<Term name="Control">An action, device, procedure, or technique that removes or reduces vulnerability.</Term>	
+		<Term name="Corruption">A threat action that undesirably alters system operation by adversely modifying system functions or data [sans 2003].</Term>
+		<Term name="Cracker">Someone who breaks into someone elseâ€™s computer system, often on a network, bypasses passwords or licenses in computer programs, or in other ways intentionally breaches computer security [SearchSecurity 2008].</Term>
+		<Term name="Denial-of-service (DoS) attack">An attempt by a malicious (or unwitting) user, process, or system to prevent legitimate users from accessing a resource (usually a network service) by exploiting a weakness or design limitation in an information system. Examples of DoS attacks include flooding network connections, filling disk storage, disabling ports, and removing power [Tulloch 2003].</Term>
+		<Term name="Disaster recovery plan">A plan that helps a company recover data and restore services after a disaster [Tulloch 2003].</Term>
+		<Term name="Disclosure">A component of the notice principle, wherein a company should make available its data handling practices, including notices on how it collects, uses, and shares personally identifiable information [Tulloch 2003].</Term>
+		<Term name="Disgruntled employee">A person in an organization who deliberately abuses or misuses computer systems and their information [Alberts 2003].</Term>
+		<Term name="Encryption">The cryptographic transformation of data (called plaintext) into a form (called cipher text) that conceals the data's original meaning to prevent it from being known or used [SANS 2003].</Term>
+		<Term name="Fault tolerance">A computer system or component designed so that, in the event that a component fails, a backup component or procedure can immediately take its place with no loss of service. Fault tolerance can be provided with software, embedded in hardware, or provided by some combination [SearchSecurity 2008].</Term>
+		<Term name="Firewall">A security solution that segregates one portion of a network from another portion, allowing only authorized network traffic to pass through according to traffic-filtering rules [Tulloch 2003].</Term>
+		<Term name="Hacker">Someone who engages in the activity of hacking computer programs, systems, or networks [Tulloch 2003]. </Term>		
+		<Term name="Integrity">For data, the property that data has not been changed, destroyed, or lost in an unauthorized or accidental manner [Allen 1999].</Term>
+		<Term name="Intrusion">An attempt to compromise a system or network [Tulloch 2003].</Term>
+		<Term name="Intrusion detection system">A combination of hardware and software that monitors and collects system and network information and analyzes it to determine if an attack or an intrusion has occurred. Some ID systems can automatically respond to an intrusion [Allen 1999].</Term>
+		<Term name="Liability">The responsibility of someone for damage or loss [West-Brown 2003].</Term>
+		<Term name="Luring attack">A type of elevation of privilege attack where the attacker lures a more highly privileged component to do something on his or her behalf. The most straightforward technique is to convince the target to run the attacker’s code in a more privileged security context [Brown 2005].</Term>
+		<Term name="Mail relaying">A practice in which an attacker sends email messages from another system's email server in order to use its resources and/or make it appear that the messages originated from the other system.</Term>
+		<Term name="Malicious code">Software that fulfills the deliberately harmful intent of an attacker when run. For example,viruses, worms, and Trojan horses are malicious code.</Term>
+		<Term name="Malicious user">A user who accesses a system with the intent to cause harm to the system or to use it in an unauthorized manner.</Term>
+		<Term name="Malware">Programming or files that are developed for the purpose of doing harm. Thus, malware includes computer viruses, worms, and Trojan horses [Webopedia 2008].</Term>
+		<Term name="Man-in-the-middle attack">A computer attack during which the cyber criminal funnels communication between a consumer and a legitimate organization through a fake website. In these attacks, neither the consumer nor the organization is aware that the communication is being illegally monitored. The criminal is, in effect, in the middle of a transaction between the consumer and his or her bank, credit card company, or retailer [BSA 2008].</Term>
+		<Term name="Masquerade">Attempts to fool other machines on the network into accepting the imposter as an original, either to lure the other machines into sending it data or to allow it to alter data [Howard 1998].</Term>
+		<Term name="Modification">Situation in which an unauthorized party not only gains access to but tampers with an asset [Howard 1997].</Term>
+		<Term name="Non-essential services">Services to users of a system that can be temporarily suspended to permit delivery of essential services while the system is dealing with intrusions and compromises [Ellison 1997].</Term>
+		<Term name="Non-repudiation">A technique used to ensure that someone performing an action on a computer cannot falsely deny that they performed that action [Tulloch 2003].</Term>
+		<Term name="Patch">A small update released by a software manufacturer to fix bugs in an existing program [SANS 2003].</Term>
+		<Term name="Patching">The process of updating software to a new version that fixes bugs in a previous version [SANS 2003].</Term>
+		<Term name="Penetration">Intrusion, trespassing, or unauthorized entry into a system [RUsecure 2008].</Term>
+		<Term name="Penetration testing">The execution of a testing plan, the sole purpose of which is to attempt to hack into a system using known tools and techniques [RUsecure 2008].</Term>
+		<Term name="Permissions">Authorization to perform operations associated with a specific shared resource, such as a file, directory, or printer. Permissions must be granted by the system administrator to individual user accounts or administrative groups.</Term>
+		<Term name="Physical security">Security measures taken to protect systems, buildings, and related supporting infrastructure against threats associated with their physical environment [Guttman 1995].</Term>
+		<Term name="Port scanning">The act of systematically scanning a computer's ports [Webopedia 2008].</Term>
+		<Term name="Privacy">The quality or condition of being secluded from the presence or view of others [Dictionary.com 2008].</Term>
+		<Term name="Procedure">The implementation of a policy in the form of workflows, orders, or mechanisms [West-Brown 2003].</Term>
+		<Term name="Recognition">The capability of a system to recognize attacks or the probing that precedes attacks [Ellison 2003].</Term>
+		<Term name="Recovery">A system’s ability to restore services after an intrusion has occurred. Recovery also contributes to a system’s ability to maintain essential services during intrusion [Ellison 2003].</Term>
+		<Term name="Replay attack">The interception of communications, such as an authentication communication, and subsequent impersonation of the sender by retransmitting the intercepted communication [FFIEC 2008].</Term>
+		<Term name="Request for collaboration (RFC)">A request for development engagement where Product Support Services (PSS) is technically blocked; also used to formalize and track support statement requests and to review proposed action plans. The request process was introduced to help reduce the time it takes to provide a solution to a customer. An RFC may become a DCR [design change request], CDCR [critical design change request], or hotfix request [a request to address a problem in a product] [Microsoft 2005].</Term>
+		<Term name="Resilience">The ability of a computer or system to both withstand a range of load fluctuations and remain stable under continuous and/or adverse conditions [RUsecure 2008].</Term>
+		<Term name="Resistance">The capability of a system to resist attacks [Ellison 2003].</Term>
+		<Term name="Risk">The product of the level of threat with the level of vulnerability. It establishes the likelihood of a successful attack [SANS 2003].</Term>
+		<Term name="Risk assessment">The process by which risks are identified and the impact of those risks determined [SANS 2003].</Term>
+		<Term name="SQL injection">A type of input validation attack specific to database-driven applications where SQL code is inserted into application queries to manipulate the database [SANS 2003].</Term>
+		<Term name="Script kiddie">The more immature but unfortunately often dangerous exploiter of security lapses on the Internet. The typical script kiddie uses existing and frequently well-known and easy-tofind techniques and programs or scripts to search for and exploit weaknesses in other computers on the Internet often randomly and with little regard or perhaps even understanding of the potentially harmful consequences [SearchSecurity 2008].</Term>
+		<Term name="Security policy">A policy that addresses security issues [West-Brown 2003].</Term>
+		<Term name="Spoof">Making a transmission appear to come from a user other than the user who performed the action [Microsoft 2005].</Term>
+		<Term name="Stakeholder">Anyone who is a direct user, indirect user, manager of users, senior manager, operations staff member, support (help desk) staff member, developer working on other systems that integrate or interact with the one under development, or maintenance professionals potentially affected by the development and/or deployment of a software project [Ambler 2004].</Term>
+		<Term name="Stealthing">A term that refers to approaches used by malicious code to conceal its presence on an infected system [SANS 2003].</Term>
+		<Term name="Survivability">The capability of a system to complete its mission in a timely manner, even if significant portions are compromised by attack or accident. The system should provide essential services in the presence of successful intrusion and recover compromised services in a timely manner after intrusion occurs [Mead 2003].</Term>
+		<Term name="Target">The object of an attack, especially host, computer, network, system, site, person, organization, nation, company, government, or other group [Allen 1999].</Term>
+		<Term name="Threat">A potential for violation of security, which exists when there is a circumstance, capability, action, or event that could breach security and cause harm [SANS 2003].</Term>
+		<Term name="Threat assessment">The identification of the types of threats that an organization might be exposed to [SANS 2003].</Term>
+		<Term name="Threat model">Used to describe a given threat and the harm it could to do a system if it has a vulnerability [SANS 2003].</Term>
+		<Term name="Toolkits">A collection of tools with related purposes or functions, e.g., antivirus toolkit, disk toolkit [RUsecure].</Term>
+		<Term name="Trojan">A program that appears to be useful or harmless but that contains hidden code designed to exploit or damage the system on which it is run. Trojan horse programs are most commonly delivered to users through e-mail messages that misrepresent the program’s purpose and function. Also called Trojan code [Microsoft 2005].</Term>
+		<Term name="Trust">Determines which permissions other systems or users have and what actions they can perform on remote machines [SANS 2003].</Term>
+		<Term name="Upgrade">A software package that replaces an installed version with a newer version of the same software. The upgrade process typically leaves existing customer data and preferences intact while replacing the existing software with the newer version.</Term>
+		<Term name="User profile">Settings that define customization preferences for a particular user, such as desktop settings, persistent network connections, personally identifiable information, website use,or other behaviors and demographics data.</Term>
+		<Term name="User rights">Tasks that a user is permitted to perform on a Windows-based computer or domain. There are two types of user rights: privileges and logon rights. An example of a privilege is the right to shut down the system. An example of a logon right is the right to log on to a computer interactively. Both types are assigned by administrators to individual users or groups as part of the security settings for the computer.</Term>
+		<Term name="Victim">That which is the target of an attack. An entity may be a victim of either a successful or unsuccessful attack [SANS 2003].</Term>
+		<Term name="Virus">A hidden, self-replicating section of computer software, usually malicious logic, that propagates by infecting i.e., inserting a copy of itself into and becoming part of another program. A virus cannot run by itself; it requires that its host program be run to make it active [SANS 2003].</Term>
+		<Term name="Vulnerability">Anything that gives an attacker the opportunity to perform an exploit.</Term>
+		<Term name="Worm">Self-propagating malicious code that can automatically distribute itself from one computer to another through network connections. A worm can take harmful action, such as consuming network or local system resources, possibly causing a denial-of-service attack [Microsoft 2005]. Compare virus.</Term>
+	
+	</Terms>
+	
+	<ElicitationTechniques>
+		<ElicitationTechnique name="ARM" isSecurity="true">Accelerated Requirements Method</ElicitationTechnique>
+		<ElicitationTechnique name="JAD" isSecurity="true">Joint Application Design</ElicitationTechnique>
+	</ElicitationTechniques>
+	
+	<EvaluationCriterias>
+		<EvaluationCriteria name="Adaptability">the ability to generate requirements in multiple environments</EvaluationCriteria>
+		<EvaluationCriteria name="Acceptance">the likelihood that the clients would agree to the elicitation technique in analyzing their requirements (Is the implementation too invasive in a business environment? Can the elicitation technique be implemented in a reasonable amount of time?)</EvaluationCriteria>
+	</EvaluationCriterias>
+	
+	<InspectionTechniques>
+		<InspectionTechnique name="Fagan">Structured inspection created by Michael Fagan.</InspectionTechnique>
+		<InspectionTechnique name="Wazaaa">This is the technique of the wazaaaa!</InspectionTechnique>
+	</InspectionTechniques>
+	
+</SquareRoot>
