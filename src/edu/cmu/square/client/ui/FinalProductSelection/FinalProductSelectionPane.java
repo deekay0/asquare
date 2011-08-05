@@ -318,6 +318,13 @@ public class FinalProductSelectionPane extends BasePane
 					public void onSuccess(List<GwtTradeoffReason> result)
 					{
 						
+						String s = "";
+						s+="Loaded the packages IN loadTradeoff before sort\n";
+						for(GwtSoftwarePackage sp : softwarePackages)
+						s+=sp.getName()+"\n";
+						Window.alert(s);
+						
+						
 						tradeoffReasons = result;
 						
 						final List<GwtSoftwarePackage> temp = softwarePackages.subList(1, softwarePackages.size());
@@ -361,6 +368,12 @@ public class FinalProductSelectionPane extends BasePane
 								});
 						softwarePackages = softwarePackages.subList(0, 1);
 						softwarePackages.addAll(temp);
+						
+						s = "";
+						s+="Loaded the packages IN loadTradeoff AFTER SORT\n";
+						for(GwtSoftwarePackage sp : softwarePackages)
+						s+=sp.getName()+"\n";
+						Window.alert(s);
 						
 						loadRequirementRatings();
 						
