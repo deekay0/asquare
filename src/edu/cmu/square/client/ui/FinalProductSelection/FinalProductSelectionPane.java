@@ -292,12 +292,8 @@ public class FinalProductSelectionPane extends BasePane
 			@Override
 			public void onSuccess(List<GwtSoftwarePackage> result)
 			{
-				String s = "";
 				softwarePackages = result;
-				s+="Loaded the packages\n";
-				for(GwtSoftwarePackage sp : softwarePackages)
-					s+=sp.getName()+"\n";
-				Window.alert(s);
+				
 				loadRatings();	
 			}	
 			@Override
@@ -527,6 +523,13 @@ public class FinalProductSelectionPane extends BasePane
 		for(int j=0; j<softwarePackages.size();j++)
 		{		
 			Label packageLabel = new Label(softwarePackages.get(j).getName());
+			
+//			String s = "";
+//			s+="Loaded the packages\n";
+//			for(GwtSoftwarePackage sp : softwarePackages)
+//				s+=sp.getName()+"\n";
+//			Window.alert(s);
+			Window.alert(packageLabel.getText());
 			
 			final DecoratedPopupPanel simplePopup = new DecoratedPopupPanel(true);
 			simplePopup.setWidth("150px");
