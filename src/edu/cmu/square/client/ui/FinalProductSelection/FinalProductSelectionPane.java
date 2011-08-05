@@ -293,7 +293,9 @@ public class FinalProductSelectionPane extends BasePane
 			public void onSuccess(List<GwtSoftwarePackage> result)
 			{
 				softwarePackages = result;
-				
+				System.err.println("Loaded the packages");
+				for(GwtSoftwarePackage sp : softwarePackages)
+					System.err.println(sp.getName());
 				
 				loadRatings();	
 			}	

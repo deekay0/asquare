@@ -1,0 +1,11 @@
+Hi ${user.fullName}, 
+
+An new account has been created for you on the ASQUARE tool found at CyLab.  Please log in using the following user name and password.  
+
+user name: ${user.userName}
+password:  ${user.password} 
+
+Please login and change your password as soon as possible. 
+
+Thank you, 
+Square Administration 

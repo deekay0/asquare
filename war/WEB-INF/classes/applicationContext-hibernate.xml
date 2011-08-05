@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:tx="http://www.springframework.org/schema/tx" xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="
+     http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
+     http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-2.5.xsd
+     http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-2.5.xsd
+     http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-2.5.xsd">
+	<!-- Turning on package scanning for resource injection -->
+	<context:annotation-config />
+	<context:component-scan base-package="edu.cmu.square.server">
+	</context:component-scan>
+	<!-- Turning on aspects for authorization -->
+	<aop:aspectj-autoproxy />
+
+	<!-- Turning on annotation-driven transaction management -->
+	<tx:annotation-driven transaction-manager="transactionManager" />
+	<!-- The hibernate transaction manager -->
+	<bean id="transactionManager"
+		class="org.springframework.orm.hibernate3.HibernateTransactionManager">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+	<!--
+		The hibernate session factory that creates sessions(sessions keep
+		track of everything that goes on in a transaction)
+	-->
+	<bean id="sessionFactory"
+		class="org.springframework.orm.hibernate3.annotation.AnnotationSessionFactoryBean">
+		<property name="dataSource" ref="dataSource" />
+		<property name="packagesToScan" value="edu.cmu.square.server.dao.model" />
+		<!--
+			Hibernate-specific properties such as caching can be added here.
+		-->
+		<property name="hibernateProperties">
+			<props>
+				<prop key="hibernate.dialect">org.hibernate.dialect.MySQL5InnoDBDialect
+				</prop>
+				<prop key="hibernate.show_sql">true</prop>
+			</props>
+		</property>
+
+	</bean>
+	
+	<!-- mail stuff -->
+	<bean id="mailSender" class="org.springframework.mail.javamail.JavaMailSenderImpl">
+		 <property name="host" value="${smtp.server}"/>
+
+	</bean>
+
+	<!--
+		this is a template message that we can pre-load with default state
+	-->
+	<bean id="resetPasswordTemplateEmail" class="org.springframework.mail.SimpleMailMessage">
+		<property name="from" value="${default.from.email}" />
+		<property name="subject" value="${resetPassword.subject}" />
+	</bean>
+	<bean id="userCreatedMessage" class="org.springframework.mail.SimpleMailMessage">
+		<property name="from" value="${default.from.email}" />
+		<property name="subject" value="${createUser.subject}" />
+	</bean>
+
+<bean id="velocityEngine" class="org.springframework.ui.velocity.VelocityEngineFactoryBean">
+      <property name="velocityProperties">
+         <value>
+            resource.loader=class
+            class.resource.loader.class=org.apache.velocity.runtime.resource.loader.ClasspathResourceLoader
+         </value>
+      </property>
+   </bean>
+
+</beans>
