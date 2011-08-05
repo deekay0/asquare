@@ -398,6 +398,15 @@ public class FinalProductSelectionPane extends BasePane
 					public void onSuccess(List<GwtRequirementRating> result)
 					{
 						requirementRatings = result;
+						
+						String s = "";
+						s+="Loaded the packages IN loadRequirementsRatings\n";
+						for(GwtSoftwarePackage sp : softwarePackages)
+						s+=sp.getName()+"\n";
+						Window.alert(s);
+						
+						
+						
 						drawRateMatrix();
 						getTotalsFromMatrix();
 						PaneInitialization();
@@ -524,11 +533,11 @@ public class FinalProductSelectionPane extends BasePane
 		{		
 			Label packageLabel = new Label(softwarePackages.get(j).getName());
 			
-//			String s = "";
-//			s+="Loaded the packages\n";
-//			for(GwtSoftwarePackage sp : softwarePackages)
-//				s+=sp.getName()+"\n";
-//			Window.alert(s);
+			String s = "";
+			s+="Loaded the packages IN drawSoftwarePackages\n";
+			for(GwtSoftwarePackage sp : softwarePackages)
+			s+=sp.getName()+"\n";
+			Window.alert(s);
 			Window.alert(packageLabel.getText());
 			
 			final DecoratedPopupPanel simplePopup = new DecoratedPopupPanel(true);
