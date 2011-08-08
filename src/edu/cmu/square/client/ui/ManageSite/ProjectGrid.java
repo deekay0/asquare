@@ -70,7 +70,7 @@ public class ProjectGrid extends Composite implements Command
 		projectTable.setWidget(0, 1, new Label(messages.projectCase()));
 		projectTable.setWidget(0, 2, new Label(messages.projectType()));
 		projectTable.setWidget(0, 3, new Label(messages.leadRequirementsEngineer()));
-		projectTable.getFlexCellFormatter().setColSpan(0, 3, 3);
+		projectTable.getFlexCellFormatter().setColSpan(0, 4, 4);
 
 		createButton.addClickHandler(new ClickHandler()
 			{
@@ -85,7 +85,7 @@ public class ProjectGrid extends Composite implements Command
 		this.projectTable.getCellFormatter().setHorizontalAlignment(0,1,	HasHorizontalAlignment.ALIGN_CENTER);
 		this.projectTable.getCellFormatter().setHorizontalAlignment(0,2,	HasHorizontalAlignment.ALIGN_CENTER);
 		
-		this.projectTable.getCellFormatter().setHorizontalAlignment(0,3,	HasHorizontalAlignment.ALIGN_LEFT);
+		this.projectTable.getCellFormatter().setHorizontalAlignment(0,3,	HasHorizontalAlignment.ALIGN_CENTER);
 		
 	}
 
