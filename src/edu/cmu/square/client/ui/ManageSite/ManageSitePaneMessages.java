@@ -30,6 +30,7 @@ public interface ManageSitePaneMessages extends CommonMessages {
 	String leadRequirementsEngineer();
 	String createProjectDialogBoxTitle();
 	String projectName();
+	String projectCase();
 	String createProjectDialogBoxAlreadyExist();
 	String useDefaultTerms();
 	String createProjectDialogBoxBadUser();

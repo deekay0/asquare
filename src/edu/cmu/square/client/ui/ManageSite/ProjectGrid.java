@@ -67,9 +67,10 @@ public class ProjectGrid extends Composite implements Command
 		Button createButton = new Button(messages.createProject());
 
 		projectTable.setWidget(0, 0, createButton);
-		projectTable.setWidget(0, 1, new Label(messages.projectType()));
-		projectTable.setWidget(0, 2, new Label(messages.leadRequirementsEngineer()));
-		projectTable.getFlexCellFormatter().setColSpan(0, 2, 2);
+		projectTable.setWidget(0, 1, new Label(messages.projectCase()));
+		projectTable.setWidget(0, 2, new Label(messages.projectType()));
+		projectTable.setWidget(0, 3, new Label(messages.leadRequirementsEngineer()));
+		projectTable.getFlexCellFormatter().setColSpan(0, 4, 4);
 
 		createButton.addClickHandler(new ClickHandler()
 			{
@@ -80,6 +81,12 @@ public class ProjectGrid extends Composite implements Command
 					loadCreateDialog(new GwtProject());
 				}
 			});
+		
+		this.projectTable.getCellFormatter().setHorizontalAlignment(0,1,	HasHorizontalAlignment.ALIGN_CENTER);
+		this.projectTable.getCellFormatter().setHorizontalAlignment(0,2,	HasHorizontalAlignment.ALIGN_CENTER);
+		
+		this.projectTable.getCellFormatter().setHorizontalAlignment(0,3,	HasHorizontalAlignment.ALIGN_CENTER);
+		
 	}
 
 	public void createProject(GwtProject newProject)
@@ -266,8 +273,11 @@ public class ProjectGrid extends Composite implements Command
 			type.setText(messages.securityAndPrivacy());
 		}
 
-		this.projectTable.setWidget(row, 1, type);
-		this.projectTable.setWidget(row, 2, new Label(project.getAcquisitionOrganizationEngineer().getFullName()));
+		//Label projectase = new Label();
+		String caseString = Integer.toString(project.getCases().getId());
+		this.projectTable.setWidget(row, 1, new Label(caseString));
+		this.projectTable.setWidget(row, 2, type);
+		this.projectTable.setWidget(row, 3, new Label(project.getAcquisitionOrganizationEngineer().getFullName()));
 
 		final Command caller = this;
 		
@@ -338,9 +348,13 @@ public class ProjectGrid extends Composite implements Command
 		links.add(copyProjectLink);
 		links.add(deleteProjectLink);
 
-		this.projectTable.setWidget(row, 3, links);
+		this.projectTable.setWidget(row, 4, links);
 
+		this.projectTable.getCellFormatter().setHorizontalAlignment(row,1,	HasHorizontalAlignment.ALIGN_CENTER);
+		this.projectTable.getCellFormatter().setHorizontalAlignment(row,2,	HasHorizontalAlignment.ALIGN_CENTER);
 		this.projectTable.getCellFormatter().setHorizontalAlignment(row,3,	HasHorizontalAlignment.ALIGN_RIGHT);
+
+		this.projectTable.getCellFormatter().setHorizontalAlignment(row,4,	HasHorizontalAlignment.ALIGN_RIGHT);
 
 	}
 	
