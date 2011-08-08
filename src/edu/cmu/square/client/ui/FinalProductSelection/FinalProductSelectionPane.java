@@ -293,10 +293,12 @@ public class FinalProductSelectionPane extends BasePane
 			public void onSuccess(List<GwtSoftwarePackage> result)
 			{
 				softwarePackages = result;
-				System.err.println("Loaded the packages");
-				for(GwtSoftwarePackage sp : softwarePackages)
-					System.err.println(sp.getName());
-				
+//				String s = "";
+//				s+="Loaded the packages IN loadRequirementsRatings\n";
+//				for(GwtSoftwarePackage sp : softwarePackages)
+//				s+=sp.getName()+"\n";
+//				Window.alert(s);
+//				
 				loadRatings();	
 			}	
 			@Override
@@ -315,51 +317,65 @@ public class FinalProductSelectionPane extends BasePane
 					@Override
 					public void onSuccess(List<GwtTradeoffReason> result)
 					{
-						
+//						
+//						String s = "";
+//						s+="Loaded the packages IN loadTradeoff before sort\n";
+//						for(GwtSoftwarePackage sp : softwarePackages)
+//						s+=sp.getName()+"\n";
+//						Window.alert(s);
+//						
+//						
 						tradeoffReasons = result;
 						
-						final List<GwtSoftwarePackage> temp = softwarePackages.subList(1, softwarePackages.size());
-						for(int i=0; i<temp.size(); ++i)
-							System.out.println(temp.get(i).getName());
-						
-						System.out.println("\n\n");
-						
-						for(int i=0; i<softwarePackages.size(); ++i)
-							System.out.println(softwarePackages.get(i).getName());
-						
-						System.out.println("\n\n");
-						
-						for(int i=0; i<tradeoffReasons.size(); ++i)
-							System.out.println(tradeoffReasons.get(i).getTradeoffreason());
-						
-						System.out.println("\n\n");
-						
-						Collections.sort(temp, new Comparator<GwtSoftwarePackage>()
-								{
-									public int compare(GwtSoftwarePackage o1, GwtSoftwarePackage o2) 
-									{									
-										int a, b;
-										
-										System.out.println(o1.getName()+ " has priority ");
-										System.out.println(findTRByPackage(o1).getPriority());
-										
-										a = findTRByPackage(o1).getPriority();
-										b = findTRByPackage(o2).getPriority();
-										if(a == -1)
-											return 1;
-										if(b == -1)
-											return -1;
-										if(a > b)
-											return 1;
-										else if(a < b)
-											return -1;
-										else
-											return 0;
-								    }
-								});
-						softwarePackages = softwarePackages.subList(0, 1);
-						softwarePackages.addAll(temp);
-						
+//						final List<GwtSoftwarePackage> temp = softwarePackages.subList(1, softwarePackages.size());
+//						for(int i=0; i<temp.size(); ++i)
+//							System.out.println(temp.get(i).getName());
+//						
+//						System.out.println("\n\n");
+//						
+//						for(int i=0; i<softwarePackages.size(); ++i)
+//							System.out.println(softwarePackages.get(i).getName());
+//						
+//						System.out.println("\n\n");
+//						
+//						for(int i=0; i<tradeoffReasons.size(); ++i)
+//							System.out.println(tradeoffReasons.get(i).getTradeoffreason());
+//						
+//						System.out.println("\n\n");
+//						
+//						Collections.sort(temp, new Comparator<GwtSoftwarePackage>()
+//								{
+//									public int compare(GwtSoftwarePackage o1, GwtSoftwarePackage o2) 
+//									{									
+//										int a, b;
+//										
+//										System.out.println(o1.getName()+ " has priority ");
+//										System.out.println(findTRByPackage(o1).getPriority());
+//										
+//										a = findTRByPackage(o1).getPriority();
+//										b = findTRByPackage(o2).getPriority();
+//										if(a == -1)
+//											return 1;
+//										if(b == -1)
+//											return -1;
+//										if(a > b)
+//											return 1;
+//										else if(a < b)
+//											return -1;
+//										else
+//											return 0;
+//								    }
+//								});
+//						
+//						softwarePackages = softwarePackages.subList(0, 1);
+//						softwarePackages.addAll(temp);
+//						
+//						s = "";
+//						s+="Loaded the packages IN loadTradeoff AFTER SORT\n";
+//						for(GwtSoftwarePackage sp : softwarePackages)
+//						s+=sp.getName()+"\n";
+//						Window.alert(s);
+//						
 						loadRequirementRatings();
 						
 					}
@@ -401,6 +417,15 @@ public class FinalProductSelectionPane extends BasePane
 					public void onSuccess(List<GwtRequirementRating> result)
 					{
 						requirementRatings = result;
+						
+//						String s = "";
+//						s+="Loaded the packages IN loadRequirementsRatings\n";
+//						for(GwtSoftwarePackage sp : softwarePackages)
+//						s+=sp.getName()+"\n";
+//						Window.alert(s);
+						
+						
+						
 						drawRateMatrix();
 						getTotalsFromMatrix();
 						PaneInitialization();
